@@ -1,0 +1,90 @@
+import Foundation
+import SwiftyJSON
+
+/**
+ *  Parse API response data.
+ */
+func ParseResponse(api: API, json: JSON) throws -> ModelBase? {
+    switch api {
+    case .APP_INFO:
+        return ModelAppInfo(json)
+    case .USER_LOGIN:
+        return ModelUser(json)
+    case .USER_SEND_CERTKEY_EMAIL:
+        return ModelBase(json)
+    case .USER_SEND_CERTKEY_PHONE:
+        return ModelBase(json)
+    case .USER_VERIFY_CERTKEY_EMAIL:
+        return ModelBase(json)
+    case .USER_VERIFY_CERTKEY_PHONE:
+        return ModelBase(json)
+    case .USER_SIGNUP:
+        return ModelUser(json)
+    case .USER_RESET_PWD:
+        return ModelBase(json)
+    case .USER_BADGE_INFO:
+        return ModelBadgeList(json)
+    case .USER_STONE_INFO:
+        return ModelStoneList(json)
+    case .USER_OTHER_INFO:
+        return ModelUser(json)
+    case .CHANGE_PROFILE:
+        return ModelPhoto(json)
+    case .CHANGE_ALARM:
+        return ModelBase(json)
+    case .CHANGE_PWD:
+        return ModelBase(json)
+    case .HOME_DATA:
+        return ModelHome(json)
+    case .CHALLENGE_LIST:
+        return ModelChallengeList(json)
+    case .CHALLENGE_DETAIL:
+        return ModelChallenge(json)
+    case .CHALLENGE_LIKE:
+        return ModelCnt(json)
+    case .CHALLENGE_VOTE:
+        return ModelCnt(json)
+    case .CHALLENGE_JOIN_LIST:
+        return ModelChallengeList(json)
+    case .CHALLENGE_USER_LIST:
+        return ModelChallengeList(json)
+    case .CHALLENGE_MY_LIST:
+        return ModelChallengeList(json)
+    case .VIDEO_LIST:
+        return ModelVideoList(json)
+    case .VIDEO_LIKE:
+        return ModelCnt(json)
+    case .VIDEO_VOTE:
+        return ModelCnt(json)
+    case .VIDEO_UPLOAD:
+        return ModelCnt(json)
+    case .VIDEO_DETAIL:
+        return ModelVideoDetail(json)
+    case .VIDEO_ADD_COMMENT:
+        return ModelBase(json)
+    case .VIDEO_COMMENT_DETAIL:
+        return ModelCommentDetail(json)
+    case .DRIVE_START:
+        return ModelDrive(json)
+    case .DRIVE_STOP:
+        return ModelDrive(json)
+    case .SHOP_ITEM_LIST:
+        return ModelItemList(json)
+    case .SHOP_ITEM_DETAIL:
+        return ModelItem(json)
+    case .SHOP_ITEM_BUY:
+        return ModelBase(json)
+    case .REPORT_LIST:
+        return ModelReportList(json)
+    case .REPORT:
+        return ModelBase(json)
+    case .GAIN_STONE:
+        return ModelCnt(json)
+    case .UPDATE_VISIT_CNT:
+        return ModelCnt(json)
+    case .NO_WORD_LIST:
+        return ModelCnt(json)
+    case .MY_INFO:
+        return ModelUser(json)
+    }
+}

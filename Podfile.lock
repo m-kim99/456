@@ -1,0 +1,112 @@
+PODS:
+  - ActionSheetController (4.2.0):
+    - ModalTransitioning (~> 5.0)
+  - Alamofire (4.9.1)
+  - DropDown (2.3.13)
+  - GrowingTextView (0.7.2)
+  - ImageSlideshow (1.9.2):
+    - ImageSlideshow/Core (= 1.9.2)
+  - ImageSlideshow/Core (1.9.2)
+  - IQKeyboardManagerSwift (6.5.9)
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
+  - KMPlaceholderTextView (1.4.0)
+  - Material (3.1.8):
+    - Material/Core (= 3.1.8)
+  - Material/Core (3.1.8):
+    - Motion (~> 3.1.1)
+  - ModalTransitioning (5.1.0)
+  - Motion (3.1.3):
+    - Motion/Core (= 3.1.3)
+  - Motion/Core (3.1.3)
+  - PullToRefresher (3.3)
+  - REFrostedViewController (2.4.8)
+  - SKPhotoBrowser (7.0.0)
+  - SnapKit (5.0.1)
+  - SVProgressHUD (2.2.5)
+  - SwiftKeychainWrapper (4.0.1)
+  - SwiftyGif (5.4.2)
+  - SwiftyJSON (5.0.1)
+  - Toast-Swift (5.0.1)
+  - TOCropViewController (2.6.0)
+  - TouchAreaInsets (1.1.0)
+  - WXImageCompress (0.1.3)
+
+DEPENDENCIES:
+  - ActionSheetController
+  - Alamofire (~> 4.9.0)
+  - DropDown
+  - GrowingTextView
+  - ImageSlideshow
+  - IQKeyboardManagerSwift
+  - Kingfisher (~> 5.15.8)
+  - KMPlaceholderTextView
+  - Material
+  - PullToRefresher
+  - REFrostedViewController (~> 2.4)
+  - SKPhotoBrowser
+  - SnapKit
+  - SVProgressHUD
+  - SwiftKeychainWrapper
+  - SwiftyGif
+  - SwiftyJSON
+  - Toast-Swift
+  - TOCropViewController
+  - TouchAreaInsets
+  - WXImageCompress
+
+SPEC REPOS:
+  trunk:
+    - ActionSheetController
+    - Alamofire
+    - DropDown
+    - GrowingTextView
+    - ImageSlideshow
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - KMPlaceholderTextView
+    - Material
+    - ModalTransitioning
+    - Motion
+    - PullToRefresher
+    - REFrostedViewController
+    - SKPhotoBrowser
+    - SnapKit
+    - SVProgressHUD
+    - SwiftKeychainWrapper
+    - SwiftyGif
+    - SwiftyJSON
+    - Toast-Swift
+    - TOCropViewController
+    - TouchAreaInsets
+    - WXImageCompress
+
+SPEC CHECKSUMS:
+  ActionSheetController: 39d671689be8715dafb0bda6dc1331b820df6613
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
+  ImageSlideshow: be305b54eaf2b2cfc7a7141c7c734605d44dc07d
+  IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
+  KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
+  Material: a2a3f400a3b549d53ef89e56c58c4535b29db387
+  ModalTransitioning: 0be0e6d41fedcdd9d08f791b5cb083b38434b558
+  Motion: cf1e060e489f6661126374d5c60dbd2ed991605c
+  PullToRefresher: 6fc2ab6494caf949bcf6f0223ffd23f9d21a06f6
+  REFrostedViewController: a893b4979ba1f200c547aef9ff4c3fd5a18f5923
+  SKPhotoBrowser: 6aaa8f232752e87c7e76bace183bead0a137097d
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
+  SwiftyGif: dec758a9dd3d278e5a855dbf279bf062c923c387
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
+  TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
+  TouchAreaInsets: eb1ad705965a142a30a9c6a3405bec5e46d8613b
+  WXImageCompress: 86c7a4d028c7fc9c74181468c318a9ec688fcdac
+
+PODFILE CHECKSUM: b6f7d6e46628f10cc81891fa8a9ceb11d36f6cd2
+
+COCOAPODS: 1.11.2

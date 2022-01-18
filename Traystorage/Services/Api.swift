@@ -1,0 +1,133 @@
+import Foundation
+
+let Server_Url = "http://192.168.0.63:8007/api/" //py
+//let Server_Url = "http://3.34.14.108/api/" //real server
+//let Server_Url = "http://192.168.0.13:8000/api/" //local server
+
+enum API {
+    case APP_INFO
+    case USER_LOGIN
+    case USER_SEND_CERTKEY_EMAIL
+    case USER_SEND_CERTKEY_PHONE
+    case USER_VERIFY_CERTKEY_EMAIL
+    case USER_VERIFY_CERTKEY_PHONE
+    case USER_SIGNUP
+    case USER_RESET_PWD
+    case USER_BADGE_INFO
+    case USER_STONE_INFO
+    case USER_OTHER_INFO
+    case CHANGE_PROFILE
+    case CHANGE_ALARM
+    case CHANGE_PWD
+    case HOME_DATA
+    case CHALLENGE_LIST
+    case CHALLENGE_DETAIL
+    case CHALLENGE_LIKE
+    case CHALLENGE_VOTE
+    case CHALLENGE_JOIN_LIST
+    case CHALLENGE_USER_LIST
+    case CHALLENGE_MY_LIST
+    case VIDEO_LIST
+    case VIDEO_LIKE
+    case VIDEO_VOTE
+    case VIDEO_UPLOAD
+    case VIDEO_DETAIL
+    case VIDEO_ADD_COMMENT
+    case VIDEO_COMMENT_DETAIL
+    case DRIVE_START
+    case DRIVE_STOP
+    case SHOP_ITEM_LIST
+    case SHOP_ITEM_DETAIL
+    case SHOP_ITEM_BUY
+    case REPORT_LIST
+    case REPORT
+    case GAIN_STONE
+    case UPDATE_VISIT_CNT
+    case NO_WORD_LIST
+    case MY_INFO
+    
+    var url: String {
+        switch self {
+        case .APP_INFO:
+            return "App/app_info"
+        case .USER_LOGIN:
+            return "User/login"
+        case .USER_SEND_CERTKEY_EMAIL:
+            return "User/send_certkey_by_email"
+        case .USER_SEND_CERTKEY_PHONE:
+            return "User/send_certkey_by_phone"
+        case .USER_VERIFY_CERTKEY_EMAIL:
+            return "User/verify_email"
+        case .USER_VERIFY_CERTKEY_PHONE:
+            return "User/verify_phone"
+        case .USER_SIGNUP:
+            return "User/signup"
+        case .USER_RESET_PWD:
+            return "User/find_pwd"
+        case .USER_BADGE_INFO:
+            return "User/user_badge_info"
+        case .USER_STONE_INFO:
+            return "User/user_stone_info"
+        case .USER_OTHER_INFO:
+            return "User/other_user_info"
+        case .CHANGE_PROFILE:
+            return "MyPage/change_profile"
+        case .CHANGE_ALARM:
+            return "MyPage/change_alarm"
+        case .CHANGE_PWD:
+            return "MyPage/change_pwd"
+        case .HOME_DATA:
+            return "Home/home_data"
+        case .CHALLENGE_LIST:
+            return "Challenge/challenge_list"
+        case .CHALLENGE_DETAIL:
+            return "Challenge/challenge_info"
+        case .CHALLENGE_LIKE:
+            return "Challenge/challenge_like"
+        case .CHALLENGE_VOTE:
+            return "Challenge/challenge_vote"
+        case .CHALLENGE_JOIN_LIST:
+            return "Challenge/join_challenge_list"
+        case .CHALLENGE_USER_LIST:
+            return "Challenge/user_challenge_list"
+        case .CHALLENGE_MY_LIST:
+            return "Challenge/my_challenge_list"
+        case .VIDEO_LIST:
+            return "Video/video_list"
+        case .VIDEO_LIKE:
+            return "Video/video_like"
+        case .VIDEO_VOTE:
+            return "Video/video_vote"
+        case .VIDEO_UPLOAD:
+            return "Video/upload_video"
+        case .VIDEO_DETAIL:
+            return "Video/detail"
+        case .VIDEO_ADD_COMMENT:
+            return "Video/add_comment"
+        case .VIDEO_COMMENT_DETAIL:
+            return "Video/comment_detail"
+        case .DRIVE_START:
+            return "RoadDrive/start"
+        case .DRIVE_STOP:
+            return "RoadDrive/end"
+        case .SHOP_ITEM_LIST:
+            return "PointShop/product_list"
+        case .SHOP_ITEM_DETAIL:
+            return "PointShop/product_detail"
+        case .SHOP_ITEM_BUY:
+            return "PointShop/buy"
+        case .REPORT_LIST:
+            return "Report/report_list"
+        case .REPORT:
+            return "Report/report"
+        case .GAIN_STONE:
+            return "Home/gain_stone"
+        case .UPDATE_VISIT_CNT:
+            return "Video/update_visit_cnt"
+        case .NO_WORD_LIST:
+            return "App/noword_list"
+        case .MY_INFO:
+            return "User/my_info"
+        }
+    }
+}
