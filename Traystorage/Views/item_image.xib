@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,20 +17,20 @@
                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMS-Qo-8w7">
+                    <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMS-Qo-8w7" userLabel="content">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 32" translatesAutoresizingMaskIntoConstraints="NO" id="DsS-Nz-6fp">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DsS-Nz-6fp">
                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsm-E1-V9U">
+                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsm-E1-V9U">
                                 <rect key="frame" x="52" y="0.0" width="48" height="38"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="Icon-C-SmallClose-24"/>
                                 <buttonConfiguration key="configuration" style="plain" image="Icon-C-SmallClose-24"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.9137254901960784" green="0.95294117647058818" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="DsS-Nz-6fp" secondAttribute="bottom" id="10c-5H-Ku6"/>
                             <constraint firstItem="DsS-Nz-6fp" firstAttribute="top" secondItem="LMS-Qo-8w7" secondAttribute="top" id="3zw-rZ-Ty7"/>
@@ -40,6 +39,11 @@
                             <constraint firstAttribute="trailing" secondItem="DsS-Nz-6fp" secondAttribute="trailing" id="PVE-yW-2jp"/>
                             <constraint firstItem="Xsm-E1-V9U" firstAttribute="top" secondItem="LMS-Qo-8w7" secondAttribute="top" id="Swn-06-isB"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
@@ -53,10 +57,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Group 32" width="159.66667175292969" height="108.66666412353516"/>
         <image name="Icon-C-SmallClose-24" width="24" height="24"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

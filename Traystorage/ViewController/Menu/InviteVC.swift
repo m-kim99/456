@@ -2,8 +2,6 @@
 //  InviteVC.swift
 //  Traystorage
 //
-//  Created by crm on 2022/01/16.
-//
 
 import Foundation
 

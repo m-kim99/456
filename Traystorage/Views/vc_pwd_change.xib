@@ -12,6 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PwdChangeVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
+                <outlet property="keyboardAvoidScroll" destination="T2d-Hw-ZwC" id="Nv1-ov-zP8"/>
+                <outlet property="tfConfirmPwd" destination="SMN-PM-XxA" id="tqA-bm-R35"/>
+                <outlet property="tfNewPwd" destination="Foe-Od-1oL" id="95U-SF-fdV"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,21 +27,24 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFR-wv-pSR" userLabel="back">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="HgR-Zg-rZJ"/>
-                                <constraint firstAttribute="width" constant="50" id="sLC-AP-hoD"/>
+                                <constraint firstAttribute="width" secondItem="wFR-wv-pSR" secondAttribute="height" id="61h-PA-Iri"/>
+                                <constraint firstAttribute="height" constant="60" id="HgR-Zg-rZJ"/>
                             </constraints>
                             <state key="normal" image="ic_back"/>
+                            <connections>
+                                <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="yg3-wm-9nU"/>
+                            </connections>
                         </button>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T2d-Hw-ZwC">
-                            <rect key="frame" x="0.0" y="50" width="414" height="768"/>
+                            <rect key="frame" x="0.0" y="60" width="414" height="758"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0N-UW-ZXN" userLabel="scroll content">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="355.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="380.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksN-2r-U8H" userLabel="margin content">
-                                            <rect key="frame" x="20" y="20" width="374" height="315.5"/>
+                                            <rect key="frame" x="20" y="20" width="374" height="340.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter a new password" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DmO-cJ-7gu" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
@@ -52,129 +58,104 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XqP-yY-OfI" userLabel="stack1">
-                                                    <rect key="frame" x="0.0" y="34.5" width="374" height="71"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="yOd-gl-hRp">
+                                                    <rect key="frame" x="0.0" y="70.5" width="374" height="176"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yt1-TT-OEC" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" systemColor="systemGrayColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Regular"/>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                                    <real key="value" value="14"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="A combination of 4 to 12 characters" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Foe-Od-1oL" customClass="TextField" customModule="Material">
-                                                            <rect key="frame" x="0.0" y="25" width="374" height="46"/>
-                                                            <color key="tintColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="46" id="HST-2C-Pdl"/>
-                                                            </constraints>
-                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
-                                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done" secureTextEntry="YES"/>
-                                                        </textField>
-                                                    </subviews>
-                                                </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gNK-js-TbP" userLabel="stack2">
-                                                    <rect key="frame" x="0.0" y="113.5" width="374" height="71"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password confirm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nen-pl-fpW" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" systemColor="systemGrayColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Regular"/>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                                    <real key="value" value="14"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SMN-PM-XxA" customClass="TextField" customModule="Material">
-                                                            <rect key="frame" x="0.0" y="25" width="374" height="46"/>
-                                                            <color key="tintColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="46" id="65O-Fh-nNE"/>
-                                                            </constraints>
-                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
-                                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
-                                                        </textField>
-                                                    </subviews>
-                                                </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dpL-VE-0Zl" userLabel="stack3">
-                                                    <rect key="frame" x="0.0" y="192.5" width="374" height="71"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="certification number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoV-Wq-Mv8" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" systemColor="systemGrayColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Regular"/>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                                                    <real key="value" value="14"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Certification number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rwY-C2-WpJ" customClass="TextField" customModule="Material">
-                                                            <rect key="frame" x="0.0" y="25" width="374" height="46"/>
-                                                            <color key="tintColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="46" id="I09-dc-ciz"/>
-                                                            </constraints>
-                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
-                                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
-                                                        </textField>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="XqP-yY-OfI" userLabel="stack1">
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="71"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yt1-TT-OEC" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Regular"/>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                            <real key="value" value="14"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="A combination of 4 to 12 characters" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Foe-Od-1oL" customClass="TextField" customModule="Material">
+                                                                    <rect key="frame" x="0.0" y="25" width="374" height="46"/>
+                                                                    <color key="tintColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="46" id="HST-2C-Pdl"/>
+                                                                    </constraints>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                                                    <connections>
+                                                                        <outlet property="delegate" destination="-1" id="a7s-73-8Ia"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gNK-js-TbP" userLabel="stack2">
+                                                            <rect key="frame" x="0.0" y="105" width="374" height="71"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password confirm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nen-pl-fpW" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="17"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Regular"/>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                            <real key="value" value="14"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SMN-PM-XxA" customClass="TextField" customModule="Material">
+                                                                    <rect key="frame" x="0.0" y="25" width="374" height="46"/>
+                                                                    <color key="tintColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="46" id="65O-Fh-nNE"/>
+                                                                    </constraints>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                                                    <connections>
+                                                                        <outlet property="delegate" destination="-1" id="OTD-wj-UDj"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZI-Bd-XGK" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="271.5" width="374" height="44"/>
+                                                    <rect key="frame" x="0.0" y="286.5" width="374" height="54"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="fiE-2V-agi"/>
+                                                        <constraint firstAttribute="height" constant="54" id="fiE-2V-agi"/>
                                                     </constraints>
                                                     <color key="tintColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="confirm">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <buttonConfiguration key="configuration" style="filled" title="confirm">
-                                                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="baseBackgroundColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </buttonConfiguration>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="confirm"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Bold"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                             <real key="value" value="15"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="3"/>
-                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="onClickConfirm:" destination="-1" eventType="touchUpInside" id="P1X-uI-R6i"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="gNK-js-TbP" firstAttribute="top" secondItem="XqP-yY-OfI" secondAttribute="bottom" constant="8" symbolic="YES" id="7kz-4k-jaS"/>
-                                                <constraint firstAttribute="trailing" secondItem="XqP-yY-OfI" secondAttribute="trailing" id="BGw-pL-PEZ"/>
+                                                <constraint firstItem="yOd-gl-hRp" firstAttribute="top" secondItem="DmO-cJ-7gu" secondAttribute="bottom" constant="44" id="KaY-CT-XEY"/>
                                                 <constraint firstItem="pZI-Bd-XGK" firstAttribute="leading" secondItem="ksN-2r-U8H" secondAttribute="leading" id="VFD-0d-NsU"/>
-                                                <constraint firstItem="pZI-Bd-XGK" firstAttribute="top" secondItem="dpL-VE-0Zl" secondAttribute="bottom" constant="8" symbolic="YES" id="X3K-hN-Uan"/>
-                                                <constraint firstItem="XqP-yY-OfI" firstAttribute="leading" secondItem="ksN-2r-U8H" secondAttribute="leading" id="YfN-zR-Ofl"/>
-                                                <constraint firstAttribute="trailing" secondItem="dpL-VE-0Zl" secondAttribute="trailing" id="axq-gN-cG2"/>
                                                 <constraint firstItem="DmO-cJ-7gu" firstAttribute="leading" secondItem="ksN-2r-U8H" secondAttribute="leading" id="bde-qX-qEA"/>
                                                 <constraint firstAttribute="trailing" secondItem="DmO-cJ-7gu" secondAttribute="trailing" id="eaz-3F-s5U"/>
-                                                <constraint firstItem="dpL-VE-0Zl" firstAttribute="leading" secondItem="ksN-2r-U8H" secondAttribute="leading" id="ep6-nX-FCx"/>
-                                                <constraint firstAttribute="trailing" secondItem="gNK-js-TbP" secondAttribute="trailing" id="icN-N3-gmv"/>
                                                 <constraint firstAttribute="trailing" secondItem="pZI-Bd-XGK" secondAttribute="trailing" id="j1p-6V-rtN"/>
-                                                <constraint firstItem="gNK-js-TbP" firstAttribute="leading" secondItem="ksN-2r-U8H" secondAttribute="leading" id="jZi-m2-Rrq"/>
+                                                <constraint firstAttribute="trailing" secondItem="yOd-gl-hRp" secondAttribute="trailing" id="rRl-GO-vva"/>
                                                 <constraint firstAttribute="bottom" secondItem="pZI-Bd-XGK" secondAttribute="bottom" id="rXk-0W-BRk"/>
+                                                <constraint firstItem="yOd-gl-hRp" firstAttribute="leading" secondItem="ksN-2r-U8H" secondAttribute="leading" id="sUx-78-LWa"/>
                                                 <constraint firstItem="DmO-cJ-7gu" firstAttribute="top" secondItem="ksN-2r-U8H" secondAttribute="top" id="ubr-yJ-A2o"/>
-                                                <constraint firstItem="dpL-VE-0Zl" firstAttribute="top" secondItem="gNK-js-TbP" secondAttribute="bottom" constant="8" symbolic="YES" id="xLD-Km-IFy"/>
-                                                <constraint firstItem="XqP-yY-OfI" firstAttribute="top" secondItem="DmO-cJ-7gu" secondAttribute="bottom" constant="8" symbolic="YES" id="xYS-9I-Hoq"/>
+                                                <constraint firstItem="pZI-Bd-XGK" firstAttribute="top" secondItem="yOd-gl-hRp" secondAttribute="bottom" constant="40" id="zB2-vV-KR4"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -208,6 +189,9 @@
                         <constraint firstItem="l0N-UW-ZXN" firstAttribute="width" secondItem="J9O-GT-D7M" secondAttribute="width" id="i6a-ZG-ZTx"/>
                         <constraint firstAttribute="bottom" secondItem="T2d-Hw-ZwC" secondAttribute="bottom" id="wju-d8-wHa"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="aOX-W2-8Cp" appends="YES" id="EoO-MC-PXJ"/>
+                    </connections>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -218,21 +202,15 @@
                 <constraint firstItem="J9O-GT-D7M" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="bQ6-WT-2A4"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="J9O-GT-D7M" secondAttribute="top" id="uUo-q7-ZEP"/>
             </constraints>
-            <connections>
-                <outletCollection property="gestureRecognizers" destination="kj0-Jx-7wm" appends="YES" id="Xo7-Jm-rFX"/>
-            </connections>
             <point key="canvasLocation" x="132" y="154"/>
         </view>
-        <tapGestureRecognizer id="kj0-Jx-7wm">
+        <tapGestureRecognizer id="aOX-W2-8Cp">
             <connections>
-                <action selector="onClickBg:" destination="-1" id="1Sj-TW-ISs"/>
+                <action selector="onClickBg:" destination="-1" id="MZP-LF-HcJ"/>
             </connections>
         </tapGestureRecognizer>
     </objects>
     <designables>
-        <designable name="AoV-Wq-Mv8">
-            <size key="intrinsicContentSize" width="119.5" height="17"/>
-        </designable>
         <designable name="DmO-cJ-7gu">
             <size key="intrinsicContentSize" width="268.5" height="26.5"/>
         </designable>
@@ -249,10 +227,7 @@
             <size key="intrinsicContentSize" width="56.5" height="17"/>
         </designable>
         <designable name="pZI-Bd-XGK">
-            <size key="intrinsicContentSize" width="75.5" height="32"/>
-        </designable>
-        <designable name="rwY-C2-WpJ">
-            <size key="intrinsicContentSize" width="374" height="34"/>
+            <size key="intrinsicContentSize" width="52" height="30"/>
         </designable>
     </designables>
     <resources>

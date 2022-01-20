@@ -1,7 +1,15 @@
 import UIKit
 class GuideVC: BaseVC {
+    @IBOutlet weak var signupButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        signupButton.layer.shadowColor = UIColor.gray.cgColor
+        signupButton.layer.shadowOpacity = 0.2
+        signupButton.layer.shadowOffset = CGSize.zero
+        signupButton.layer.shadowRadius = 8
+        signupButton.layer.masksToBounds = false
     }
     
     override func viewDidLayoutSubviews() {

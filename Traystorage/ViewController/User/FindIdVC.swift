@@ -28,30 +28,20 @@ class FindIdVC: BaseVC {
     }
     
     private func initVC() {
-//        tfEmail.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-//        tfEmail.delegate = self
-//
 //        hideError()
-//        enableReset(false)
     }
     
     private func enableReset(_ enable: Bool) {
         btnReset.isEnabled = enable
-        btnReset.backgroundColor = enable ? AppColor.black : AppColor.gray
     }
     
     private func isValidInput() {
-        var isValid = true
-//        if isValid && tfEmail.text!.isEmpty {
-//            isValid = false
-//        }
-//
-//        if isValid && !Validations.email(tfEmail.text!) {
-//            isValid = false
-//        }
+        guard let phoneNumber = tfPhonenumber.text, !phoneNumber.isEmpty else {
+            enableReset(false)
+            return
+        }
         
-        hideError()
-        enableReset(isValid)
+        enableReset(true)
     }
     
     private func showError(_ msg: String) {
@@ -94,12 +84,17 @@ class FindIdVC: BaseVC {
 
     }
     
-    @IBAction func onLogin(_ sender: Any) {
+    @IBAction func onClickAuthRequest(_ sender: Any) {
         hideKeyboard()
-        replaceVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
+        guard let phoneNumber = tfPhonenumber.text, !phoneNumber.isEmpty else {
+            self.view.showToast("Please input your phone number!")
+            return
+        }
+        
+        AlertDialog.show(self, title: "Alert", message: "This is not a registered mobile phone number. Please check your mobile phone number.")
     }
     
-    @objc func textFieldDidChange(_ textField: UITextField) {
+    @IBAction func textFieldDidChange(_ textField: UITextField) {
         isValidInput()
     }
 }

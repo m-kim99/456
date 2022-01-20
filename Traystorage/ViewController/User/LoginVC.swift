@@ -12,12 +12,6 @@ class LoginVC: BaseVC {
     
 //    @IBOutlet weak var btnPrivacy: UIFontButton!
 //    @IBOutlet weak var btnUseAgre: UIFontButton!
-    
-    @IBOutlet weak var lblLogin: UIFontLabel!
-    @IBOutlet weak var lblRoadman: UIFontLabel!
-    @IBOutlet weak var lblOr: UIFontLabel!
-    @IBOutlet weak var lblYouCan: UIFontLabel!
-    
     @IBOutlet weak var autoLoginCheckImage: UIImageView!
     
     var isAutoLogin = false
@@ -28,7 +22,8 @@ class LoginVC: BaseVC {
 //        autoLoginCheckImage.image
         
 //        initLang()
-//        initVC()
+
+//        enableLogin(false)
     }
     
 //    private func initLang() {
@@ -39,15 +34,7 @@ class LoginVC: BaseVC {
 //        btnFindPwd.setTitle(getLangString("login_pwd_forgets"), for: .normal)
 //        
 //        lblLogin.text = getLangString("login_agree_1")
-//        lblRoadman.text = getLangString("login_agree_2")
-//        lblOr.text = getLangString("login_agree_4")
-//        lblYouCan.text = getLangString("login_agree_6")
-//        
 //    }
-//    
-    private func initVC() {
-        enableLogin(false)
-    }
     
     private func enableLogin(_ enable: Bool) {
         btnLogin.isEnabled = enable
@@ -68,18 +55,15 @@ class LoginVC: BaseVC {
             isValid = false
         }
         
-        enableLogin(isValid)
+//        enableLogin(isValid)
     }
     @IBAction func onClickBack(_ sender: Any) {
         popVC()
     }
     
     @IBAction func onClickAutoLogin(_ sender: Any) {
-        
         isAutoLogin = !isAutoLogin
-        
         let autoLoginCheckImage = isAutoLogin ? "Icon-C-CheckOn-24" : "Icon-C-CheckOff-24"
-        
         self.autoLoginCheckImage.image = UIImage(named: autoLoginCheckImage)
     }
 }
@@ -112,7 +96,7 @@ extension LoginVC: BaseAction {
     }
     
     @IBAction func textFieldDidChange(_ textField: UITextField) {
-//        isValidInput()
+        isValidInput()
     }
 }
 
@@ -135,6 +119,20 @@ extension LoginVC: UITextFieldDelegate {
                 textField.resignFirstResponder()
                 break
         }
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let newLen = (textField.text?.count ?? 0) - range.length + string.count
+
+        if textField == tfId, newLen > 20 {
+            return false
+        }
+        if textField == tfPwd, newLen > 12 {
+            return false
+        }
+
         return true
     }
 }
@@ -170,11 +168,13 @@ extension LoginVC: BaseRestApi {
 //            SVProgressHUD.dismiss()
 //            self.view.showToast(err)
 //        })
+//
+//        ConfirmDialog.show(self, title: "Your account has been permanently suspended by",
+//                           message: "Your account has been permanetly suspended for posting inappropriate", showCancelBtn: true) { [weak self]() -> Void in
+//
+//            self?.openMainVC()
+//        }
         
-        ConfirmDialog.show(self, title: "Your account has been permanently suspended by",
-                           message: "Your account has been permanetly suspended for posting inappropriate", showCancelBtn: true) { [weak self]() -> Void in
-            
-            self?.openMainVC()
-        }
+        self.openMainVC()
     }
 }

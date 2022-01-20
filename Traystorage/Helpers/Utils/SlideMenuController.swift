@@ -2,7 +2,6 @@
 //  SlideMenuController.swift
 //  SalesWay
 //
-//  Created by PJH on 5/10/21.
 //
 import Foundation
 import UIKit

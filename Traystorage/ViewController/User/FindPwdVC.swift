@@ -90,7 +90,22 @@ class FindPwdVC: BaseVC {
     
     @IBAction func onReset(_ sender: Any) {
         hideKeyboard()
+        
+        guard let textID = tfID.text, !textID.isEmpty else {
+            self.view.showToast("Please input your ID!")
+            return
+        }
+        
         resetPwd()
+    }
+    
+    @IBAction func onAuthReqest(_ sender: Any) {
+        guard let phoneNumber = tfPhonenumber.text, !phoneNumber.isEmpty else {
+            self.view.showToast("Please input your phone number!")
+            return
+        }
+        
+        AlertDialog.show(self, title: "Alert", message: "This is not a registered mobile phone number. Please check your mobile phone number.")
     }
     
     @IBAction func onLogin(_ sender: Any) {
@@ -115,6 +130,17 @@ extension FindPwdVC: UITextFieldDelegate {
         resetPwd()
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let newLen = (textField.text?.count ?? 0) - range.length + string.count
+
+        if textField == tfPhonenumber, newLen > 11 {
+            return false
+        }
+
+        return true
+    }
 }
 
 //
@@ -122,7 +148,8 @@ extension FindPwdVC: UITextFieldDelegate {
 //
 extension FindPwdVC: BaseRestApi {
     func resetPwd() {
-        SVProgressHUD.show()
+        self.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true)
+//        SVProgressHUD.show()
 //        Rest.resetPwd(email: tfEmail.text, success: { (result) -> Void in
 //            SVProgressHUD.dismiss()
 //            self.onResetSuccess()

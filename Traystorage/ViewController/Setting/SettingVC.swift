@@ -5,34 +5,12 @@ class SettingVC: BaseVC {
 
     @IBOutlet weak var lblPageTitle: UIFontLabel!
     
-    @IBOutlet weak var lblUserInfo: UIFontLabel!
-    @IBOutlet weak var lblProfileSetting: UIFontLabel!
-    @IBOutlet weak var lblId: UIFontLabel!
-    @IBOutlet weak var lblIdValue: UIFontLabel!
-    @IBOutlet weak var lblPwd: UIFontLabel!
-    @IBOutlet weak var lblPwdValue: UIFontLabel!
-    @IBOutlet weak var lblName: UIFontLabel!
-    @IBOutlet weak var lblNameValue: UIFontLabel!
-    @IBOutlet weak var lblBirth: UIFontLabel!
-    @IBOutlet weak var lblBirthValue: UIFontLabel!
-    @IBOutlet weak var lblSex: UIFontLabel!
-    @IBOutlet weak var lblSexValue: UIFontLabel!
-    @IBOutlet weak var lblAlarm: UIFontLabel!
-    @IBOutlet weak var lblPushAllow: UIFontLabel!
-    @IBOutlet weak var lblPushAllowValue: UIFontLabel!
-    @IBOutlet weak var btnPushAllow: UIButton!
-    @IBOutlet weak var lblChallenge: UIFontLabel!
-    @IBOutlet weak var lblChallengeValue: UIFontLabel!
-    @IBOutlet weak var btnChallengeAlarm: UIButton!
-    @IBOutlet weak var lblAppInfo: UIFontLabel!
-    @IBOutlet weak var lblErrorReport: UIFontLabel!
-    @IBOutlet weak var lblUseAgrement: UIFontLabel!
-    @IBOutlet weak var lblPrivacy: UIFontLabel!
+    @IBOutlet weak var editID: UITextField!
+    @IBOutlet weak var editPassword: UITextField!
     @IBOutlet weak var lblVersion: UIFontLabel!
-    @IBOutlet weak var lblVersionValue: UIFontLabel!
-    @IBOutlet weak var lblLogout: UIFontLabel!
     
-//    private lazy var user: ModelUser = {
+    @IBOutlet var vwItems: [UIStackView]!
+    //    private lazy var user: ModelUser = {
 //        return Rest.user
 //    }()
     
@@ -44,27 +22,16 @@ class SettingVC: BaseVC {
     }
     
     private func initLang() {
-        lblPageTitle.text = getLangString("setting")
-        lblUserInfo.text = getLangString("setting_userinfo")
-        lblProfileSetting.text = getLangString("setting_profile_setting")
-        lblId.text = getLangString("setting_id")
-        lblPwd.text = getLangString("setting_password")
-        lblPwdValue.text = getLangString("setting_change")
-        lblName.text = getLangString("setting_name")
-        lblBirth.text = getLangString("setting_birth")
-        lblSex.text = getLangString("setting_sex")
-        lblAlarm.text = getLangString("setting_alarm")
-        lblPushAllow.text = getLangString("setting_push_allow")
-        lblChallenge.text = getLangString("setting_challenge")
-        lblAppInfo.text = getLangString("setting_app_info")
-        lblErrorReport.text = getLangString("setting_error_report")
-        lblUseAgrement.text = getLangString("setting_use_agreement")
-        lblPrivacy.text = getLangString("setting_privacy_policy")
-        lblVersion.text = getLangString("setting_version")
-        lblLogout.text = getLangString("setting_logout")
+//        lblPageTitle.text = getLangString("setting")
+        
     }
     
     private func initVC() {
+        for (index, menu) in vwItems.enumerated() {
+            menu.tag = index
+            menu.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickItem(_:))))
+        }
+
 //        lblNameValue.text = user.name
 //        btnChallengeAlarm.isSelected = (user.alarm_challenge_yn == "y")
 //        lblVersionValue.text = getLangString("setting_latest_version_using")
@@ -73,11 +40,42 @@ class SettingVC: BaseVC {
     //
     // MARK: - ACTION
     //
+    @IBAction func onEditPassword(_ sender: Any) {
+    }
+    
     @IBAction func onClickBack(_ sender: Any) {
         popVC()
     }
     
-    @IBAction func onClickProfileSetting(_ sender: Any) {
+    @objc func onClickItem(_ sender: UITapGestureRecognizer) {
+        switch sender.view?.tag {
+        case 0:
+            self.pushVC(VersionVC(nibName: "vc_version", bundle: nil), animated: true)
+            break
+        case 1:
+            self.pushVC(FaqVC(nibName: "vc_faq", bundle: nil), animated: true)
+            break
+        case 2:
+            self.pushVC(LicenseVC(nibName: "vc_license", bundle: nil), animated: true)
+            break
+        case 3:
+            self.pushVC(TermsVC(nibName: "vc_terms", bundle: nil), animated: true)
+            break
+        case 4:
+            //            self.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true)
+            break
+        case 5:
+            //            self.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true)
+            break
+        case 6:
+            onClickLogout(1);
+            break
+        case 7:
+            self.pushVC(WithdrawalVC(nibName: "vc_withdrawal", bundle: nil), animated: true)
+            break
+        default:
+            break
+        }
     }
     
     @IBAction func onClickPwd(_ sender: Any) {

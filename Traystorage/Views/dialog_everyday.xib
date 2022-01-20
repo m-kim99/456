@@ -28,7 +28,7 @@
                     <subviews>
                         <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lt5-1S-3lh" userLabel="bg">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
-                            <color key="backgroundColor" white="0.059999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GpT-ee-PhS" userLabel="content">
                             <rect key="frame" x="20" y="60" width="374" height="705"/>
@@ -62,30 +62,33 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="K3f-qK-53l">
                                             <rect key="frame" x="0.0" y="649" width="374" height="56"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eb7-6c-aYq">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eb7-6c-aYq" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="187" height="56"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="never look again">
-                                                        <color key="titleColor" systemColor="labelColor"/>
-                                                    </state>
+                                                    <state key="normal" title="never look again"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="18"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="onNotSeeToday:" destination="-1" eventType="touchUpInside" id="0CV-zg-agG"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXB-QZ-OeE" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXB-QZ-OeE" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
                                                     <rect key="frame" x="187" y="0.0" width="187" height="56"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleColor" red="1" green="0.27450980392156865" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <buttonConfiguration key="configuration" style="filled" title="close">
-                                                        <fontDescription key="titleFontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
-                                                        <color key="baseBackgroundColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </buttonConfiguration>
+                                                    <state key="normal" title="close"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                            <real key="value" value="18"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="onClose:" destination="-1" eventType="touchUpInside" id="dvW-cR-aKO"/>
                                                     </connections>
@@ -138,13 +141,13 @@
     </objects>
     <designables>
         <designable name="EXB-QZ-OeE">
-            <size key="intrinsicContentSize" width="62.5" height="36"/>
+            <size key="intrinsicContentSize" width="39" height="34"/>
+        </designable>
+        <designable name="Eb7-6c-aYq">
+            <size key="intrinsicContentSize" width="124" height="34"/>
         </designable>
     </designables>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

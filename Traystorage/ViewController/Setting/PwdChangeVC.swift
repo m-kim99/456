@@ -6,19 +6,17 @@ class PwdChangeVC: BaseVC {
 //    @IBOutlet weak var lblPageTitle: UIFontLabel!
 //    @IBOutlet weak var lblDesc1: UIFontLabel!
 //    @IBOutlet weak var lblDesc2: UIFontLabel!
-    @IBOutlet weak var lblCurrentPwd: UIFontLabel!
-    @IBOutlet weak var tfCurPwd: UITextField!
-    @IBOutlet weak var lblNewPwd: UIFontLabel!
+    @IBOutlet weak var lblNewPwd: UILabel!
     @IBOutlet weak var tfNewPwd: UITextField!
-    @IBOutlet weak var lblConfirmPwd: UIFontLabel!
+    @IBOutlet weak var lblConfirmPwd: UILabel!
     @IBOutlet weak var tfConfirmPwd: UITextField!
-    @IBOutlet weak var btnConfirm: UIFontButton!
+    @IBOutlet weak var btnConfirm: UIButton!
     @IBOutlet weak var lineCurrent: UIView!
     @IBOutlet weak var lineNew: UIView!
     @IBOutlet weak var lineConfirm: UIView!
-    @IBOutlet weak var lblCurError: UIFontLabel!
-    @IBOutlet weak var lblNewError: UIFontLabel!
-    @IBOutlet weak var lblConfirmError: UIFontLabel!
+    @IBOutlet weak var lblCurError: UILabel!
+    @IBOutlet weak var lblNewError: UILabel!
+    @IBOutlet weak var lblConfirmError: UILabel!
     
 //    private lazy var user: ModelUser = {
 //        return Rest.user
@@ -48,10 +46,6 @@ class PwdChangeVC: BaseVC {
 //    }
     
     private func initVC() {
-        tfCurPwd.delegate = self
-        tfNewPwd.delegate = self
-        tfConfirmPwd.delegate = self
-       
         enableConfirm(false)
     }
     
@@ -62,10 +56,8 @@ class PwdChangeVC: BaseVC {
     
     private func hideKeyboard() {
 //        tfCurPwd.resignFirstResponder()
-//        tfNewPwd.resignFirstResponder()
-//        tfConfirmPwd.resignFirstResponder()
-        
-        self.resignFirstResponder()
+        tfNewPwd.resignFirstResponder()
+        tfConfirmPwd.resignFirstResponder()
     }
     
     //
@@ -82,6 +74,10 @@ class PwdChangeVC: BaseVC {
     
     @IBAction func onClickConfirm(_ sender: Any) {
         hideKeyboard()
+        guard let pass = tfNewPwd.text, let confirmPass = tfConfirmPwd.text, pass == confirmPass else {
+            self.view.showToast("Please verify to match new password and confirm password.")
+            return
+        }
         changePwd()
     }
 }
@@ -92,9 +88,6 @@ class PwdChangeVC: BaseVC {
 extension PwdChangeVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-            case tfCurPwd:
-                tfNewPwd.becomeFirstResponder()
-                break
             case tfNewPwd:
                 tfConfirmPwd.becomeFirstResponder()
                 break
@@ -111,7 +104,13 @@ extension PwdChangeVC: UITextFieldDelegate {
         return true
     }
     
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newLen = (textField.text?.count ?? 0) - range.length + string.count
+
+        if newLen > 12 {
+            return false
+        }
 //        let strText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
 //        let strNSText: NSString = strText as NSString
 //        switch textField {
@@ -173,10 +172,9 @@ extension PwdChangeVC: BaseRestApi {
 //                self.user.pwd = self.tfNewPwd.text
 //                Local.setUser(self.user)
 //
-//                AlertDialog.show(self, title: getLangString("setting_save_title"), message: getLangString("setting_save_message")){
-//                    self.popVC()
-//                }
-//            }
+        ConfirmDialog.show2(self, title: "Your password has been changed.", message: "Please log in with the change password", showCancelBtn: false, okAction: {
+            
+        })
 //        }, failure: { (_, err) -> Void in
 //            SVProgressHUD.dismiss()
 //            self.view.showToast(err)

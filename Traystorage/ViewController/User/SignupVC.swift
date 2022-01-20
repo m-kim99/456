@@ -6,13 +6,10 @@ import UIKit
 class SignupVC: BaseVC {
     @IBOutlet weak var lblTitle: UIFontLabel!
     
-    @IBOutlet weak var vwPhoneLine: UIView!
-    @IBOutlet weak var vwEmailLine: UIView!
+    @IBOutlet weak var btnTabPhone: UIButton!
+    @IBOutlet weak var btnTabEmail: UIButton!
     
-    @IBOutlet weak var btnTabPhone: UIFontButton!
-    @IBOutlet weak var btnTabEmail: UIFontButton!
-    
-//    @IBOutlet weak var tfPhone: UIFontTextField!
+//    @IBOutlet weak var tfPhone: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
     
     @IBOutlet weak var tfPassword: UITextField!
@@ -20,12 +17,12 @@ class SignupVC: BaseVC {
     
     @IBOutlet weak var vwInput: UIView!
     @IBOutlet weak var vwPhoneInput: UIView!
-    @IBOutlet weak var lblError: UIFontLabel!
+    @IBOutlet weak var lblError: UILabel!
     
-    @IBOutlet weak var lblMember: UIFontLabel!
-    @IBOutlet weak var btnLogin: UIFontButton!
+    @IBOutlet weak var lblMember: UILabel!
     
     @IBOutlet weak var btnNext: UIButton!
+    @IBOutlet weak var btnDuplicateCheck: UIButton!
     
     private var curTab = AuthType.phone
     
@@ -82,7 +79,6 @@ class SignupVC: BaseVC {
     
     private func enableNext(_ enable: Bool) {
         btnNext.isEnabled = enable
-//        btnNext.backgroundColor = enable ? AppColor.black : AppColor.gray
     }
     
     private func showError(_ type: AuthType) {
@@ -101,9 +97,9 @@ class SignupVC: BaseVC {
     }
     
     private func hideKeyboard() {
-//        tfPhone.resignFirstResponder()
-//        tfEmail.resignFirstResponder()
-        self.isEditing = false
+        tfEmail.resignFirstResponder()
+        tfPassword.resignFirstResponder()
+        tfPasswordConfirm.resignFirstResponder()
     }
     
     private func showDialog(_ type: AuthType) {
@@ -122,9 +118,11 @@ class SignupVC: BaseVC {
         if let email = tfEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), email.count > 0 {
             hideError()
             enableNext(true)
+            btnDuplicateCheck.isHidden = false
         } else {
-            showError(AuthType.email)
+//            showError(AuthType.email)
             enableNext(false)
+            btnDuplicateCheck.isHidden = true
         }
     }
 }
@@ -149,10 +147,6 @@ extension SignupVC: BaseAction {
         changeTab(AuthType.email)
     }
     
-    @IBAction func onLogin(_ sender: Any) {
-        replaceVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
-    }
-    
     @IBAction func onNext(_ sender: Any) {
 //        if curTab == AuthType.phone {
 //            sendCertKey(phone: tfPhone.text!)
@@ -162,6 +156,43 @@ extension SignupVC: BaseAction {
         
         hideKeyboard()
         goNext()
+    }
+    
+    @IBAction func onClickDuplicate(_ sender: Any) {
+        guard let newID = tfEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !newID.isEmpty else {
+            self.view.showToast("Please input your ID.")
+            return
+        }
+        
+        if newID.count < 4 {
+            self.view.showToast("Please input your ID 4+ characters.")
+            return
+        }
+        
+        AlertDialog.show(self, title: "Duplicated id", message: "Please input another")
+    }
+}
+
+//
+// MARK: - Navigation
+//
+extension SignupVC: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let newLen = (textField.text?.count ?? 0) - range.length + string.count
+
+        if textField == tfEmail, newLen > 20 {
+            return false
+        }
+        if textField == tfPassword, newLen > 20 {
+            return false
+        }
+        
+        if textField == tfPasswordConfirm, newLen > 20 {
+            return false
+        }
+
+        return true
     }
 }
 

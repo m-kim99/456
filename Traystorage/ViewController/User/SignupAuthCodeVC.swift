@@ -5,15 +5,18 @@ import UIKit
 
 // signup 2nd screen
 class SignupAuthCodeVC: BaseVC {
-    @IBOutlet weak var lblAuthMedia: UIFontLabel!
-    @IBOutlet weak var lblSent: UIFontLabel!
-    @IBOutlet weak var lblInput: UIFontLabel!
-    @IBOutlet weak var btnResend: UIFontButton!
+    @IBOutlet weak var lblAuthMedia: UILabel!
+    @IBOutlet weak var lblSent: UILabel!
+    @IBOutlet weak var lblInput: UILabel!
+    @IBOutlet weak var btnResend: UIButton!
+    
+    @IBOutlet weak var btnAuthPhone: UIButton!
+    @IBOutlet weak var btnConfirmCertification: UIButton!
     
     @IBOutlet weak var tfPhoneNumber: UITextField!
     @IBOutlet weak var tfCertificationNumber: UITextField!
     
-    @IBOutlet weak var btnNext: UIFontButton!
+    @IBOutlet weak var btnNext: UIButton!
     
     open var authType = AuthType.phone
     open var authMedia = ""
@@ -48,19 +51,8 @@ class SignupAuthCodeVC: BaseVC {
             lblAuthMedia.text = authMedia
         }
         hideError()
-        enableNext(false)
     }
-    
-    private func enableNext(_ enable: Bool) {
-//        btnNext.isEnabled = enable
-//        btnNext.backgroundColor = enable ? AppColor.black : AppColor.gray
-    }
-    
-    private func showError(_ msg: String) {
-//        tfAuthCode.borderColor = AppColor.error
-//        lblError.isHidden = false
-//        lblError.text = msg
-    }
+
     
     private func hideError() {
 //        tfAuthCode.borderColor = AppColor.gray
@@ -71,7 +63,6 @@ class SignupAuthCodeVC: BaseVC {
         tfPhoneNumber.resignFirstResponder()
         tfCertificationNumber.resignFirstResponder()
     }
-
 }
 
 //
@@ -80,7 +71,9 @@ class SignupAuthCodeVC: BaseVC {
 extension SignupAuthCodeVC: BaseAction {
     @IBAction func onBack(_ sender: Any) {
         hideKeyboard()
-        popVC()
+        ConfirmDialog.show(self, title: "If you close the screen membership registeration will be stopped", message: "Are you sure to cancel", showCancelBtn: true) { [weak self]() -> Void in
+            self?.popToGuidVC()
+        }
     }
     
     @IBAction func onClickBg(_ sender: Any) {
@@ -97,16 +90,24 @@ extension SignupAuthCodeVC: BaseAction {
         verifyCertKey()
     }
     
-    @IBAction func onClickLogin(_ sender: Any) {
-        replaceVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
+    @IBAction func onClickAuthRequest(_ sender: Any) {
+        if let phoneNumber = tfPhoneNumber.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !phoneNumber.isEmpty {
+            AlertDialog.show(self, title: "Alarm", message: "This is an already registered 16 mobile phone number.")
+        } else {
+            self.view.showToast("Please input your phone number.")
+        }
+    }
+    
+    @IBAction func onClickConfirmCertNum(_ sender: Any) {
+        
     }
     
     @IBAction func textFieldDidChange(_ sender: UITextField) {
-        if tfPhoneNumber.text!.isEmpty || tfCertificationNumber.text!.count != 4 {
-            self.enableNext(false)
-        } else {
-            enableNext(true)
-        }
+//        if tfPhoneNumber.text!.isEmpty || tfCertificationNumber.text!.count != 4 {
+//            btnNext.isEnabled = false
+//        } else {
+//            btnNext.isEnabled = true
+//        }
     }
 }
 
@@ -116,13 +117,14 @@ extension SignupAuthCodeVC: BaseAction {
 extension SignupAuthCodeVC: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        let strText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-//        let strNSText: NSString = strText as NSString
-//        if (textField == tfAuthCode) {
-//            if (strNSText.length > 4) {
-//                return false
-//            }
-//        }
+        let newLen = (textField.text?.count ?? 0) - range.length + string.count
+        if textField == tfPhoneNumber, newLen > 11 {
+            return false
+        }
+        if textField == tfCertificationNumber, newLen > 4 {
+            return false
+        }
+
         return true
     }
 }

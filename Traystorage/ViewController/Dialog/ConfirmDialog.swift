@@ -28,6 +28,17 @@ class ConfirmDialog: BaseVC {
         vc.present(popup, animated: true, completion: nil)
     }
     
+    static func show2(_ vc: UIViewController,
+                     title: String!,
+                     message: String!,
+                     showCancelBtn: Bool!,
+                     okAction: Callback? = nil) {
+        let popup = ConfirmDialog("dialog_confirm_v2", title: title, message: message, showCancelBtn: showCancelBtn, okAction: okAction)
+        popup.modalPresentationStyle = .overCurrentContext
+        popup.modalTransitionStyle = .crossDissolve
+        vc.present(popup, animated: true, completion: nil)
+    }
+    
     convenience init(_ nibName: String?, title: String!, message: String!, showCancelBtn: Bool!, okAction: Callback?) {
         self.init(nibName: nibName, bundle: nil)
         

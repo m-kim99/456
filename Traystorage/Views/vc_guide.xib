@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GuideVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
+                <outlet property="signupButton" destination="v0C-eI-z0q" id="Nsp-ZH-CcR"/>
                 <outlet property="view" destination="iN0-l3-epB" id="elp-JE-bj7"/>
             </connections>
         </placeholder>
@@ -62,7 +63,6 @@
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNJ-tp-MlA" userLabel="space">
                                     <rect key="frame" x="0.0" y="140" width="374" height="24"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="SkH-yM-Jbo"/>
                                     </constraints>
@@ -86,7 +86,6 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="6B6-dS-S08" firstAttribute="leading" secondItem="7Nw-nw-7Yz" secondAttribute="leading" constant="38" id="7Dj-kl-aJa"/>
                                         <constraint firstAttribute="trailing" secondItem="6B6-dS-S08" secondAttribute="trailing" constant="38" id="8rA-Bb-xMa"/>
@@ -109,18 +108,17 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="54" id="1GS-tp-Nbh"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="filled" title="login">
-                                                <color key="baseBackgroundColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            </buttonConfiguration>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="login"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Bold"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="27"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="onLogin:" destination="-1" eventType="touchUpInside" id="rmh-PP-DHW"/>
@@ -132,10 +130,9 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="54" id="hYV-TF-RaB"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" title="signup"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="signup"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Bold"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
@@ -145,6 +142,8 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="27"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="onSignup:" destination="-1" eventType="touchUpInside" id="4zC-V8-ZAX"/>
@@ -215,10 +214,10 @@
             <size key="intrinsicContentSize" width="411.5" height="22"/>
         </designable>
         <designable name="pnE-Xo-GJc">
-            <size key="intrinsicContentSize" width="55.5" height="31"/>
+            <size key="intrinsicContentSize" width="34" height="30"/>
         </designable>
         <designable name="v0C-eI-z0q">
-            <size key="intrinsicContentSize" width="67.5" height="31"/>
+            <size key="intrinsicContentSize" width="46" height="30"/>
         </designable>
     </designables>
     <resources>

@@ -3,15 +3,15 @@ import UIKit
 
 @IBDesignable
 class UIFontLabel: UILabel {
-    @IBInspectable var fontFamily: String = "System" {
+    @IBInspectable var fontFamily: String = AppFont.fontFamilyName {
         didSet {
-            self.font = createFont(name: fontFamily, size: fontSize)
+            self.font = labelFont()
         }
     }
     
-    @IBInspectable var fontSize: CGFloat = 10.0 {
+    @IBInspectable var fontSize: CGFloat = 14.0 {
         didSet {
-            self.font = createFont(name: fontFamily, size: fontSize)
+            self.font = labelFont()
         }
     }
     
@@ -19,5 +19,21 @@ class UIFontLabel: UILabel {
         didSet {
             setLineHeight(lineHeight: lineHeight)
         }
+    }
+    
+    
+    @IBInspectable var isBold: Bool = false {
+        didSet {
+            self.font = labelFont()
+        }
+    }
+    
+    
+    func labelFont() -> UIFont {
+        if isBold {
+            return AppFont.createBoldFont(name: fontFamily, size: fontSize)
+        }
+        
+        return AppFont.createFont(name: fontFamily, size: fontSize)
     }
 }

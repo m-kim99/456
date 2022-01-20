@@ -6,6 +6,8 @@ protocol PopViewControllerDelegate {
 }
 
 class BaseVC: UIViewController {
+    @IBOutlet weak var keyboardAvoidScroll: UIScrollView?
+    
     var params: [String: Any] = [:]
     var popDelegate: PopViewControllerDelegate?
   
@@ -39,9 +41,19 @@ class BaseVC: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
-    @objc func keyboardWasShown(_ aNotification: Notification) {}
+    @objc func keyboardWasShown(_ aNotification: Notification) {
+        guard let scrollView = keyboardAvoidScroll, let keyboardRect = aNotification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect, !keyboardRect.isEmpty else {
+            return
+        }
+        
+        scrollView.contentInset.bottom = keyboardRect.height
+    }
     
-    @objc func keyboardWillBeHidden(_ aNotification: Notification) {}
+    @objc func keyboardWillBeHidden(_ aNotification: Notification) {
+        if let scrollView = keyboardAvoidScroll {
+            scrollView.contentInset.bottom = 0
+        }
+    }
   
     func replaceVC(_ identifier: String, storyboard: String, animated: Bool) {
         let nav: UINavigationController! = self.navigationController
@@ -95,6 +107,32 @@ class BaseVC: UIViewController {
         }
     
         nav.setViewControllers(viewVCs, animated: animated)
+    }
+    
+    func popToLogVC(_ animated: Bool = true) {
+        guard let vcs = self.navigationController?.viewControllers.reversed() else {
+            return
+        }
+        
+        for vc in vcs {
+            if vc is LoginVC {
+                self.navigationController?.popToViewController(vc, animated: animated)
+                return
+            }
+        }
+    }
+    
+    func popToGuidVC(_ animated: Bool = true) {
+        guard let vcs = self.navigationController?.viewControllers.reversed() else {
+            return
+        }
+        
+        for vc in vcs {
+            if vc is GuideVC {
+                self.navigationController?.popToViewController(vc, animated: animated)
+                return
+            }
+        }
     }
   
     func presentVC(_ identifier: String, storyboard: String, animated: Bool) {

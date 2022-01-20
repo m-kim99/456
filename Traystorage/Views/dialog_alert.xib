@@ -30,7 +30,7 @@
                     <subviews>
                         <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4i-FY-568" userLabel="bg">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
-                            <color key="backgroundColor" white="0.059999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNu-KA-6EZ" userLabel="content">
                             <rect key="frame" x="20" y="325" width="374" height="168"/>

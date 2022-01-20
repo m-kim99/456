@@ -14,23 +14,16 @@ class SignupAgreeTerms: BaseVC {
     open var authMedia = ""
     open var authCode = ""
     
-    var isAllAgree = true
+    var isAllAgree = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        initLang()
-//        initVC()
         updateAllAgreeImage()
     }
-    
-    private func initLang() {
-//        lblTitle.text = getLangString("signup_pwd_make")
-//        btnNext.setTitle(getLangString("signup_next"), for: .normal)
-    }
+
     
     private func initVC() {
-        hideError()
         enableNext(false)
     }
     
@@ -49,8 +42,6 @@ class SignupAgreeTerms: BaseVC {
 //        lblError.isHidden = true
     }
     
-    private func hideKeyboard() {
-    }
     
     private func isValidInput() {
         var isValid = true
@@ -84,7 +75,6 @@ class SignupAgreeTerms: BaseVC {
 //
 extension SignupAgreeTerms: BaseAction {
     @IBAction func onBack(_ sender: Any) {
-        hideKeyboard()
         popVC()
     }
     
@@ -94,7 +84,6 @@ extension SignupAgreeTerms: BaseAction {
     }
     
     @IBAction func onClickNext(_ sender: Any) {
-        hideKeyboard()
         goNext()
     }
     
@@ -108,14 +97,18 @@ extension SignupAgreeTerms: BaseAction {
 //
 extension SignupAgreeTerms: BaseNavigation {
     private func goNext() {
-        ConfirmDialog.show(self, title: "Would you like to register as a member with the information you entered?", message: "", showCancelBtn: true) { [weak self]() -> Void in
-            let vc = SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil)
-    //        vc.authType = authType
-    //        vc.authMedia = authMedia
-    //        vc.authCode = authCode
-    //        vc.authPwd = tfPwd.text!
-            self?.pushVC(vc, animated: true)
+        if isAllAgree {
+            ConfirmDialog.show(self, title: "Would you like to register as a member with the information you entered?", message: "", showCancelBtn: true) { [weak self]() -> Void in
+                let vc = SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil)
+        //        vc.authType = authType
+        //        vc.authMedia = authMedia
+        //        vc.authCode = authCode
+        //        vc.authPwd = tfPwd.text!
+                self?.pushVC(vc, animated: true)
+            }
         }
-
+        else {
+            AlertDialog.show(self, title: "Please aree to the required temrs and conditions", message: "")
+        }
     }
 }

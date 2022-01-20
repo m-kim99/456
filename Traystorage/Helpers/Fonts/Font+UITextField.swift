@@ -3,15 +3,20 @@ import UIKit
 
 @IBDesignable
 class UIFontTextField: UITextField {
-    @IBInspectable var fontFamily: String = "System" {
+    @IBInspectable var fontFamily: String = AppFont.fontFamilyName {
         didSet {
-            self.font = createFont(name: fontFamily, size: fontSize)
+            self.font = textFont()
         }
     }
     
-    @IBInspectable var fontSize: CGFloat = 10.0 {
+    @IBInspectable var fontSize: CGFloat = 15.0 {
         didSet {
-            self.font = createFont(name: fontFamily, size: fontSize)
+            self.font = textFont()
         }
     }
+    
+    func textFont() -> UIFont {
+        return AppFont.createFont(name: fontFamily, size: fontSize)
+    }
+    
 }

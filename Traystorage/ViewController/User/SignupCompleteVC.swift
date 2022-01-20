@@ -15,15 +15,25 @@ class SignupCompleteVC: BaseVC {
     @IBOutlet weak var tfBirthday: UITextField!
     
     
-    @IBOutlet weak var lblWelcome: UIFontLabel!
-    @IBOutlet weak var lblDesc: UIFontLabel!
+    @IBOutlet weak var tfName: UITextField!
+    @IBOutlet weak var tfEmail: UITextField!
     
-    @IBOutlet weak var btnStart: UIFontButton!
+    @IBOutlet weak var maleButton: UIButton!
+    @IBOutlet weak var femaleButton: UIButton!
+    
+    var isUserMale = true
+    
+    
+    @IBOutlet weak var lblWelcome: UILabel!
+    @IBOutlet weak var lblDesc: UILabel!
+    
+    @IBOutlet weak var btnStart: UIButton!
     
     private var imgPicker: UIImagePickerController! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateGender()
         
         initLang()
 //        initVC()
@@ -92,28 +102,39 @@ class SignupCompleteVC: BaseVC {
 //        user!.profile_img = img
 //        Local.setUser(user!)
     }
+    
+    private func updateGender() {
+        let maleColor = isUserMale ? AppColor.active : AppColor.gray
+        let femaleColor = !isUserMale ? AppColor.active : AppColor.gray
+        
+        maleButton.borderColor = maleColor
+        maleButton.tintColor = maleColor
+        femaleButton.borderColor = femaleColor
+        femaleButton.tintColor = femaleColor
+    }
+    
+    private func hideKeyboard() {
+        tfName.resignFirstResponder()
+        tfBirthday.resignFirstResponder()
+        tfEmail.resignFirstResponder()
+    }
 }
 
 //
 // MARK: - Action
 //
 extension SignupCompleteVC: BaseAction {
+    @IBAction func onClickBg(_ sender: Any) {
+        hideKeyboard()
+    }
+    
     @IBAction func onClickBack(_ sender: Any) {
+        hideKeyboard()
         popVC()
     }
     
-    @IBAction func onClickProfile(_ sender: Any) {
-//        VideoRegisterDialog.show(self, mediaType: "photo") { (action) in
-//            if action == "camera" {
-//                self.onCamera()
-//            } else {
-//                self.onGallery()
-//            }
-//        }
-    }
-    
     @IBAction func onClickBirthday(_ sender: Any) {
-//        hideKeyboard()
+        hideKeyboard()
         DatepickerDialog.show(self) { [weak self](date) in
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -122,13 +143,61 @@ extension SignupCompleteVC: BaseAction {
         }
     }
     
+    @IBAction func onClickGender(_ sender: Any) {
+        if let button = sender as? UIButton {
+            isUserMale = button == maleButton
+            updateGender()
+        }
+    }
+    
     @IBAction func onClickDoStart(_ sender: Any) {
 //        replaceVC(MainVC(nibName: "vc_main", bundle: nil), animated: true)
     }
     
     @IBAction func onClickUseService(_ sender: Any) {
-
+        guard let name = tfName.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !name.isEmpty else {
+            self.view.showToast("Please input your name")
+            return
+        }
+        
+        guard name.count >= 2 else {
+            self.view.showToast("Please input your name with 2+ character")
+            return
+        }
+        
+        guard let email = tfEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !email.isEmpty else {
+            self.view.showToast("Please input your email")
+            return
+        }
+        
+        guard Validations.email(email) else {
+            self.view.showToast("Invalid email")
+            return
+        }
+        
+        
+        self.replaceVC(MainVC(nibName: "vc_main", bundle: nil), animated: true)
     }
+}
+
+//
+// MARK: - UITextFieldDelegate
+//
+extension SignupCompleteVC: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            
+            let newLen = (textField.text?.count ?? 0) - range.length + string.count
+
+            if textField == tfName, newLen > 20 {
+                return false
+            }
+            
+            if textField == tfEmail, newLen > 50 {
+                return false
+            }
+
+            return true
+        }
 }
 
 //

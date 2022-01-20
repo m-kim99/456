@@ -3,14 +3,15 @@ import SwiftyJSON
 import UIKit
 
 class AppColor {
-    static let transparent = UIColor(hex: 0x00000000)
-    static let white = UIColor(hex: 0xffffff)
-    static let black = UIColor(hex: 0x000000)
-    static let active = UIColor(hex: 0xFF465F)
+    static let transparent = UIColor.clear
+    static let white = UIColor.white
+    static let black = UIColor.black
+    static let active = UIColor(hex: 0x223397)
     static let bg = UIColor(hex: 0xF5F5F5)
     static let border = UIColor(hex: 0xDDDDDD)
     static let dark = UIColor(hex: 0x999999)
-    static let gray = UIColor(hex: 0x808080)
+    static let gray = UIColor.gray
+    static let lightGray  = UIColor.lightGray
     static let gradientStart = UIColor(hex: 0xe4e4e4)
     static let gradientEnd = UIColor(hex: 0xffffff)
     static let red = UIColor(hex: 0xff465f)
@@ -31,4 +32,9 @@ class AppColor {
     static let grey = UIColor(hex: 0xF7F7F7)
     static let color_333333 = UIColor(hex: 0x333333)
     static let color_CCCCCC = UIColor(hex: 0xCCCCCC)
+    
+    
+    static let labelColors: [UIColor] = [UIColor(hex: 0xD80C18), UIColor(hex: 0xEE7800), UIColor(hex: 0xFABE00),
+                              UIColor(hex: 0x5CB531), UIColor(hex: 0x00A0E9), UIColor(hex: 0x890C84),
+                              UIColor(hex: 0x8C4800), UIColor(hex: 0xAAABAB), UIColor.black, UIColor.white]
 }

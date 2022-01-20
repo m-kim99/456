@@ -28,13 +28,12 @@
                     <rect key="frame" x="0.0" y="44" width="390" height="766"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbf-Hw-JNj" userLabel="header">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="60"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRk-BU-Ziu">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="Pgj-yR-tL7"/>
-                                        <constraint firstAttribute="width" constant="50" id="zhf-Qo-EZs"/>
+                                        <constraint firstAttribute="width" secondItem="jRk-BU-Ziu" secondAttribute="height" id="ZEy-Vb-Mj1"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="ic_back"/>
@@ -43,18 +42,25 @@
                                         <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="opG-MN-ciV"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="invite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-iT-dIJ">
-                                    <rect key="frame" x="173.66666666666666" y="14.666666666666664" width="42.666666666666657" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="invite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-iT-dIJ" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                    <rect key="frame" x="173.66666666666666" y="19.666666666666664" width="42.666666666666657" height="21"/>
                                     <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="18"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <real key="value" value="18"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="jRk-BU-Ziu" firstAttribute="top" secondItem="Xbf-Hw-JNj" secondAttribute="top" id="EVG-VC-aVj"/>
-                                <constraint firstAttribute="height" constant="50" id="L3W-CZ-b8d"/>
+                                <constraint firstAttribute="height" constant="60" id="L3W-CZ-b8d"/>
                                 <constraint firstItem="jRk-BU-Ziu" firstAttribute="leading" secondItem="Xbf-Hw-JNj" secondAttribute="leading" id="XIJ-Cw-aHk"/>
+                                <constraint firstAttribute="bottom" secondItem="jRk-BU-Ziu" secondAttribute="bottom" id="eyh-c5-WCy"/>
                                 <constraint firstItem="kP6-iT-dIJ" firstAttribute="centerX" secondItem="Xbf-Hw-JNj" secondAttribute="centerX" id="fd8-NE-ke4"/>
                                 <constraint firstItem="kP6-iT-dIJ" firstAttribute="centerY" secondItem="Xbf-Hw-JNj" secondAttribute="centerY" id="zBE-4B-Caa"/>
                             </constraints>
@@ -71,7 +77,6 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Regular"/>
                                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                             <real key="value" value="22"/>
                                         </userDefinedRuntimeAttribute>
@@ -88,17 +93,23 @@
                                 <constraint firstAttribute="height" constant="230" id="ch4-EA-emu"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ice-r3-qIy" customClass="Button" customModule="Material">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ice-r3-qIy" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
                             <rect key="frame" x="20" y="692" width="350" height="54"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="54" id="s9b-HU-zxK"/>
                             </constraints>
                             <color key="tintColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="next"/>
-                            <buttonConfiguration key="configuration" style="filled" title="invite friends">
-                                <color key="baseBackgroundColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </buttonConfiguration>
+                            <state key="normal" title="invite friends"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <real key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -106,7 +117,7 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Ice-r3-qIy" secondAttribute="trailing" constant="20" id="0nU-0k-8oQ"/>
                         <constraint firstAttribute="trailing" secondItem="n4Z-wH-YKp" secondAttribute="trailing" id="4Eg-Zh-QFE"/>
-                        <constraint firstItem="n4Z-wH-YKp" firstAttribute="top" secondItem="Xbf-Hw-JNj" secondAttribute="bottom" constant="54" id="AN9-rC-iGz"/>
+                        <constraint firstItem="n4Z-wH-YKp" firstAttribute="top" secondItem="Xbf-Hw-JNj" secondAttribute="bottom" constant="44" id="AN9-rC-iGz"/>
                         <constraint firstItem="Xbf-Hw-JNj" firstAttribute="top" secondItem="KeF-Um-992" secondAttribute="top" id="B2w-8B-nmU"/>
                         <constraint firstItem="Xbf-Hw-JNj" firstAttribute="leading" secondItem="KeF-Um-992" secondAttribute="leading" id="S93-n2-LK6"/>
                         <constraint firstItem="Ice-r3-qIy" firstAttribute="leading" secondItem="KeF-Um-992" secondAttribute="leading" constant="20" id="cAw-L2-1lz"/>
@@ -130,10 +141,10 @@
     </objects>
     <designables>
         <designable name="Ice-r3-qIy">
-            <size key="intrinsicContentSize" width="107.33333333333333" height="31"/>
+            <size key="intrinsicContentSize" width="89" height="30"/>
         </designable>
         <designable name="rGz-hV-cC9">
-            <size key="intrinsicContentSize" width="454" height="26.666666666666668"/>
+            <size key="intrinsicContentSize" width="482.66666666666669" height="26.666666666666668"/>
         </designable>
     </designables>
     <resources>
