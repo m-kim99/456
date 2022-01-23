@@ -22,18 +22,18 @@
 "find_pwd"="find password";
 
 "signup"="signup";
-"password" = "password"
-"password_placeholder" = "Combination of 6-20 characters"
-"password_confirm" = "password confirm"
-"password_confirm_placeholder" = "Reenter password"
-"duplicate_check" = "double check"
+"password" = "password";
+"password_placeholder" = "Combination of 6-20 characters";
+"password_confirm" = "password confirm";
+"password_confirm_placeholder" = "Reenter password";
+"duplicate_check" = "double check";
 "signup_detail_1"="Please enter your account information to sign up";
 
-"auth_request" = "auth request"
+"auth_request" = "auth request";
 
-"signup_phone_verify" = "Please verify your mobile phone  number to sign up"
+"signup_phone_verify" = "Please verify your mobile phone  number to sign up";
 
-"signup_agree_detail"="Please agree to the terms and conditions to sign up"
+"signup_agree_detail"="Please agree to the terms and conditions to sign up";
 "all_agree"="All agree";
 
 
@@ -92,8 +92,8 @@
 
 "cancel"="Cancel";
 "apply"="Apply";
-"confirm"="confirm"
-"next"="next"
+"confirm"="confirm";
+"next"="next";
 
 "male"="Male";
 "female"="Female";
@@ -209,8 +209,8 @@
 "phone_number"="phone number";
 "phone_number_placeholder"="Enter your phone number";
 "certification_number" = "Certification number";
-"certification_number_placeholder" = "Certification number input"
-"resend_veri_code" = "Resend verification code"
+"certification_number_placeholder" = "Certification number input";
+"resend_veri_code" = "Resend verification code";
 
 
 "refund_guide3"="Refunds will not be procesed during each bank inspeciton time.\nPlease proceed outside of the inspection hours.";
