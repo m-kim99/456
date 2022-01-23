@@ -41,6 +41,7 @@
 		79632CD82785DD85007C427E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79632CD62785DD85007C427E /* Main.storyboard */; };
 		79632CDA2785DD87007C427E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79632CD92785DD87007C427E /* Assets.xcassets */; };
 		79632CDD2785DD87007C427E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79632CDB2785DD87007C427E /* LaunchScreen.storyboard */; };
+		79D91635279D43250081E733 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 79D91634279D43250081E733 /* fonts */; };
 		79EF8234279D3B9500A67788 /* DownTimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EF8233279D3B9500A67788 /* DownTimeLabel.swift */; };
 		79EF8236279D3BA300A67788 /* ModelAppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EF8235279D3BA300A67788 /* ModelAppInfo.swift */; };
 		79EF8238279D3BB200A67788 /* Gallery in Resources */ = {isa = PBXBuildFile; fileRef = 79EF8237279D3BB200A67788 /* Gallery */; };
@@ -212,6 +213,7 @@
 		79632CD92785DD87007C427E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79632CDC2785DD87007C427E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79632CDE2785DD87007C427E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79D91634279D43250081E733 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		79EF8233279D3B9500A67788 /* DownTimeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownTimeLabel.swift; sourceTree = "<group>"; };
 		79EF8235279D3BA300A67788 /* ModelAppInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelAppInfo.swift; sourceTree = "<group>"; };
 		79EF8237279D3BB200A67788 /* Gallery */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Gallery; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 		79632CCF2785DD85007C427E /* Traystorage */ = {
 			isa = PBXGroup;
 			children = (
+				79D91634279D43250081E733 /* fonts */,
 				7A9D653E27910BE100272EBE /* Models */,
 				7A9D65362790F63400272EBE /* Global.swift */,
 				7A65860C278B127B0030B269 /* Common */,
@@ -821,6 +824,7 @@
 				7A7B5BB92794EC84004457BB /* vc_document_detail.xib in Resources */,
 				7A9D653D27910B7200272EBE /* dialog_everyday.xib in Resources */,
 				79EF823F279D3C4E00A67788 /* Localizable.strings in Resources */,
+				79D91635279D43250081E733 /* fonts in Resources */,
 				7A658678278B127C0030B269 /* dialog_datepicker.xib in Resources */,
 				79632CDD2785DD87007C427E /* LaunchScreen.storyboard in Resources */,
 				79632CDA2785DD87007C427E /* Assets.xcassets in Resources */,
