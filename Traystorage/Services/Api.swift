@@ -1,8 +1,8 @@
 import Foundation
 
-let Server_Url = "http://192.168.2.118:8005/api/" //py
+//let Server_Url = "http://192.168.2.118:8005/api/" //py
 //let Server_Url = "http://3.34.14.108/api/" //real server
-//let Server_Url = "http://192.168.0.13:8000/api/" //local server
+let Server_Url = "http://192.168.0.13:8205/api/" //local server
 
 enum API {
     case APP_INFO
