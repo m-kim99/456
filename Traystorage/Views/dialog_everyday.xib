@@ -68,7 +68,7 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="never look again"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="18"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
@@ -80,14 +80,15 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXB-QZ-OeE" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
                                                     <rect key="frame" x="187" y="0.0" width="187" height="56"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="close"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="18"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="close"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="onClose:" destination="-1" eventType="touchUpInside" id="dvW-cR-aKO"/>
@@ -141,10 +142,10 @@
     </objects>
     <designables>
         <designable name="EXB-QZ-OeE">
-            <size key="intrinsicContentSize" width="39" height="34"/>
+            <size key="intrinsicContentSize" width="43" height="34"/>
         </designable>
         <designable name="Eb7-6c-aYq">
-            <size key="intrinsicContentSize" width="124" height="34"/>
+            <size key="intrinsicContentSize" width="112" height="30"/>
         </designable>
     </designables>
     <resources>

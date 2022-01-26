@@ -11,14 +11,22 @@ protocol InquiryTVCDelegate {
 
 class InquiryTVC: UITableViewCell {
     @IBOutlet weak var vwRoot: UIView!
-    @IBOutlet weak var vwType: UIView!
-    @IBOutlet weak var lblType: UIFontLabel!
-    @IBOutlet weak var lblTitle: UIFontLabel!
-    @IBOutlet weak var lblDate: UIFontLabel!
-    @IBOutlet weak var lblDetail: UIFontLabel!
-    @IBOutlet weak var btnExpand: UIButton!
+    @IBOutlet weak var imageExpand: UIImageView!
+    @IBOutlet weak var lblType: UILabel!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var lblDetail: UILabel!
     
-    private var dataModel: ModelPaymentHistoryStadium!
+    
+    var isExpand = false {
+        didSet {
+            lblDetail.isHidden = !isExpand
+            let image = isExpand ? "ic_arrow_up" : "ic_arrow_down"
+            imageExpand.image = UIImage(named: image)
+        }
+    }
+    
+    private var dataModel: ModelFAQ!
     private var delegate: InquiryTVCDelegate!
     
     override func awakeFromNib() {
@@ -29,7 +37,7 @@ class InquiryTVC: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(data: ModelPaymentHistoryStadium, delegate: InquiryTVCDelegate) {
+    func setData(data: ModelFAQ, delegate: InquiryTVCDelegate) {
         self.dataModel = data
         self.delegate = delegate
     }
@@ -37,8 +45,4 @@ class InquiryTVC: UITableViewCell {
     //
     // MARK: - Action
     //
-    
-    @IBAction func onClickExpand(_ sender: Any) {
-        
-    }
 }

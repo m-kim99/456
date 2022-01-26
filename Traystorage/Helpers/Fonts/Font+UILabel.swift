@@ -9,9 +9,10 @@ class UIFontLabel: UILabel {
         }
     }
     
-    @IBInspectable var fontSize: CGFloat = 14.0 {
+    // avoid conflict with "Material.fontSize"
+    @IBInspectable var xFontSize: CGFloat = 14.0 {
         didSet {
-            self.font = labelFont()
+            self.fontSize = xFontSize
         }
     }
     

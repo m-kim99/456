@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckIdVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
+                <outlet property="lblLoginID" destination="dbE-D0-o2v" id="EQY-sj-MjI"/>
                 <outlet property="view" destination="iN0-l3-epB" id="FAD-Na-caZ"/>
             </connections>
         </placeholder>
@@ -37,7 +38,7 @@
                             <rect key="frame" x="0.0" y="50" width="414" height="768"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DCl-m3-u07" userLabel="margin content">
-                                    <rect key="frame" x="20" y="30" width="374" height="416"/>
+                                    <rect key="frame" x="20" y="30" width="374" height="422"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please check your id" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PjA-CI-Ywd" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
@@ -45,35 +46,37 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="22"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="check_id_desc"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="igd-EZ-EYk">
-                                            <rect key="frame" x="0.0" y="72.5" width="374" height="149"/>
+                                            <rect key="frame" x="0.0" y="72.5" width="374" height="155"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="c9V-lT-brC">
-                                                    <rect key="frame" x="153" y="46" width="68.5" height="57"/>
+                                                    <rect key="frame" x="163.5" y="46" width="47.5" height="63"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxd-yX-lme" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="28" y="0.0" width="12" height="17"/>
+                                                            <rect key="frame" x="16.5" y="0.0" width="14" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                     <real key="value" value="14"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="check_id_label"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kiskjdk123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbE-D0-o2v" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="39" width="68.5" height="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbE-D0-o2v" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="42.5" width="47.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                     <real key="value" value="15"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
@@ -95,39 +98,41 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-k7-IZS" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="292" width="374" height="54"/>
+                                            <rect key="frame" x="0.0" y="298" width="374" height="54"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="54" id="jXA-WU-WuR"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="tintColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="login"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="login"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="onLogin:" destination="-1" eventType="touchUpInside" id="CDI-Do-KzA"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GvM-8Z-ym6" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="362" width="374" height="54"/>
-                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="15"/>
+                                            <rect key="frame" x="0.0" y="368" width="374" height="54"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="tintColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="find password"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isOutline" value="YES"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="find_pwd"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="onFindPassword:" destination="-1" eventType="touchUpInside" id="ZlT-op-mMM"/>
@@ -188,19 +193,19 @@
     </objects>
     <designables>
         <designable name="GvM-8Z-ym6">
-            <size key="intrinsicContentSize" width="95" height="30"/>
+            <size key="intrinsicContentSize" width="96" height="30"/>
         </designable>
         <designable name="PjA-CI-Ywd">
-            <size key="intrinsicContentSize" width="200" height="26.5"/>
+            <size key="intrinsicContentSize" width="195" height="26.5"/>
         </designable>
         <designable name="Sxd-yX-lme">
-            <size key="intrinsicContentSize" width="12" height="17"/>
+            <size key="intrinsicContentSize" width="14" height="20.5"/>
         </designable>
         <designable name="dbE-D0-o2v">
-            <size key="intrinsicContentSize" width="68.5" height="18"/>
+            <size key="intrinsicContentSize" width="47.5" height="20.5"/>
         </designable>
         <designable name="k6Y-k7-IZS">
-            <size key="intrinsicContentSize" width="33" height="30"/>
+            <size key="intrinsicContentSize" width="34" height="30"/>
         </designable>
     </designables>
     <resources>

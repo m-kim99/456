@@ -1,9 +1,10 @@
 import SVProgressHUD
 import UIKit
 import PullToRefresh
+import ImageSlideshow
 
 class DocumentDetailVC: BaseVC {
-    @IBOutlet var tvChallenge: UITableView!
+    
     @IBOutlet weak var lblChallengeName: UILabel!
     
     private var imageList: [UIImage] = []
@@ -13,13 +14,20 @@ class DocumentDetailVC: BaseVC {
     @IBOutlet weak var imageCollectionView: UICollectionView!
     @IBOutlet weak var tagCollectionView: UICollectionView!
     
+    @IBOutlet weak var documentTitle: UILabel!
+    @IBOutlet weak var documentContent: UILabel!
+    @IBOutlet weak var documentDate: UILabel!
+    @IBOutlet weak var documentLabel: UIView!
+    
     
     let viewTagImageCollectionView = 1
     let viewTagTagCollectionView = 2
     
+    var isUpdated = false
+    
     private var refreshControl = UIRefreshControl()
     
-    var document: ModelDocument = ModelDocument()
+    var document: ModelDocument?
     
 //    private lazy var challenge: ModelChallenge? = {
 //        params["challenge"] as? ModelChallenge
@@ -31,16 +39,8 @@ class DocumentDetailVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for i in 1...10 {
-            document.tags.append("tag" + i.description)
-        }
-        
-        let image = UIImage(named: "Group 32")!
-        for _ in 1...3 {
-            document.images.append(image)
-        }
-        
+        loadContentsFormDoc()
+
 //        initVC()
 //        initPullToRefresh()
 //        loadChallengeDetail(challenge?.challenge_uid)
@@ -49,51 +49,47 @@ class DocumentDetailVC: BaseVC {
         tagCollectionView.register(UINib(nibName: "item_tag", bundle: nil), forCellWithReuseIdentifier: "cell")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-       super.viewWillAppear(animated)
-       
-       self.pageNo = 0
-       self.isLast  = false
-//       loadVideoList(page: 0)
+    private func loadContentsFormDoc() {
+        if let document = document {
+            documentTitle.text = document.title
+            documentContent.text = document.content
+            documentDate.text = document.create_time.description
+            documentLabel.backgroundColor = AppColor.labelColors[document.label]
+        } else {
+            documentTitle.text = nil
+            documentContent.text = nil
+            documentDate.text = nil
+            documentLabel.backgroundColor = nil
+        }
+        
+        imageCollectionView.reloadData()
+        tagCollectionView.reloadData()
     }
     
-//    private func initVC() {
-//        tvChallenge.dataSource = self
-//        tvChallenge.delegate = self
-//        tvChallenge.register(UINib(nibName: "item_challenge_detail", bundle: nil), forCellReuseIdentifier: "ChallengeDetailTVC")
-//        tvChallenge.register(UINib(nibName: "item_challenge_video_1", bundle: nil), forCellReuseIdentifier: "ChallengeVideoTVC1")
-//        tvChallenge.register(UINib(nibName: "item_challenge_video_2", bundle: nil), forCellReuseIdentifier: "ChallengeVideoTVC2")
-//    }
-    
-//    private func initPullToRefresh() {
-//        refreshControl.addTarget(self, action: #selector(refreshVideo), for: .valueChanged)
-//        tvChallenge.addSubview(refreshControl)
-//    }
-    
-//    @objc func refreshVideo(sender:AnyObject) {
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-//            self.pageNo = 0
-//            self.loadVideoList(page: 0)
-//        })
-//    }
+    override func onBackProcess(_ viewController: UIViewController) {
+        if isUpdated, let popDelegate = self.popDelegate {
+            popDelegate.onWillBack("update", document?.doc_id)
+        }
+        super.onBackProcess(self)
+    }
 
     //
 
     // MARK: - ACTION
 
     //
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
-    }
-    
     @IBAction func onClickTrash(_ sender: Any) {
-        ConfirmDialog.show2(self, title: "If you delete a documentm the document is not exposed when using NFC tags", message: "Are you sure to want to delte this document?", showCancelBtn: true) { [weak self]() -> Void in
-            self?.popVC()
+        let docID = self.document?.doc_id
+        ConfirmDialog.show2(self, title: "doc_del_query_title"._localized, message: "doc_del_query_desc"._localized, showCancelBtn: true) { [weak self]() -> Void in
+            self?.deleteDocument(docID)
         }
     }
-    
+
     @IBAction func onClickEdit(_ sender: Any) {
-        pushVC(DocumentRegisterVC(nibName: "vc_document_edit", bundle: nil), animated: true, params: params as [String : Any])
+        let editVC = DocumentRegisterVC(nibName: "vc_document_edit", bundle: nil)
+        editVC.document = self.document
+        editVC.popDelegate = self
+        pushVC(editVC, animated: true, params: self.params)
     }
     
     @IBAction func onClickNFCRegister(_ sender: Any) {
@@ -106,14 +102,17 @@ class DocumentDetailVC: BaseVC {
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 
 
-extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate/*, ChallengeVideoTVCDelegate, ChallengeDetailTVCDelegate*/ {
+extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let doc = document else {
+            return 0
+        }
         let collectionViewTag = collectionView.tag
         switch collectionViewTag {
         case viewTagImageCollectionView:
-            return document.images.count
+            return doc.images.count
         case viewTagTagCollectionView:
-            return document.tags.count
+            return doc.tags.count
         default:
             break
         }
@@ -133,15 +132,24 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
             contentView.backgroundColor = UIColor.clear
         }
         
+        let index = indexPath.row
+        
+        let document = self.document!
+        
         switch collectionViewTag {
         case viewTagImageCollectionView:
             if let imageView = cell.viewWithTag(2) as? UIImageView {
-                imageView.image = document.images[indexPath.row]
+                if let url = document.imagesUrlList[index] {
+                    imageView.kf.setImage(with: URL(string: url))
+                } else {
+                    imageView.kf.cancelDownloadTask()
+                    imageView.image = document.images[index]    
+                }
             }
             break
         case viewTagTagCollectionView:
             if let titleLabel = cell.viewWithTag(1) as? UILabel {
-                titleLabel.text = "#" + document.tags[indexPath.row]
+                titleLabel.text = "#" + document.tags[index]
             }
             break
         default:
@@ -149,6 +157,14 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == imageCollectionView {
+            let vc = ImageSlideViewVC(nibName: "vc_image_browser", bundle: nil)
+            vc.modelDocument = self.document!
+            pushVC(vc, animated: true)
+        }
     }
 }
 
@@ -169,20 +185,33 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
 //// MARK: - RestApi
 //
 ////
-//extension ChallengeDetailVC: BaseRestApi {
-//    func loadChallengeDetail(_ challenge_uid: Int!) {
-//        SVProgressHUD.show()
-//        Rest.challengeDetail(challenge_uid: challenge_uid, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
-//            self.challenge = (result as! ModelChallenge)
-//            self.tvChallenge.reloadData()
-//            self.lblChallengeName.text = self.challenge?.name
-//        }, failure: { (_, err) -> Void in
-//            SVProgressHUD.dismiss()
-//            self.view.showToast(err)
-//        })
-//    }
-//
+extension DocumentDetailVC: BaseRestApi {
+    func loadDocumentDetail(_ document_uid: Int!) {
+        SVProgressHUD.show()
+        Rest.documentDetail(documentID: document_uid, success: { [weak self] (result) -> Void in
+            SVProgressHUD.dismiss()
+            self?.document = (result as! ModelDocument)
+            self?.loadContentsFormDoc()
+        }, failure: { (_, err) -> Void in
+            SVProgressHUD.dismiss()
+            self.view.showToast(err)
+        })
+    }
+    
+    func deleteDocument(_ docID: Int!) {
+        SVProgressHUD.show()
+        Rest.documentDelete(id: docID.description, success: { [weak self] (result) -> Void in
+            SVProgressHUD.dismiss()
+            if let popDelegate = self?.popDelegate {
+                popDelegate.onWillBack("delete", docID)
+            }
+            self?.popVC()
+        }, failure: { (_, err) -> Void in
+            SVProgressHUD.dismiss()
+            self.view.showToast(err)
+        })
+    }
+
 //    func loadVideoList(page: Int) {
 //        if (!refreshControl.isRefreshing) {
 //            SVProgressHUD.show()
@@ -209,4 +238,14 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
 //            self.view.showToast(err)
 //        })
 //    }
-//}
+}
+
+extension DocumentDetailVC: PopViewControllerDelegate
+{
+    func onWillBack(_ sender: String, _ result: Any?) {
+        if sender == "update" {
+            loadContentsFormDoc()
+            isUpdated = true
+        }
+    }
+}

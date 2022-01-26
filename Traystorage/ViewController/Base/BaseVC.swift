@@ -7,6 +7,7 @@ protocol PopViewControllerDelegate {
 
 class BaseVC: UIViewController {
     @IBOutlet weak var keyboardAvoidScroll: UIScrollView?
+    @IBOutlet weak var hideKeyboardGesture: UITapGestureRecognizer?
     
     var params: [String: Any] = [:]
     var popDelegate: PopViewControllerDelegate?
@@ -47,6 +48,10 @@ class BaseVC: UIViewController {
     }
 
     @objc func keyboardWasShown(_ aNotification: Notification) {
+        if let tapGestuer = hideKeyboardGesture {
+            tapGestuer.isEnabled = true
+        }
+        
         guard let scrollView = keyboardAvoidScroll, let keyboardRect = aNotification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect, !keyboardRect.isEmpty else {
             return
         }
@@ -58,6 +63,11 @@ class BaseVC: UIViewController {
         if let scrollView = keyboardAvoidScroll {
             scrollView.contentInset.bottom = 0
         }
+        
+        if let tapGestuer = hideKeyboardGesture {
+            tapGestuer.isEnabled = false
+        }
+        
     }
   
     func replaceVC(_ identifier: String, storyboard: String, animated: Bool) {
@@ -133,7 +143,7 @@ class BaseVC: UIViewController {
         }
         
         for vc in vcs {
-            if vc is GuideVC {
+            if vc is IntroVC {
                 self.navigationController?.popToViewController(vc, animated: animated)
                 return
             }
@@ -158,5 +168,23 @@ class BaseVC: UIViewController {
         content.willMove(toParent: nil)
         content.removeFromParent()
         content.view.removeFromSuperview()
+    }
+    
+    func hideKeyboard() {
+    }
+    
+    func onBackProcess(_ viewController: UIViewController) {
+        popVC()
+    }
+    
+    
+    
+    @IBAction func onClickBG(_ sender: Any) {
+        hideKeyboard()
+    }
+    
+    @IBAction func onClickBack(_ sender: Any) {
+        hideKeyboard()
+        onBackProcess(self)
     }
 }

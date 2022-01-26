@@ -7,7 +7,7 @@ class AppFont {
     static var fontFamilyName = "Apple SD Gothic Neo"
     
     static func appleGothicNeoRegular(_ size: CGFloat) -> UIFont {
-        return UIFont(name: "Apple SD Gothic Neo Regular", size: size)!
+        return createFont(name: fontFamilyName, size: size)
     }
     
     static func appleGothicNeoBlack(_ size: CGFloat) -> UIFont {

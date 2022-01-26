@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatepickerDialog" customModule="Traystorage" customModuleProvider="target">
             <connections>
-                <outlet property="btnCancel" destination="HrE-H7-Xo0" id="XCv-de-Yig"/>
                 <outlet property="btnConfirm" destination="Rr4-kW-R4A" id="MKS-bq-QWg"/>
                 <outlet property="datepickerView" destination="qkR-XF-fdd" id="vuR-w5-Xhn"/>
                 <outlet property="lblTitle" destination="opw-KJ-clT" id="o7v-8A-qcC"/>
@@ -44,12 +43,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opw-KJ-clT" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                    <rect key="frame" x="190.5" y="24" width="33.5" height="22"/>
+                                                    <rect key="frame" x="190.5" y="25" width="33" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="18"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
@@ -99,10 +98,11 @@
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="18"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="cancel"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="onClickCancel:" destination="-1" eventType="touchUpInside" id="mdJ-ZU-3R5"/>
@@ -114,10 +114,11 @@
                                                         <color key="titleColor" red="0.92156862750000001" green="0.43921568630000002" blue="0.01176470588" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="18"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="confirm"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="onClickConfirm:" destination="-1" eventType="touchUpInside" id="41D-qN-ay7"/>
@@ -170,19 +171,19 @@
         </view>
         <tapGestureRecognizer id="CZ2-sW-13f">
             <connections>
-                <action selector="onClickBg:" destination="-1" id="sNY-6d-uma"/>
+                <action selector="onClickBG:" destination="-1" id="H9Y-vu-9WO"/>
             </connections>
         </tapGestureRecognizer>
     </objects>
     <designables>
         <designable name="HrE-H7-Xo0">
-            <size key="intrinsicContentSize" width="50" height="34"/>
+            <size key="intrinsicContentSize" width="53" height="34"/>
         </designable>
         <designable name="Rr4-kW-R4A">
-            <size key="intrinsicContentSize" width="61" height="34"/>
+            <size key="intrinsicContentSize" width="62" height="34"/>
         </designable>
         <designable name="opw-KJ-clT">
-            <size key="intrinsicContentSize" width="33.5" height="22"/>
+            <size key="intrinsicContentSize" width="35" height="21.5"/>
         </designable>
     </designables>
     <resources>

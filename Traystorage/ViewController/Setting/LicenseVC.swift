@@ -3,7 +3,7 @@ import UIKit
 
 class LicenseVC: BaseVC {
 
-    @IBOutlet weak var lblPageTitle: UIFontLabel!
+    @IBOutlet weak var lblPageTitle: UILabel!
     
     @IBOutlet weak var tvList: UITableView!
     
@@ -14,19 +14,12 @@ class LicenseVC: BaseVC {
     }
     
     private func initVC() {
-        tvList.dataSource = self
-        tvList.delegate = self
         tvList.register(UINib(nibName: "tvc_license", bundle: nil), forCellReuseIdentifier: "LicenseTVC")
-
     }
     
     //
     // MARK: - ACTION
     //
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
-    }
-    
 
     @IBAction func onUpdateVersion(_ sender: Any) {
     }
@@ -70,7 +63,7 @@ extension LicenseVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LicenseTVC", for: indexPath) as! LicenseTVC
-        cell.setData(data: ModelPaymentHistoryStadium(), delegate: self)
+//        cell.setData(data: ModelPaymentHistoryStadium(), delegate: self)
         return cell
     }
     

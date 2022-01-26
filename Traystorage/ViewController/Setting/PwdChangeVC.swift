@@ -2,10 +2,6 @@ import SVProgressHUD
 import UIKit
 
 class PwdChangeVC: BaseVC {
-
-//    @IBOutlet weak var lblPageTitle: UIFontLabel!
-//    @IBOutlet weak var lblDesc1: UIFontLabel!
-//    @IBOutlet weak var lblDesc2: UIFontLabel!
     @IBOutlet weak var lblNewPwd: UILabel!
     @IBOutlet weak var tfNewPwd: UITextField!
     @IBOutlet weak var lblConfirmPwd: UILabel!
@@ -18,6 +14,8 @@ class PwdChangeVC: BaseVC {
     @IBOutlet weak var lblNewError: UILabel!
     @IBOutlet weak var lblConfirmError: UILabel!
     
+    var user: ModelUser!
+    
 //    private lazy var user: ModelUser = {
 //        return Rest.user
 //    }()
@@ -26,7 +24,6 @@ class PwdChangeVC: BaseVC {
         super.viewDidLoad()
         
 //        initLang()
-//        initVC()
     }
     
 //    private func initLang() {
@@ -37,48 +34,36 @@ class PwdChangeVC: BaseVC {
 //        lblNewPwd.text = getLangString("setting_new_pwd")
 //        lblConfirmPwd.text = getLangString("setting_new_pwd_confirm")
 //        btnConfirm.setTitle(getLangString("setting_confirm"), for: .normal)
-//        lblCurError.text = getLangString("setting_pwd_different")
-//        lblCurError.isHidden = true
-//        lblNewError.text = getLangString("signup_pwd_error")
-//        lblNewError.isHidden = true
-//        lblConfirmError.text = getLangString("signup_pwd_confirm_error")
-//        lblConfirmError.isHidden = true
 //    }
     
-    private func initVC() {
-        enableConfirm(false)
-    }
-    
-    private func enableConfirm(_ enable: Bool) {
-        btnConfirm.isEnabled = enable
-        btnConfirm.backgroundColor = enable ? AppColor.black : AppColor.gray
-    }
-    
-    private func hideKeyboard() {
-//        tfCurPwd.resignFirstResponder()
+    override func hideKeyboard() {
         tfNewPwd.resignFirstResponder()
         tfConfirmPwd.resignFirstResponder()
+    }
+    
+    private func onPasswordChanged() {
+        ConfirmDialog.show2(self, title: "pwd_change_notify_title"._localized,
+                            message: "pwd_change_notify_login"._localized,
+                            showCancelBtn: false) {[weak self] in
+            self?.popToLogVC()
+        }
     }
     
     //
     // MARK: Action
     //
-    @IBAction func onClickBack(_ sender: Any) {
-        hideKeyboard()
-        popVC()
-    }
-    
-    @IBAction func onClickBg(_ sender: Any) {
-        hideKeyboard()
-    }
     
     @IBAction func onClickConfirm(_ sender: Any) {
         hideKeyboard()
         guard let pass = tfNewPwd.text, let confirmPass = tfConfirmPwd.text, pass == confirmPass else {
-            self.view.showToast("Please verify to match new password and confirm password.")
+            self.view.showToast("password_mismatch_confirm"._localized)
             return
         }
-        changePwd()
+        
+        let loginID = params["userID"] as! String
+        let phone = params["phone"] as! String
+        let code = params["code"] as! String
+        changePwd(userID: loginID, phone: phone, code: code, pwd: pass)
     }
 }
 
@@ -93,7 +78,7 @@ extension PwdChangeVC: UITextFieldDelegate {
                 break
             case tfConfirmPwd:
                 if btnConfirm.isEnabled {
-                    changePwd()
+                    onClickConfirm(0)
                 }
                 textField.resignFirstResponder()
                 break
@@ -164,20 +149,14 @@ extension PwdChangeVC: UITextFieldDelegate {
 // MARK: - RestApi
 //
 extension PwdChangeVC: BaseRestApi {
-    func changePwd() {
-//        SVProgressHUD.show()
-//        Rest.changePwd(old_pwd: tfCurPwd.text, new_pwd: tfNewPwd.text, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
-//            if result!.result == 0 {
-//                self.user.pwd = self.tfNewPwd.text
-//                Local.setUser(self.user)
-//
-        ConfirmDialog.show2(self, title: "Your password has been changed.", message: "Please log in with the change password", showCancelBtn: false, okAction: {
-            
-        })
-//        }, failure: { (_, err) -> Void in
-//            SVProgressHUD.dismiss()
-//            self.view.showToast(err)
-//        })
+    func changePwd(userID: String, phone:String, code: String, pwd: String) {
+        SVProgressHUD.show()
+        Rest.changePwd(loginID: userID, phone: phone, code: code, password: pwd, success: { [weak self] (result) -> Void in
+            SVProgressHUD.dismiss()
+            self?.onPasswordChanged()
+        }) { [weak self] (_, err) -> Void in
+            SVProgressHUD.dismiss()
+            self?.view.showToast(err)
+        }
     }
 }

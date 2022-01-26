@@ -2,49 +2,38 @@ import Foundation
 import SwiftyJSON
 
 public class ModelUser: ModelBase {
-    var num: String! // 회원번호
-    var name: String! // 이름
-    var sex_code: Int! // 성별(0,1-남,2-여)
-    var mail_address: String! // 메일주소
-    var phone: String! // 폰번호
-    var birth: String! // 생년월일
-    var type: String! // 로그인타입(1-naver,2-kakao,7-apple)
-    var account_key: String! // SNS ID
-    var agree_send: String! // 마케팅알람 동의여부(0-미동의 1-동의)
-    var last_login: String! // 가입날짜
-    var unregist: String! // 회원탈퇴여부(1-탈퇴, 0-정상)
-    var manager_num: String! // 매니저회원번호(null이면 일반회원, null이 아니면 매니저)
-    var manager_nickname: String! // 매니저닉네임(null이면 일반회원, null이 아니면 매니저닉네임)
-    var note: String! // 매니저소개문구
-    var lev: Float! // 평가점수(Float형) 0이면 평가중
-    var manner: Int! // 매너점수
-    var resv_cnt: Int! // 구장예약횟수
-    var match_cnt: Int! // 개인매치진행횟수
+    var uid: String!
+    var email: String!
+    var pwd: String!
+    var name: String!
+    var profile_img: String!
+    var phone: String!
+    var birthday: String!
+    var gender: Int!
+    var status: Int!
+    var access_token: String!
+    var document_cnt: Int!
+    var create_time: String!
+    var exit_reg_time: String!
+    var stop_remark: String!
     
-    override init() {
-        super.init()
-    }
+    var code: Int!
     
     override init(_ json: JSON) {
         super.init(json)
-        num = json["num"].stringValue
+        uid = json["login_id"].stringValue
         name = json["name"].stringValue
-        sex_code = json["sex_code"].intValue
-        mail_address = json["mail_address"].stringValue
-        phone = json["phone"].stringValue
-        birth = json["birth"].stringValue
-        type = json["type"].stringValue
-        account_key = json["account_key"].stringValue
-        agree_send = json["agree_send"].stringValue
-        last_login = json["last_login"].stringValue
-        unregist = json["unregist"].stringValue
-        manager_num = json["manager_num"].stringValue
-        manager_nickname = json["manager_nickname"].stringValue
-        note = json["note"].stringValue
-        lev = json["lev"].floatValue
-        manner = json["manner"].intValue
-        resv_cnt = json["resv_cnt"].intValue
-        match_cnt = json["match_cnt"].intValue
+        phone = json["phone_number"].stringValue
+        status = json["status"].intValue
+        gender = json["gender"].intValue
+        birthday = json["birthday"].stringValue
+        email = json["email"].stringValue
+        profile_img = json["profile_image"].stringValue
+        create_time = json["create_time"].stringValue
+        exit_reg_time = json["ext_reg_time"].stringValue
+        stop_remark = json["stop_remark"].stringValue
+        access_token = json["access_token"].stringValue
+        document_cnt = json["document_cnt"].intValue
     }
     
     static func isIdValid(_ id: String) -> Bool {
@@ -56,7 +45,7 @@ public class ModelUser: ModelBase {
             return false
         }
         
-        return true
+        return true;
     }
     
     static func isPasswordValid(_ pwd: String) -> Bool {
@@ -72,12 +61,12 @@ public class ModelUser: ModelBase {
             return false
         }
         
-        return true
+        return true;
     }
     
     static func isAuthCodeValid(code: String) -> Bool {
         if code.isEmpty || code.count != 4 {
-            return false
+            return false;
         }
         
         return Validations.digit(code)
@@ -102,18 +91,5 @@ public class ModelUser: ModelBase {
         }
                 
         return true
-    }
-}
-
-public class ModelUserInfo: ModelBase {
-    var info: ModelUser!
-    
-    override init() {
-        super.init()
-    }
-    
-    override init(_ json: JSON) {
-        super.init(json)
-        info = ModelUser(json["info"])
     }
 }

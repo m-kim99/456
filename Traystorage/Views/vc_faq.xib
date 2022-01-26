@@ -40,15 +40,16 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAQ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxB-KL-QBv" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="171.66666666666666" y="14.333333333333337" width="31.666666666666657" height="21.666666666666671"/>
-                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
+                                    <rect key="frame" x="170.66666666666666" y="14.333333333333337" width="34" height="21.666666666666671"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Bold"/>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                             <real key="value" value="18"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="faq"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
@@ -73,6 +74,10 @@
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                             </collectionViewFlowLayout>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="LCv-kZ-kwy"/>
+                                <outlet property="delegate" destination="-1" id="qHe-Mf-swA"/>
+                            </connections>
                         </collectionView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QkH-X9-4NL">
                             <rect key="frame" x="0.0" y="124" width="375" height="8"/>
@@ -84,6 +89,10 @@
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="NJB-4i-4Xq">
                             <rect key="frame" x="0.0" y="132" width="375" height="602"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="0fE-K6-ZeT"/>
+                                <outlet property="delegate" destination="-1" id="YR2-9w-mRg"/>
+                            </connections>
                         </tableView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -117,7 +126,7 @@
     </objects>
     <designables>
         <designable name="bxB-KL-QBv">
-            <size key="intrinsicContentSize" width="31.666666666666668" height="21.666666666666668"/>
+            <size key="intrinsicContentSize" width="34" height="21.666666666666668"/>
         </designable>
     </designables>
     <resources>

@@ -1,5 +1,6 @@
 import UIKit
 import SKPhotoBrowser
+import SVProgressHUD
 
 class DocumentRegisterVC: BaseVC {
     
@@ -14,12 +15,13 @@ class DocumentRegisterVC: BaseVC {
     @IBOutlet weak var tagCollectionView: UICollectionView!
     @IBOutlet weak var labelCollectionView: UICollectionView!
     
-    @IBOutlet weak var hideKeyboardGesture: UITapGestureRecognizer!
-    
     @IBOutlet weak var btnAddImageMain: UIButton!
     @IBOutlet weak var btnAddImageSub: UIButton!
     
-    var document: ModelDocument = ModelDocument()
+    var isNewDocument = false
+    
+    var newDocument = ModelDocument()
+    var document: ModelDocument?
     
     let viewTagImageCollectionView = 1
     let viewTagTagCollectionView = 2
@@ -31,108 +33,191 @@ class DocumentRegisterVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        copyDocument(toOrigin: false)
+        initVC()
+    }
+    
+    private func initVC() {
         imageCollectionView.register(UINib(nibName: "item_image", bundle: nil), forCellWithReuseIdentifier: "cell")
         tagCollectionView.register(UINib(nibName: "item_tag", bundle: nil), forCellWithReuseIdentifier: "cell")
         labelCollectionView.register(UINib(nibName: "item_label", bundle: nil), forCellWithReuseIdentifier: "cell")
-        
-//        tagListView.set
-        imgPicker = UIImagePickerController()
-        imgPicker.delegate = self
-        imgPicker.allowsEditing = false
-        
-        for i in 1...10 {
-            document.tags.append("tag" + i.description)
-        }
-        
-        let image = UIImage(named: "Group 32")!
-        for _ in 1...3 {
-            document.images.append(image)
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(imgPick(_:)), name: NSNotification.Name(rawValue: "image_pick"), object: nil)
         
         updateImageAddButtonAndCollectionView()
+        
+        tfTitle.text = newDocument.title
+        tfDetail.text = newDocument.content
+        updateDetailPlaceHolderVisible(newDocument.content)
     }
     
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
+    private func copyDocument(toOrigin: Bool) {
+        guard let origDoc = document else {
+            return
+        }
+        
+        let newDoc = newDocument
+
+        if toOrigin {
+            origDoc.title = newDoc.title
+            origDoc.content = newDoc.content
+            origDoc.label = newDoc.label
+            
+            origDoc.tags.replaceSubrange(0..<origDoc.tags.count, with: newDoc.tags)
+            origDoc.images.replaceSubrange(0..<origDoc.images.count, with: newDoc.images)
+            origDoc.imagesUrlList.replaceSubrange(0..<origDoc.imagesUrlList.count, with: newDoc.imagesUrlList)
+        } else {
+            newDoc.doc_id = origDoc.doc_id
+            newDoc.user_id = origDoc.user_id
+            newDoc.title = origDoc.title
+            newDoc.content = origDoc.content
+            newDoc.label = origDoc.label
+            
+            newDoc.tags.replaceSubrange(0..<newDoc.tags.count, with: origDoc.tags)
+            newDoc.images.replaceSubrange(0..<newDoc.images.count, with: origDoc.images)
+            newDoc.imagesUrlList.replaceSubrange(0..<newDoc.imagesUrlList.count, with: origDoc.imagesUrlList)
+        }
     }
-    
-    @IBAction func onClickBG(_ sender: Any) {
-        hideKeyboard()
-    }
-    
+
     @IBAction func onClickRegister(_ sender: Any) {
-        popVC()
+        guard let title = tfTitle.text, !title.isEmpty else {
+            self.view.showToast("doc_title_empty"._localized)
+            return
+        }
+        
+        guard let content = tfDetail.text, !content.isEmpty else {
+            self.view.showToast("doc_content_empty"._localized)
+            return
+        }
+        
+        let doc = newDocument
+        
+        let tags = doc.tags.joined(separator: ",")
+        
+        var imageURLs: [String] = []
+        for url in doc.imagesUrlList {
+            if url != nil {
+                imageURLs.append(url!)
+            }
+        }
+        
+        let images = imageURLs.joined(separator: ",")
+        
+        documentEditDown(title: title, content: content, lable: doc.label, tags: tags, images: images)
     }
-    
-    private var imgPicker: UIImagePickerController! = nil
+
     @IBAction func onClickAddImage(_ sender: Any) {
-//        var images = [SKPhoto]()
-//        var photo = SKPhoto.photoWithImage(UIImage(named: "ic_back")!)// add some UIImage
-//        images.append(photo)
-//        photo = SKPhoto.photoWithImage(UIImage(named: "Icon-C-Plus-White-16")!)
-//        images.append(photo)
-//        let browser = SKPhotoBrowser(photos: images)
-//        browser.initializePageIndex(0)
-//        present(browser, animated: true, completion: {})
-        imgPicker.sourceType = .photoLibrary
-        
-        imgPicker.mediaTypes = ["public.image"]
-        present(imgPicker, animated: false, completion: nil)
-        
+        let vc = GalleryViewController(nibName: "vc_gallery", bundle: nil)
+        self.pushVC(vc, animated: true)
     }
     
     @IBAction func onClickAddTag(_ sender: Any) {
-        if let tagText = tfTag.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !tagText.isEmpty {
-            document.tags.append(tagText)
-            tagCollectionView.reloadData()
-            tfTag.text = nil
+        guard let tagText = tfTag.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !tagText.isEmpty else {
+            self.view.showToast("doc_tag_empty"._localized)
+            return
+        }
+        
+        let doc = newDocument
+        
+        if doc.tags.count < 5 {
+            if doc.tags.contains(tagText) {
+                self.view.showToast("doc_duplicated_tag"._localized)
+            } else {
+                doc.tags.insert(tagText, at: 0)
+                tagCollectionView.reloadData()
+                tfTag.text = nil
+            }
+        } else {
+            self.view.showToast("doc_tag_limit_5"._localized)
         }
     }
     
     
-    private func hideKeyboard() {
+    override func hideKeyboard() {
         tfTitle.resignFirstResponder()
         tfTag.resignFirstResponder()
         tfDetail.resignFirstResponder()
-    }
-    
-    
-    override func keyboardWasShown(_ aNotification: Notification) {
-        super.keyboardWasShown(aNotification)
-        hideKeyboardGesture.isEnabled = true
-    }
-    
-    override func keyboardWillBeHidden(_ aNotification: Notification) {
-        super.keyboardWillBeHidden(aNotification)
-        hideKeyboardGesture.isEnabled = false
     }
     
     private func updateDetailPlaceHolderVisible(_ detail: String) {
         lblDetailPlaceHolder.isHidden = !detail.isEmpty
     }
     
+    @objc func imgPick(_ notification : Notification) {
+        let imgList = notification.object as! [UIImage]
+        
+        for image in imgList {
+            newDocument.addImage(image: image)
+        }
+        self.imageCollectionView.reloadData()
+        self.updateImageAddButtonAndCollectionView()
+    }
+    
     private func updateImageAddButtonAndCollectionView() {
-        let noImage = document.images.isEmpty
+        let noImage = newDocument.images.isEmpty
         btnAddImageMain.isHidden = !noImage
         btnAddImageSub.isHidden = noImage
         imageCollectionView.isHidden = noImage
     }
     
-    @IBAction func onClickClose(_ sender: UIButton) {
+    private func documentEditDown(title: String, content: String, lable: Int, tags: String, images: String) {
+        SVProgressHUD.show()
+        
+        let doc = newDocument
+        
+        if isNewDocument {
+            Rest.documentInsert(title: title, content: content, label: doc.label, tags: tags, images: images) { [weak self](result) in
+
+                if let popDelegate = self?.popDelegate {
+                    popDelegate.onWillBack("insert", result!)
+                }
+                
+                self?.popVC()
+            } failure: { [weak self](_, err) in
+                SVProgressHUD.dismiss()
+                self?.view.showToast(err)
+            }
+        } else {
+            Rest.documentUpdate(id: doc.doc_id.description, title: title, content: content, label: lable, tags: tags, images: images, success: { [weak self] (result) in
+                
+                if let popDelegate = self?.popDelegate {
+                    doc.title = title
+                    doc.content = content
+                    doc.label = lable
+                    doc.tags.removeAll()
+                    
+                    let tagList = tags.split(separator: ",")
+                    for tag in tagList {
+                        doc.tags.append(tag.description)
+                    }
+                    
+                    self?.copyDocument(toOrigin: true)
+                    popDelegate.onWillBack("update", doc)
+                }
+                self?.popVC()
+                
+            }) {[weak self](_, err) in
+                SVProgressHUD.dismiss()
+                self?.view.showToast(err)
+            }
+        }
+    }
+    
+    @IBAction func onClickClear(_ sender: UIButton) {
         guard let superView = sender.superview else {
             return
         }
         
         let viewTag = superView.tag
-        
-        
+        let doc = newDocument
         if viewTag >= viewTagStartTag {
             let index = viewTag - viewTagStartTag
-            document.tags.remove(at: index)
+            doc.tags.remove(at: index)
             tagCollectionView.reloadData()
+            
+            self.view.showToast(index.description + " - tag was deleted.")
         } else {
             let index = viewTag - viewTagStartImage
-            document.images.remove(at: index)
+            doc.removeImage(at: index)
             imageCollectionView.reloadData()
             
             updateImageAddButtonAndCollectionView()
@@ -171,11 +256,12 @@ extension DocumentRegisterVC: UITextFieldDelegate {
 extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let collectionViewTag = collectionView.tag
+        let doc = newDocument
         switch collectionViewTag {
         case viewTagImageCollectionView:
-            return document.images.count
+            return doc.images.count
         case viewTagTagCollectionView:
-            return document.tags.count
+            return doc.tags.count
         case viewTagLabelCollectionView:
             return 10
         default:
@@ -188,21 +274,26 @@ extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         let collectionViewTag = collectionView.tag
-        
+        let doc = newDocument
+        let index = indexPath.row
         switch collectionViewTag {
         case viewTagImageCollectionView:
             if let imageView = cell.viewWithTag(2) as? UIImageView {
-                imageView.image = document.images[indexPath.row]
+                if let url = doc.imagesUrlList[index] {
+                    imageView.kf.setImage(with: URL(string: url))
+                } else {
+                    imageView.image = doc.images[index]
+                }
             }
             break
         case viewTagTagCollectionView:
             if let titleLabel = cell.viewWithTag(1) as? UILabel {
-                titleLabel.text = "#" + document.tags[indexPath.row]
+                titleLabel.text = "#" + doc.tags[indexPath.row]
             }
             break
         case viewTagLabelCollectionView:
             if let outLineView = cell.viewWithTag(20) {
-                outLineView.borderWidth = document.label == indexPath.row ? 1 : 0
+                outLineView.borderWidth = doc.label == indexPath.row ? 1 : 0
             }
             
             if let labelColorView = cell.viewWithTag(21) {
@@ -218,8 +309,8 @@ extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelega
                 let newTagStart = collectionViewTag == viewTagImageCollectionView ? viewTagStartImage : viewTagStartTag
                 contentView.tag = newTagStart + indexPath.row
             }
-            closeButton.removeTarget(self, action: #selector(self.onClickClose(_:)), for: .touchUpInside)
-            closeButton.addTarget(self, action: #selector(self.onClickClose(_:)), for: .touchUpInside)
+            closeButton.removeTarget(self, action: #selector(self.onClickClear(_:)), for: .touchUpInside)
+            closeButton.addTarget(self, action: #selector(self.onClickClear(_:)), for: .touchUpInside)
         }
         
         return cell
@@ -228,7 +319,7 @@ extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let collectionViewTag = collectionView.tag
-        
+        let doc = newDocument
         switch collectionViewTag {
         case viewTagImageCollectionView:
             
@@ -236,31 +327,11 @@ extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelega
         case viewTagTagCollectionView:
             break
         case viewTagLabelCollectionView:
-            document.label = indexPath.row
+            doc.label = indexPath.row
             labelCollectionView.reloadData()
             break
         default:
             break
-        }
-    }
-    
-}
-
-
-extension DocumentRegisterVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: false, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        imagePickerControllerDidCancel(picker)
-        
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            dismiss(animated: false) { [weak self] () -> Void in
-                self?.document.images.append(image)
-                self?.imageCollectionView.reloadData()
-                self?.updateImageAddButtonAndCollectionView()
-            }
         }
     }
 }

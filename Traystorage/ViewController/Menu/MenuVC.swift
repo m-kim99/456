@@ -50,6 +50,14 @@ class MenuVC: BaseVC {
             menu.tag = index
             menu.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickMenu(_:))))
         }
+        
+        let user = Local.getUser()
+        
+        if let url = user.profile_img {
+            vwAvatar.kf.setImage(with: URL(string: url), placeholder: UIImage(named: "Icon-C-User-60")!)
+        }
+
+        vwName.text = user.name
     }
     
     func slideOpen(_ superview : UIView) {

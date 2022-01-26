@@ -38,15 +38,16 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Withdrawal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxB-KL-QBv" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="142" y="14.333333333333337" width="91.333333333333314" height="21.666666666666671"/>
-                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
+                                    <rect key="frame" x="142.66666666666666" y="14.333333333333337" width="90" height="21.666666666666671"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Bold"/>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                             <real key="value" value="18"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="withdrawal_title"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
@@ -71,52 +72,54 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="YES"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
-                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                     <real key="value" value="15"/>
                                 </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="confirm"/>
                             </userDefinedRuntimeAttributes>
                         </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_Withdrawalrequest_150" translatesAutoresizingMaskIntoConstraints="NO" id="Esz-7l-4gH">
                             <rect key="frame" x="112.66666666666669" y="110" width="150" height="150"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Membership cancellation request has been completed" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrM-Mw-0bv" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                            <rect key="frame" x="18" y="260" width="339" height="53"/>
+                            <rect key="frame" x="18" y="260" width="339" height="40.666666666666686"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                     <real key="value" value="22"/>
                                 </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="withdrawal_result_1"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIs-Jt-aDq">
-                            <rect key="frame" x="18" y="331" width="339" height="102"/>
+                            <rect key="frame" x="18" y="321" width="339" height="102"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNu-3N-UxD" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
                                     <rect key="frame" x="30" y="24" width="279" height="54"/>
                                     <attributedString key="attributedText">
                                         <fragment content="Re-login within 14 days ">
                                             <attributes>
-                                                <font key="NSFont" size="15" name=".SFNS-Regular"/>
+                                                <font key="NSFont" metaFont="system" size="15"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="Restoration of members who have resigned">
                                             <attributes>
                                                 <color key="NSColor" name="linkColor" catalog="System" colorSpace="catalog"/>
-                                                <font key="NSFont" size="15" name=".SFNS-Regular"/>
+                                                <font key="NSFont" metaFont="system" size="15"/>
                                                 <integer key="NSUnderline" value="1"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content=" You can proceed with the procedure.">
                                             <attributes>
-                                                <font key="NSFont" size="15" name=".SFNS-Regular"/>
+                                                <font key="NSFont" metaFont="system" size="15"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                             <real key="value" value="15"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
@@ -136,14 +139,15 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of application for withdrawal" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhL-NV-qnV" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                            <rect key="frame" x="18.000000000000014" y="313" width="228.33333333333337" height="18"/>
+                            <rect key="frame" x="18.000000000000014" y="300.66666666666669" width="254.33333333333337" height="20.333333333333314"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                     <real key="value" value="15"/>
                                 </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="withdrawal_result_2"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -181,19 +185,19 @@
     </objects>
     <designables>
         <designable name="G51-mU-pL2">
-            <size key="intrinsicContentSize" width="54" height="30"/>
+            <size key="intrinsicContentSize" width="55" height="30"/>
         </designable>
         <designable name="bxB-KL-QBv">
-            <size key="intrinsicContentSize" width="91.333333333333329" height="21.666666666666668"/>
+            <size key="intrinsicContentSize" width="90" height="21.666666666666668"/>
         </designable>
         <designable name="mrM-Mw-0bv">
-            <size key="intrinsicContentSize" width="529.33333333333337" height="26.666666666666668"/>
+            <size key="intrinsicContentSize" width="412" height="20.333333333333332"/>
         </designable>
         <designable name="qNu-3N-UxD">
-            <size key="intrinsicContentSize" width="700.66666666666663" height="18"/>
+            <size key="intrinsicContentSize" width="715.33333333333337" height="18"/>
         </designable>
         <designable name="rhL-NV-qnV">
-            <size key="intrinsicContentSize" width="228.33333333333334" height="18"/>
+            <size key="intrinsicContentSize" width="254.33333333333334" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>

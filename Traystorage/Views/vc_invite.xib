@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -8,11 +8,6 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="NotoSans-Medium.otf">
-            <string>NotoSansKR-Medium</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InviteVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
@@ -21,14 +16,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KeF-Um-992" userLabel="root">
-                    <rect key="frame" x="0.0" y="44" width="390" height="766"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbf-Hw-JNj" userLabel="header">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRk-BU-Ziu">
                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -43,15 +38,16 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="invite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-iT-dIJ" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="173.66666666666666" y="19.666666666666664" width="42.666666666666657" height="21"/>
-                                    <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="18"/>
+                                    <rect key="frame" x="185.5" y="19" width="43" height="22"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                             <real key="value" value="18"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="invite_title"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
@@ -66,20 +62,21 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4Z-wH-YKp">
-                            <rect key="frame" x="0.0" y="104" width="390" height="230"/>
+                            <rect key="frame" x="0.0" y="104" width="414" height="230"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_Invitationmessage_150" translatesAutoresizingMaskIntoConstraints="NO" id="KYt-gg-e6f">
-                                    <rect key="frame" x="120" y="0.0" width="150" height="150"/>
+                                    <rect key="frame" x="132" y="0.0" width="150" height="150"/>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send invitations to friends who need Traystorage" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGz-hV-cC9" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="170" width="350" height="53"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send invitations to friends who need Traystorage" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGz-hV-cC9" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                    <rect key="frame" x="20" y="170" width="374" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                             <real key="value" value="22"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="invite_desc"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
@@ -94,7 +91,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ice-r3-qIy" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                            <rect key="frame" x="20" y="692" width="350" height="54"/>
+                            <rect key="frame" x="20" y="744" width="374" height="54"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="54" id="s9b-HU-zxK"/>
                             </constraints>
@@ -102,13 +99,14 @@
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="invite friends"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                     <real key="value" value="15"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="YES"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="invite_friends"/>
                             </userDefinedRuntimeAttributes>
                         </button>
                     </subviews>
@@ -143,8 +141,11 @@
         <designable name="Ice-r3-qIy">
             <size key="intrinsicContentSize" width="89" height="30"/>
         </designable>
+        <designable name="kP6-iT-dIJ">
+            <size key="intrinsicContentSize" width="43" height="21.5"/>
+        </designable>
         <designable name="rGz-hV-cC9">
-            <size key="intrinsicContentSize" width="482.66666666666669" height="26.666666666666668"/>
+            <size key="intrinsicContentSize" width="371" height="20.5"/>
         </designable>
     </designables>
     <resources>

@@ -17,14 +17,7 @@ class DocumentEditVC: BaseVC {
         
 //        tagListView.set
     }
-    
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
-    }
-    
-    @IBAction func onClickBG(_ sender: Any) {
-        hideKeyboard()
-    }
+
     
     @IBAction func onClickRegister(_ sender: Any) {
         popVC()
@@ -39,7 +32,7 @@ class DocumentEditVC: BaseVC {
     }
     
     
-    private func hideKeyboard() {
+    override func hideKeyboard() {
         tfTitle.resignFirstResponder()
         tfTag.resignFirstResponder()
     }

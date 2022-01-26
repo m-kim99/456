@@ -7,88 +7,49 @@ class FindPwdVC: BaseVC {
     @IBOutlet weak var tfID: UITextField!
     @IBOutlet weak var tfPhonenumber: UITextField!
     @IBOutlet weak var tfCertification: UITextField!
-    @IBOutlet weak var btnReset: UIFontButton!
+    @IBOutlet weak var btnReset: UIButton!
     
+    @IBOutlet weak var lblDownTime: CountDownTimeLabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let userID = params["userID"] as? String {
+            tfID.text = userID
+        }
+
 //        initLang()
-//        initVC()
     }
     
     private func initLang() {
 //        lblPwd.text = getLangString("pwd_reset_title")
 //        lblPwdDesc.text = getLangString("pwd_reset_desc1")
-//        lblError.text = getLangString("signup_email_error")
 //        lblBackToFirst.text = getLangString("pwd_reset_desc2")
 //        tfEmail.placeholder = getLangString("signup_email_hint")
 //        btnReset.setTitle(getLangString("pwd_reset"), for: .normal)
 //        btnLogin.setUnderlineTitle(getLangString("guide_btn_login"), font: AppFont.robotoRegular(11), color: AppColor.black, for: .normal)
     }
     
-    private func initVC() {
-//        tfEmail.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-//        tfEmail.delegate = self
-//
-//        hideError()
-//        enableReset(false)
-    }
-    
-    private func enableReset(_ enable: Bool) {
-        btnReset.isEnabled = enable
-        btnReset.backgroundColor = enable ? AppColor.black : AppColor.gray
-    }
-    
-    private func isValidInput() {
-        var isValid = true
-//        if isValid && tfEmail.text!.isEmpty {
-//            isValid = false
-//        }
-//
-//        if isValid && !Validations.email(tfEmail.text!) {
-//            isValid = false
-//        }
-        
-        hideError()
-        enableReset(isValid)
-    }
-    
-    private func showError(_ msg: String) {
-//        tfEmail.borderColor = AppColor.error
-//        lblError.isHidden = false
-//        lblError.text = msg
-    }
-    
-    private func hideError() {
-//        tfEmail.borderColor = AppColor.gray
-//        lblError.isHidden = true
-    }
-    
-    private func hideKeyboard() {
+    override func hideKeyboard() {
         tfID.resignFirstResponder()
         tfPhonenumber.resignFirstResponder()
         tfCertification.resignFirstResponder()
     }
     
-    private func onResetSuccess() {
-//        let msg = String.init(format: "%@\n%@", getLangString("dialog_pwd_reset"), tfEmail.text!)
-//        AlertDialog.show(self, title: getLangString("dialog_pwd_reset_title"), message: msg)
+    
+    private func showNonRegisterPhone() {
+        AlertDialog.show(self, title: "no_phone_title"._localized, message: "no_phone_desc"._localized)
+    }
+    
+    private func onResetSuccess(userID: String, phone: String, code: String) {
+        self.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true, params: ["userID":userID, "phone": phone, "code": code])
     }
     
     //
     // MARK: - Action
     //
-    @IBAction func onClickBack(_ sender: Any) {
-        hideKeyboard()
-        popVC()
-    }
     
-    @IBAction func onClickBg(_ sender: Any) {
-        hideKeyboard()
-    }
-    
-    @IBAction func onReset(_ sender: Any) {
+    @IBAction func onFindPwd(_ sender: Any) {
         hideKeyboard()
         
         guard let textID = tfID.text, !textID.isEmpty else {
@@ -96,25 +57,16 @@ class FindPwdVC: BaseVC {
             return
         }
         
-        resetPwd()
+        findPwd()
     }
     
     @IBAction func onAuthReqest(_ sender: Any) {
         guard let phoneNumber = tfPhonenumber.text, !phoneNumber.isEmpty else {
-            self.view.showToast("Please input your phone number!")
+            self.view.showToast("empty_phone_toast"._localized)
             return
         }
         
-        AlertDialog.show(self, title: "Alert", message: "This is not a registered mobile phone number. Please check your mobile phone number.")
-    }
-    
-    @IBAction func onLogin(_ sender: Any) {
-        hideKeyboard()
-        replaceVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
-    }
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        isValidInput()
+        authRequest(phoneNumber: phoneNumber)
     }
 }
 
@@ -127,7 +79,7 @@ extension FindPwdVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 //        tfEmail.resignFirstResponder()
-        resetPwd()
+        findPwd()
         return true
     }
     
@@ -147,19 +99,49 @@ extension FindPwdVC: UITextFieldDelegate {
 // MARK: - RestApi
 //
 extension FindPwdVC: BaseRestApi {
-    func resetPwd() {
-        self.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true)
-//        SVProgressHUD.show()
-//        Rest.resetPwd(email: tfEmail.text, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
-//            self.onResetSuccess()
-//        }, failure: { (code, err) -> Void in
-//            SVProgressHUD.dismiss()
-//            if code == 202 {
-//                self.showError(err)
-//                return
-//            }
-//            self.view.showToast(err)
-//        })
+    func authRequest(phoneNumber: String) {
+        SVProgressHUD.show()
+        Rest.send_code(phoneNumber: phoneNumber, success: { [weak self](result) -> Void in
+            SVProgressHUD.dismiss()
+            self?.lblDownTime.startCountDownTimer()
+        }) { [weak self](code, err) -> Void in
+            SVProgressHUD.dismiss()
+            if code == 202 {
+                self?.showNonRegisterPhone()
+            } else {
+                self?.view.showToast(err)
+            }
+        }
+    }
+    
+    func findPwd() {
+        guard let loginID = tfID.text, !loginID.isEmpty else {
+            self.view.showToast("empty_id_toast"._localized)
+            return
+        }
+        
+        guard let phoneNumber = tfPhonenumber.text, !phoneNumber.isEmpty else {
+            self.view.showToast("empty_phone_toast"._localized)
+            return
+        }
+        
+        guard let code = tfCertification.text, !code.isEmpty else {
+            self.view.showToast("Please input your certification code")
+            return
+        }
+        
+        SVProgressHUD.show()
+        Rest.findPwd(loginid: loginID, phoneNumber: phoneNumber, code: code, success: { [weak self] (result) -> Void in
+            SVProgressHUD.dismiss()
+            let data = result as! ModelPhoneVerify
+            self?.onResetSuccess(userID: loginID, phone: phoneNumber, code: data.code.description)
+        }, failure: { (code, err) -> Void in
+            SVProgressHUD.dismiss()
+            if code == 202 {
+                //self?.showError(err)
+                return
+            }
+            self.view.showToast(err)
+        })
     }
 }

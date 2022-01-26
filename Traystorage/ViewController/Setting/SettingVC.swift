@@ -3,27 +3,20 @@ import UIKit
 
 class SettingVC: BaseVC {
 
-    @IBOutlet weak var lblPageTitle: UIFontLabel!
+    @IBOutlet weak var lblPageTitle: UILabel!
     
     @IBOutlet weak var editID: UITextField!
     @IBOutlet weak var editPassword: UITextField!
-    @IBOutlet weak var lblVersion: UIFontLabel!
+    @IBOutlet weak var lblVersion: UILabel!
     
     @IBOutlet var vwItems: [UIStackView]!
-    //    private lazy var user: ModelUser = {
-//        return Rest.user
-//    }()
+    private lazy var user: ModelUser = {
+        return Rest.user
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        initLang()
         initVC()
-    }
-    
-    private func initLang() {
-//        lblPageTitle.text = getLangString("setting")
-        
     }
     
     private func initVC() {
@@ -32,7 +25,7 @@ class SettingVC: BaseVC {
             menu.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickItem(_:))))
         }
 
-//        lblNameValue.text = user.name
+        editID.text = user.uid
 //        btnChallengeAlarm.isSelected = (user.alarm_challenge_yn == "y")
 //        lblVersionValue.text = getLangString("setting_latest_version_using")
     }
@@ -41,10 +34,6 @@ class SettingVC: BaseVC {
     // MARK: - ACTION
     //
     @IBAction func onEditPassword(_ sender: Any) {
-    }
-    
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
     }
     
     @objc func onClickItem(_ sender: UITapGestureRecognizer) {
@@ -79,15 +68,37 @@ class SettingVC: BaseVC {
     }
     
     @IBAction func onClickPwd(_ sender: Any) {
-        self.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true)
+        ConfirmDialog.show(self, title:"setting_password_change_title"._localized, message: "setting_password_change_detail"._localized, showCancelBtn : true) { [weak self]() -> Void in
+            self?.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true)
+        }
     }
     
     @IBAction func onClickLogout(_ sender: Any) {
-//        ConfirmDialog.show(self, title:getLangString("setting_logout_confirm_title"), message: getLangString("setting_logout_confirm"), showCancelBtn : true) {
-//            Local.deleteUser()
-//            Rest.user = nil
-//            self.replaceVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
-//        }
+        ConfirmDialog.show(self, title:"logout_alert_title"._localized, message: "", showCancelBtn : true) { [weak self]() -> Void in
+            Local.deleteUser()
+            Rest.user = nil
+            Local.removeAutoLogin()
+            
+            if let nv = self?.navigationController {
+                let vcs = nv.viewControllers
+                for vc in vcs {
+//                    if vc is LoginVC {
+//                        let logVC = vc as! LoginVC
+//                        logVC.resetLoginInputInformation()
+//                        nv.popToViewController(vc, animated: true)
+//                        break
+//                    }
+                    
+                    if vc is IntroVC {
+                        let introVC = vc as! IntroVC
+                        introVC.openLogSingupView()
+                        nv.popToViewController(vc, animated: true)
+                        break
+                    }
+
+                }
+            }
+        }
     }
 }
 

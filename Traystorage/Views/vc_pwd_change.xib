@@ -52,10 +52,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Regular"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="22"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="change_pwd_desc"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="yOd-gl-hRp">
@@ -70,21 +70,27 @@
                                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Regular"/>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                             <real key="value" value="14"/>
                                                                         </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="password"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="A combination of 4 to 12 characters" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Foe-Od-1oL" customClass="TextField" customModule="Material">
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="A combination of 4 to 12 characters" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Foe-Od-1oL" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="25" width="374" height="46"/>
                                                                     <color key="tintColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="46" id="HST-2C-Pdl"/>
                                                                     </constraints>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholder" value="new_password_hint"/>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                            <real key="value" value="15"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <outlet property="delegate" destination="-1" id="a7s-73-8Ia"/>
                                                                     </connections>
@@ -100,21 +106,27 @@
                                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Regular"/>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                             <real key="value" value="14"/>
                                                                         </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="password_confirm"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SMN-PM-XxA" customClass="TextField" customModule="Material">
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Re-enter password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SMN-PM-XxA" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="25" width="374" height="46"/>
                                                                     <color key="tintColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="46" id="65O-Fh-nNE"/>
                                                                     </constraints>
                                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholder" value="password_confirm_hint"/>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                            <real key="value" value="15"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <outlet property="delegate" destination="-1" id="OTD-wj-UDj"/>
                                                                     </connections>
@@ -132,12 +144,13 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="confirm"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="15"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="confirm"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="onClickConfirm:" destination="-1" eventType="touchUpInside" id="P1X-uI-R6i"/>
@@ -206,25 +219,25 @@
         </view>
         <tapGestureRecognizer id="aOX-W2-8Cp">
             <connections>
-                <action selector="onClickBg:" destination="-1" id="MZP-LF-HcJ"/>
+                <action selector="onClickBG:" destination="-1" id="ZkW-15-Gbd"/>
             </connections>
         </tapGestureRecognizer>
     </objects>
     <designables>
         <designable name="DmO-cJ-7gu">
-            <size key="intrinsicContentSize" width="268.5" height="26.5"/>
+            <size key="intrinsicContentSize" width="180.5" height="26.5"/>
         </designable>
         <designable name="Foe-Od-1oL">
             <size key="intrinsicContentSize" width="374" height="34"/>
         </designable>
         <designable name="Nen-pl-fpW">
-            <size key="intrinsicContentSize" width="105" height="17"/>
+            <size key="intrinsicContentSize" width="119" height="17"/>
         </designable>
         <designable name="SMN-PM-XxA">
             <size key="intrinsicContentSize" width="374" height="34"/>
         </designable>
         <designable name="Yt1-TT-OEC">
-            <size key="intrinsicContentSize" width="56.5" height="17"/>
+            <size key="intrinsicContentSize" width="62" height="17"/>
         </designable>
         <designable name="pZI-Bd-XGK">
             <size key="intrinsicContentSize" width="52" height="30"/>

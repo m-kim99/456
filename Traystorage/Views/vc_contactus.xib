@@ -8,14 +8,12 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="NotoSans-Medium.otf">
-            <string>NotoSansKR-Medium</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactusVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
+                <outlet property="keyboardAvoidScroll" destination="HRz-mT-VSo" id="sqy-UR-mS2"/>
+                <outlet property="tfSubject" destination="Eys-Dv-U1p" id="c9i-jT-sdF"/>
+                <outlet property="tvDetail" destination="CA1-g0-Z7L" id="XC9-WW-Y2P"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Ued-mn-doj"/>
             </connections>
         </placeholder>
@@ -43,11 +41,18 @@
                                         <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="opG-MN-ciV"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-iT-dIJ">
-                                    <rect key="frame" x="150.66666666666666" y="14.666666666666664" width="89" height="21"/>
-                                    <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="18"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-iT-dIJ" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                    <rect key="frame" x="133.33333333333334" y="14.666666666666664" width="123.33333333333334" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                            <real key="value" value="18"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="contact_us_title"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -63,34 +68,35 @@
                             <rect key="frame" x="0.0" y="58" width="390" height="708"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4Z-wH-YKp">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="626"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="608"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you send an inquiry related to Traystorage, the management team will check it and respond promptly." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGz-hV-cC9" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="36" width="350" height="36"/>
+                                            <rect key="frame" x="20" y="36" width="350" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Regular"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="contact_us_description"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inquiry subject" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcM-XZ-UwP" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="20.000000000000007" y="102" width="99.666666666666686" height="18"/>
+                                            <rect key="frame" x="19.999999999999993" y="84" width="124.33333333333331" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Bold"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="contact_us_subject"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter the subject of your inquiry" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eys-Dv-U1p">
-                                            <rect key="frame" x="20" y="130" width="350" height="46"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter the subject of your inquiry" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eys-Dv-U1p" customClass="UIFontTextField" customModule="Traystorage" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="112" width="350" height="46"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="46" id="uOj-DM-v1X"/>
                                             </constraints>
@@ -103,40 +109,48 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="paddingRight">
                                                     <real key="value" value="14"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholder" value="contact_us_subject_hint"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                    <real key="value" value="14"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="XYz-t7-bA5"/>
+                                            </connections>
                                         </textField>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inquiry subject" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pP8-Ci-uUc" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="20.000000000000007" y="206" width="99.666666666666686" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inquiry content" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pP8-Ci-uUc" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                            <rect key="frame" x="20.000000000000007" y="188" width="127.66666666666669" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Bold"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="contact_us_content"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qU2-Vv-bav">
-                                            <rect key="frame" x="20" y="234" width="350" height="268"/>
+                                            <rect key="frame" x="20" y="216" width="350" height="268"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CA1-g0-Z7L">
                                                     <rect key="frame" x="14" y="24" width="322" height="220"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
-                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your inqurity content" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxN-sE-I2E" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                    <rect key="frame" x="14" y="24" width="215.33333333333334" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your inquiry content" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxN-sE-I2E" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                    <rect key="frame" x="14" y="24" width="171.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Apple SD Gothic Neo Regular"/>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="15"/>
                                                         </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="contact_us_content_hint"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
@@ -152,7 +166,7 @@
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.46666666670000001" green="0.46666666670000001" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="value" systemColor="systemGrayColor"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                     <real key="value" value="1"/>
@@ -162,17 +176,26 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ice-r3-qIy" customClass="Button" customModule="Material">
-                                            <rect key="frame" x="20" y="552" width="350" height="54"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ice-r3-qIy" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="534" width="350" height="54"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="54" id="s9b-HU-zxK"/>
                                             </constraints>
                                             <color key="tintColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" title="next"/>
-                                            <buttonConfiguration key="configuration" style="filled" title="Send">
-                                                <color key="baseBackgroundColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            </buttonConfiguration>
+                                            <state key="normal" title="Send"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="send"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="onClickSend:" destination="-1" eventType="touchUpInside" id="fgU-fo-omF"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -222,6 +245,9 @@
                         <constraint firstAttribute="trailing" secondItem="Xbf-Hw-JNj" secondAttribute="trailing" id="f6F-vo-e5i"/>
                         <constraint firstItem="HRz-mT-VSo" firstAttribute="top" secondItem="Xbf-Hw-JNj" secondAttribute="bottom" constant="8" symbolic="YES" id="ucN-OS-tAK"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="yrA-B1-3N1" appends="YES" id="LGD-LH-slL"/>
+                    </connections>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -235,22 +261,33 @@
             </constraints>
             <point key="canvasLocation" x="130.76923076923077" y="135.781990521327"/>
         </view>
+        <tapGestureRecognizer id="yrA-B1-3N1">
+            <connections>
+                <action selector="onClickBG:" destination="-1" id="TBk-pt-Dci"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <designables>
+        <designable name="Eys-Dv-U1p">
+            <size key="intrinsicContentSize" width="216" height="34"/>
+        </designable>
         <designable name="Ice-r3-qIy">
-            <size key="intrinsicContentSize" width="57.333333333333336" height="31"/>
+            <size key="intrinsicContentSize" width="32" height="30"/>
         </designable>
         <designable name="UcM-XZ-UwP">
-            <size key="intrinsicContentSize" width="99.666666666666671" height="18"/>
+            <size key="intrinsicContentSize" width="124.33333333333333" height="18"/>
         </designable>
         <designable name="gxN-sE-I2E">
-            <size key="intrinsicContentSize" width="215.33333333333334" height="18"/>
+            <size key="intrinsicContentSize" width="171.33333333333334" height="18"/>
+        </designable>
+        <designable name="kP6-iT-dIJ">
+            <size key="intrinsicContentSize" width="123.33333333333333" height="21.666666666666668"/>
         </designable>
         <designable name="pP8-Ci-uUc">
-            <size key="intrinsicContentSize" width="99.666666666666671" height="18"/>
+            <size key="intrinsicContentSize" width="127.66666666666667" height="18"/>
         </designable>
         <designable name="rGz-hV-cC9">
-            <size key="intrinsicContentSize" width="654.66666666666663" height="18"/>
+            <size key="intrinsicContentSize" width="161.33333333333334" height="18"/>
         </designable>
     </designables>
     <resources>
@@ -260,6 +297,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

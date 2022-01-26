@@ -2,6 +2,7 @@ import SVProgressHUD
 import SwiftyJSON
 import Toast_Swift
 import UIKit
+//import Material
 
 // signup 2nd screen
 class SignupAuthCodeVC: BaseVC {
@@ -17,31 +18,13 @@ class SignupAuthCodeVC: BaseVC {
     @IBOutlet weak var tfCertificationNumber: UITextField!
     
     @IBOutlet weak var btnNext: UIButton!
+    @IBOutlet weak var lblDownTime: CountDownTimeLabel!
     
     open var authType = AuthType.phone
     open var authMedia = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        initLang()
-//        initVC()
-    }
-    
-    private func initLang() {
-//        lblTitle.text = getLangString("signup_auth_code_input")
-//        lblSent.text = getLangString("signup_sent")
-//        lblInput.text = getLangString("signup_input_auth_code")
-//
-//        btnResend.setTitle(getLangString("signup_code_resend"), for: .normal)
-//
-//        tfAuthCode.placeholder = getLangString("signup_auth_code_hint")
-//
-//        lblMember.text = getLangString("signup_member_1")
-//        btnLogin.setTitle(getLangString("signup_member_2"), for: .normal)
-//
-//        btnNext.setTitle(getLangString("signup_next"), for: .normal)
-//        btnLogin.setUnderlineTitle(getLangString("guide_btn_login"), font: AppFont.robotoRegular(11), color: AppColor.black, for: .normal)
     }
     
     private func initVC() {
@@ -50,18 +33,26 @@ class SignupAuthCodeVC: BaseVC {
         } else {
             lblAuthMedia.text = authMedia
         }
-        hideError()
-    }
-
-    
-    private func hideError() {
-//        tfAuthCode.borderColor = AppColor.gray
-//        lblError.isHidden = true
     }
     
-    private func hideKeyboard() {
+    override func hideKeyboard() {
         tfPhoneNumber.resignFirstResponder()
         tfCertificationNumber.resignFirstResponder()
+    }
+    
+    override func onBackProcess(_ viewController: UIViewController) {
+        ConfirmDialog.show(self, title: "signup_cancel_alert_title".localized, message: "signup_cancel_alert_content"._localized, showCancelBtn: true) { [weak self]() -> Void in
+            self?.popToGuidVC()
+        }
+    }
+    
+    private func onPhoneAuthSent() {
+        self.view.showToast("signup_phone_verify_success"._localized)
+        lblDownTime.startCountDownTimer()
+    }
+    
+    private func onPhoneAuthDuplicated() {
+        AlertDialog.show(self, title:"signup_duplicated_phone"._localized, message: "")
     }
 }
 
@@ -69,37 +60,26 @@ class SignupAuthCodeVC: BaseVC {
 // MARK: - Action
 //
 extension SignupAuthCodeVC: BaseAction {
-    @IBAction func onBack(_ sender: Any) {
+    @IBAction func onClickPhoneAuth(_ sender: Any) {
         hideKeyboard()
-        ConfirmDialog.show(self, title: "If you close the screen membership registeration will be stopped", message: "Are you sure to cancel", showCancelBtn: true) { [weak self]() -> Void in
-            self?.popToGuidVC()
-        }
-    }
-    
-    @IBAction func onClickBg(_ sender: Any) {
-        hideKeyboard()
-    }
-    
-    @IBAction func onClickResend(_ sender: Any) {
-        hideKeyboard()
-        sendCertKey()
-    }
-    
-    @IBAction func onClickNext(_ sender: Any) {
-        hideKeyboard()
-        verifyCertKey()
-    }
-    
-    @IBAction func onClickAuthRequest(_ sender: Any) {
-        if let phoneNumber = tfPhoneNumber.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !phoneNumber.isEmpty {
-            AlertDialog.show(self, title: "Alarm", message: "This is an already registered 16 mobile phone number.")
+        if let phoneNumber = tfPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines), !phoneNumber.isEmpty {
+            sendPhoneAuth(phoneNumber)
         } else {
             self.view.showToast("Please input your phone number.")
         }
     }
     
+    @IBAction func onClickNext(_ sender: Any) {
+        hideKeyboard()
+//        verifyCertKey()
+    }
+    
     @IBAction func onClickConfirmCertNum(_ sender: Any) {
-        
+        guard let code = tfCertificationNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines), !code.isEmpty else {
+            return
+        }
+
+        verifyCode(code)
     }
     
     @IBAction func textFieldDidChange(_ sender: UITextField) {
@@ -121,7 +101,7 @@ extension SignupAuthCodeVC: UITextFieldDelegate {
         if textField == tfPhoneNumber, newLen > 11 {
             return false
         }
-        if textField == tfCertificationNumber, newLen > 4 {
+        if textField == tfCertificationNumber, newLen > 8 {
             return false
         }
 
@@ -133,12 +113,18 @@ extension SignupAuthCodeVC: UITextFieldDelegate {
 // MARK: - Navigation
 //
 extension SignupAuthCodeVC: BaseNavigation {
-    private func goNext() {
+    private func goNext(phone: String, code: Int) {
         let vc = SignupAgreeTerms(nibName: "vc_signup_agree_terms", bundle: nil)
 //        vc.authType = authType
 //        vc.authMedia = authMedia
-//        vc.authCode = tfAuthCode.text!
-        self.pushVC(vc, animated: true)
+        var params: [String: Any] = [:]
+        for (k, v) in self.params {
+            params[k] = v
+        }
+        
+        params["phone"] = phone
+        params["code"] = code.description
+        self.pushVC(vc, animated: true, params: params)
     }
 }
 
@@ -146,56 +132,76 @@ extension SignupAuthCodeVC: BaseNavigation {
 // MARK: - RestApi
 //
 extension SignupAuthCodeVC: BaseRestApi {
-    private func sendCertKey() {
-//        SVProgressHUD.show()
-//        if authType == AuthType.phone {
-//            Rest.sendCertKey(phone: authMedia, success: { (result) in
-//                SVProgressHUD.dismiss()
-//
-//                let messagePhone = getLangString("dialog_auth_code_phone_sent") + "\n\n\n" + self.authMedia
-//
-//                ConfirmDialog.show(self, title:getLangString("send_success"), message: messagePhone, showCancelBtn : false){
-//
-//                }
-//            }, failure: { _, msg in
-//                SVProgressHUD.dismiss()
-//                self.view.showToast(msg)
-//            })
-//        } else {
-//            Rest.sendCertKey(email: authMedia, success: { (result) in
-//                SVProgressHUD.dismiss()
-//
-//                let messageEmail = getLangString("dialog_auth_code_email_sent") + "\n\n\n" + self.authMedia
-//
-//                ConfirmDialog.show(self, title:getLangString("send_success"), message: messageEmail, showCancelBtn : false){
-//
-//                }
-//            }, failure: { _, msg in
-//                SVProgressHUD.dismiss()
-//                self.view.showToast(msg)
-//            })
-//        }
+    private func sendPhoneAuth(_ phone: String) {
+        SVProgressHUD.show()
+        if authType == AuthType.phone {
+            Rest.request_code(phoneNumber: phone, success: {
+                [weak self](result) in
+                SVProgressHUD.dismiss()
+                guard let ret = result else {
+                    return
+                }
+
+                if ret.result == 0 {
+                    self?.onPhoneAuthSent()
+                } else if ret.result == 206 {
+                    self?.onPhoneAuthDuplicated()
+                } else {
+                    self?.view.showToast(ret.msg)
+                }
+            }, failure: { _, msg in
+                SVProgressHUD.dismiss()
+                self.view.showToast(msg)
+            })
+        } else {
+            Rest.sendCertKey(email: authMedia, success: { (result) in
+                SVProgressHUD.dismiss()
+
+                let messageEmail = getLangString("dialog_auth_code_email_sent") + "\n\n\n" + self.authMedia
+
+                ConfirmDialog.show(self, title:getLangString("send_success"), message: messageEmail, showCancelBtn : false){
+
+                }
+            }, failure: { _, msg in
+                SVProgressHUD.dismiss()
+                self.view.showToast(msg)
+            })
+        }
     }
     
-    private func verifyCertKey() {
-//        SVProgressHUD.show()
-//        let certKey = tfAuthCode.text
-//        if authType == AuthType.phone {
-//            Rest.verifyCertKey(phone: authMedia, certKey: certKey, success: { (result) in
+    private func verifyCode(_ code: String) {
+        guard let phone = tfPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines), !phone.isEmpty else {
+            return
+        }
+
+        SVProgressHUD.show()
+        
+        if authType == AuthType.phone {
+            Rest.verifyPhoneCode(phone: phone, code: code, isContinue: 1, success: { [weak self](result) in
+                SVProgressHUD.dismiss()
+                guard let result = result else {
+                    return
+                }
+                
+                if result.result == 0 {
+                    let phoneVerify = result as! ModelPhoneVerify
+                    self?.goNext(phone: phone, code: phoneVerify.code)
+                } else {
+                    self?.view.showToast(result.msg)
+                }
+                
+            }, failure: { [weak self](_, msg) in
+                SVProgressHUD.dismiss()
+                self?.view.showToast(msg)
+            })
+        } else {
+//            Rest.verifyCertKey(email: authMedia, certKey: certKey, success: { (result) in
 //                SVProgressHUD.dismiss()
 //                self.goNext()
 //            }, failure: { _, msg in
 //                SVProgressHUD.dismiss()
 //                self.view.showToast(msg)
 //            })
-//        } else {
-//            Rest.verifyCertKey(email: authMedia, certKey: certKey, success: { (result) in
-//                SVProgressHUD.dismiss()
-                self.goNext()
-//            }, failure: { _, msg in
-//                SVProgressHUD.dismiss()
-//                self.view.showToast(msg)
-//            })
-//        }
+        }
     }
 }

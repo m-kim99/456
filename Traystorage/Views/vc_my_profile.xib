@@ -54,15 +54,16 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Management" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUb-tl-s0X" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="106.33333333333333" y="19.333333333333336" width="162.33333333333337" height="21.666666666666664"/>
+                                    <rect key="frame" x="106.66666666666667" y="19.666666666666664" width="161.66666666666663" height="21"/>
                                     <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="18"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                             <real key="value" value="18"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile_manage_title"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
@@ -80,7 +81,7 @@
                             <rect key="frame" x="0.0" y="60" width="375" height="674"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KmB-RY-Wef" userLabel="scroll content">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="622"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="624.33333333333337"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ujj-vb-bNu">
                                             <rect key="frame" x="20" y="20" width="335" height="136"/>
@@ -94,6 +95,11 @@
                                                                 <constraint firstAttribute="height" constant="86" id="8X3-Ne-E3J"/>
                                                                 <constraint firstAttribute="width" constant="86" id="CDh-J7-ZRX"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="43"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mpb-yK-ZND">
                                                             <rect key="frame" x="55" y="55" width="34" height="34"/>
@@ -121,22 +127,22 @@
                                                     <rect key="frame" x="0.0" y="86" width="335" height="50"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rJD-au-LTO" userLabel="label">
-                                                            <rect key="frame" x="0.0" y="0.0" width="81.666666666666671" height="50"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="69.333333333333329" height="50"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="du2-n3-LJz" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="41.666666666666664" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="29.333333333333332" height="50"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                             <real key="value" value="24"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W77-nC-lnb">
-                                                                    <rect key="frame" x="49.666666666666671" y="0.0" width="32" height="50"/>
+                                                                    <rect key="frame" x="37.333333333333336" y="0.0" width="32.000000000000007" height="50"/>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                     <state key="normal" image="Icon-C-Edit-LineGray-32"/>
                                                                     <connections>
@@ -145,12 +151,18 @@
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
-                                                        <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pMV-mo-ecz" customClass="TextField" customModule="Material">
+                                                        <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pMV-mo-ecz" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
-                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="24"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                             <textInputTraits key="textInputTraits"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                    <real key="value" value="24"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <action selector="onEditNameDidEnd:" destination="-1" eventType="editingDidEnd" id="z9x-tN-hkO"/>
+                                                                <outlet property="delegate" destination="-1" id="a8o-bf-tMI"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -176,22 +188,23 @@
                                             </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Ui9-cc-vIa">
-                                            <rect key="frame" x="20" y="247" width="335" height="240"/>
+                                            <rect key="frame" x="20" y="247" width="335" height="242.33333333333337"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="main info" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWq-qw-QuN" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="18"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="20.333333333333332"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="15"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile_main_info"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="2fN-jC-C1o">
-                                                    <rect key="frame" x="0.0" y="42" width="335" height="198"/>
+                                                    <rect key="frame" x="0.0" y="44.333333333333314" width="335" height="198"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="enB-mh-8Vn">
                                                             <rect key="frame" x="0.0" y="0.0" width="335" height="46"/>
@@ -201,24 +214,31 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="80" id="Iz1-Sy-MA8"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                             <real key="value" value="15"/>
                                                                         </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="birthday"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pW-T6-X4Q" userLabel="birthday">
                                                                     <rect key="frame" x="88" y="0.0" width="247" height="46"/>
                                                                     <subviews>
-                                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Birthday" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FV3-vF-VYR" userLabel="birthday button" customClass="UIFontTextField">
+                                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FV3-vF-VYR" userLabel="birthday button" customClass="UIFontTextField">
                                                                             <rect key="frame" x="0.0" y="0.0" width="247" height="46"/>
                                                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="tel"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholder" value="birthday"/>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                                                    <real key="value" value="14"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </textField>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhf-Eh-k3t" userLabel="drop down">
                                                                             <rect key="frame" x="0.0" y="0.0" width="247" height="46"/>
@@ -258,80 +278,97 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="80" id="Pes-uW-W5z"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                                            <real key="value" value="15"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="email"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8oC-ca-87a" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
+                                                                    <rect key="frame" x="88" y="0.0" width="247" height="46"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                                             <real key="value" value="15"/>
                                                                         </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholder" value="email_hint"/>
                                                                     </userDefinedRuntimeAttributes>
-                                                                </label>
-                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8oC-ca-87a" customClass="TextField" customModule="Material">
-                                                                    <rect key="frame" x="88" y="0.0" width="247" height="46"/>
-                                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
-                                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                                                 </textField>
                                                             </subviews>
                                                         </stackView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="a2L-B2-a2Y">
-                                                            <rect key="frame" x="0.0" y="152" width="335" height="46"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="a2L-B2-a2Y">
+                                                            <rect key="frame" x="0.0" y="152.00000000000006" width="335" height="46"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gender" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjY-Vm-arp" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="46"/>
+                                                                    <rect key="frame" x="0.0" y="14" width="80" height="18"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="80" id="tZK-TY-1uC"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                             <real key="value" value="15"/>
                                                                         </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="gender"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrO-07-RtU" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="88" y="0.0" width="56" height="46"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="F01-Ob-UpO">
+                                                                    <rect key="frame" x="88" y="4" width="132" height="38"/>
+                                                                    <subviews>
+                                                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrO-07-RtU" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="62" height="38"/>
+                                                                            <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                            <state key="normal" title="male"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                    <real key="value" value="19"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isOutline" value="YES"/>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="male"/>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <action selector="onClickGender:" destination="-1" eventType="touchUpInside" id="BY5-4u-PRa"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AH5-95-JbS">
+                                                                            <rect key="frame" x="70" y="0.0" width="62" height="38"/>
+                                                                            <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                            <state key="normal" title="female"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                    <real key="value" value="1"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                    <real key="value" value="19"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                    <color key="value" systemColor="systemGrayColor"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="female"/>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <action selector="onClickGender:" destination="-1" eventType="touchUpInside" id="FCA-7s-Htn"/>
+                                                                            </connections>
+                                                                        </button>
+                                                                    </subviews>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="56" id="m89-PA-5nz"/>
+                                                                        <constraint firstAttribute="height" constant="38" id="GYU-il-LQG"/>
                                                                     </constraints>
-                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                    <state key="normal" title="male"/>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="19"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isOutline" value="YES"/>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                    <connections>
-                                                                        <action selector="onClickGender:" destination="-1" eventType="touchUpInside" id="BY5-4u-PRa"/>
-                                                                    </connections>
-                                                                </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AH5-95-JbS">
-                                                                    <rect key="frame" x="152" y="0.0" width="56" height="46"/>
-                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                    <state key="normal" title="female"/>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                            <real key="value" value="1"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="19"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                    <connections>
-                                                                        <action selector="onClickGender:" destination="-1" eventType="touchUpInside" id="FCA-7s-Htn"/>
-                                                                    </connections>
-                                                                </button>
+                                                                </stackView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tb-MU-D5B">
-                                                                    <rect key="frame" x="216" y="0.0" width="119" height="46"/>
+                                                                    <rect key="frame" x="228" y="0.0" width="107" height="46"/>
                                                                 </view>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="KrO-07-RtU" firstAttribute="width" secondItem="AH5-95-JbS" secondAttribute="width" id="0q1-Ss-Qm0"/>
-                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
@@ -342,7 +379,7 @@
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3I-M2-S0f" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="547" width="335" height="55"/>
+                                            <rect key="frame" x="20" y="549.33333333333337" width="335" height="55"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="55" id="Mqs-zN-Gfa"/>
                                             </constraints>
@@ -350,7 +387,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -358,6 +395,7 @@
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="save"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="onSave:" destination="-1" eventType="touchUpInside" id="PuZ-vU-ebZ"/>
@@ -424,43 +462,43 @@
         </view>
         <tapGestureRecognizer id="1zZ-Yg-ryt">
             <connections>
-                <action selector="onClickBg:" destination="-1" id="zrV-RY-hn6"/>
+                <action selector="onClickBG:" destination="-1" id="wAW-uH-EJ5"/>
             </connections>
         </tapGestureRecognizer>
     </objects>
     <designables>
         <designable name="8oC-ca-87a">
-            <size key="intrinsicContentSize" width="247" height="32"/>
+            <size key="intrinsicContentSize" width="4" height="19.666666666666668"/>
         </designable>
         <designable name="FV3-vF-VYR">
-            <size key="intrinsicContentSize" width="82.666666666666671" height="34"/>
+            <size key="intrinsicContentSize" width="32" height="34"/>
         </designable>
         <designable name="KrO-07-RtU">
-            <size key="intrinsicContentSize" width="33" height="30"/>
+            <size key="intrinsicContentSize" width="49" height="18"/>
         </designable>
         <designable name="UeH-pv-IkU">
-            <size key="intrinsicContentSize" width="33.666666666666664" height="18"/>
+            <size key="intrinsicContentSize" width="36.333333333333336" height="18"/>
         </designable>
         <designable name="Y6b-Sq-Ahe">
-            <size key="intrinsicContentSize" width="53" height="18"/>
+            <size key="intrinsicContentSize" width="57" height="18"/>
         </designable>
         <designable name="du2-n3-LJz">
-            <size key="intrinsicContentSize" width="41.666666666666664" height="29"/>
+            <size key="intrinsicContentSize" width="29.333333333333332" height="20.333333333333332"/>
         </designable>
         <designable name="pMV-mo-ecz">
-            <size key="intrinsicContentSize" width="335" height="32"/>
+            <size key="intrinsicContentSize" width="39" height="30.333333333333332"/>
         </designable>
         <designable name="sjY-Vm-arp">
-            <size key="intrinsicContentSize" width="44" height="18"/>
+            <size key="intrinsicContentSize" width="48.666666666666664" height="18"/>
         </designable>
         <designable name="vWq-qw-QuN">
-            <size key="intrinsicContentSize" width="63" height="18"/>
+            <size key="intrinsicContentSize" width="69.333333333333329" height="20.333333333333332"/>
         </designable>
         <designable name="w3I-M2-S0f">
-            <size key="intrinsicContentSize" width="32" height="30"/>
+            <size key="intrinsicContentSize" width="34" height="30"/>
         </designable>
         <designable name="yUb-tl-s0X">
-            <size key="intrinsicContentSize" width="162.33333333333334" height="21.666666666666668"/>
+            <size key="intrinsicContentSize" width="161.66666666666666" height="21"/>
         </designable>
     </designables>
     <resources>
@@ -474,6 +512,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

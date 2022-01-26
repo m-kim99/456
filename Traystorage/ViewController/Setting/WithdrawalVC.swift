@@ -3,7 +3,7 @@ import UIKit
 
 class WithdrawalVC: BaseVC {
 
-    @IBOutlet weak var lblPageTitle: UIFontLabel!
+    @IBOutlet weak var lblPageTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,9 +17,6 @@ class WithdrawalVC: BaseVC {
     //
     // MARK: - ACTION
     //
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
-    }
     
 
     @IBAction func onWithdrawalRequest(_ sender: Any) {

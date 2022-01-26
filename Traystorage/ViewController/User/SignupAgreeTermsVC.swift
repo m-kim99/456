@@ -4,11 +4,11 @@ import Toast_Swift
 import UIKit
 
 class SignupAgreeTerms: BaseVC {
-    @IBOutlet weak var lblTitle: UIFontLabel!
-    @IBOutlet weak var lblDesc: UIFontLabel!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblDesc: UILabel!
         
     @IBOutlet weak var imageViewAllAgree: UIImageView!
-    @IBOutlet weak var btnNext: UIFontButton!
+    @IBOutlet weak var btnNext: UIButton!
     
     open var authType = AuthType.phone
     open var authMedia = ""
@@ -21,52 +21,46 @@ class SignupAgreeTerms: BaseVC {
         
         updateAllAgreeImage()
     }
-
     
-    private func initVC() {
-        enableNext(false)
-    }
-    
-    private func enableNext(_ enable: Bool) {
-        btnNext.isEnabled = enable
-        btnNext.backgroundColor = enable ? AppColor.black : AppColor.gray
-    }
-    
-    private func showError(_ msg: String, for type: String) {
-        self.view.showToast(msg)
-    }
-    
-    private func hideError() {
-//        tfPwd.borderColor = AppColor.gray
-//        tfPwdCon.borderColor = AppColor.gray
-//        lblError.isHidden = true
-    }
-    
-    
-    private func isValidInput() {
-        var isValid = true
-//
-//
-//        if isValid && !ModelUser.isPasswordValid(tfPwd.text!) {
-//            isValid = false
-//            showError(getLangString("signup_pwd_error"), for: "pwd")
-//        }
-//
-//        if isValid && tfPwd.text! != tfPwdCon.text! {
-//            isValid = false
-//            showError(getLangString("signup_pwd_confirm_error"), for: "pwd_confirm")
-//        }
-//
-//        if isValid {
-//            hideError()
-//        }
-        
-        enableNext(isValid)
+    override func onBackProcess(_ viewController: UIViewController) {
+        ConfirmDialog.show(self, title: "signup_cancel_alert_title".localized, message: "signup_cancel_alert_content"._localized, showCancelBtn: true) { [weak self]() -> Void in
+            self?.popToGuidVC()
+        }
     }
     
     private func updateAllAgreeImage() {
         let imageName = isAllAgree ? "Icon-C-CheckOn-24" : "Icon-C-CheckOff-24"
         self.imageViewAllAgree.image = UIImage(named: imageName)
+    }
+    
+    private func signup() {
+        SVProgressHUD.show()
+        print(params)
+        let loginID = params["id"] as! String
+        let pwd = params["pwd"] as! String
+        let phone = params["phone"] as! String
+        let code = params["code"] as! String
+        
+        Rest.signup(login_id:loginID, pwd: pwd, phone: phone, code: code, success: { [weak self](result) -> Void in
+            SVProgressHUD.dismiss()
+            guard let ret = result else {
+                return
+            }
+            
+            if ret.result == 0 {
+                let user = ret as! ModelUser
+                user.pwd = pwd
+                Local.setUser(user)
+                Rest.user = user
+                self?.goNext()
+            } else {
+                self?.view.showToast(ret.msg)
+            }
+            
+        }, failure: { (_, err) -> Void in
+            SVProgressHUD.dismiss()
+            self.view.showToast(err)
+        })
     }
 }
 
@@ -84,11 +78,14 @@ extension SignupAgreeTerms: BaseAction {
     }
     
     @IBAction func onClickNext(_ sender: Any) {
-        goNext()
-    }
-    
-    @IBAction func onClickLogin(_ sender: Any) {
-        replaceVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
+        if isAllAgree {
+            ConfirmDialog.show(self, title: "signup_agree_confrim_title".localized, message: "", showCancelBtn: true) { [weak self]() -> Void in
+                self?.signup()
+            }
+        }
+        else {
+            AlertDialog.show(self, title: "signup_agree_alert_title"._localized, message: "")
+        }
     }
 }
 
@@ -97,18 +94,11 @@ extension SignupAgreeTerms: BaseAction {
 //
 extension SignupAgreeTerms: BaseNavigation {
     private func goNext() {
-        if isAllAgree {
-            ConfirmDialog.show(self, title: "Would you like to register as a member with the information you entered?", message: "", showCancelBtn: true) { [weak self]() -> Void in
-                let vc = SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil)
-        //        vc.authType = authType
-        //        vc.authMedia = authMedia
-        //        vc.authCode = authCode
-        //        vc.authPwd = tfPwd.text!
-                self?.pushVC(vc, animated: true)
-            }
-        }
-        else {
-            AlertDialog.show(self, title: "Please aree to the required temrs and conditions", message: "")
-        }
+        let vc = SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil)
+    //        vc.authType = authType
+    //        vc.authMedia = authMedia
+    //        vc.authCode = authCode
+    //        vc.authPwd = tfPwd.text!
+        self.pushVC(vc, animated: true)
     }
 }

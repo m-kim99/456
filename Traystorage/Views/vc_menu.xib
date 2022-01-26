@@ -61,15 +61,20 @@
                                                                 <constraint firstAttribute="width" constant="64" id="QMZ-bQ-nRq"/>
                                                                 <constraint firstAttribute="height" constant="64" id="sfE-EZ-ujS"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="32"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test nim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-Sd-aVD" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="30" y="156" width="64.5" height="21.5"/>
+                                                            <rect key="frame" x="30" y="156" width="66" height="22"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                     <real key="value" value="18"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
@@ -95,14 +100,15 @@
                                                     <rect key="frame" x="0.0" y="223" width="300" height="53"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Management" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBa-DJ-rq5" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="66" y="17" width="145.5" height="19.5"/>
+                                                            <rect key="frame" x="66" y="17" width="148.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                     <real key="value" value="16"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="profile_manage_title"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-C-Profile-Black-24" translatesAutoresizingMaskIntoConstraints="NO" id="JrU-S3-5hz">
@@ -126,14 +132,15 @@
                                                     <rect key="frame" x="0.0" y="276" width="300" height="53"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="invite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enH-Wp-oHK" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="66" y="17" width="39" height="19.5"/>
+                                                            <rect key="frame" x="66" y="17" width="74.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                     <real key="value" value="16"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="invite_title"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-C-Setting-Black-24" translatesAutoresizingMaskIntoConstraints="NO" id="6sS-eR-BKe">
@@ -157,14 +164,15 @@
                                                     <rect key="frame" x="0.0" y="329" width="300" height="53"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lzt-qx-0rF" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="66" y="17" width="79" height="19.5"/>
+                                                            <rect key="frame" x="66" y="17" width="117" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                     <real key="value" value="16"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="contact_us_title"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-C-Comments-Black-24" translatesAutoresizingMaskIntoConstraints="NO" id="VzB-Ga-IPI">
@@ -188,14 +196,15 @@
                                                     <rect key="frame" x="0.0" y="382" width="300" height="53"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="notice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fll-pR-GoR" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="66" y="17" width="45" height="19.5"/>
+                                                            <rect key="frame" x="66" y="17" width="81" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                     <real key="value" value="16"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="notice_title"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-C-Megaphone-Black-24" translatesAutoresizingMaskIntoConstraints="NO" id="76E-5V-erv">
@@ -219,14 +228,15 @@
                                                     <rect key="frame" x="0.0" y="435" width="300" height="53"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdx-Ot-jhB" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="66" y="17" width="50" height="19.5"/>
+                                                            <rect key="frame" x="66" y="17" width="87" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                     <real key="value" value="16"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="setting_title"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-C-Setting-Black-24 Copy" translatesAutoresizingMaskIntoConstraints="NO" id="NUY-oU-3EG">
@@ -332,6 +342,26 @@
             <point key="canvasLocation" x="469.56521739130437" y="279.91071428571428"/>
         </view>
     </objects>
+    <designables>
+        <designable name="Fll-pR-GoR">
+            <size key="intrinsicContentSize" width="81" height="19.5"/>
+        </designable>
+        <designable name="Lzt-qx-0rF">
+            <size key="intrinsicContentSize" width="117" height="19.5"/>
+        </designable>
+        <designable name="QBa-DJ-rq5">
+            <size key="intrinsicContentSize" width="148.5" height="19.5"/>
+        </designable>
+        <designable name="Xxs-Sd-aVD">
+            <size key="intrinsicContentSize" width="66" height="22"/>
+        </designable>
+        <designable name="enH-Wp-oHK">
+            <size key="intrinsicContentSize" width="74.5" height="19.5"/>
+        </designable>
+        <designable name="kdx-Ot-jhB">
+            <size key="intrinsicContentSize" width="87" height="19.5"/>
+        </designable>
+    </designables>
     <resources>
         <image name="Icon-C-Comments-Black-24" width="24" height="24"/>
         <image name="Icon-C-Megaphone-Black-24" width="24" height="24"/>

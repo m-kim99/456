@@ -5,12 +5,22 @@ import UIKit
 class IntroVC: BaseVC {
     @IBOutlet var pageScrollView: UIScrollView!
     @IBOutlet var pageControl: UIPageControl!
+    @IBOutlet var introView: UIView!
+    @IBOutlet var backgroundView: UIView!
+    @IBOutlet var startView: UIView!
+    @IBOutlet weak var signupButton: UIButton!
+    
     let pageCount = 2
     
     private var currentPage = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        signupButton.layer.shadowOpacity = 0.2
+        signupButton.layer.shadowOffset = CGSize.zero
+        signupButton.layer.shadowRadius = 8
+        signupButton.layer.masksToBounds = false
 
 //        SVProgressHUD.setBackgroundColor(UIColor.clear)
 //        SVProgressHUD.setRingThickness(5)
@@ -18,22 +28,44 @@ class IntroVC: BaseVC {
 //        loadAppInfo()
 //        nextScreen(false)
 //        ConfirmDialog.show(self, title: "Please verify your mobile phone number.", message: "", showCancelBtn: true, okAction: nil)
+        
+        startApp()
     }
 
     func startApp() {
-//        let user = Local.getUser()
-//        if user.id != nil && user.pwd != nil {
-//            self.autoLogin((id: user.id, pwd: user.pwd))
-//        } else {
-            self.nextScreen(false)
-//        }
+        let ud = UserDefaults.standard
+        
+        let isAutoLogin = ud.bool(forKey: Local.PREFS_APP_AUTO_LOGIN.rawValue)
+        if  isAutoLogin {
+            let user = Local.getUser()
+            
+            if let uid = user.uid, let pwd = user.pwd, !uid.isEmpty, !pwd.isEmpty {
+                self.autoLogin((id: uid, pwd: pwd))
+            } else {
+                self.nextScreen(false)
+                Local.removeAutoLogin()
+            }
+        } else {
+            Local.deleteUser()
+            
+            let skipIntro = ud.bool(forKey: Local.PREFS_APP_INTRO_SKIP.rawValue)
+            if skipIntro {
+                self.nextScreen(false)
+            } else {
+                backgroundView.isHidden = true
+                introView.isHidden = false;
+            }
+        }
     }
 
     func nextScreen(_ logined: Bool) {
         if logined {
             self.openMainVC()
         } else {
-            self.openGuideVC()
+            let ud = UserDefaults.standard
+            ud.set(true, forKey: Local.PREFS_APP_INTRO_SKIP.rawValue)
+            ud.synchronize()
+            self.openLogSingupView()
         }
     }
     
@@ -93,11 +125,24 @@ class IntroVC: BaseVC {
 //
 extension IntroVC: BaseNavigation {
     func openMainVC() {
-//        self.replaceVC(MainVC(nibName: "vc_main", bundle: nil), animated: true)
+        let mainVC = UIStoryboard(name: "vc_main", bundle: nil).instantiateInitialViewController()
+        self.pushVC(mainVC! as! BaseVC, animated: true)
     }
 
-    func openGuideVC() {
-        self.replaceVC(GuideVC(nibName: "vc_guide", bundle: nil), animated: true)
+    func openLogSingupView() {
+//        self.replaceVC(GuideVC(nibName: "vc_guide", bundle: nil), animated: true)
+        self.backgroundView.isHidden = true
+        self.introView.isHidden = true
+        self.startView.isHidden = false
+    }
+    
+    @IBAction func onSignup(_ sender: Any) {
+        pushVC(SignupVC(nibName: "vc_signup", bundle: nil), animated: true)
+    }
+    
+    @IBAction func onLogin(_ sender: Any) {
+//        replaceVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
+        pushVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
     }
 }
 
@@ -122,26 +167,34 @@ extension IntroVC: BaseRestApi {
 //            self.view.showToast(err)
 //        })
 //    }
-//
-//    func autoLogin(_ user: (id: String?, pwd: String?)) {
-//        SVProgressHUD.show()
-//        Rest.login(id: user.id, pwd: user.pwd, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
-//            if result!.result == 0 {
-//                Rest.user = (result as! ModelUser)
-//                Local.setUser(Rest.user)
-//                self.openMainVC()
-//            } else {
-//                self.openGuideVC()
-//            }
-//        }, failure: { (code, msg) in
-//            SVProgressHUD.dismiss()
-//            self.view.showToast(msg)
+
+    func autoLogin(_ user: (id: String, pwd: String)) {
+        SVProgressHUD.show()
+        Rest.login(id: user.id, pwd: user.pwd, success: {[weak self] (result) -> Void in
+            SVProgressHUD.dismiss()
+            guard let ret = result else {
+                return
+            }
+            
+            if ret.result == 0 {
+                Rest.user = (result as! ModelUser)
+                Rest.user.pwd = user.pwd
+                Local.setUser(Rest.user)
+                self?.openMainVC()
+            } else {
+                Local.removeAutoLogin()
+                self?.view.showToast(ret.msg)
+                self?.openLogSingupView()
+            }
+        }, failure: { [weak self](code, msg) in
+            SVProgressHUD.dismiss()
+            Local.removeAutoLogin()
+            self?.view.showToast(msg)
 //            if code == 205 {
-//                self.openGuideVC()
+                self?.openLogSingupView()
 //            }
-//        })
-//    }
+        })
+    }
 }
 
 

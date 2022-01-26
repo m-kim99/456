@@ -4,17 +4,17 @@ import Toast_Swift
 import UIKit
 
 class SignupMainInfoVC: BaseVC {
-    @IBOutlet weak var lblTitle: UIFontLabel!
-    @IBOutlet weak var lblDesc: UIFontLabel!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblDesc: UILabel!
     
-    @IBOutlet weak var tfName: UIFontTextField!
-    @IBOutlet weak var tfBirthday: UIFontTextField!
-    @IBOutlet weak var tfGender: UIFontTextField!
+    @IBOutlet weak var tfName: UITextField!
+    @IBOutlet weak var tfBirthday: UITextField!
+    @IBOutlet weak var tfGender: UITextField!
     
-    @IBOutlet weak var btnNext: UIFontButton!
+    @IBOutlet weak var btnNext: UIButton!
     
-    @IBOutlet weak var lblMember: UIFontLabel!
-    @IBOutlet weak var btnLogin: UIFontButton!
+    @IBOutlet weak var lblMember: UILabel!
+    @IBOutlet weak var btnLogin: UIButton!
     
     private var isTfBirthdaySelected = false
     

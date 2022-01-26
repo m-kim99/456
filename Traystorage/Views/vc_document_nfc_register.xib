@@ -26,15 +26,16 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NFC register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ogr-lu-rOZ" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="157.5" y="19" width="99.5" height="22"/>
+                                    <rect key="frame" x="159" y="20" width="96" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                             <real key="value" value="18"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="nfc_register"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
@@ -52,24 +53,25 @@
                                     <rect key="frame" x="112" y="0.0" width="150" height="150"/>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lLs-hg-ef7">
-                                    <rect key="frame" x="0.0" y="210" width="374" height="95"/>
+                                    <rect key="frame" x="0.0" y="210" width="374" height="82"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register the document by tagging the mobile phone on the NFC sticker." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xvh-vC-DXN" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="41"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="18"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
                                                     <real key="value" value="1.1000000000000001"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="nfc_header"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register docments easily and conveniently now, manage and share theme throught NFC tags" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDA-Nn-kA9" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="49" width="374" height="46"/>
+                                            <rect key="frame" x="0.0" y="41" width="374" height="41"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" systemColor="systemGrayColor"/>
                                             <nil key="highlightedColor"/>
@@ -77,6 +79,10 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
                                                     <real key="value" value="1.1000000000000001"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                    <real key="value" value="14"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="nfc_desc"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
@@ -89,13 +95,14 @@
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Cancel"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                             <real key="value" value="15"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isOutline" value="YES"/>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="YES"/>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="cancel"/>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <action selector="onClickCacnel:" destination="-1" eventType="touchUpInside" id="G5y-9e-rjq"/>
@@ -141,16 +148,16 @@
     </objects>
     <designables>
         <designable name="Ogr-lu-rOZ">
-            <size key="intrinsicContentSize" width="99.5" height="22"/>
+            <size key="intrinsicContentSize" width="96" height="20.5"/>
         </designable>
         <designable name="VDA-Nn-kA9">
-            <size key="intrinsicContentSize" width="705" height="22.5"/>
+            <size key="intrinsicContentSize" width="705" height="20.5"/>
         </designable>
         <designable name="Xvh-vC-DXN">
-            <size key="intrinsicContentSize" width="543" height="24"/>
+            <size key="intrinsicContentSize" width="543" height="20.5"/>
         </designable>
         <designable name="itV-pi-k1H">
-            <size key="intrinsicContentSize" width="44" height="30"/>
+            <size key="intrinsicContentSize" width="48" height="30"/>
         </designable>
     </designables>
     <resources>

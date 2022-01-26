@@ -5,43 +5,36 @@ import UIKit
 
 class CheckIdVC: BaseVC {
     
+    @IBOutlet weak var lblLoginID: UILabel!
+    
+    var userLoginID = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        userLoginID = params["userID"] as! String
+        lblLoginID.text = userLoginID
     }
     
     //
     // MARK: - Action
     //
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
-    }
     
     @IBAction func onFindPassword(_ sender: Any) {
-        self.pushVC(FindIdVC(nibName: "vc_find_id", bundle: nil), animated: true)
+        self.pushVC(FindPwdVC(nibName: "vc_findpwd", bundle: nil), animated: true, params:["userID" : userLoginID])
     }
     
     @IBAction func onLogin(_ sender: Any) {
-        popToLogVC(true)
-    }
-}
-
-
-//
-// MARK: - RestApi
-//
-extension CheckIdVC: BaseRestApi {
-    func resetPwd() {
-        SVProgressHUD.show()
-//        Rest.resetPwd(email: tfEmail.text, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
-//            self.onResetSuccess()
-//        }, failure: { (code, err) -> Void in
-//            SVProgressHUD.dismiss()
-//            if code == 202 {
-//                self.showError(err)
-//                return
-//            }
-//            self.view.showToast(err)
-//        })
+        
+        if let nv = self.navigationController {
+            let vcs = nv.viewControllers
+            for vc in vcs {
+                if vc is LoginVC {
+                    let logVC = vc as! LoginVC
+                    logVC.resetLoginInputInformation()
+                    logVC.setLoginID(userID: userLoginID)
+                    nv.popToViewController(vc, animated: true)
+                    break
+                }
+            }
+        }
     }
 }

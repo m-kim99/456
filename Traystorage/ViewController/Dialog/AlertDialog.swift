@@ -20,7 +20,7 @@ class AlertDialog: BaseVC {
                      title: String!,
                      message: String!,
                      okAction: Callback? = nil) {
-        show(vc, title: title, message: message, okTitle: getLangString("confirm"), okAction: okAction)
+        show(vc, title: title, message: message, okTitle: "confirm"._localized, okAction: okAction)
     }
     
     static func show(_ vc: UIViewController,

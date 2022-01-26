@@ -14,6 +14,8 @@ enum Local : String {
     case PREFS_APP_CHALLENGE_IMG = "PREFS_APP_CHALLENGE_IMG"
     case PREFS_APP_DRIVE_IMG = "PREFS_APP_DRIVE_IMG"
     case PREFS_APP_LIVE_IMG = "PREFS_APP_LIVE_IMG"
+    case PREFS_APP_AUTO_LOGIN = "PREFS_APP_AUTO_LOGIN"
+    case PREFS_APP_INTRO_SKIP = "PREFS_APP_INTRO_SKIP"
     
     // user information
     case PREFS_USER_UID = "PREFS_USER_UID"
@@ -25,11 +27,11 @@ enum Local : String {
     case PREFS_USER_PHONE = "PREFS_USER_PHONE"
     case PREFS_USER_BIRTHDAY = "PREFS_USER_BIRTHDAY"
     case PREFS_USER_GENDER = "PREFS_USER_GENDER"
-    case PREFS_USER_STONE = "PREFS_USER_STONE"
+    case PREFS_USER_STATUS = "PREFS_USER_STATUS"
     case PREFS_USER_ACCESS_TOKEN = "PREFS_USER_ACCESS_TOKEN"
     case PREFS_USER_ALARM_PUSH_YN = "PREFS_USER_ALARM_PUSH_YN"
     case PREFS_USER_ALARM_CHALLENGE_YN = "PREFS_USER_ALARM_CHALLENGE_YN"
-    case PREFS_USER_DISTANCE = "PREFS_USER_DISTANCE"
+    case PREFS_USER_DOCUMENT_CNT = "PREFS_USER_DOCUMENT_COUNT"
     
     public static func setLanguage(_ language: String) {
         let ud = UserDefaults.standard
@@ -83,39 +85,35 @@ enum Local : String {
         ud.removeObject(forKey: PREFS_USER_PHONE.rawValue)
         ud.removeObject(forKey: PREFS_USER_BIRTHDAY.rawValue)
         ud.removeObject(forKey: PREFS_USER_GENDER.rawValue)
-        ud.removeObject(forKey: PREFS_USER_STONE.rawValue)
+        ud.removeObject(forKey: PREFS_USER_STATUS.rawValue)
         ud.removeObject(forKey: PREFS_USER_ACCESS_TOKEN.rawValue)
         ud.removeObject(forKey: PREFS_USER_ALARM_PUSH_YN.rawValue)
         ud.removeObject(forKey: PREFS_USER_ALARM_CHALLENGE_YN.rawValue)
-        ud.removeObject(forKey: PREFS_USER_DISTANCE.rawValue)
+        ud.removeObject(forKey: PREFS_USER_DOCUMENT_CNT.rawValue)
         
         ud.synchronize()
     }
     
-//    public static func setUser(_ user: ModelMember) {
-//        let ud: UserDefaults = UserDefaults.standard
-//
-//        ud.set(user.uid, forKey: PREFS_USER_UID.rawValue)
-////        ud.set(user.id, forKey: PREFS_USER_ID.rawValue)
-////        ud.set(user.email, forKey: PREFS_USER_EMAIL.rawValue)
-////        ud.set(user.pwd, forKey: PREFS_USER_PWD.rawValue)
-////        ud.set(user.name, forKey: PREFS_USER_NAME.rawValue)
-////        ud.set(user.profile_img, forKey: PREFS_USER_PROFILE_IMG.rawValue)
-////        ud.set(user.phone, forKey: PREFS_USER_PHONE.rawValue)
-////        ud.set(user.birthday, forKey: PREFS_USER_BIRTHDAY.rawValue)
-////        ud.set(user.gender, forKey: PREFS_USER_GENDER.rawValue)
-////        ud.set(user.stone, forKey: PREFS_USER_STONE.rawValue)
-////        ud.set(user.access_token, forKey: PREFS_USER_ACCESS_TOKEN.rawValue)
-////        ud.set(user.alarm_push_yn, forKey: PREFS_USER_ALARM_PUSH_YN.rawValue)
-////        ud.set(user.alarm_challenge_yn, forKey: PREFS_USER_ALARM_CHALLENGE_YN.rawValue)
-////        ud.set(user.distance, forKey: PREFS_USER_DISTANCE.rawValue)
-//
-//        ud.synchronize()
-//    }
+    public static func setUser(_ user: ModelUser) {
+        let ud: UserDefaults = UserDefaults.standard
+        
+        ud.set(user.uid, forKey: PREFS_USER_UID.rawValue)
+        ud.set(user.email, forKey: PREFS_USER_EMAIL.rawValue)
+        ud.set(user.pwd, forKey: PREFS_USER_PWD.rawValue)
+        ud.set(user.name, forKey: PREFS_USER_NAME.rawValue)
+        ud.set(user.profile_img, forKey: PREFS_USER_PROFILE_IMG.rawValue)
+        ud.set(user.phone, forKey: PREFS_USER_PHONE.rawValue)
+        ud.set(user.birthday, forKey: PREFS_USER_BIRTHDAY.rawValue)
+        ud.set(user.gender, forKey: PREFS_USER_GENDER.rawValue)
+        ud.set(user.status, forKey: PREFS_USER_STATUS.rawValue)
+        ud.set(user.access_token, forKey: PREFS_USER_ACCESS_TOKEN.rawValue)
+        ud.set(user.document_cnt, forKey: PREFS_USER_DOCUMENT_CNT.rawValue)
+        
+        ud.synchronize()
+    }
     
     public static func getUser() -> (
         uid: String?,
-        id: String?,
         email: String?,
         pwd: String?,
         name: String?,
@@ -123,15 +121,12 @@ enum Local : String {
         phone: String?,
         birthday: String?,
         gender: String?,
-        stone: Int?,
+        status: Int?,
         access_token: String?,
-        alarm_push_yn: String?,
-        alarm_challenge_yn: String?,
-        distance: Int?) {
+        documentCount: Int?) {
         let ud: UserDefaults = UserDefaults.standard
         return (
             uid: ud.string(forKey: PREFS_USER_UID.rawValue),
-            id: ud.string(forKey: PREFS_USER_ID.rawValue),
             email: ud.string(forKey: PREFS_USER_EMAIL.rawValue),
             pwd: ud.string(forKey: PREFS_USER_PWD.rawValue),
             name: ud.string(forKey: PREFS_USER_NAME.rawValue),
@@ -139,23 +134,21 @@ enum Local : String {
             phone: ud.string(forKey: PREFS_USER_PHONE.rawValue),
             birthday: ud.string(forKey: PREFS_USER_BIRTHDAY.rawValue),
             gender: ud.string(forKey: PREFS_USER_GENDER.rawValue),
-            stone: ud.integer(forKey: PREFS_USER_STONE.rawValue),
+            status: ud.integer(forKey: PREFS_USER_STATUS.rawValue),
             access_token: ud.string(forKey: PREFS_USER_ACCESS_TOKEN.rawValue),
-            alarm_push_yn: ud.string(forKey: PREFS_USER_ALARM_PUSH_YN.rawValue),
-            alarm_challenge_yn: ud.string(forKey: PREFS_USER_ALARM_CHALLENGE_YN.rawValue),
-            distance: ud.integer(forKey: PREFS_USER_DISTANCE.rawValue)
+            documentCount: ud.integer(forKey: PREFS_USER_DOCUMENT_CNT.rawValue)
         )
     }
     
-    public static func setAppInfo(_ model: ModelApp) {
+    public static func setAppInfo(_ model: ModelAppInfo) {
         let ud: UserDefaults = UserDefaults.standard
         
-//        ud.set(model.license, forKey: PREFS_APP_LICENSE.rawValue)
-//        ud.set(model.privacy, forKey: PREFS_APP_PRIVACY.rawValue)
-//        ud.set(model.background_img, forKey: PREFS_APP_BACKGROUND_IMG.rawValue)
-//        ud.set(model.challenge_img, forKey: PREFS_APP_CHALLENGE_IMG.rawValue)
-//        ud.set(model.drive_img, forKey: PREFS_APP_DRIVE_IMG.rawValue)
-//        ud.set(model.live_img, forKey: PREFS_APP_LIVE_IMG.rawValue)
+        ud.set(model.license, forKey: PREFS_APP_LICENSE.rawValue)
+        ud.set(model.privacy, forKey: PREFS_APP_PRIVACY.rawValue)
+        ud.set(model.background_img, forKey: PREFS_APP_BACKGROUND_IMG.rawValue)
+        ud.set(model.challenge_img, forKey: PREFS_APP_CHALLENGE_IMG.rawValue)
+        ud.set(model.drive_img, forKey: PREFS_APP_DRIVE_IMG.rawValue)
+        ud.set(model.live_img, forKey: PREFS_APP_LIVE_IMG.rawValue)
         
         ud.synchronize()
     }
@@ -213,5 +206,11 @@ enum Local : String {
         }
         
         return date
+    }
+    
+    public static func removeAutoLogin() {
+        let ud: UserDefaults = UserDefaults.standard
+        ud.removeObject(forKey: PREFS_APP_AUTO_LOGIN.rawValue)
+        ud.synchronize()
     }
 }

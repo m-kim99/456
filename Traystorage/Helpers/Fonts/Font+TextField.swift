@@ -1,24 +1,25 @@
 import Foundation
 import UIKit
+import Material
 
 @IBDesignable
-class UIFontTextField: UITextField {
+class FontTextField: TextField {
     @IBInspectable var fontFamily: String = AppFont.fontFamilyName {
         didSet {
             self.font = textFont()
         }
     }
     
-    @IBInspectable var xFontSize: CGFloat = 15.0 {
+    @IBInspectable var fontSize: CGFloat = 15.0 {
         didSet {
-            self.font = self.font?.withSize(xFontSize)
+            self.font = textFont()
         }
     }
     
     @IBInspectable var closeButtonOffset: CGFloat = CGFloat.infinity
     
     func textFont() -> UIFont {
-        return AppFont.createFont(name: fontFamily, size: xFontSize)
+        return AppFont.createFont(name: fontFamily, size: fontSize)
     }
     
     override func clearButtonRect(forBounds bounds: CGRect) -> CGRect {
@@ -29,10 +30,15 @@ class UIFontTextField: UITextField {
         
         return rect
     }
-    
-    @IBInspectable var xibPlaceholder: String? = nil {
-        didSet {
-            super.placeholder = xibPlaceholder?._localized
+}
+
+extension TextField {
+    @IBInspectable var xibPlaceholder: String? {
+        set(value) {
+            super.placeholder = value?._localized
+        }
+        get {
+            return super.placeholder
         }
     }
 }

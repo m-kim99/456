@@ -27,7 +27,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                    <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                         <real key="value" value="14"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
@@ -36,7 +36,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="QXt-bi-u0z" firstAttribute="leading" secondItem="LwA-Um-BhA" secondAttribute="leading" constant="20" id="0r8-fw-Gol"/>
-                            <constraint firstAttribute="height" constant="34" id="2Le-hb-0ij"/>
                             <constraint firstItem="QXt-bi-u0z" firstAttribute="top" secondItem="LwA-Um-BhA" secondAttribute="top" constant="10" id="Zjc-RL-TFs"/>
                             <constraint firstAttribute="trailing" secondItem="QXt-bi-u0z" secondAttribute="trailing" constant="20" id="mZB-bk-Le1"/>
                             <constraint firstAttribute="bottom" secondItem="QXt-bi-u0z" secondAttribute="bottom" constant="10" id="rgv-du-W6X"/>
@@ -71,7 +70,7 @@
     </objects>
     <designables>
         <designable name="QXt-bi-u0z">
-            <size key="intrinsicContentSize" width="17" height="20.5"/>
+            <size key="intrinsicContentSize" width="14.5" height="17"/>
         </designable>
     </designables>
     <resources>

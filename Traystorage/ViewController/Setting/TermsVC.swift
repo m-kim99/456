@@ -4,7 +4,7 @@ import WebKit
 
 class TermsVC: BaseVC {
 
-    @IBOutlet weak var lblPageTitle: UIFontLabel!
+    @IBOutlet weak var lblPageTitle: UILabel!
     
     @IBOutlet weak var vwTermsWeb: WKWebView!
     
@@ -21,9 +21,6 @@ class TermsVC: BaseVC {
     //
     // MARK: - ACTION
     //
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
-    }
     
 }
 

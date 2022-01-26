@@ -16,8 +16,4 @@ class InviteVC: BaseVC {
     
     func initVC() {
     }
-    
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
-    }
 }

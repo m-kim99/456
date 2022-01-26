@@ -46,7 +46,7 @@
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="18"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
@@ -59,7 +59,7 @@
                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
@@ -68,18 +68,16 @@
                                             <rect key="frame" x="0.0" y="92" width="334" height="36"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lQt-j9-hXz">
-                                                    <rect key="frame" x="206" y="0.0" width="128" height="36"/>
+                                                    <rect key="frame" x="186" y="0.0" width="148" height="36"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeh-mA-ZYT" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="60" height="36"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="5ZF-m8-Xa6"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="36"/>
+                                                            <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                                             <state key="normal" title="cancel">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                     <real key="value" value="14"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -92,25 +90,28 @@
                                                                     <real key="value" value="18"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isOutline" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="cancel"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <action selector="onClickNo:" destination="-1" eventType="touchUpInside" id="veN-oi-lkd"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gy5-pw-mU3" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="68" y="0.0" width="60" height="36"/>
+                                                            <rect key="frame" x="78" y="0.0" width="70" height="36"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                            <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="confirm"/>
                                                             <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                     <real key="value" value="14"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="18"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="confirm"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <action selector="onClickYes:" destination="-1" eventType="touchUpInside" id="fia-AH-XUM"/>
@@ -165,16 +166,16 @@
     </objects>
     <designables>
         <designable name="6Yj-MR-52g">
-            <size key="intrinsicContentSize" width="841.5" height="18"/>
+            <size key="intrinsicContentSize" width="901.5" height="18"/>
         </designable>
         <designable name="Gy5-pw-mU3">
-            <size key="intrinsicContentSize" width="46" height="29"/>
+            <size key="intrinsicContentSize" width="70" height="17"/>
         </designable>
         <designable name="Tlo-EY-TZ3">
             <size key="intrinsicContentSize" width="77" height="22"/>
         </designable>
         <designable name="yeh-mA-ZYT">
-            <size key="intrinsicContentSize" width="37" height="29"/>
+            <size key="intrinsicContentSize" width="59" height="17"/>
         </designable>
     </designables>
     <resources>

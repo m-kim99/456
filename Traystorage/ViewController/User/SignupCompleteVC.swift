@@ -6,14 +6,7 @@ import Photos
 import ActionSheetController
 
 class SignupCompleteVC: BaseVC {
-    
-    @IBOutlet weak var imgBg: UIImageView!
-    
-    @IBOutlet weak var imgDefault: UIImageView!
-    @IBOutlet weak var imgProfile: UIImageView!
-    
     @IBOutlet weak var tfBirthday: UITextField!
-    
     
     @IBOutlet weak var tfName: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
@@ -21,27 +14,18 @@ class SignupCompleteVC: BaseVC {
     @IBOutlet weak var maleButton: UIButton!
     @IBOutlet weak var femaleButton: UIButton!
     
-    var isUserMale = true
-    
+    var userGender = 0
     
     @IBOutlet weak var lblWelcome: UILabel!
     @IBOutlet weak var lblDesc: UILabel!
     
     @IBOutlet weak var btnStart: UIButton!
-    
-    private var imgPicker: UIImagePickerController! = nil
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateGender()
         
         initLang()
 //        initVC()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        imgBg.kf.setImage(with: URL(string: Local.getAppInfo().background_img!), options: [])
     }
     
     private func initLang() {
@@ -51,10 +35,6 @@ class SignupCompleteVC: BaseVC {
     }
     
     private func initVC() {
-        imgProfile.isHidden = true
-        
-        imgPicker = UIImagePickerController()
-        imgPicker.delegate = self
     }
     
     private func authorize(_ status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus(), fromViewController: UIViewController, completion: @escaping (_ authorized: Bool) -> Void) {
@@ -74,38 +54,10 @@ class SignupCompleteVC: BaseVC {
         }
     }
     
-    private func onGallery() {
-        imgPicker.sourceType = .photoLibrary
-        imgPicker.allowsEditing = true
-        imgPicker.mediaTypes = ["public.image"]
-        present(imgPicker, animated: false, completion: nil)
-    }
-    
-    private func onCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imgPicker.sourceType = .camera
-            imgPicker.mediaTypes = ["public.image"]
-            imgPicker.allowsEditing = true
-            imgPicker.showsCameraControls = true
-            present(imgPicker, animated: false, completion: nil)
-        } else {
-//            self.view.showToast(getLangString("msg_no_support_camera"))
-        }
-    }
-    
-    private func setProfileImage(_ img: String) {
-        imgDefault.isHidden = true
-        imgProfile.isHidden = false
-        self.imgProfile.kf.setImage(with: URL(string: img), options: [])
-        
-//        let user = Rest.user
-//        user!.profile_img = img
-//        Local.setUser(user!)
-    }
     
     private func updateGender() {
-        let maleColor = isUserMale ? AppColor.active : AppColor.gray
-        let femaleColor = !isUserMale ? AppColor.active : AppColor.gray
+        let maleColor = userGender == 0 ? AppColor.active : AppColor.gray
+        let femaleColor = userGender == 1 ? AppColor.active : AppColor.gray
         
         maleButton.borderColor = maleColor
         maleButton.tintColor = maleColor
@@ -113,10 +65,21 @@ class SignupCompleteVC: BaseVC {
         femaleButton.tintColor = femaleColor
     }
     
-    private func hideKeyboard() {
+    private func openMainVC() {
+        let mainVC = UIStoryboard(name: "vc_main", bundle: nil).instantiateInitialViewController()
+        self.pushVC(mainVC! as! BaseVC, animated: true)
+    }
+    
+    override func hideKeyboard() {
         tfName.resignFirstResponder()
         tfBirthday.resignFirstResponder()
         tfEmail.resignFirstResponder()
+    }
+    
+    override func onBackProcess(_ viewController: UIViewController) {
+        ConfirmDialog.show(self, title: "signup_cancel_alert_title".localized, message: "signup_cancel_alert_content"._localized, showCancelBtn: true) { [weak self]() -> Void in
+            self?.popToGuidVC()
+        }
     }
 }
 
@@ -124,15 +87,6 @@ class SignupCompleteVC: BaseVC {
 // MARK: - Action
 //
 extension SignupCompleteVC: BaseAction {
-    @IBAction func onClickBg(_ sender: Any) {
-        hideKeyboard()
-    }
-    
-    @IBAction func onClickBack(_ sender: Any) {
-        hideKeyboard()
-        popVC()
-    }
-    
     @IBAction func onClickBirthday(_ sender: Any) {
         hideKeyboard()
         DatepickerDialog.show(self) { [weak self](date) in
@@ -145,7 +99,7 @@ extension SignupCompleteVC: BaseAction {
     
     @IBAction func onClickGender(_ sender: Any) {
         if let button = sender as? UIButton {
-            isUserMale = button == maleButton
+            userGender = button == maleButton ? 0 : 1
             updateGender()
         }
     }
@@ -155,28 +109,7 @@ extension SignupCompleteVC: BaseAction {
     }
     
     @IBAction func onClickUseService(_ sender: Any) {
-        guard let name = tfName.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !name.isEmpty else {
-            self.view.showToast("Please input your name")
-            return
-        }
-        
-        guard name.count >= 2 else {
-            self.view.showToast("Please input your name with 2+ character")
-            return
-        }
-        
-        guard let email = tfEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !email.isEmpty else {
-            self.view.showToast("Please input your email")
-            return
-        }
-        
-        guard Validations.email(email) else {
-            self.view.showToast("Invalid email")
-            return
-        }
-        
-        
-        self.replaceVC(MainVC(nibName: "vc_main", bundle: nil), animated: true)
+        makeProfile()
     }
 }
 
@@ -201,35 +134,47 @@ extension SignupCompleteVC: UITextFieldDelegate {
 }
 
 //
-// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-//
-extension SignupCompleteVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: false, completion: nil)
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        imagePickerControllerDidCancel(picker)
-        
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            dismiss(animated: false, completion: nil)
-            self.changeProfile(image: image)
-        }
-    }
-}
-
-//
 // MARK: - RestApi
 //
 extension SignupCompleteVC: BaseRestApi {
-    func changeProfile(image: UIImage) {
+    func makeProfile() {
+        guard let name = tfName.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !name.isEmpty else {
+            self.view.showToast("Please input your name")
+            return
+        }
+        
+        guard name.count >= 2 else {
+            self.view.showToast("Please input your name with 2+ character")
+            return
+        }
+        
+        guard let email = tfEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !email.isEmpty else {
+            self.view.showToast("Please input your email")
+            return
+        }
+        
+        guard Validations.email(email) else {
+            self.view.showToast("Invalid email")
+            return
+        }
+        
+        let birthDay = tfBirthday.text ?? ""
+        
         SVProgressHUD.show()
-//        Rest.changeProfile(file: image.jpegData(compressionQuality: 1), success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
-//            let res = result as! ModelPhoto
-//            self.setProfileImage(res.profile_img)
-//        }, failure: { (_, err) -> Void in
-//            SVProgressHUD.dismiss()
-//            self.view.showToast(err)
-//        })
+        Rest.makeProfile(name: name, birthday: birthDay, gender: userGender, email: email, success: { [weak self] (result) -> Void in
+            SVProgressHUD.dismiss()
+            guard let ret = result else {
+                return
+            }
+            
+            if ret.result == 0 {
+                self?.openMainVC()
+            } else {
+                self?.view.showToast(ret.msg)
+            }
+        }, failure: { [weak self](_, err) -> Void in
+            SVProgressHUD.dismiss()
+            self?.view.showToast(err)
+        })
     }
 }

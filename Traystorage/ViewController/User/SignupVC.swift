@@ -2,15 +2,15 @@ import SVProgressHUD
 import SwiftyJSON
 import Toast_Swift
 import UIKit
+//import Material
 
 class SignupVC: BaseVC {
-    @IBOutlet weak var lblTitle: UIFontLabel!
+    @IBOutlet weak var lblTitle: UILabel!
     
     @IBOutlet weak var btnTabPhone: UIButton!
     @IBOutlet weak var btnTabEmail: UIButton!
     
-//    @IBOutlet weak var tfPhone: UITextField!
-    @IBOutlet weak var tfEmail: UITextField!
+    @IBOutlet weak var tfID: UITextField!
     
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var tfPasswordConfirm: UITextField!
@@ -28,35 +28,6 @@ class SignupVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        initLang()
-//        initVC()
-    }
-    
-    private func initLang() {
-//        lblTitle.text = getLangString("signup_phone_or_email")
-//
-//        btnTabPhone.setTitle(getLangString("signup_tab_phone"), for: .normal)
-//        btnTabEmail.setTitle(getLangString("signup_tab_email"), for: .normal)
-//
-//        lblMember.text = getLangString("signup_member_1")
-//        btnLogin.setTitle(getLangString("signup_member_2"), for: .normal)
-//
-//        tfPhone.placeholder = getLangString("signup_phone_hint")
-//        tfEmail.placeholder = getLangString("signup_email_hint")
-//        tfPhone.setLeftPaddingPoints(10.0)
-//        tfPhone.setRightPaddingPoints(10.0)
-//        tfEmail.setLeftPaddingPoints(10.0)
-//        tfEmail.setRightPaddingPoints(10.0)
-        
-//        btnNext.setTitle(getLangString("signup_next"), for: .normal)
-//        btnLogin.setUnderlineTitle(getLangString("guide_btn_login"), font: AppFont.robotoRegular(11), color: AppColor.black, for: .normal)
-    }
-    
-    private func initVC() {
-//        changeTab(AuthType.phone)
-//        enableNext(false)
-        hideError()
     }
     
     private func changeTab(_ tab: AuthType) {
@@ -81,25 +52,23 @@ class SignupVC: BaseVC {
         btnNext.isEnabled = enable
     }
     
-    private func showError(_ type: AuthType) {
-//        vwInput.borderColor = AppColor.error
-//        lblError.isHidden = false
-//        if type == AuthType.phone {
-//            lblError.text = getLangString("signup_phone_error")
-//        } else {
-//            lblError.text = getLangString("signup_email_error")
-//        }
-    }
+
     
     private func hideError() {
 //        vwInput.borderColor = AppColor.gray
 //        lblError.isHidden = true
     }
     
-    private func hideKeyboard() {
-        tfEmail.resignFirstResponder()
+    override func hideKeyboard() {
+        tfID.resignFirstResponder()
         tfPassword.resignFirstResponder()
         tfPasswordConfirm.resignFirstResponder()
+    }
+    
+    override func onBackProcess(_ viewController: UIViewController) {
+        ConfirmDialog.show(self, title: "signup_cancel_alert_title".localized, message: "signup_cancel_alert_content"._localized, showCancelBtn: true) { [weak self]() -> Void in
+            self?.popToGuidVC()
+        }
     }
     
     private func showDialog(_ type: AuthType) {
@@ -114,8 +83,7 @@ class SignupVC: BaseVC {
     
     
     @IBAction func textFieldDidChange(_ sender: Any) {
-//        let phone = tfPhone.text
-        if let email = tfEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), email.count > 0 {
+        if let userID = tfID.text?.trimmingCharacters(in: .whitespacesAndNewlines), userID.count > 0 {
             hideError()
             enableNext(true)
             btnDuplicateCheck.isHidden = false
@@ -131,10 +99,6 @@ class SignupVC: BaseVC {
 // MARK: - Action
 //
 extension SignupVC: BaseAction {
-    @IBAction func onBack(_ sender: Any) {
-        popVC()
-    }
-    
     @IBAction func onClickBg(_ sender: Any) {
         hideKeyboard()
     }
@@ -159,17 +123,17 @@ extension SignupVC: BaseAction {
     }
     
     @IBAction func onClickDuplicate(_ sender: Any) {
-        guard let newID = tfEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !newID.isEmpty else {
-            self.view.showToast("Please input your ID.")
+        guard let newID = tfID.text?.trimmingCharacters(in: .whitespacesAndNewlines), !newID.isEmpty else {
+            self.view.showToast("signup_id_empty_alert"._localized)
             return
         }
         
         if newID.count < 4 {
-            self.view.showToast("Please input your ID 4+ characters.")
+            self.view.showToast("signup_id_less4"._localized)
             return
         }
         
-        AlertDialog.show(self, title: "Duplicated id", message: "Please input another")
+        AlertDialog.show(self, title: "signup_duplicated_id_title"._localized, message: "signup_duplicated_id_detail"._localized)
     }
 }
 
@@ -181,7 +145,7 @@ extension SignupVC: UITextFieldDelegate {
         
         let newLen = (textField.text?.count ?? 0) - range.length + string.count
 
-        if textField == tfEmail, newLen > 20 {
+        if textField == tfID, newLen > 20 {
             return false
         }
         if textField == tfPassword, newLen > 20 {
@@ -201,10 +165,20 @@ extension SignupVC: UITextFieldDelegate {
 //
 extension SignupVC: BaseNavigation {
     private func goNext() {
+        guard let userID = tfID.text?.trimmingCharacters(in: .whitespacesAndNewlines), !userID.isEmpty else {
+            return
+        }
+        
+        guard let pass = tfPassword.text, !pass.isEmpty, let passConfirm = tfPasswordConfirm.text, pass == passConfirm else {
+            AlertDialog.show(self, title: "password_mismatch_confirm"._localized, message: "")
+            return
+        }
+        
+        
         let vc = SignupAuthCodeVC(nibName: "vc_signup_authcode", bundle: nil)
 //        vc.authType = curTab
 //        vc.authMedia = (curTab == AuthType.phone) ? tfPhone.text! : tfEmail.text!
-        self.pushVC(vc, animated: true)
+        self.pushVC(vc, animated: true, params: ["id": userID, "pwd": pass])
     }
 }
 

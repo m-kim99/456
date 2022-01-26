@@ -28,22 +28,36 @@ class MyProfileVC: BaseVC {
     
     
     func initVC() {
-    }
-    
+        let user = Local.getUser()
+        if let url = user.profile_img {
+            vwAvatar.kf.setImage(with: URL(string: url))
+        }
 
+        labelName.text = user.name
+        editName.text = user.name
+        birthdayEdit.text = user.birthday
+        
+        emailEdit.text = user.email
+        
+        isUserMale = user.gender ?? "0" == "0"
+    }
     
     func loadUser() {
-//        SVProgressHUD.show()
-//        Rest.otherUserInfo(user_uid: userUid, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
+        SVProgressHUD.show()
+        let user = Local.getUser()
+        guard let uid = user.uid else {
+            return
+        }
+        Rest.otherUserInfo(user_uid: uid, success: { (result) -> Void in
+            SVProgressHUD.dismiss()
 //            self.setUserInfo(result as! ModelUser)
-//        }, failure: { (_, err) -> Void in
-//            SVProgressHUD.dismiss()
-//            self.view.showToast(err)
-//        })
+        }, failure: { (_, err) -> Void in
+            SVProgressHUD.dismiss()
+            self.view.showToast(err)
+        })
     }
     
-    private func hideKeyboard() {
+    override func hideKeyboard() {
         editName.resignFirstResponder()
         birthdayEdit.resignFirstResponder()
         emailEdit.resignFirstResponder()
@@ -64,9 +78,10 @@ class MyProfileVC: BaseVC {
         femaleButton.tintColor = femaleColor
     }
     
-    
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
+    override func onBackProcess(_ viewController: UIViewController) {
+        ConfirmDialog.show(self, title: "Edits are not saved when moving to the previous screen", message: "Do you want to go to the previous screen?", showCancelBtn: true) { [weak self] () -> Void in
+            self?.popVC()
+        }
     }
     
     @IBAction func onChangeAvatar(_ sender: Any) {
@@ -78,14 +93,23 @@ class MyProfileVC: BaseVC {
         editName.becomeFirstResponder()
     }
     @IBAction func onSave(_ sender: Any) {
+        guard let name = labelName.text, !name.isEmpty else {
+            self.view.showToast("Your name is invalid")
+            return
+        }
+        
+        guard let email = emailEdit.text, !email.isEmpty else {
+            self.view.showToast("Your email is invalid")
+            return
+        }
+        
+        self.view.showToast("Your profile was changed")
+        popVC()
     }
     
-    @IBAction func onClickBg(_ sender: Any) {
-        hideKeyboard()
-    }
-    
-    @IBAction func onEditNameDidEnd(_ sender: Any) {
+    @IBAction func onEditNameDidEnd(_ sender: UITextField!) {
         updateEditState(false)
+        labelName.text = sender.text
     }
     
     
@@ -102,5 +126,18 @@ class MyProfileVC: BaseVC {
             dateFormatter.dateFormat = "yyyy-MM-dd"
             self?.birthdayEdit.text = dateFormatter.string(from: date)
         }
+    }
+}
+
+extension MyProfileVC: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            
+        let newLen = (textField.text?.count ?? 0) - range.length + string.count
+
+        if textField == editName, newLen > 20 {
+            return false
+        }
+
+        return true
     }
 }

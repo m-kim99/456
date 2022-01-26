@@ -5,15 +5,16 @@ import UIKit
 class UIFontButton: UIButton {
     
     let buttonRadius: CGFloat = 5
-    @IBInspectable var fontFamily: String = "Apple SD Gothic Neo" {
+    @IBInspectable var fontFamily: String = AppFont.fontFamilyName {
         didSet {
             self.titleLabel?.font = buttonFont()
         }
     }
     
-    @IBInspectable var fontSize: CGFloat = 15 {
+    // avoid conflict with "Material.fontSize"
+    @IBInspectable var xFontSize: CGFloat = 14.0 {
         didSet {
-            self.titleLabel?.font = buttonFont()
+            self.fontSize = xFontSize
         }
     }
     
@@ -22,9 +23,6 @@ class UIFontButton: UIButton {
             if (isOutline) {
                 self.borderColor = AppColor.active
                 self.borderWidth = 1
-                if useCustomeRadius {
-                    self.cornerRadius = buttonRadius
-                }
             }
         }
     }
@@ -45,8 +43,6 @@ class UIFontButton: UIButton {
         didSet {
             if useCustomeRadius {
                 cornerRadius = buttonRadius
-            } else {
-                cornerRadius = 0
             }
         }
     }
@@ -114,7 +110,7 @@ class UIFontButton: UIButton {
         case (false, _):
             return AppColor.gray
         }
-        return nil
+        return super.tintColor
     }
     
     func buttonBorderColor() -> UIColor? {

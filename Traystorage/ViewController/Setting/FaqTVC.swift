@@ -5,40 +5,19 @@
 
 import UIKit
 
-protocol FaqTVCDelegate {
-    func onClickCell(_ model: ModelPaymentHistoryStadium)
-}
-
 class FaqTVC: UITableViewCell {
-    @IBOutlet weak var vwRoot: UIView!
-    @IBOutlet weak var lblTitle: UIFontLabel!
-    @IBOutlet weak var btnExpand: UIButton!
-    @IBOutlet weak var lblSubTitle: UIFontLabel!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var imageExpand: UIImageView!
+    @IBOutlet weak var lblSubTitle: UILabel!
     
-    private var dataModel: ModelPaymentHistoryStadium!
-    private var delegate: FaqTVCDelegate!
+    private var dataModel: ModelFAQ!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    func setData(data: ModelFAQ, isExpand: Bool) {
+        lblTitle.text = data.title
+        lblSubTitle.text = data.content
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    func setData(data: ModelPaymentHistoryStadium, delegate: FaqTVCDelegate) {
-        self.dataModel = data
-        self.delegate = delegate
-
-        self.lblSubTitle.isHidden = true
-    }
-    
-    //
-    // MARK: - Action
-    //
-    @IBAction func onExpand(_ sender: Any) {
-        
-        self.lblSubTitle.isHidden = false
-        self.lblSubTitle.text = "abc"
+        self.lblSubTitle.isHidden = !isExpand
+        let image = isExpand ? "ic_arrow_up" : "ic_arrow_down"
+        imageExpand.image = UIImage(named: image)
     }
 }

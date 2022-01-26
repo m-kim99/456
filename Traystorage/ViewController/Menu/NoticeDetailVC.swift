@@ -5,24 +5,18 @@
 
 import Foundation
 import UIKit
+import SVProgressHUD
 
 class NoticeDetailVC: BaseVC {
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        initVC()
-    }
-    
-    override func removeFromParent() {
+        
+        let noticeID = params["id"] as! Int
+        loadNoticeList(noticeID: noticeID)
     }
     
     func initVC() {
 
-    }
-    
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
     }
 }
 
@@ -30,26 +24,22 @@ class NoticeDetailVC: BaseVC {
 // MARK: - RestApi
 //
 extension NoticeDetailVC: BaseRestApi {
-    func updateList(type: String, alarm_yn: String) {
-//        SVProgressHUD.show()
-//        Rest.changeAlarm(type: type, alarm_yn: alarm_yn, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
-//            if result?.result == 0 {
-//                if type == "push" {
-//                    self.user.alarm_push_yn = alarm_yn
-//                    self.lblPushAllowValue.text = (self.user.alarm_push_yn == "y") ? getLangString("setting_on") : getLangString("setting_off")
-//                    self.btnPushAllow.isSelected = (self.user.alarm_push_yn == "y")
-//                } else {
-//                    self.user.alarm_challenge_yn = alarm_yn
-//                    self.lblChallengeValue.text = (self.user.alarm_challenge_yn == "y") ? getLangString("setting_on") : getLangString("setting_off")
-//                    self.btnChallengeAlarm.isSelected = (self.user.alarm_challenge_yn == "y")
-//                }
-//
-//                Local.setUser(self.user)
-//            }
-//        }, failure: { (_, err) -> Void in
-//            SVProgressHUD.dismiss()
-//            self.view.showToast(err)
-//        })
+    func loadNoticeList(noticeID: Int) {
+        SVProgressHUD.show()
+        Rest.getNotice(noticeID: noticeID, success: { [weak self](result) -> Void in
+            SVProgressHUD.dismiss()
+            guard let ret = result else {
+                return
+            }
+            
+            if ret.result == 0 {
+                
+            } else {
+                self?.view.showToast(ret.msg)
+            }
+        }, failure: { [weak self](_, err) -> Void in
+            SVProgressHUD.dismiss()
+            self?.view.showToast(err)
+        })
     }
 }

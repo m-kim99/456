@@ -10,61 +10,43 @@ class LoginVC: BaseVC {
     
     @IBOutlet weak var btnLogin: UIButton!
     
-//    @IBOutlet weak var btnPrivacy: UIFontButton!
-//    @IBOutlet weak var btnUseAgre: UIFontButton!
     @IBOutlet weak var autoLoginCheckImage: UIImageView!
     
-    var isAutoLogin = false
+    var isAutoLogin = true
+    
+    var loginAttempCount: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        autoLoginCheckImage.image
-        
-//        initLang()
+        updateAutoLoginUI()
 
 //        enableLogin(false)
     }
     
-//    private func initLang() {
-//        tfId.placeholder = getLangString("login_id_hint")
-//        tfPwd.placeholder = getLangString("login_pwd_hint")
-//        
-//        btnLogin.setTitle(getLangString("login_btn"), for: .normal)
-//        btnFindPwd.setTitle(getLangString("login_pwd_forgets"), for: .normal)
-//        
-//        lblLogin.text = getLangString("login_agree_1")
-//    }
-    
-    private func enableLogin(_ enable: Bool) {
-        btnLogin.isEnabled = enable
-//        btnLogin.backgroundColor = enable ? AppColor.black : AppColor.gray
+    private func updateAutoLoginUI() {
+        let autoLoginCheckImage = isAutoLogin ? "Icon-C-CheckOn-24" : "Icon-C-CheckOff-24"
+        self.autoLoginCheckImage.image = UIImage(named: autoLoginCheckImage)
     }
     
-    private func isValidInput() {
-        var isValid = true
-        if isValid && tfId.text!.isEmpty {
-            isValid = false
-        }
-        
-        if isValid && tfPwd.text!.isEmpty {
-            isValid = false
-        }
-        
-        if isValid && tfPwd.text!.count < 8 {
-            isValid = false
-        }
-        
-//        enableLogin(isValid)
+    func resetLoginInputInformation() {
+        tfId.text = nil
+        tfPwd.text = nil
+        loginAttempCount = 0
+        btnLogin.isEnabled = true
     }
-    @IBAction func onClickBack(_ sender: Any) {
-        popVC()
+    
+    func setLoginID(userID: String) {
+        tfId.text = userID
+    }
+    
+    override func hideKeyboard() {
+        tfId.resignFirstResponder()
+        tfPwd.resignFirstResponder()
     }
     
     @IBAction func onClickAutoLogin(_ sender: Any) {
         isAutoLogin = !isAutoLogin
-        let autoLoginCheckImage = isAutoLogin ? "Icon-C-CheckOn-24" : "Icon-C-CheckOff-24"
-        self.autoLoginCheckImage.image = UIImage(named: autoLoginCheckImage)
+        updateAutoLoginUI()
     }
 }
 
@@ -73,12 +55,11 @@ class LoginVC: BaseVC {
 //
 extension LoginVC: BaseAction {
     @IBAction func onClickBg(_ sender: Any) {
-        tfId.resignFirstResponder()
-        tfPwd.resignFirstResponder()
+        hideKeyboard()
     }
     
     @IBAction func onLogin(_ sender: Any) {
-        onClickBg(sender)
+        hideKeyboard()
         login()
     }
     
@@ -93,10 +74,6 @@ extension LoginVC: BaseAction {
     
     @IBAction func onFindID(_ sender: Any) {
         self.pushVC(FindIdVC(nibName: "vc_find_id", bundle: nil), animated: true)
-    }
-    
-    @IBAction func textFieldDidChange(_ textField: UITextField) {
-        isValidInput()
     }
 }
 
@@ -145,7 +122,7 @@ extension LoginVC: BaseNavigation {
         
         let mainVC = UIStoryboard(name: "vc_main", bundle: nil).instantiateInitialViewController()
 //        self.replaceVC(MainVC(nibName: "vc_main", bundle: nil), animated: true)
-        self.replaceVC(mainVC as! BaseVC, animated: true)
+        self.pushVC(mainVC as! BaseVC, animated: true)
     }
 }
 
@@ -154,27 +131,48 @@ extension LoginVC: BaseNavigation {
 //
 extension LoginVC: BaseRestApi {
     func login() {
-//        SVProgressHUD.show()
-//        Rest.login(id: tfId.text, pwd: tfPwd.text, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
-//            if result!.result == 0 {
-//                Rest.user = (result as! ModelUser)
-//                Local.setUser(Rest.user)
-//                self.openMainVC()
-//            } else {
-//                self.view.showToast(result!.msg)
-//            }
-//        }, failure: { (_, err) -> Void in
-//            SVProgressHUD.dismiss()
-//            self.view.showToast(err)
-//        })
-//
-//        ConfirmDialog.show(self, title: "Your account has been permanently suspended by",
-//                           message: "Your account has been permanetly suspended for posting inappropriate", showCancelBtn: true) { [weak self]() -> Void in
-//
-//            self?.openMainVC()
-//        }
+        SVProgressHUD.show()
+        guard let userID = tfId.text?.trimmingCharacters(in: .whitespacesAndNewlines), !userID.isEmpty else {
+            return
+        }
         
-        self.openMainVC()
+        guard let password = tfPwd.text, !password.isEmpty else {
+            return
+        }
+        
+        Rest.login(id: userID, pwd: password, success: { [weak self] (result) -> Void in
+            SVProgressHUD.dismiss()
+            let code = result!.result
+            
+            if code == 0 {
+                Rest.user = (result as! ModelUser)
+                Rest.user.pwd = password
+                Local.setUser(Rest.user)
+                
+                if let weakSelf = self {
+                    let ud = UserDefaults.standard
+                    ud.set(weakSelf.isAutoLogin, forKey: Local.PREFS_APP_AUTO_LOGIN.rawValue)
+                    ud.synchronize()
+                    weakSelf.openMainVC()
+                }
+            } else {
+                if code == 211 { // wrong pass
+                    self?.loginAttempCount += 1
+                }
+
+                self?.view.showToast(result!.msg)
+                
+                if let attempCount = self?.loginAttempCount, attempCount > 5, let vc = self {
+                    AlertDialog.show(vc, title: "login_suspend_title"._localized,
+                                     message: "login_suspend_desc"._localized)
+                    self?.btnLogin.isEnabled = false
+                }
+            }
+        }, failure: { (_, err) -> Void in
+            SVProgressHUD.dismiss()
+            self.view.showToast(err)
+        })
+        
+//        self.openMainVC()
     }
 }

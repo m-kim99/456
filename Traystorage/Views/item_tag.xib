@@ -30,7 +30,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                 <real key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
@@ -75,7 +75,7 @@
     </objects>
     <designables>
         <designable name="Jl4-n9-iiP">
-            <size key="intrinsicContentSize" width="27.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="23.5" height="17"/>
         </designable>
     </designables>
     <resources>

@@ -43,10 +43,11 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                             <real key="value" value="18"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="doc_reg_title"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prj-10-sfA">
@@ -96,10 +97,11 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                             <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                                     <real key="value" value="14"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="doc_image"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="25" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBV-kK-9kt">
@@ -112,6 +114,9 @@
                                                                             <rect key="frame" x="378" y="0.0" width="0.0" height="30"/>
                                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                             <state key="normal" title="+ add"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="doc_image_add"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                             <connections>
                                                                                 <action selector="onClickAddImage:" destination="-1" eventType="touchUpInside" id="sHg-fl-xFO"/>
                                                                             </connections>
@@ -176,10 +181,11 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                             <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                                     <real key="value" value="14"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="doc_title_content"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="25" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eug-hT-gHy">
@@ -195,8 +201,14 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="44" id="ulf-PC-gxj"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <textInputTraits key="textInputTraits" textContentType="name"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholder" value="doc_title_hint"/>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                                            <real key="value" value="15"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <outlet property="delegate" destination="-1" id="Ay4-Hy-9Ea"/>
                                                                     </connections>
@@ -219,11 +231,17 @@
                                                                                 <outlet property="delegate" destination="-1" id="08z-Qi-ghd"/>
                                                                             </connections>
                                                                         </textView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nD6-Vg-L1y">
-                                                                            <rect key="frame" x="8" y="8" width="149" height="18"/>
-                                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nD6-Vg-L1y" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                                            <rect key="frame" x="8" y="8" width="161" height="18"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                             <color key="textColor" systemColor="placeholderTextColor"/>
                                                                             <nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                                                    <real key="value" value="15"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="doc_detail_hint"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -255,10 +273,11 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                             <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                                     <real key="value" value="14"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="doc_label"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="25" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bo-Ge-9ef">
@@ -300,10 +319,11 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                             <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                                     <real key="value" value="14"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="doc_tag"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="25" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8n-VY-F56">
@@ -318,23 +338,28 @@
                                                                     <rect key="frame" x="0.0" y="36.5" width="374" height="44"/>
                                                                     <subviews>
                                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="25" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="input tag" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OEf-mD-QEK" customClass="UIFontTextField" customModule="Traystorage" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="313" height="44"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="297" height="44"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                             <textInputTraits key="textInputTraits"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholder" value="doc_tag_hint"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                             <connections>
                                                                                 <outlet property="delegate" destination="-1" id="r8m-YV-L2h"/>
                                                                             </connections>
                                                                         </textField>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyz-be-LqK" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                                            <rect key="frame" x="321" y="0.0" width="53" height="44"/>
+                                                                            <rect key="frame" x="305" y="0.0" width="69" height="44"/>
+                                                                            <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                             <state key="normal" title="register"/>
                                                                             <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                                                     <real key="value" value="14"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isOutline" value="YES"/>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="YES"/>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="doc_tag_add"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
                                                                                 <action selector="onClickAddTag:" destination="-1" eventType="touchUpInside" id="7Jw-sZ-pQB"/>
@@ -375,12 +400,13 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="register"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="15"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="doc_reg"/>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="onClickRegister:" destination="-1" eventType="touchUpInside" id="UH6-XT-1R9"/>
@@ -465,7 +491,7 @@
             <size key="intrinsicContentSize" width="53" height="30"/>
         </designable>
         <designable name="Eyz-be-LqK">
-            <size key="intrinsicContentSize" width="53" height="30"/>
+            <size key="intrinsicContentSize" width="69" height="18"/>
         </designable>
         <designable name="Kit-Xn-gby">
             <size key="intrinsicContentSize" width="128" height="20.5"/>
@@ -477,7 +503,10 @@
             <size key="intrinsicContentSize" width="170" height="20.5"/>
         </designable>
         <designable name="X7Q-rq-Ttu">
-            <size key="intrinsicContentSize" width="53" height="34"/>
+            <size key="intrinsicContentSize" width="54" height="34"/>
+        </designable>
+        <designable name="nD6-Vg-L1y">
+            <size key="intrinsicContentSize" width="161" height="18"/>
         </designable>
     </designables>
     <resources>

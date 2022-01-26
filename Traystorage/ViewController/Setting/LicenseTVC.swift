@@ -11,11 +11,11 @@ protocol LicenseTVCDelegate {
 
 class LicenseTVC: UITableViewCell {
     @IBOutlet weak var vwRoot: UIView!
-    @IBOutlet weak var lblTitle: UIFontLabel!
-    @IBOutlet weak var lblLink: UIFontLabel!
-    @IBOutlet weak var lblSubTitle: UIFontLabel!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblLink: UILabel!
+    @IBOutlet weak var lblSubTitle: UILabel!
     
-    private var dataModel: ModelPaymentHistoryStadium!
+    private var dataModel: ModelFAQ!
     private var delegate: LicenseTVCDelegate!
     
     override func awakeFromNib() {
@@ -26,7 +26,7 @@ class LicenseTVC: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setData(data: ModelPaymentHistoryStadium, delegate: LicenseTVCDelegate) {
+    func setData(data: ModelFAQ, delegate: LicenseTVCDelegate) {
         self.dataModel = data
         self.delegate = delegate
     }

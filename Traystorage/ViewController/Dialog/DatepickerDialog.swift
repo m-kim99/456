@@ -1,10 +1,9 @@
 import UIKit
 
 class DatepickerDialog: BaseVC {
-    @IBOutlet weak var lblTitle: UIFontLabel!
+    @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var datepickerView: UIDatePicker!
-    @IBOutlet weak var btnCancel: UIFontButton!
-    @IBOutlet weak var btnConfirm: UIFontButton!
+    @IBOutlet weak var btnConfirm: UIButton!
     @IBOutlet weak var vwContents: UIView!
     
     private var _selected: Callback?
@@ -28,11 +27,7 @@ class DatepickerDialog: BaseVC {
             super.viewDidLoad()
 
         lblTitle.text = getLangString("date_select")
-        btnConfirm.setTitle(getLangString("confirm"), for: .normal)
-        btnCancel.setTitle(getLangString("cancel"), for: .normal)
-        
         datepickerView.maximumDate = Date()
-        
     }
 
 

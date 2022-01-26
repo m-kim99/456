@@ -1,5 +1,7 @@
 import UIKit
 
+//import Material
+
 @IBDesignable
 extension UITextField {
     func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
@@ -43,4 +45,16 @@ extension UITextField {
         rightView = paddingView
         rightViewMode = .always
     }
+    
+    func setPlaceHolderSuper(_ placeholder: String?) {
+//        self.placeholder = placeholder
+//        (self as UITextField).placeholder = placeholder
+    }
 }
+
+
+//extension TextField {
+//    func setPlaceHolderSuper(_ placeholder: String?) {
+//        super.placeholder = placeholder
+//    }
+//}

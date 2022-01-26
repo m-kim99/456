@@ -1,6 +1,6 @@
 import Foundation
 
-let Server_Url = "http://192.168.0.63:8007/api/" //py
+let Server_Url = "http://192.168.2.118:8005/api/" //py
 //let Server_Url = "http://3.34.14.108/api/" //real server
 //let Server_Url = "http://192.168.0.13:8000/api/" //local server
 
@@ -12,14 +12,24 @@ enum API {
     case USER_VERIFY_CERTKEY_EMAIL
     case USER_VERIFY_CERTKEY_PHONE
     case USER_SIGNUP
+    case USER_FIND_ID
+    case REQUEST_CODE // before login (code request)
+    case SEND_CODE // after login (code request)
+    case USER_FIND_PWD
     case USER_RESET_PWD
     case USER_BADGE_INFO
     case USER_STONE_INFO
     case USER_OTHER_INFO
+    case MAKE_PROFILE
     case CHANGE_PROFILE
     case CHANGE_ALARM
     case CHANGE_PWD
     case HOME_DATA
+    case DOCUMENT_LIST
+    case DOCUMENT_DETAIL
+    case DOCUMENT_INSERT
+    case DOCUMENT_DELETE
+    case DOCUMENT_UPDATE
     case CHALLENGE_LIST
     case CHALLENGE_DETAIL
     case CHALLENGE_LIKE
@@ -45,13 +55,20 @@ enum API {
     case UPDATE_VISIT_CNT
     case NO_WORD_LIST
     case MY_INFO
+    case POPUP_INFO
+    case ASK_LIST
+    case GET_NOTICE_LIST
+    case VIEW_NOTICE
+    case FAQ_LIST
+    case FAQ_CATE
+    case VERSION
     
     var url: String {
         switch self {
         case .APP_INFO:
             return "App/app_info"
         case .USER_LOGIN:
-            return "User/login"
+            return "user/login"
         case .USER_SEND_CERTKEY_EMAIL:
             return "User/send_certkey_by_email"
         case .USER_SEND_CERTKEY_PHONE:
@@ -59,9 +76,17 @@ enum API {
         case .USER_VERIFY_CERTKEY_EMAIL:
             return "User/verify_email"
         case .USER_VERIFY_CERTKEY_PHONE:
-            return "User/verify_phone"
+            return "User/check_code"
         case .USER_SIGNUP:
             return "User/signup"
+        case .SEND_CODE:
+            return "User/send_code"
+        case .REQUEST_CODE:
+            return "User/request_code"
+        case .USER_FIND_ID:
+            return "User/find_login_id"
+        case .USER_FIND_PWD:
+            return "User/find_pwd"
         case .USER_RESET_PWD:
             return "User/find_pwd"
         case .USER_BADGE_INFO:
@@ -70,14 +95,26 @@ enum API {
             return "User/user_stone_info"
         case .USER_OTHER_INFO:
             return "User/other_user_info"
+        case .MAKE_PROFILE:
+            return "user/make_profile"
         case .CHANGE_PROFILE:
             return "MyPage/change_profile"
         case .CHANGE_ALARM:
             return "MyPage/change_alarm"
         case .CHANGE_PWD:
-            return "MyPage/change_pwd"
+            return "user/change_pwd"
         case .HOME_DATA:
             return "Home/home_data"
+        case .DOCUMENT_LIST:
+            return "app/get_document_list"
+        case .DOCUMENT_DETAIL:
+            return "app/get_document_detail"
+        case .DOCUMENT_INSERT:
+            return "app/insert_document"
+        case .DOCUMENT_DELETE:
+            return "app/delete_document_item"
+        case .DOCUMENT_UPDATE:
+            return "app/update_document"
         case .CHALLENGE_LIST:
             return "Challenge/challenge_list"
         case .CHALLENGE_DETAIL:
@@ -128,6 +165,20 @@ enum API {
             return "App/noword_list"
         case .MY_INFO:
             return "User/my_info"
+        case .POPUP_INFO:
+            return "app/popup_info"
+        case .ASK_LIST:
+            return "app/get_ask_list"
+        case .GET_NOTICE_LIST:
+            return "app/get_notice_list"
+        case .VIEW_NOTICE:
+            return "app/view_notice"
+        case .FAQ_LIST:
+            return "app/get_faq_list"
+        case .FAQ_CATE:
+            return "app/get_faq_item_list"
+        case .VERSION:
+            return "app/version"
         }
     }
 }
