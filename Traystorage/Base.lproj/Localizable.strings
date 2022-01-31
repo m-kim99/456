@@ -166,7 +166,7 @@
 "cancel"="취소";
 "apply"="Apply";
 "confirm"="확인";
-"next"="next";
+"next"="다음";
 "send"="보내기";
 
 "male"="남자";
@@ -216,7 +216,7 @@
 "doc_not_saved_desc"="이전화면으로 이동 하시겠습니까?";
 "doc_title_empty"="제목을 입력해 주세요.";
 "doc_content_empty"="내용을 입력해 주세요.";
-"doc_tag_empty"="Please add the tag.";
+"doc_tag_empty"="태그를 입력해 주세요.";
 
 "server_connect_fail"="네트워크 연결이 원할하지 않습니다.";
 
@@ -226,7 +226,7 @@
 "app_version"="버전정보";
 "log_out"="로그아웃";
 
-"save"="save";
+"save"="저장";
 
 "email"="이메일";
 "email_hint"="이메일주소 입력";
@@ -262,7 +262,7 @@
 
 "terms_of_use"="Terms of Use";
 "not_see_today"="do not see today";
-"close"="close";
+"close"="닫기";
 "register"="register";
 
 // menu & vc title
