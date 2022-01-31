@@ -19,7 +19,10 @@ class WithdrawalVC: BaseVC {
     //
     
 
-    @IBAction func onWithdrawalRequest(_ sender: Any) {
+    @IBAction func onClickWithdrawal(_ sender: Any) {
+        let vc = FindIdVC(nibName: "vc_find_id", bundle: nil)
+        vc.findIDRequest = .withDrawal
+        self.pushVC(vc, animated: true)
     }
 }
 

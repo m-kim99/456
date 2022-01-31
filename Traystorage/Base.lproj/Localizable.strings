@@ -8,6 +8,7 @@
 "skip"="건너뛰기";
 "login"="로그인";
 "id"="아이디";
+"date_select"="날짜 선택";
 
 // intro
 "intro_header1"="매일 산더미처럼\n쌓이는 문서들을\n어떻게 정리할까요?";
@@ -29,6 +30,8 @@
 "login_suspend_title"="관리자에 의해 계정이 영구정지 되었습니다.";
 "login_suspend_desc"="부적절한 문서를 등록하여 계정이 영구정지되었습니다.";
 
+"login_faided_invalid_account"="아이디가 존재하지 않거나\n비밀번호가 일치하지 않습니다.";
+
 "login_withdrawal_title"="탈퇴대기 상태입니다.";
 "login_withdrawal_desc"="탈퇴를 취소하시겠습니까?";
 
@@ -45,6 +48,8 @@
 "resend_veri_code" = "인증번호 재전송";
 "empty_phone_toast"="휴대폰 번호를 입력해 주세요.";
 "empty_phone_alert"="휴대폰번호를 인증해 주세요.";
+"verify_wrong"="인증번호가 정확하지 않습니다.";
+"empty_cert_code_toast"="인증번호를 입력해 주세요.";
 
 "no_phone_title"="가입된 휴대폰번호가 아닙니다.";
 "no_phone_desc"="휴대폰번호를 확인해 주세요.";
@@ -56,10 +61,15 @@
 
 "empty_id_toast"="아이디를 입력해 주세요.";
 "empty_id_alert"="아이디를 확인해주세요.";
+"empty_name_toast"="성명을 입력해 주세요.";
+"name_at_less_2_toast" = "성명을 2자이상 입력해 주세요.";
+"empty_email_toast"="이메일을 입력해 주세요.";
+"invalid_email_toast"="이메일 형식이 정확하지 않습니다.";
 
 
 "no_memeber_title"="가입된 휴대폰번호가 아닙니다.";
 "no_memeber_desc"="아이디 또는 휴대폰번호를 확인해 주세요.";
+"mismatch_cert_code_toast" = "인증코드가 정확하지 않습니다.";
 
 // check id
 
@@ -77,6 +87,8 @@
 "password_confirm_hint" = "비밀번호 재입력";
 "duplicate_check" = "증복체크";
 "password_mismatch_confirm" = "두 비빌번호가 일치하지 않습니다.";
+"empty_password_toast"="비밀번호를 입력해 주세요.";
+"less_password_toast"="비밀번호를 6자이상 입력해 주세요.";
 
 // signup 1st screen
 "signup_detail_1"="회원가입을 위해\n계정정보를 입력해주세요";
@@ -84,9 +96,13 @@
 "signup_id_hint" = "아이디 또는 이메일";
 "signup_id_empty_alert" = "아이디를 입력해 주세요.";
 "signup_id_less4" = "아아디를 4자 이상 입력해 주세요.";
+"signup_id_unique"="사용가능한 아이디입니다.";
 "signup_duplicated_id_title" = "중복되었습니다.";
 "signup_duplicated_id_detail" = "다른것을 입력해 주세요.";
 "signup_duplicated_phone"="이미 가입된 휴대폰번호 입니다.";
+
+"signup_check_id_req" = "아이디 중복확인 해주세요.";
+"password_invalid"="비밀번호를 6~20자이어야 합니다.";
 
 "signup_cancel_alert_title" = "화면을 닫으시는 경우\n회원가입이 중단됩니다.";
 "signup_cancel_alert_content" = "회원가입을 중단하시겠습니까?";
@@ -104,6 +120,7 @@
 "all_agree"="전체 동의";
 "terms_of_use_required" = "이용약관 (필수)";
 "privacy_policy_required" = "개인정보 취급방침 (필수)";
+"signup_agree_view" = "보기";
 
 
 "signup_agree_confrim_title"="입력하신 정보로\n회원가입 하시겠습니까?";
@@ -130,8 +147,9 @@
 
 // withdrawal
 "withdrawal_title"="회원탈퇴";
-"withdrawal_header"="Notes onn Account Deactivation and Deletion";
-"withdrawal_request_button"="Membership withdrawal request";
+"withdrawal_header"="계정 비활성화 및 삭제 시 주의사항";
+"withdrawal_request_button"="회원 탈퇴신청";
+"withdrawal_confirm_title"="정말 회원 탈퇴하시겠습니까?\n(유의사항 확인필요)";
 
 // withdrawal_result
 "withdrawal_result_1"="회원탈퇴 신청이\n완료되었습니다";
@@ -162,6 +180,7 @@
 "document_empty_title"="등록된 문서가 존재하지 않습니다";
 "document_empty_desc"="지금 쉽고 편리하게 문서를 등록하고\nNFC태그를 통해 관리 및 공유해 보세요";
 "doc_empty_search"="검색어를 입력해 주세요.";
+"doc_deleted_toast"="문서 삭제되었습니다.";
 
 
 // document detail
@@ -179,10 +198,15 @@
 "doc_tag" = "태그";
 "doc_tag_hint" = "태그 입력";
 "doc_tag_add" = "등록";
+"doc_tag_deleted"="태그 삭제되었습니다.";
 "doc_reg"="등록";
+"doc_add_success_toast"="문서 추가되었습니다.";
+"doc_discard_title"="이전화면으로 이동 시\n수정내역이 저장되지 않습니다.";
+"doc_discard_desc"="이전화면으로 이동 하시겠습니까?";
+
 
 "doc_duplicated_tag"="이미 등록된 태그입니다.";
-"doc_tag_limit_5"="태그틑 최대 5개 까지만 등록 가능합니다.";
+"doc_tag_limit_5"="태그틑 최대 5개까지만 등록 가능합니다.";
 "doc_tag_empty"="태그를 입력해 주세요.";
 
 // document edit
@@ -192,11 +216,12 @@
 "doc_not_saved_desc"="이전화면으로 이동 하시겠습니까?";
 "doc_title_empty"="제목을 입력해 주세요.";
 "doc_content_empty"="내용을 입력해 주세요.";
+"doc_tag_empty"="Please add the tag.";
 
-"server_connect_fail"="Could not connect to the server.";
+"server_connect_fail"="네트워크 연결이 원할하지 않습니다.";
 
-"edit"="Edit";
-"contact_us"="Contact us";
+"edit"="수정";
+"contact_us"="문의하기";
 "frequently_asked_questions"="Frequently Asked Questions";
 "app_version"="버전정보";
 "log_out"="로그아웃";
@@ -248,7 +273,7 @@
 "setting_title"="설정";
 
 //notice
-"notice_count"="documents";
+"notice_count"="문서";
 
 // invite
 "invite_desc"="Traystorage가\n필요한 친구들에게\n초대메시지를 보내보세요";
@@ -292,6 +317,9 @@
 
 // profile
 "profile_main_info"="기본정보";
+"profile_discard_title"="이전화면으로 이동 시\n수정내역이 저장되지 않습니다.";
+"profile_discard_desc"="이전화면으로 이동 하시겠습니까?";
+"profile_changed"="프로필 변경되었습니다.";
 
 // photo select
 "gallery_tilte"=" 사진선택";
@@ -303,3 +331,22 @@
 // nfc
 "nfc_header"="NFC스티커에 휴대폰을 태그하여\n문서를 등록해 주세요.";
 "nfc_desc"="지금 쉽고 편리하게 문서를 등록하고\nNFC태그를 통해 관리 및 공유해 보세요";
+//contact us
+"inquiry_save"="작성하신 내용으로\n문의하시겠습니까?";
+"inquiry_save_confirm"="문의가 발송되었습니다.";
+"inquiry_title_input"="문의제목을 입력해주세요";
+"inquiry_content_input"="문의내용을 입력해주세요";
+"inquiry_content10_input"="문의내용을 10자이상 입력해 주세요.";
+
+//inquiry
+"reply_wait"="답변대기";
+"answer_done"="답변완료";
+
+// Phone certification
+"phone_verify_title"="휴대폰 인증";
+"phone_verify_withdraw_desc"="Please verify your registered mobile phone number to cancel membership.";
+
+// network error
+
+"network_conect_fail_title"="네트워크에 연결되어 있지 않습니다.";
+"network_conect_fail_desc"="네으워크 연결 상태 확인 후\n다시 시동해주세요.";

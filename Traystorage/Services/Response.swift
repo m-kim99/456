@@ -1,6 +1,29 @@
 import Foundation
 import SwiftyJSON
 
+public enum ResponseResultCode: Int {
+    case SUCCESS = 0
+    case ERROR_SERVER=101
+    case ERROR_DB=102
+    case ERROR_PARAM=103
+    case ERROR_ACCESS_TOKEN=104
+    case ERROR_VERIFY_CODE=105
+    case ERROR_USER_NO_EXIST=202
+    case ERROR_ID_DUPLICATED=203
+    case ERROR_NICKNAME_DUPLICATED=204
+    case ERROR_PHONE_DUPLICATED=206
+    case ERROR_USER_CHECKING=207
+    case ERROR_UPLOAD=208
+    case ERROR_USER_PAUSED=209
+    case ERROR_USER_EXIT=210
+    case ERROR_WRONG_PWD=211
+    case ERROR_EMAIL_DUPLICATED=212
+    case ERROR_USER_DUPLICATED=214
+    case ERROR_ALREADY_CHECKED=215
+    case ALREADY_USER_FREE_PAY=300
+}
+
+
 /**
  *  Parse API response data.
  */
@@ -10,101 +33,29 @@ func ParseResponse(api: API, json: JSON) throws -> ModelBase? {
         return ModelAppInfo(json)
     case .USER_LOGIN:
         return ModelUser(json)
-    case .REQUEST_CODE:
+    case .REQUEST_CODE_FIND:
         return ModelBase(json)
-    case .SEND_CODE:
-        return ModelUser(json)
-//    case .USER_SEND_CERTKEY_EMAIL:
-//        return ModelBase(json)
-//    case .USER_SEND_CERTKEY_PHONE:
-//        return ModelBase(json)
-//    case .USER_VERIFY_CERTKEY_EMAIL:
-//        return ModelBase(json)
+    case .REQUEST_CODE_SIGNUP:
+        return ModelBase(json)
     case .USER_VERIFY_CERTKEY_PHONE:
-        return ModelPhoneVerify(json)
+        return ModelBase(json)
     case .USER_FIND_ID:
         return ModelUser(json)
     case .USER_SIGNUP:
         return ModelUser(json)
-    case .USER_RESET_PWD:
-        return ModelBase(json)
     case .USER_FIND_PWD:
-        return ModelPhoneVerify(json)
-//    case .USER_BADGE_INFO:
-//        return ModelBadgeList(json)
-//    case .USER_STONE_INFO:
-//        return ModelStoneList(json)
-//    case .USER_OTHER_INFO:
-//        return ModelUser(json)
-    case .MAKE_PROFILE:
         return ModelBase(json)
-//    case .CHANGE_PROFILE:
-//        return ModelPhoto(json)
-//    case .CHANGE_ALARM:
-//        return ModelBase(json)
-//    case .CHANGE_PWD:
-//        return ModelBase(json)
-//    case .HOME_DATA:
-//        return ModelHome(json)
-//    case .CHALLENGE_LIST:
-//        return ModelChallengeList(json)
+    case .MAKE_PROFILE:
+        return ModelUser(json)
     case .DOCUMENT_LIST:
         return ModelDocumentList(json)
     case .DOCUMENT_INSERT:
         return ModelDocument(json)
-//    case .CHALLENGE_DETAIL:
-//        return ModelChallenge(json)
-//    case .CHALLENGE_LIKE:
-//        return ModelCnt(json)
-//    case .CHALLENGE_VOTE:
-//        return ModelCnt(json)
-//    case .CHALLENGE_JOIN_LIST:
-//        return ModelChallengeList(json)
-//    case .CHALLENGE_USER_LIST:
-//        return ModelChallengeList(json)
-//    case .CHALLENGE_MY_LIST:
-//        return ModelChallengeList(json)
-//    case .VIDEO_LIST:
-//        return ModelVideoList(json)
-//    case .VIDEO_LIKE:
-//        return ModelCnt(json)
-//    case .VIDEO_VOTE:
-//        return ModelCnt(json)
-//    case .VIDEO_UPLOAD:
-//        return ModelCnt(json)
-//    case .VIDEO_DETAIL:
-//        return ModelVideoDetail(json)
-//    case .VIDEO_ADD_COMMENT:
-//        return ModelBase(json)
-//    case .VIDEO_COMMENT_DETAIL:
-//        return ModelCommentDetail(json)
-//    case .DRIVE_START:
-//        return ModelDrive(json)
-//    case .DRIVE_STOP:
-//        return ModelDrive(json)
-//    case .SHOP_ITEM_LIST:
-//        return ModelItemList(json)
-//    case .SHOP_ITEM_DETAIL:
-//        return ModelItem(json)
-//    case .SHOP_ITEM_BUY:
-//        return ModelBase(json)
-//    case .REPORT_LIST:
-//        return ModelReportList(json)
-//    case .REPORT:
-//        return ModelBase(json)
-//    case .GAIN_STONE:
-//        return ModelCnt(json)
-//    case .UPDATE_VISIT_CNT:
-//        return ModelCnt(json)
-//    case .NO_WORD_LIST:
-//        return ModelCnt(json)
-//    case .MY_INFO:
-//        return ModelUser(json)
     case .ASK_LIST:
         return ModelCardList(json)
     case .GET_NOTICE_LIST:
         return ModelNoticeList(json)
-    case .VIEW_NOTICE:
+    case .GET_NOTICE_DETAIL:
         return ModelNotice(json)
     case .FAQ_LIST:
         return ModelFAQList(json)
@@ -112,6 +63,16 @@ func ParseResponse(api: API, json: JSON) throws -> ModelBase? {
         return ModelFAQCateList(json)
     case .VERSION:
         return ModelBase(json)
+    case .POPUP_INFO:
+        return ModelPopupList(json)
+    case .VIEW_CLICK_POPUP:
+        return ModelBase(json)
+    case .INSERT_ASK:
+        return ModelBase(json)
+    case .UPLOAD_FILES:
+        return ModelUploadFileList(json)
+    case .CANCEL_EXIT:
+        return ModelUser(json)
     default:
         break
     }

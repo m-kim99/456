@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupAuthCodeVC" customModule="Traystorage" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupPage2VC" customModule="Traystorage" customModuleProvider="target">
             <connections>
                 <outlet property="btnConfirmCode" destination="elo-fb-Rp6" id="FHO-OA-ah3"/>
                 <outlet property="btnNext" destination="66K-LX-tfi" id="C5d-iv-Brd"/>
@@ -33,41 +33,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qn-0d-0dZ" userLabel="root">
                     <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="npD-yq-SDZ" userLabel="header">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                            <subviews>
-                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.66000000000000003" translatesAutoresizingMaskIntoConstraints="NO" id="oOb-U4-qXT">
-                                    <rect key="frame" x="0.0" y="56" width="375" height="4"/>
-                                    <color key="tintColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </progressView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWi-23-e2Z" userLabel="back">
-                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="gWi-23-e2Z" secondAttribute="height" id="tDQ-AZ-gEG"/>
-                                    </constraints>
-                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                    <state key="normal" image="ic_back"/>
-                                    <connections>
-                                        <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="REj-Wo-7tV"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="4Bu-iY-bvK"/>
-                                <constraint firstAttribute="bottom" secondItem="gWi-23-e2Z" secondAttribute="bottom" id="MKZ-fm-5ql"/>
-                                <constraint firstItem="oOb-U4-qXT" firstAttribute="leading" secondItem="npD-yq-SDZ" secondAttribute="leading" id="ZTZ-xv-eht"/>
-                                <constraint firstItem="gWi-23-e2Z" firstAttribute="leading" secondItem="npD-yq-SDZ" secondAttribute="leading" id="bha-g8-Uz5"/>
-                                <constraint firstItem="gWi-23-e2Z" firstAttribute="top" secondItem="npD-yq-SDZ" secondAttribute="top" id="is3-OK-baZ"/>
-                                <constraint firstAttribute="bottom" secondItem="oOb-U4-qXT" secondAttribute="bottom" id="pE9-wb-39X"/>
-                                <constraint firstAttribute="trailing" secondItem="oOb-U4-qXT" secondAttribute="trailing" id="yMs-qy-QBf"/>
-                            </constraints>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ak-5o-tPQ" userLabel="content">
-                            <rect key="frame" x="0.0" y="60" width="375" height="674"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                             <subviews>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qO6-Kg-281">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="674"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zq7-HX-ejf" userLabel="scroll content">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="461.33333333333331"/>
@@ -91,7 +61,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="2/3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ka-fG-Y9B" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="313.66666666666669" y="9.3333333333333428" width="21.333333333333314" height="17"/>
+                                                                    <rect key="frame" x="313.66666666666669" y="9.3333333333333286" width="21.333333333333314" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -216,7 +186,7 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNF-Xi-RO8">
                                                                             <rect key="frame" x="0.0" y="37" width="335" height="56"/>
                                                                             <subviews>
-                                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Certification number input" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BRO-02-Jd2" customClass="ErrorTextField" customModule="Material">
+                                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Certification number input" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BRO-02-Jd2" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="56"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="56" id="E3k-Q0-vGV"/>
@@ -225,7 +195,7 @@
                                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                                     <userDefinedRuntimeAttributes>
                                                                                         <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholder" value="certification_number_hint"/>
-                                                                                        <userDefinedRuntimeAttribute type="number" keyPath="errorVerticalOffset">
+                                                                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                                                             <real key="value" value="15"/>
                                                                                         </userDefinedRuntimeAttribute>
                                                                                     </userDefinedRuntimeAttributes>
@@ -397,18 +367,15 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                     <constraints>
+                        <constraint firstItem="8ak-5o-tPQ" firstAttribute="top" secondItem="0qn-0d-0dZ" secondAttribute="top" id="2rc-H7-c20"/>
                         <constraint firstItem="8ak-5o-tPQ" firstAttribute="leading" secondItem="0qn-0d-0dZ" secondAttribute="leading" id="BoP-ZQ-sL8"/>
-                        <constraint firstItem="npD-yq-SDZ" firstAttribute="leading" secondItem="0qn-0d-0dZ" secondAttribute="leading" id="DoK-Oi-WsR"/>
                         <constraint firstAttribute="bottom" secondItem="8ak-5o-tPQ" secondAttribute="bottom" id="Mqs-Ld-e2z"/>
-                        <constraint firstAttribute="trailing" secondItem="npD-yq-SDZ" secondAttribute="trailing" id="YHk-pA-ghq"/>
-                        <constraint firstItem="npD-yq-SDZ" firstAttribute="top" secondItem="0qn-0d-0dZ" secondAttribute="top" id="kQV-zO-vFr"/>
-                        <constraint firstItem="8ak-5o-tPQ" firstAttribute="top" secondItem="npD-yq-SDZ" secondAttribute="bottom" id="pIS-sg-WhP"/>
                         <constraint firstAttribute="trailing" secondItem="8ak-5o-tPQ" secondAttribute="trailing" id="q1T-un-RDa"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="0qn-0d-0dZ" secondAttribute="bottom" id="RM9-em-ei6"/>
@@ -464,7 +431,6 @@
     </designables>
     <resources>
         <image name="Icon-Common-24x24-Close" width="24" height="24"/>
-        <image name="ic_back" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

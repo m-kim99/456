@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
@@ -35,10 +35,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="322" height="30"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pxd-ah-i3u">
-                                                <rect key="frame" x="0.0" y="0.0" width="91.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="91.666666666666671" height="30"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="reply wait" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gi-o0-fFX" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                        <rect key="frame" x="8" y="8" width="75.5" height="14"/>
+                                                        <rect key="frame" x="8" y="8" width="75.666666666666671" height="14"/>
                                                         <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="12"/>
                                                         <color key="textColor" red="0.11764705882352941" green="0.19215686274509802" blue="0.61568627450980395" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -56,9 +56,14 @@
                                                     <constraint firstAttribute="bottomMargin" secondItem="9gi-o0-fFX" secondAttribute="bottom" id="ioC-qu-UAA"/>
                                                     <constraint firstItem="9gi-o0-fFX" firstAttribute="leading" secondItem="pxd-ah-i3u" secondAttribute="leadingMargin" id="uu5-M6-4aH"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="25" text="2021.11.01" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWH-L6-5Ro" userLabel="date" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                <rect key="frame" x="99.5" y="0.0" width="222.5" height="30"/>
+                                                <rect key="frame" x="99.666666666666671" y="0.0" width="222.33333333333331" height="30"/>
                                                 <fontDescription key="fontDescription" name="NotoSansKR-Medium" family="Noto Sans KR" pointSize="12"/>
                                                 <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -118,9 +123,6 @@
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                 <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="8"/>
-                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
@@ -144,16 +146,16 @@
     </objects>
     <designables>
         <designable name="2Pd-if-5sz">
-            <size key="intrinsicContentSize" width="34.5" height="17.5"/>
+            <size key="intrinsicContentSize" width="34.333333333333336" height="17.666666666666668"/>
         </designable>
         <designable name="9gi-o0-fFX">
-            <size key="intrinsicContentSize" width="51.5" height="14"/>
+            <size key="intrinsicContentSize" width="51.333333333333336" height="14"/>
         </designable>
         <designable name="eWH-L6-5Ro">
-            <size key="intrinsicContentSize" width="65.5" height="15.5"/>
+            <size key="intrinsicContentSize" width="65.333333333333329" height="15.333333333333334"/>
         </designable>
         <designable name="tMB-od-aNf">
-            <size key="intrinsicContentSize" width="165.5" height="17.5"/>
+            <size key="intrinsicContentSize" width="165.33333333333334" height="17.666666666666668"/>
         </designable>
     </designables>
     <resources>

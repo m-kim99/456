@@ -192,20 +192,16 @@ enum Local : String {
         ud.synchronize()
     }
     
-    public static func setNotShowAdsDate(_ date: String) {
+    public static func setNeverShowPopup(_ never: Bool) {
         let ud: UserDefaults = UserDefaults.standard
-        ud.set(date, forKey: "not_show_ads")
+        ud.set(never, forKey: "never_show_popup")
         ud.synchronize()
     }
     
-    public static func getNotShowAdsDate() -> String! {
+    public static func getNeverShowPopup() -> Bool! {
         let ud: UserDefaults = UserDefaults.standard
-        var date = ud.string(forKey: "not_show_ads")
-        if date == nil {
-            date = ""
-        }
-        
-        return date
+        let never = ud.bool(forKey: "never_show_popup")        
+        return never
     }
     
     public static func removeAutoLogin() {

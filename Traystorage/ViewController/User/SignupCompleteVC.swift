@@ -78,7 +78,7 @@ class SignupCompleteVC: BaseVC {
     
     override func onBackProcess(_ viewController: UIViewController) {
         ConfirmDialog.show(self, title: "signup_cancel_alert_title".localized, message: "signup_cancel_alert_content"._localized, showCancelBtn: true) { [weak self]() -> Void in
-            self?.popToGuidVC()
+            self?.popToStartVC()
         }
     }
 }
@@ -89,7 +89,7 @@ class SignupCompleteVC: BaseVC {
 extension SignupCompleteVC: BaseAction {
     @IBAction func onClickBirthday(_ sender: Any) {
         hideKeyboard()
-        DatepickerDialog.show(self) { [weak self](date) in
+        DatepickerDialog.show(self, date:Date()) { [weak self](date) in
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             self?.tfBirthday.text = dateFormatter.string(from: date)
@@ -139,42 +139,43 @@ extension SignupCompleteVC: UITextFieldDelegate {
 extension SignupCompleteVC: BaseRestApi {
     func makeProfile() {
         guard let name = tfName.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !name.isEmpty else {
-            self.view.showToast("Please input your name")
+            self.view.showToast("empty_name_toast"._localized)
             return
         }
         
         guard name.count >= 2 else {
-            self.view.showToast("Please input your name with 2+ character")
+            self.view.showToast("name_at_less_2_toast"._localized)
             return
         }
         
         guard let email = tfEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !email.isEmpty else {
-            self.view.showToast("Please input your email")
+            self.view.showToast("empty_email_toast"._localized)
             return
         }
         
         guard Validations.email(email) else {
-            self.view.showToast("Invalid email")
+            self.view.showToast("invalid_email_toast"._localized)
             return
         }
         
         let birthDay = tfBirthday.text ?? ""
         
         SVProgressHUD.show()
-        Rest.makeProfile(name: name, birthday: birthDay, gender: userGender, email: email, success: { [weak self] (result) -> Void in
+        
+        Rest.makeProfile(name: name, birthday: birthDay, gender: userGender, email: email, profileImage:"", success: { [weak self, userGender] (result) -> Void in
             SVProgressHUD.dismiss()
-            guard let ret = result else {
-                return
-            }
             
-            if ret.result == 0 {
-                self?.openMainVC()
-            } else {
-                self?.view.showToast(ret.msg)
-            }
-        }, failure: { [weak self](_, err) -> Void in
+            let user = Rest.user!
+            user.name = name
+            user.birthday = birthDay
+            user.gender = userGender
+            user.email = email
+
+            Local.setUser(user)
+            self?.openMainVC()
+        }) { [weak self](_, err) -> Void in
             SVProgressHUD.dismiss()
             self?.view.showToast(err)
-        })
+        }
     }
 }

@@ -80,7 +80,7 @@ class UIFontButton: UIButton {
         case (true, true):
             return AppColor.active
         case (false, true):
-            return AppColor.gray
+            return AppColor.lightGray
         case (_, false):
             break
         }
@@ -90,8 +90,10 @@ class UIFontButton: UIButton {
     func buttonTitleColor() -> UIColor? {
         let buttonState = (isEnabled, isFilled)
         switch buttonState {
-        case (_, true):
+        case (true, true):
             return AppColor.white
+        case (false, true):
+            return AppColor.gray
         case (true, false):
             break
         case (false, false):

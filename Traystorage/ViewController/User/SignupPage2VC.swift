@@ -5,7 +5,7 @@ import UIKit
 //import Material
 
 // signup 2nd screen
-class SignupAuthCodeVC: BaseVC {
+class SignupPage2VC: BaseVC {
     @IBOutlet weak var lblAuthMedia: UILabel!
     @IBOutlet weak var lblSent: UILabel!
     @IBOutlet weak var lblInput: UILabel!
@@ -24,9 +24,14 @@ class SignupAuthCodeVC: BaseVC {
     open var authMedia = ""
     
     var authStatus:UNAuthorizationStatus = .notDetermined
-    
+    weak var nextDelegate: SignupNextDelegate?
     
     var authData: [String: String] = [:] // phone, code
+    
+    var authCode: String?
+    
+    var isPhoneAuth = false
+    var isConfirm = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,47 +53,52 @@ class SignupAuthCodeVC: BaseVC {
     private func changedAuthStatus(auth: UNAuthorizationStatus) {
         self.authStatus = auth
         switch authStatus {
+        case .notDetermined:
+            lblDownTime.stopTimer()
+            groupResend.isHidden = true
+            btnConfirmCode.isHidden = true
+            btnNext.isEnabled = false
         case .authorized:
             lblDownTime.stopTimer()
             btnConfirmCode.isHidden = true
             groupResend.isHidden = true
             btnNext.isEnabled = true
-            break
         case .provisional:
             lblDownTime.startCountDownTimer()
             groupResend.isHidden = false
             btnConfirmCode.isHidden = false
-            self.view.showToast("signup_phone_verify_success"._localized)
-            break
+            self.showToast("signup_phone_verify_success"._localized)
         case .denied:
+            lblDownTime.stopTimer()
+            groupResend.isHidden = true
             btnConfirmCode.isHidden = true
+            btnNext.isEnabled = false
         default:
             btnNext.isEnabled = false
-            break
         }
     }
     
     override func onBackProcess(_ viewController: UIViewController) {
-        ConfirmDialog.show(self, title: "signup_cancel_alert_title".localized, message: "signup_cancel_alert_content"._localized, showCancelBtn: true) { [weak self]() -> Void in
+        showConfirm(title: "signup_cancel_alert_title".localized, message: "signup_cancel_alert_content"._localized, showCancelBtn: true) { [weak self]() -> Void in
             self?.popToStartVC()
         }
     }
         
     private func onPhoneAuthDuplicated() {
-        AlertDialog.show(self, title:"signup_duplicated_phone"._localized, message: "")
+        showAlert(title:"signup_duplicated_phone"._localized, message: "")
     }
 }
 
 //
 // MARK: - Action
 //
-extension SignupAuthCodeVC: BaseAction {
+extension SignupPage2VC: BaseAction {
     @IBAction func onClickPhoneAuth(_ sender: Any) {
         hideKeyboard()
         if let phoneNumber = tfPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines), !phoneNumber.isEmpty {
             sendPhoneAuth(phoneNumber)
         } else {
-            self.view.showToast("empty_phone_toast"._localized)
+            self.showToast("empty_phone_toast"._localized)
         }
     }
     
@@ -111,15 +121,16 @@ extension SignupAuthCodeVC: BaseAction {
     @IBAction func onClickClearPhoneEdit(_ sender: Any) {
         tfPhoneNumber.text = nil
         phoneEditRightView.isHidden = true
+        changedAuthStatus(auth: .notDetermined)
     }
     
     @IBAction func textFieldDidChange(_ sender: UITextField) {
         if sender == tfPhoneNumber {
+            changedAuthStatus(auth: .notDetermined)
             guard let phoneNumber = tfPhoneNumber.text, !phoneNumber.isEmpty else {
                 phoneEditRightView.isHidden = true
                 return
             }
-            
             phoneEditRightView.isHidden = false
         } else if sender == tfCertificationNumber {
             guard let code = tfCertificationNumber.text, !code.isEmpty else {
@@ -137,7 +148,7 @@ extension SignupAuthCodeVC: BaseAction {
 //
 // MARK: - UITextFieldDelegate
 //
-extension SignupAuthCodeVC: UITextFieldDelegate {
+extension SignupPage2VC: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newLen = (textField.text?.count ?? 0) - range.length + string.count
@@ -155,11 +166,8 @@ extension SignupAuthCodeVC: UITextFieldDelegate {
 //
 // MARK: - Navigation
 //
-extension SignupAuthCodeVC: BaseNavigation {
+extension SignupPage2VC: BaseNavigation {
     private func goNext(phone: String, code: String) {
-        let vc = SignupAgreeTerms(nibName: "vc_signup_agree_terms", bundle: nil)
-//        vc.authType = authType
-//        vc.authMedia = authMedia
         var params: [String: Any] = [:]
         for (k, v) in self.params {
             params[k] = v
@@ -167,42 +175,34 @@ extension SignupAuthCodeVC: BaseNavigation {
         
         params["phone"] = phone
         params["code"] = code
-        self.pushVC(vc, animated: true, params: params)
+        
+        if let nextDelegate = self.nextDelegate {
+            nextDelegate.onClickNext(step: .agree, params: params)
+        }
     }
 }
 
 //
 // MARK: - RestApi
 //
-extension SignupAuthCodeVC: BaseRestApi {
+extension SignupPage2VC: BaseRestApi {
     private func sendPhoneAuth(_ phone: String) {
         SVProgressHUD.show()
         if authType == AuthType.phone {
             Rest.request_code_for_signup(phoneNumber: phone, success: {
                 [weak self](result) in
                 SVProgressHUD.dismiss()
+                self?.authCode = result!.code
                 self?.changedAuthStatus(auth: .provisional)
             }) { [weak self] (code, msg) in
                 SVProgressHUD.dismiss()
                 if code == 206 {
                     self?.onPhoneAuthDuplicated()
                 } else {
-                    self?.view.showToast(msg)
+                    self?.showToast(msg)
                 }
             }
         } else {
-            Rest.sendCertKey(email: authMedia, success: { (result) in
-                SVProgressHUD.dismiss()
-
-                let messageEmail = getLangString("dialog_auth_code_email_sent") + "\n\n\n" + self.authMedia
-
-                ConfirmDialog.show(self, title:getLangString("send_success"), message: messageEmail, showCancelBtn : false){
-
-                }
-            }, failure: { _, msg in
-                SVProgressHUD.dismiss()
-                self.view.showToast(msg)
-            })
         }
     }
     
@@ -210,29 +210,13 @@ extension SignupAuthCodeVC: BaseRestApi {
         guard let phone = tfPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines), !phone.isEmpty else {
             return
         }
-
-        SVProgressHUD.show()
         
-        if authType == AuthType.phone {
-            Rest.verifyPhoneCode(phone: phone, code: code, isContinue: 1, success: { [weak self](result) in
-                SVProgressHUD.dismiss()
-                let phoneVerify = result as! ModelBase
-                self?.authData["phone"] = phone
-                self?.authData["code"] = phoneVerify.code.description
-                self?.changedAuthStatus(auth: .authorized)
-            }) { [weak self](_, msg) in
-                SVProgressHUD.dismiss()
-//                self?.changedAuthStatus(auth: .denied)
-                self?.view.showToast(msg)
-            }
+        if code == authCode {
+            authData["phone"] = phone
+            authData["code"] = code
+            changedAuthStatus(auth: .authorized)
         } else {
-//            Rest.verifyCertKey(email: authMedia, certKey: certKey, success: { (result) in
-//                SVProgressHUD.dismiss()
-//                self.goNext()
-//            }, failure: { _, msg in
-//                SVProgressHUD.dismiss()
-//                self.view.showToast(msg)
-//            })
+            self.showToast(localized: "mismatch_cert_code_toast")
         }
     }
 }

@@ -6,13 +6,20 @@ class IntroVC: BaseVC {
     @IBOutlet var pageScrollView: UIScrollView!
     @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var introView: UIView!
-    @IBOutlet var backgroundView: UIView!
+    @IBOutlet var loadingProgressView: UIView!
     @IBOutlet var startView: UIView!
     @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var loadingImage1: UIImageView!
+    @IBOutlet weak var loadingImage2: UIImageView!
+    @IBOutlet weak var loadingImage3: UIImageView!
     
     let pageCount = 2
     
     private var currentPage = 0
+    
+    var loadingImageOffset = 0
+    var loadingImages: [UIImage] = []
+    var loadingProgressTimer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +28,10 @@ class IntroVC: BaseVC {
         signupButton.layer.shadowOffset = CGSize.zero
         signupButton.layer.shadowRadius = 8
         signupButton.layer.masksToBounds = false
+        
+        loadingImages.append(UIImage(named: "loading1")!)
+        loadingImages.append(UIImage(named: "loading2")!)
+        loadingImages.append(UIImage(named: "loading3")!)
 
 //        SVProgressHUD.setBackgroundColor(UIColor.clear)
 //        SVProgressHUD.setRingThickness(5)
@@ -28,8 +39,10 @@ class IntroVC: BaseVC {
 //        loadAppInfo()
 //        nextScreen(false)
 //        ConfirmDialog.show(self, title: "Please verify your mobile phone number.", message: "", showCancelBtn: true, okAction: nil)
+
         
-        startApp()
+        changeLoadingViewVisiblity(isHidden: false)
+        checkVersion()
     }
 
     func startApp() {
@@ -52,7 +65,7 @@ class IntroVC: BaseVC {
             if skipIntro {
                 self.nextScreen(false)
             } else {
-                backgroundView.isHidden = true
+                changeLoadingViewVisiblity(isHidden: true)
                 introView.isHidden = false;
             }
         }
@@ -93,6 +106,57 @@ class IntroVC: BaseVC {
         pageControl.currentPage = index
     }
     
+    func advanceLoaddingImage() {
+        loadingImageOffset += 1
+        loadingImageOffset %= 3
+        
+        loadingImage1.image = loadingImages[loadingImageOffset % 3]
+        loadingImage2.image = loadingImages[(loadingImageOffset + 1) % 3]
+        loadingImage3.image = loadingImages[(loadingImageOffset + 2) % 3]
+    }
+    
+    func changeLoadingViewVisiblity(isHidden: Bool) {
+        loadingProgressView.isHidden = isHidden
+        if isHidden {
+            stopLoadingProgressTimer()
+        } else {
+            startLoadingProgressTimer()
+        }
+    }
+    
+    func startLoadingProgressTimer() {
+        stopLoadingProgressTimer()
+        
+        self.loadingProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true, block: {[weak self] timer in
+            self?.advanceLoaddingImage()
+        })
+    }
+    
+    func stopLoadingProgressTimer() {
+        if let timer = loadingProgressTimer {
+            timer.invalidate()
+            loadingProgressTimer = nil
+        }
+    }
+    
+    static func logOutProcess(_ fromVC: UIViewController) {
+        Local.deleteUser()
+        Rest.user = nil
+        Local.removeAutoLogin()
+        
+        if let nv = fromVC.navigationController {
+            let vcs = nv.viewControllers
+            for vc in vcs {
+                if vc is IntroVC {
+                    let introVC = vc as! IntroVC
+                    introVC.openLogSingupView()
+                    nv.popToViewController(vc, animated: true)
+                    break
+                }
+            }
+        }
+    }
+    
     
     // MARK: - Action
 
@@ -125,15 +189,16 @@ class IntroVC: BaseVC {
 //
 extension IntroVC: BaseNavigation {
     func openMainVC() {
+        changeLoadingViewVisiblity(isHidden: true)
         let mainVC = UIStoryboard(name: "vc_main", bundle: nil).instantiateInitialViewController()
-        self.pushVC(mainVC! as! BaseVC, animated: true)
+        pushVC(mainVC! as! BaseVC, animated: true)
     }
 
     func openLogSingupView() {
 //        self.replaceVC(GuideVC(nibName: "vc_guide", bundle: nil), animated: true)
-        self.backgroundView.isHidden = true
-        self.introView.isHidden = true
-        self.startView.isHidden = false
+        changeLoadingViewVisiblity(isHidden: true)
+        introView.isHidden = true
+        startView.isHidden = false
     }
     
     @IBAction func onSignup(_ sender: Any) {
@@ -143,6 +208,10 @@ extension IntroVC: BaseNavigation {
     @IBAction func onLogin(_ sender: Any) {
 //        replaceVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
         pushVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
+    }
+    
+    @IBAction func onSignupSNS(_ sender: Any) {
+        onSignup(sender)
     }
 }
 
@@ -169,30 +238,50 @@ extension IntroVC: BaseRestApi {
 //    }
 
     func autoLogin(_ user: (id: String, pwd: String)) {
-        SVProgressHUD.show()
+//        SVProgressHUD.show()
         Rest.login(id: user.id, pwd: user.pwd, success: {[weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
-            guard let ret = result else {
-                return
-            }
-            
-            if ret.result == 0 {
-                Rest.user = (result as! ModelUser)
-                Rest.user.pwd = user.pwd
-                Local.setUser(Rest.user)
-                self?.openMainVC()
-            } else {
-                Local.removeAutoLogin()
-                self?.view.showToast(ret.msg)
-                self?.openLogSingupView()
-            }
+//            SVProgressHUD.dismiss()
+            Rest.user = (result as! ModelUser)
+            Rest.user.pwd = user.pwd
+            Local.setUser(Rest.user)
+            self?.openMainVC()
         }, failure: { [weak self](code, msg) in
             SVProgressHUD.dismiss()
-            Local.removeAutoLogin()
-            self?.view.showToast(msg)
+            
+            let resposeCode = ResponseResultCode(rawValue: code) ?? .ERROR_SERVER
+            
+            switch resposeCode {
+            case .ERROR_SERVER:
+//                AlertDialog.show(self?, title: "network_conect_fail_title"._localized, message: "network_conect_fail_desc"._localized);
+                break
+            case .ERROR_DB:
+                break
+            case .ERROR_USER_PAUSED:
+                break
+            case .ERROR_WRONG_PWD:
+                Local.removeAutoLogin()
+                break
+            default:
+                self?.view.showToast(msg)
+                break
+            }
+            
 //            if code == 205 {
                 self?.openLogSingupView()
 //            }
+        })
+    }
+    
+    func checkVersion() {
+//        SVProgressHUD.show()
+        Rest.getVersionInfo(success: {[weak self] (result) -> Void in
+//            SVProgressHUD.dismiss()
+            print("version\(result!)")
+            self?.startApp()
+        }, failure: { [weak self](code, msg) in
+//            SVProgressHUD.dismiss()
+            self?.showAlert(title: "network_conect_fail_title"._localized
+                            ,message: "network_conect_fail_desc"._localized)
         })
     }
 }

@@ -3,18 +3,51 @@ import SwiftyJSON
 import Toast_Swift
 import UIKit
 
+enum IDRequest: Int {
+    case findID = 0
+    case changePassword = 1
+    case withDrawal = 2
+    case withDrawalCancel = 3
+}
+
 class FindIdVC: BaseVC {
     @IBOutlet weak var tfPhonenumber: UITextField!
     @IBOutlet weak var tfCertification: UITextField!
     @IBOutlet weak var lblDownTime: CountDownTimeLabel!
     
-    var countDownTimer:  Timer?
-    var countDownTime: Int = 180
+    
+    @IBOutlet weak var phoneEditRightView: UIView!
+    @IBOutlet weak var btnConfirm: UIButton!
+    @IBOutlet weak var groupResend: UIView!
+    
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblDesc: UILabel!
+    
+    var authStatus:UNAuthorizationStatus = .notDetermined
+    var authCode: String?
+    var findId: String?
+    
+    var isPhoneVerify = false
+    var findIDRequest: IDRequest = .findID
+    var loginId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lblDownTime.timeIsUpDelegate = self
 //        initLang()
 //        initVC()
+        
+        if findIDRequest == .withDrawal {
+            lblDesc.text = "phone_verify_withdraw_desc"._localized
+        }
+        
+        if findIDRequest == .withDrawal || findIDRequest == .changePassword {
+            lblTitle.text = "phone_verify_title"._localized
+        }
+        
+        if findIDRequest == .changePassword {
+            loginId = Rest.user!.loginId
+        }
     }
     
     private func initLang() {
@@ -30,7 +63,26 @@ class FindIdVC: BaseVC {
     }
     
     private func onResetSuccess(userID: String) {
-        pushVC(CheckIdVC(nibName: "vc_check_id", bundle: nil), animated: true, params: ["userID": userID])
+        switch findIDRequest {
+        case .findID:
+            pushVC(CheckIdVC(nibName: "vc_check_id", bundle: nil), animated: true, params: ["userID": userID])
+            break
+        case .changePassword:
+            let user = Rest.user!
+
+            pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true, params: ["userID" : user.loginId])
+            break
+        case .withDrawal:
+            showConfirm(title: "withdrawal_confirm_title"._localized, message: "", showCancelBtn: true) {
+                [weak self] in
+                self?.requestExit()
+            }
+            
+        case .withDrawalCancel:
+            cancelExit(userID: userID)
+            
+            break
+        }
     }
     
     private func showNonRegisterPhone() {
@@ -41,15 +93,71 @@ class FindIdVC: BaseVC {
         AlertDialog.show(self, title: title, message: message)
     }
     
+    private func changeAuthStatus(auth: UNAuthorizationStatus) {
+        authStatus = auth
+        switch auth {
+        case .denied:
+            groupResend.isHidden = true
+            btnConfirm.isEnabled = false
+        case .authorized:
+            lblDownTime.stopTimer()
+            lblDownTime.isHidden = true
+            groupResend.isHidden = true
+            break
+        case .provisional:
+            groupResend.isHidden = false
+            lblDownTime.startCountDownTimer()
+            lblDownTime.isHidden = false
+            break
+        default:
+            break
+        }
+    }
+    
+    func openMainVC() {
+        let mainVC = UIStoryboard(name: "vc_main", bundle: nil).instantiateInitialViewController()
+        self.pushVC(mainVC as! BaseVC, animated: true)
+    }
+    
+    private func onLoginSuccess(user: ModelUser!) {
+        Rest.user = user
+        Local.setUser(Rest.user)
+
+        let ud = UserDefaults.standard
+        ud.removeObject(forKey: Local.PREFS_APP_AUTO_LOGIN.rawValue)
+        ud.synchronize()
+        openMainVC()
+    }
+    
     //
     // MARK: - Action
     //
     
     @IBAction func onClickConfirm(_ sender: Any) {
         hideKeyboard()
-        resetPwd()
+        doFindId()
     }
     
+    @IBAction func textDidChanged(_ sender: UITextField) {
+        if sender == tfPhonenumber {
+            guard let phone = tfPhonenumber.text, !phone.isEmpty else {
+                phoneEditRightView.isHidden = true
+                btnConfirm.isEnabled = false
+                return
+            }
+            
+            phoneEditRightView.isHidden = false
+        } else if sender == tfCertification {
+            guard let code = tfCertification.text, !code.isEmpty else {
+                btnConfirm.isEnabled = false
+                return
+            }
+            
+            if authStatus == .provisional {
+                btnConfirm.isEnabled = true
+            }
+        }
+    }
     @IBAction func onClickAuthRequest(_ sender: Any) {
         hideKeyboard()
         guard let phoneNumber = tfPhonenumber.text, !phoneNumber.isEmpty else {
@@ -59,18 +167,21 @@ class FindIdVC: BaseVC {
   
         authRequest(phoneNumber: phoneNumber)
     }
+    
+    @IBAction func onClickClearPhoneEdit(_ sender: Any) {
+        tfPhonenumber.text = nil
+        phoneEditRightView.isHidden = true
+        btnConfirm.isEnabled = false
+    }
 }
 
 //
 // MARK: - UITextFieldDelegate
 //
 extension FindIdVC: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 //        tfEmail.resignFirstResponder()
-        resetPwd()
+        doFindId()
         return true
     }
     
@@ -93,36 +204,26 @@ extension FindIdVC: UITextFieldDelegate {
 // MARK: - RestApi
 //
 extension FindIdVC: BaseRestApi {
-    func resetPwd() {
-        guard let phoneNumber = tfPhonenumber.text?.trimmingCharacters(in: .whitespacesAndNewlines), !phoneNumber.isEmpty else {
-            showAlert(title: "empty_phone_alert"._localized, message: "")
-            return
-        }
-        
+    func doFindId() {
         guard let code = tfCertification.text?.trimmingCharacters(in: .whitespacesAndNewlines), !code.isEmpty else {
             return
         }
         
-        SVProgressHUD.show()
-        Rest.find_login_id(phoneNumber: phoneNumber, code: code, success: {[weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
-            
-            let user = result as! ModelUser
-            self?.onResetSuccess(userID: user.uid)
-       
-        }) {[weak self] (code, err) -> Void in
-            SVProgressHUD.dismiss()
-//            if code == 105 { // verify code is wrong
-                self?.showAlert(title: err, message: "")
-//            }
+        if authCode == code, let foundId = findId {
+            changeAuthStatus(auth: .authorized)
+            onResetSuccess(userID: foundId)
+        } else {
+            self.view.showToast("mismatch_cert_code_toast"._localized)
         }
     }
     
     func authRequest(phoneNumber: String) {
         SVProgressHUD.show()
-        Rest.send_code(phoneNumber: phoneNumber, success: { [weak self](result) -> Void in
+        Rest.request_code_for_find(loginId:loginId ?? "", phoneNumber: phoneNumber, success: { [weak self](result) -> Void in
             SVProgressHUD.dismiss()
-            self?.lblDownTime.startCountDownTimer()
+            self?.authCode = result?.code
+            self?.findId = result?.loginId
+            self?.changeAuthStatus(auth: .provisional)
         }) { [weak self](code, err) -> Void in
             SVProgressHUD.dismiss()
             if code == 202 {
@@ -131,5 +232,45 @@ extension FindIdVC: BaseRestApi {
                 self?.view.showToast(err)
             }
         }
+    }
+    
+    func requestExit() {
+        SVProgressHUD.show()
+        Rest.requestExit(success: { [weak self](result) -> Void in
+            SVProgressHUD.dismiss()
+            
+            self?.pushVC(WithdrawalResultVC(nibName: "vc_withdrawal_result", bundle: nil), animated: true)
+        }) { [weak self](code, err) -> Void in
+            SVProgressHUD.dismiss()
+            if code == 202 {
+                self?.showNonRegisterPhone()
+            } else {
+                self?.view.showToast(err)
+            }
+        }
+    }
+    
+    func cancelExit(userID: String) {
+        SVProgressHUD.show()
+        Rest.cancelExit(userID: userID, success: { [weak self](result) -> Void in
+            SVProgressHUD.dismiss()
+            
+            let user = result! as! ModelUser
+            self?.onLoginSuccess(user: user)
+        }) { [weak self](code, err) -> Void in
+            SVProgressHUD.dismiss()
+            if code == 202 {
+                self?.showNonRegisterPhone()
+            } else {
+                self?.view.showToast(err)
+            }
+        }
+    }
+}
+
+extension FindIdVC: CountDownTimeIsUp {
+    func onTimeIsUp(sender: CountDownTimeLabel) {
+        sender.isHidden = true
+        changeAuthStatus(auth: .denied)
     }
 }

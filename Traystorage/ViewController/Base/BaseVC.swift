@@ -137,7 +137,7 @@ class BaseVC: UIViewController {
         }
     }
     
-    func popToGuidVC(_ animated: Bool = true) {
+    func popToStartVC(_ animated: Bool = true) {
         guard let vcs = self.navigationController?.viewControllers.reversed() else {
             return
         }
@@ -186,5 +186,42 @@ class BaseVC: UIViewController {
     @IBAction func onClickBack(_ sender: Any) {
         hideKeyboard()
         onBackProcess(self)
+    }
+    
+    
+    func showToast(localized: String) {
+        showToast(localized._localized)
+    }
+    
+    
+    func showToast(_ text: String) {
+        if let parentVC = parent {
+            parentVC.view.showToast(text)
+        } else {
+            self.view.showToast(text)
+        }
+    }
+    
+    func showAlert(title: String,
+                   message: String = "",
+                   okAction: AlertDialog.Callback? = nil) {
+        var vc: UIViewController = self
+        if let parentVC = parent {
+            vc = parentVC
+        }
+        
+        AlertDialog.show(vc, title: title, message: message, okAction: okAction)
+    }
+    
+    func showConfirm(title: String,
+                     message: String,
+                     showCancelBtn: Bool,
+                     okAction: ConfirmDialog.Callback? = nil) {
+        var vc: UIViewController = self
+        if let parentVC = parent {
+            vc = parentVC
+        }
+        
+        ConfirmDialog.show(vc, title: title, message: message, showCancelBtn: showCancelBtn, okAction: okAction)
     }
 }

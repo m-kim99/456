@@ -30,6 +30,8 @@ class DocumentRegisterVC: BaseVC {
     let viewTagStartImage = 1000
     let viewTagStartTag = 2000
     
+    var isModified = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,7 +66,6 @@ class DocumentRegisterVC: BaseVC {
             
             origDoc.tags.replaceSubrange(0..<origDoc.tags.count, with: newDoc.tags)
             origDoc.images.replaceSubrange(0..<origDoc.images.count, with: newDoc.images)
-            origDoc.imagesUrlList.replaceSubrange(0..<origDoc.imagesUrlList.count, with: newDoc.imagesUrlList)
         } else {
             newDoc.doc_id = origDoc.doc_id
             newDoc.user_id = origDoc.user_id
@@ -74,8 +75,27 @@ class DocumentRegisterVC: BaseVC {
             
             newDoc.tags.replaceSubrange(0..<newDoc.tags.count, with: origDoc.tags)
             newDoc.images.replaceSubrange(0..<newDoc.images.count, with: origDoc.images)
-            newDoc.imagesUrlList.replaceSubrange(0..<newDoc.imagesUrlList.count, with: origDoc.imagesUrlList)
         }
+    }
+    
+    private func onDocumentAddSuccess(doc: ModelDocument!) {
+        if let popDelegate = popDelegate {
+            popDelegate.onWillBack("insert", doc)
+        }
+        
+        
+        let detailVC = DocumentDetailVC(nibName: "vc_document_detail", bundle: nil)
+        detailVC.document = doc
+        detailVC.isAppearFromAddDoc = true
+        self.pushVC(detailVC, animated: true)
+    }
+    
+    private func onDocumentEditSuccess(doc: ModelDocument!) {
+        if let popDelegate = self.popDelegate {
+            copyDocument(toOrigin: true)
+            popDelegate.onWillBack("update", doc)
+        }
+        popVC()
     }
 
     @IBAction func onClickRegister(_ sender: Any) {
@@ -88,21 +108,14 @@ class DocumentRegisterVC: BaseVC {
             self.view.showToast("doc_content_empty"._localized)
             return
         }
-        
+
         let doc = newDocument
-        
-        let tags = doc.tags.joined(separator: ",")
-        
-        var imageURLs: [String] = []
-        for url in doc.imagesUrlList {
-            if url != nil {
-                imageURLs.append(url!)
-            }
+        if doc.tags.count < 1 {
+            self.view.showToast("doc_tag_empty"._localized)
+            return
         }
-        
-        let images = imageURLs.joined(separator: ",")
-        
-        documentEditDown(title: title, content: content, lable: doc.label, tags: tags, images: images)
+
+        documentImageUpload(title:title, content: content)
     }
 
     @IBAction func onClickAddImage(_ sender: Any) {
@@ -124,6 +137,7 @@ class DocumentRegisterVC: BaseVC {
             } else {
                 doc.tags.insert(tagText, at: 0)
                 tagCollectionView.reloadData()
+                isModified = true
                 tfTag.text = nil
             }
         } else {
@@ -138,6 +152,16 @@ class DocumentRegisterVC: BaseVC {
         tfDetail.resignFirstResponder()
     }
     
+    override func onBackProcess(_ viewController: UIViewController) {
+        if !isModified {
+            super.onBackProcess(viewController)
+        }
+        
+        ConfirmDialog.show(self, title: "doc_discard_title"._localized, message: "doc_discard_desc"._localized, showCancelBtn: true) { [weak self] () -> Void in
+            self?.popVC()
+        }
+    }
+    
     private func updateDetailPlaceHolderVisible(_ detail: String) {
         lblDetailPlaceHolder.isHidden = !detail.isEmpty
     }
@@ -150,6 +174,8 @@ class DocumentRegisterVC: BaseVC {
         }
         self.imageCollectionView.reloadData()
         self.updateImageAddButtonAndCollectionView()
+        
+        isModified = true
     }
     
     private func updateImageAddButtonAndCollectionView() {
@@ -159,42 +185,75 @@ class DocumentRegisterVC: BaseVC {
         imageCollectionView.isHidden = noImage
     }
     
-    private func documentEditDown(title: String, content: String, lable: Int, tags: String, images: String) {
-        SVProgressHUD.show()
-        
+    private func documentImageUpload(title:String!, content:String!) {
         let doc = newDocument
         
+        let tags = doc.tags.joined(separator: ",")
+
+        var files:[Data] = []
+        var imageURLs: [String] = []
+        for item in doc.images {
+            if let img = item["image"] as? UIImage {
+                let data = img.jpegData(compressionQuality: 0.5)!
+                files.append(data);
+            } else if let urlString = item["url"] as? String, let url = URL(string: urlString) {
+                imageURLs.append(url.lastPathComponent)
+            }
+        }
+        
+        if files.count > 0 {
+            SVProgressHUD.show()
+            Rest.uploadFiles(files: files) { [weak self](result) in
+                SVProgressHUD.dismiss()
+                
+                let fileList = result as! ModelUploadFileList
+                imageURLs.append(contentsOf: fileList.fileNames)
+                
+                let images = imageURLs.joined(separator: ",")
+                
+                self?.documentEditDone(title: title, content: content, lable: doc.label, tags: tags, images: images)
+
+            } failure: { [weak self](_, err) in
+                SVProgressHUD.dismiss()
+                self?.view.showToast(err)
+            }
+        } else {
+            let images = imageURLs.joined(separator: ",")
+
+            documentEditDone(title: title, content: content, lable: doc.label, tags: tags, images: images)
+        }
+    }
+    
+    private func documentEditDone(title: String, content: String, lable: Int, tags: String, images: String) {
+        let doc = newDocument
+        
+        doc.title = title
+        doc.content = content
+        doc.label = lable
+        doc.tags.removeAll()
+        
+        let tagList = tags.split(separator: ",")
+        for tag in tagList {
+            doc.tags.append(tag.description)
+        }
+
+        SVProgressHUD.show()
         if isNewDocument {
             Rest.documentInsert(title: title, content: content, label: doc.label, tags: tags, images: images) { [weak self](result) in
-
-                if let popDelegate = self?.popDelegate {
-                    popDelegate.onWillBack("insert", result!)
-                }
-                
-                self?.popVC()
+                SVProgressHUD.dismiss()
+                self?.isModified = true
+                let addedDoc = result as! ModelDocument
+                doc.doc_id = addedDoc.doc_id
+                self?.onDocumentAddSuccess(doc: doc)
             } failure: { [weak self](_, err) in
                 SVProgressHUD.dismiss()
                 self?.view.showToast(err)
             }
         } else {
             Rest.documentUpdate(id: doc.doc_id.description, title: title, content: content, label: lable, tags: tags, images: images, success: { [weak self] (result) in
-                
-                if let popDelegate = self?.popDelegate {
-                    doc.title = title
-                    doc.content = content
-                    doc.label = lable
-                    doc.tags.removeAll()
-                    
-                    let tagList = tags.split(separator: ",")
-                    for tag in tagList {
-                        doc.tags.append(tag.description)
-                    }
-                    
-                    self?.copyDocument(toOrigin: true)
-                    popDelegate.onWillBack("update", doc)
-                }
-                self?.popVC()
-                
+                SVProgressHUD.dismiss()
+                self?.isModified = true
+                self?.onDocumentEditSuccess(doc: doc)
             }) {[weak self](_, err) in
                 SVProgressHUD.dismiss()
                 self?.view.showToast(err)
@@ -213,13 +272,13 @@ class DocumentRegisterVC: BaseVC {
             let index = viewTag - viewTagStartTag
             doc.tags.remove(at: index)
             tagCollectionView.reloadData()
-            
-            self.view.showToast(index.description + " - tag was deleted.")
+            isModified = true
+            self.view.showToast("doc_tag_deleted"._localized)
         } else {
             let index = viewTag - viewTagStartImage
             doc.removeImage(at: index)
             imageCollectionView.reloadData()
-            
+            isModified = true
             updateImageAddButtonAndCollectionView()
         }
     }
@@ -228,6 +287,7 @@ class DocumentRegisterVC: BaseVC {
 extension DocumentRegisterVC: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         updateDetailPlaceHolderVisible(textView.text ?? "")
+        isModified = true
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -247,6 +307,9 @@ extension DocumentRegisterVC: UITextFieldDelegate {
             return false
         }
         
+        if textField == tfTitle {
+            isModified = true
+        }
 
         return true
     }
@@ -279,11 +342,7 @@ extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelega
         switch collectionViewTag {
         case viewTagImageCollectionView:
             if let imageView = cell.viewWithTag(2) as? UIImageView {
-                if let url = doc.imagesUrlList[index] {
-                    imageView.kf.setImage(with: URL(string: url))
-                } else {
-                    imageView.image = doc.images[index]
-                }
+                doc.setToImageView(at: index, imageView: imageView)
             }
             break
         case viewTagTagCollectionView:
@@ -328,6 +387,7 @@ extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelega
             break
         case viewTagLabelCollectionView:
             doc.label = indexPath.row
+            isModified = true
             labelCollectionView.reloadData()
             break
         default:

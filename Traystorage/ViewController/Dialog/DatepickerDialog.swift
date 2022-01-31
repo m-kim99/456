@@ -7,27 +7,30 @@ class DatepickerDialog: BaseVC {
     @IBOutlet weak var vwContents: UIView!
     
     private var _selected: Callback?
+    private var _date: Date?
     
     public typealias Callback = (_ date: Date) -> ()
     
-    static func show(_ vc: UIViewController, selected: Callback?) {
-        let popup = DatepickerDialog("dialog_datepicker", selected: selected)
+    static func show(_ vc: UIViewController, date: Date?, selected: Callback?) {
+        let popup = DatepickerDialog("dialog_datepicker", date:date, selected: selected)
         popup.modalPresentationStyle = .overCurrentContext
         popup.modalTransitionStyle = .crossDissolve
         vc.present(popup, animated: true, completion: nil)
     }
     
-    convenience init(_ nibName: String?, selected: Callback?) {
+    convenience init(_ nibName: String?, date: Date?, selected: Callback?) {
         self.init(nibName: nibName, bundle: nil)
         
+        self._date = date
         self._selected = selected
     }
     
     override func viewDidLoad() {
             super.viewDidLoad()
 
-        lblTitle.text = getLangString("date_select")
+        lblTitle.text = "date_select"._localized
         datepickerView.maximumDate = Date()
+        datepickerView.date = self._date ?? Date()
     }
 
 

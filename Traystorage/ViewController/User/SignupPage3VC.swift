@@ -3,7 +3,7 @@ import SwiftyJSON
 import Toast_Swift
 import UIKit
 
-class SignupAgreeTerms: BaseVC {
+class SignupPage3VC: BaseVC {
     @IBOutlet weak var btnNext: UIButton!
     
     @IBOutlet weak var btnAllAgree: UIButton!
@@ -14,14 +14,15 @@ class SignupAgreeTerms: BaseVC {
     @IBOutlet weak var btnTermsView: UIButton!
     @IBOutlet weak var btnPolicyView: UIButton!
     
+    
     open var authType = AuthType.phone
     open var authMedia = ""
     open var authCode = ""
     
-    var isAllAgree = false
+    var isTermAgree = false
+    var isPrivacyAgree = false
     
-    var isTermAgree = true
-    var isPrivacyAgree = true
+    weak var nextDelegate: SignupNextDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +32,10 @@ class SignupAgreeTerms: BaseVC {
         updateAgreeState()
     }
     
-    override func onBackProcess(_ viewController: UIViewController) {
-        ConfirmDialog.show(self, title: "signup_cancel_alert_title".localized, message: "signup_cancel_alert_content"._localized, showCancelBtn: true) { [weak self]() -> Void in
-            self?.popToStartVC()
-        }
-    }
-    
     private func updateAgreeState() {
-        let imageName = isAllAgree ? "Icon-C-CheckOn-24" : "Icon-C-CheckOff-24"
+        let imageName = (isTermAgree && isPrivacyAgree) ? "Icon-C-CheckOn-24" : "Icon-C-CheckOff-24"
         self.btnAllAgree.setImage(UIImage(named: imageName), for: .normal)
-        btnNext.isEnabled = isAllAgree
-        btnTermsAgree.isEnabled = isAllAgree
-        btnPolicyAgree.isEnabled = isAllAgree
+        btnNext.isEnabled = isTermAgree && isPrivacyAgree
         
         let checkImage = "Icon-C-Check-24"
         let disableCheckImage = "Icon-C-Check-Gray-24 Copy"
@@ -50,19 +43,15 @@ class SignupAgreeTerms: BaseVC {
         
         let termImage = UIImage(named: termImageName)
         btnTermsAgree.setImage(termImage, for: .normal)
-        btnTermsView.isEnabled = isAllAgree && isTermAgree
         
         let policyImageName = isPrivacyAgree ? checkImage : disableCheckImage
         let policyImage = UIImage(named: policyImageName)
         btnPolicyAgree.setImage(policyImage, for: .normal)
-        btnPolicyView.isEnabled = isAllAgree && isPrivacyAgree
-        
-        btnTermsAgree.setTitle("terms_of_use_required"._localized, for: .normal)
-        btnPolicyAgree.setTitle("privacy_policy_required"._localized, for: .normal)
     }
     
     private func signup() {
         SVProgressHUD.show()
+        print(params)
         let loginID = params["id"] as! String
         let pwd = params["pwd"] as! String
         let phone = params["phone"] as! String
@@ -77,7 +66,7 @@ class SignupAgreeTerms: BaseVC {
             self?.goNext()
         }) {[weak self] (_, err) -> Void in
             SVProgressHUD.dismiss()
-            self?.view.showToast(err)
+            self?.showToast(err)
         }
     }
 }
@@ -85,20 +74,24 @@ class SignupAgreeTerms: BaseVC {
 //
 // MARK: - Action
 //
-extension SignupAgreeTerms: BaseAction {
+extension SignupPage3VC: BaseAction {
     @IBAction func onClickAllAgree(_ sender: Any) {
-        isAllAgree = !isAllAgree
+        let isAllAgree = isTermAgree && isPrivacyAgree
+        isTermAgree = !isAllAgree
+        isPrivacyAgree = !isAllAgree
         updateAgreeState()
     }
     
     @IBAction func onClickNext(_ sender: Any) {
+        let isAllAgree = isTermAgree && isPrivacyAgree
+        
         if isAllAgree {
-            ConfirmDialog.show(self, title: "signup_agree_confrim_title".localized, message: "", showCancelBtn: true) { [weak self]() -> Void in
+            showConfirm(title: "signup_agree_confrim_title".localized, message: "", showCancelBtn: true) { [weak self]() -> Void in
                 self?.signup()
             }
         }
         else {
-            AlertDialog.show(self, title: "signup_agree_alert_title"._localized, message: "")
+            showAlert(title: "signup_agree_alert_title"._localized)
         }
     }
     
@@ -114,24 +107,25 @@ extension SignupAgreeTerms: BaseAction {
     
     
     @IBAction func onClickTermsView(_ sender: Any) {
-        self.pushVC(TermsVC(nibName: "vc_terms", bundle: nil), animated: true, params: ["title": "terms_of_use"._localized])
+        let vc = TermsVC(nibName: "vc_terms", bundle: nil)
+        vc.pageType = .term
+        self.pushVC(vc, animated: true)
     }
     
     @IBAction func onClickPrivacyView(_ sender: Any) {
-        self.pushVC(TermsVC(nibName: "vc_terms", bundle: nil), animated: true, params: ["title": "privacy_policy"._localized])
+        let vc = TermsVC(nibName: "vc_terms", bundle: nil)
+        vc.pageType = .privacy
+        self.pushVC(vc, animated: true)
     }
 }
 
 //
 // MARK: - Navigation
 //
-extension SignupAgreeTerms: BaseNavigation {
+extension SignupPage3VC: BaseNavigation {
     private func goNext() {
-        let vc = SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil)
-    //        vc.authType = authType
-    //        vc.authMedia = authMedia
-    //        vc.authCode = authCode
-    //        vc.authPwd = tfPwd.text!
-        self.pushVC(vc, animated: true)
+        if let nextDelegate = self.nextDelegate {
+            nextDelegate.onClickNext(step: .complete, params: [:])
+        }
     }
 }

@@ -37,40 +37,26 @@ class MainVC: BaseVC {
     private func initVC() {
         vcMenu = MenuVC(nibName: "vc_menu", bundle: Bundle.main)
         vcMenu?.delegate = self
-//        showEverydayPopup()
+        showPopup()
     }
     
-    func showEverydayPopup() {
+    private func showPopup() {
+//        if Local.getNeverShowPopup() {
+//            return
+//        }
         
-        let date_not = Local.getNotShowAdsDate()
-        
-        let date = Date()
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day], from: date)
-        let now = String(format: "%04d-%02d-%02d", components.year!, components.month!, components.day!)
-        
-        if date_not!.isEmpty || now != date_not {
-//            let popup = ModelPopup(dumyIndex: 0, dumyImage: "http://192.168.0.63:8005/assets/images/logo.png", dumyLink: "www.psjdc.com", dumyUrl: "http://192.168.0.63:8005/api/Article/home?platform=android")
-//            EveryDayDialog.show(self, content: popup, notShowAction: {() -> Void in
-//                Local.setNotShowAdsDate(now)
-//            })
-        }
-    }
-    
-    private func showPopup(_ now: String) {
         SVProgressHUD.show()
         Rest.popupInfo(success:{ [weak self](result) in
             SVProgressHUD.dismiss()
-            guard let ret = result else {
+
+            let popupList = result! as! ModelPopupList
+            guard !popupList.contents.isEmpty else {
                 return
             }
             
-            if ret.result == 0 {
-//                EveryDayDialog.show(self!, content: ret, notShowAction: {() -> Void in
-//                    Local.setNotShowAdsDate(now)
-//                })
-            } else {
-                self?.view.showToast(ret.msg)
+            let popup = popupList.contents[0]
+            EveryDayDialog.show(self!, content: popup, notShowAction: nil, closeAction: nil) {[weak self] in
+                self?.pushVC(NoticeDetailVC(nibName: "vc_notice_detail", bundle: nil), animated: true, params:["code": popup.movePath])
             }
         }, failure: { [weak self](code, err) in
             SVProgressHUD.dismiss()
@@ -81,23 +67,21 @@ class MainVC: BaseVC {
     }
     
     private func loadDocument(_ keyword: String) {
+//        tableViewDocument.beginUpdates()
         self.documents.removeAll()
+        tableViewDocument.reloadData()
+//        tableViewDocument.endUpdates()
         SVProgressHUD.show()
         Rest.documentList(keyword: tfSearchText.text ?? "", success: {[weak self] (result) in
             SVProgressHUD.dismiss()
-            guard let result = result, result.result == 0 else {
-                return
-            }
-            
-            guard let documentList = result as? ModelDocumentList else {
-                return
-            }
 
+            let documentList = result! as! ModelDocumentList
             self?.documents.append(contentsOf: documentList.contents)
             self?.documentChanged()
-        }, failure: { _, msg in
+        }) {[weak self]  _, msg in
             SVProgressHUD.dismiss()
-        })
+            self?.view.showToast(msg)
+        }
     }
     
     private func documentChanged() {
@@ -163,15 +147,13 @@ extension MainVC: UITableViewDataSource {
         
         let doc = documents[indexPath.row]
         title.text = doc.title
-        content.text = doc.title
+        content.text = doc.content
         tags.text = doc.tags.joined(separator: " #")
         
-        if doc.imagesUrlList.isEmpty {
-            imageView.image = nil;
-        } else if let imageURL = doc.imagesUrlList[0] {
-            imageView.kf.setImage(with: URL(string: imageURL))
+        if doc.images.count > 0 {
+            doc.setToImageView(at: 0, imageView: imageView)
         } else {
-            imageView.image = doc.images[0]
+            imageView.image = nil
         }
         labelView.backgroundColor = AppColor.labelColors[doc.label]
         
@@ -232,6 +214,8 @@ extension MainVC: PopViewControllerDelegate {
                     break
                 }
             }
+            
+            self.view.showToast("doc_deleted_toast"._localized)
         }
     }
 }

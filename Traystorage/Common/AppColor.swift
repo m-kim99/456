@@ -10,8 +10,8 @@ class AppColor {
     static let bg = UIColor(hex: 0xF5F5F5)
     static let border = UIColor(hex: 0xDDDDDD)
     static let dark = UIColor(hex: 0x999999)
-    static let gray = UIColor.gray
-    static let lightGray  = UIColor.lightGray
+    static let gray = UIColor(hex: 0x808080)
+    static let lightGray  = UIColor(hex: 0xC4C4C4)
     static let gradientStart = UIColor(hex: 0xe4e4e4)
     static let gradientEnd = UIColor(hex: 0xffffff)
     static let red = UIColor(hex: 0xff465f)

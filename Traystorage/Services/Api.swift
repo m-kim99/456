@@ -1,8 +1,12 @@
 import Foundation
 
-//let Server_Url = "http://192.168.2.118:8005/api/" //py
-//let Server_Url = "http://3.34.14.108/api/" //real server
+//let Server_Url = "http://192.168.2.101:8005/api/" //py
+//let Server_Url = "http://traystorage.kr/server/api/" //real server
 let Server_Url = "http://192.168.0.13:8205/api/" //local server
+
+let API_TERM_URL = Server_Url + "app/term?type=term"
+let API_PRIVACY_URL = Server_Url + "app/term?type=privacy"
+let API_MARKETING_URL = Server_Url + "app/term?type=marketing"
 
 enum API {
     case APP_INFO
@@ -13,55 +17,29 @@ enum API {
     case USER_VERIFY_CERTKEY_PHONE
     case USER_SIGNUP
     case USER_FIND_ID
-    case REQUEST_CODE // before login (code request)
-    case SEND_CODE // after login (code request)
+    case CHECK_LOGIN_ID
+    case REQUEST_CODE_FIND
+    case REQUEST_CODE_SIGNUP
     case USER_FIND_PWD
-    case USER_RESET_PWD
-    case USER_BADGE_INFO
-    case USER_STONE_INFO
-    case USER_OTHER_INFO
     case MAKE_PROFILE
-    case CHANGE_PROFILE
-    case CHANGE_ALARM
     case CHANGE_PWD
-    case HOME_DATA
     case DOCUMENT_LIST
     case DOCUMENT_DETAIL
     case DOCUMENT_INSERT
     case DOCUMENT_DELETE
     case DOCUMENT_UPDATE
-    case CHALLENGE_LIST
-    case CHALLENGE_DETAIL
-    case CHALLENGE_LIKE
-    case CHALLENGE_VOTE
-    case CHALLENGE_JOIN_LIST
-    case CHALLENGE_USER_LIST
-    case CHALLENGE_MY_LIST
-    case VIDEO_LIST
-    case VIDEO_LIKE
-    case VIDEO_VOTE
-    case VIDEO_UPLOAD
-    case VIDEO_DETAIL
-    case VIDEO_ADD_COMMENT
-    case VIDEO_COMMENT_DETAIL
-    case DRIVE_START
-    case DRIVE_STOP
-    case SHOP_ITEM_LIST
-    case SHOP_ITEM_DETAIL
-    case SHOP_ITEM_BUY
-    case REPORT_LIST
-    case REPORT
-    case GAIN_STONE
-    case UPDATE_VISIT_CNT
-    case NO_WORD_LIST
-    case MY_INFO
     case POPUP_INFO
     case ASK_LIST
     case GET_NOTICE_LIST
-    case VIEW_NOTICE
+    case GET_NOTICE_DETAIL
     case FAQ_LIST
     case FAQ_CATE
     case VERSION
+    case VIEW_CLICK_POPUP
+    case INSERT_ASK
+    case UPLOAD_FILES
+    case REQUEST_EXIT
+    case CANCEL_EXIT
     
     var url: String {
         switch self {
@@ -70,41 +48,29 @@ enum API {
         case .USER_LOGIN:
             return "user/login"
         case .USER_SEND_CERTKEY_EMAIL:
-            return "User/send_certkey_by_email"
+            return "user/send_certkey_by_email"
         case .USER_SEND_CERTKEY_PHONE:
-            return "User/send_certkey_by_phone"
+            return "user/send_certkey_by_phone"
         case .USER_VERIFY_CERTKEY_EMAIL:
-            return "User/verify_email"
+            return "user/verify_email"
         case .USER_VERIFY_CERTKEY_PHONE:
-            return "User/check_code"
+            return "user/check_code"
         case .USER_SIGNUP:
-            return "User/signup"
-        case .SEND_CODE:
-            return "User/send_code"
-        case .REQUEST_CODE:
-            return "User/request_code"
+            return "user/signup"
+        case .REQUEST_CODE_FIND:
+            return "user/request_code_for_find"
+        case .REQUEST_CODE_SIGNUP:
+            return "user/request_code_for_signup"
         case .USER_FIND_ID:
-            return "User/find_login_id"
+            return "user/find_login_id"
+        case .CHECK_LOGIN_ID:
+            return "user/check_login_id"
         case .USER_FIND_PWD:
-            return "User/find_pwd"
-        case .USER_RESET_PWD:
-            return "User/find_pwd"
-        case .USER_BADGE_INFO:
-            return "User/user_badge_info"
-        case .USER_STONE_INFO:
-            return "User/user_stone_info"
-        case .USER_OTHER_INFO:
-            return "User/other_user_info"
+            return "user/find_pwd"
         case .MAKE_PROFILE:
-            return "user/make_profile"
-        case .CHANGE_PROFILE:
-            return "MyPage/change_profile"
-        case .CHANGE_ALARM:
-            return "MyPage/change_alarm"
+            return "user/profile_update"
         case .CHANGE_PWD:
             return "user/change_pwd"
-        case .HOME_DATA:
-            return "Home/home_data"
         case .DOCUMENT_LIST:
             return "app/get_document_list"
         case .DOCUMENT_DETAIL:
@@ -115,70 +81,30 @@ enum API {
             return "app/delete_document_item"
         case .DOCUMENT_UPDATE:
             return "app/update_document"
-        case .CHALLENGE_LIST:
-            return "Challenge/challenge_list"
-        case .CHALLENGE_DETAIL:
-            return "Challenge/challenge_info"
-        case .CHALLENGE_LIKE:
-            return "Challenge/challenge_like"
-        case .CHALLENGE_VOTE:
-            return "Challenge/challenge_vote"
-        case .CHALLENGE_JOIN_LIST:
-            return "Challenge/join_challenge_list"
-        case .CHALLENGE_USER_LIST:
-            return "Challenge/user_challenge_list"
-        case .CHALLENGE_MY_LIST:
-            return "Challenge/my_challenge_list"
-        case .VIDEO_LIST:
-            return "Video/video_list"
-        case .VIDEO_LIKE:
-            return "Video/video_like"
-        case .VIDEO_VOTE:
-            return "Video/video_vote"
-        case .VIDEO_UPLOAD:
-            return "Video/upload_video"
-        case .VIDEO_DETAIL:
-            return "Video/detail"
-        case .VIDEO_ADD_COMMENT:
-            return "Video/add_comment"
-        case .VIDEO_COMMENT_DETAIL:
-            return "Video/comment_detail"
-        case .DRIVE_START:
-            return "RoadDrive/start"
-        case .DRIVE_STOP:
-            return "RoadDrive/end"
-        case .SHOP_ITEM_LIST:
-            return "PointShop/product_list"
-        case .SHOP_ITEM_DETAIL:
-            return "PointShop/product_detail"
-        case .SHOP_ITEM_BUY:
-            return "PointShop/buy"
-        case .REPORT_LIST:
-            return "Report/report_list"
-        case .REPORT:
-            return "Report/report"
-        case .GAIN_STONE:
-            return "Home/gain_stone"
-        case .UPDATE_VISIT_CNT:
-            return "Video/update_visit_cnt"
-        case .NO_WORD_LIST:
-            return "App/noword_list"
-        case .MY_INFO:
-            return "User/my_info"
         case .POPUP_INFO:
             return "app/popup_info"
         case .ASK_LIST:
             return "app/get_ask_list"
         case .GET_NOTICE_LIST:
             return "app/get_notice_list"
-        case .VIEW_NOTICE:
-            return "app/view_notice"
+        case .GET_NOTICE_DETAIL:
+            return "app/get_notice_detail"
         case .FAQ_LIST:
             return "app/get_faq_list"
         case .FAQ_CATE:
             return "app/get_faq_item_list"
         case .VERSION:
-            return "app/version"
+            return "app/version_info"
+        case .VIEW_CLICK_POPUP:
+            return "app/view_click_popup"
+        case .INSERT_ASK:
+            return "app/insert_ask"
+        case .UPLOAD_FILES:
+            return "upload/upload_files"
+        case .REQUEST_EXIT:
+            return "user/request_exit"
+        case .CANCEL_EXIT:
+            return "user/cancel_exit"
         }
     }
 }

@@ -2,14 +2,14 @@ import Foundation
 import SwiftyJSON
 
 public class ModelUser: ModelBase {
-    var uid: String!
+    var uid: String = ""
     var email: String!
     var pwd: String!
     var name: String!
     var profile_img: String!
     var phone: String!
     var birthday: String!
-    var gender: Int!
+    var gender: Int = 0
     var status: Int!
     var access_token: String!
     var document_cnt: Int!
@@ -17,7 +17,7 @@ public class ModelUser: ModelBase {
     var exit_reg_time: String!
     var stop_remark: String!
     
-    var code: Int!
+    var authCode: Int!
     
     override init(_ json: JSON) {
         super.init(json)

@@ -44,6 +44,50 @@ class LoginVC: BaseVC {
         tfPwd.resignFirstResponder()
     }
     
+    private func onLoginSuccess(user: ModelUser!, password: String) {
+        Rest.user = user
+        Rest.user.pwd = password
+        Local.setUser(Rest.user)
+
+        let ud = UserDefaults.standard
+        ud.set(isAutoLogin, forKey: Local.PREFS_APP_AUTO_LOGIN.rawValue)
+        ud.synchronize()
+        openMainVC()
+    }
+    
+    private func showInvalidAccount() {
+        AlertDialog.show(self, title: "login_faided_invalid_account"._localized,
+                         message: "")
+    }
+    
+    private func onRecvWrongPassword() {
+        loginAttempCount += 1
+        if loginAttempCount > 5 {
+            onAccountPaused()
+            btnLogin.isEnabled = false
+        } else {
+            showInvalidAccount()
+        }
+    }
+    
+    private func onAccountPaused() {
+        AlertDialog.show(self, title: "login_suspend_title"._localized,
+                         message: "login_suspend_desc"._localized) {
+            [weak self] in
+            self?.popToStartVC()
+        }
+    }
+    
+    private func onWithDrawUserExist() {
+        showConfirm(title: "login_withdrawal_title"._localized,
+                    message: "login_withdrawal_desc"._localized, showCancelBtn: true) {
+            [weak self] in
+            let vc = FindIdVC(nibName: "vc_find_id", bundle: nil)
+            vc.findIDRequest = .withDrawalCancel
+            self?.pushVC(vc, animated: true)
+        }
+    }
+    
     @IBAction func onClickAutoLogin(_ sender: Any) {
         isAutoLogin = !isAutoLogin
         updateAutoLoginUI()
@@ -58,9 +102,20 @@ extension LoginVC: BaseAction {
         hideKeyboard()
     }
     
-    @IBAction func onLogin(_ sender: Any) {
+    @IBAction func onClickLogin(_ sender: Any) {
         hideKeyboard()
-        login()
+        
+        guard let userID = tfId.text?.trimmingCharacters(in: .whitespacesAndNewlines), !userID.isEmpty else {
+            self.view.showToast("empty_id_toast"._localized)
+            return
+        }
+        
+        guard let password = tfPwd.text, !password.isEmpty else {
+            self.view.showToast("empty_password_toast"._localized)
+            return
+        }
+        
+        login(userID: userID, password: password)
     }
     
     @IBAction func onClickShowPwd(_ sender: Any) {
@@ -88,7 +143,8 @@ extension LoginVC: UITextFieldDelegate {
                 break
             case tfPwd:
                 if btnLogin.isEnabled {
-                    login()
+                
+                    onClickLogin("")
                 }
                 textField.resignFirstResponder()
                 break
@@ -130,49 +186,31 @@ extension LoginVC: BaseNavigation {
 // MARK: - RestApi
 //
 extension LoginVC: BaseRestApi {
-    func login() {
+    func login(userID: String, password: String) {
         SVProgressHUD.show()
-        guard let userID = tfId.text?.trimmingCharacters(in: .whitespacesAndNewlines), !userID.isEmpty else {
-            return
-        }
-        
-        guard let password = tfPwd.text, !password.isEmpty else {
-            return
-        }
-        
         Rest.login(id: userID, pwd: password, success: { [weak self] (result) -> Void in
             SVProgressHUD.dismiss()
-            let code = result!.result
-            
-            if code == 0 {
-                Rest.user = (result as! ModelUser)
-                Rest.user.pwd = password
-                Local.setUser(Rest.user)
-                
-                if let weakSelf = self {
-                    let ud = UserDefaults.standard
-                    ud.set(weakSelf.isAutoLogin, forKey: Local.PREFS_APP_AUTO_LOGIN.rawValue)
-                    ud.synchronize()
-                    weakSelf.openMainVC()
-                }
-            } else {
-                if code == 211 { // wrong pass
-                    self?.loginAttempCount += 1
-                }
-
-                self?.view.showToast(result!.msg)
-                
-                if let attempCount = self?.loginAttempCount, attempCount > 5, let vc = self {
-                    AlertDialog.show(vc, title: "login_suspend_title"._localized,
-                                     message: "login_suspend_desc"._localized)
-                    self?.btnLogin.isEnabled = false
-                }
-            }
-        }, failure: { (_, err) -> Void in
+            self?.onLoginSuccess(user: result! as? ModelUser, password: password)
+        }) { [weak self](code, err) -> Void in
             SVProgressHUD.dismiss()
-            self.view.showToast(err)
-        })
-        
-//        self.openMainVC()
+            let resultCode = ResponseResultCode(rawValue: code) ?? .ERROR_SERVER
+            switch resultCode {
+            case .ERROR_WRONG_PWD:
+                self?.onRecvWrongPassword()
+                break
+            case .ERROR_USER_NO_EXIST:
+                self?.showInvalidAccount()
+                break
+            case .ERROR_USER_EXIT:
+                self?.onWithDrawUserExist()
+                break
+            case .ERROR_USER_PAUSED:
+                self?.onAccountPaused()
+                break
+            default:
+                self?.view.showToast(err)
+                break
+            }
+        }
     }
 }

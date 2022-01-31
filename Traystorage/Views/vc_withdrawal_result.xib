@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WithdrawalVC" customModule="Traystorage" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WithdrawalResultVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
                 <outlet property="lblPageTitle" destination="bxB-KL-QBv" id="cX2-1s-0ln"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -24,21 +24,10 @@
                     <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I58-Be-tpg" userLabel="head">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVK-mT-hMM" userLabel="back">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="50" id="VFO-C6-f4a"/>
-                                    </constraints>
-                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                    <state key="normal" image="ic_back"/>
-                                    <connections>
-                                        <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="JtC-K1-y4T"/>
-                                    </connections>
-                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Withdrawal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxB-KL-QBv" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="142.66666666666666" y="14.333333333333337" width="90" height="21.666666666666671"/>
+                                    <rect key="frame" x="142.66666666666666" y="19.333333333333336" width="90" height="21.666666666666664"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -52,12 +41,9 @@
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="sVK-mT-hMM" firstAttribute="top" secondItem="I58-Be-tpg" secondAttribute="top" id="1Kn-0e-DCX"/>
                                 <constraint firstItem="bxB-KL-QBv" firstAttribute="centerX" secondItem="I58-Be-tpg" secondAttribute="centerX" id="2nz-eG-1m9"/>
                                 <constraint firstItem="bxB-KL-QBv" firstAttribute="centerY" secondItem="I58-Be-tpg" secondAttribute="centerY" id="Eri-la-hTG"/>
-                                <constraint firstAttribute="bottom" secondItem="sVK-mT-hMM" secondAttribute="bottom" id="IC2-YX-4Cf"/>
-                                <constraint firstAttribute="height" constant="50" id="N56-Av-zlR"/>
-                                <constraint firstItem="sVK-mT-hMM" firstAttribute="leading" secondItem="I58-Be-tpg" secondAttribute="leading" id="Thd-E5-Yed"/>
+                                <constraint firstAttribute="height" constant="60" id="N56-Av-zlR"/>
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G51-mU-pL2" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
@@ -77,6 +63,9 @@
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="confirm"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onClickConfirm:" destination="-1" eventType="touchUpInside" id="5Pd-cq-YZM"/>
+                            </connections>
                         </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_Withdrawalrequest_150" translatesAutoresizingMaskIntoConstraints="NO" id="Esz-7l-4gH">
                             <rect key="frame" x="112.66666666666669" y="110" width="150" height="150"/>
@@ -160,7 +149,7 @@
                         <constraint firstAttribute="trailing" secondItem="I58-Be-tpg" secondAttribute="trailing" id="VCx-23-Cg7"/>
                         <constraint firstItem="EIs-Jt-aDq" firstAttribute="leading" secondItem="OCI-2f-bWh" secondAttribute="leading" constant="18" id="XP7-mV-Wqk"/>
                         <constraint firstItem="mrM-Mw-0bv" firstAttribute="top" secondItem="Esz-7l-4gH" secondAttribute="bottom" id="dSa-4g-R9J"/>
-                        <constraint firstItem="Esz-7l-4gH" firstAttribute="top" secondItem="I58-Be-tpg" secondAttribute="bottom" constant="60" id="jFo-qI-Smg"/>
+                        <constraint firstItem="Esz-7l-4gH" firstAttribute="top" secondItem="I58-Be-tpg" secondAttribute="bottom" constant="50" id="jFo-qI-Smg"/>
                         <constraint firstItem="mrM-Mw-0bv" firstAttribute="leading" secondItem="OCI-2f-bWh" secondAttribute="leading" constant="18" id="l4F-Lf-vs4"/>
                         <constraint firstItem="I58-Be-tpg" firstAttribute="top" secondItem="OCI-2f-bWh" secondAttribute="top" id="njP-2t-wah"/>
                         <constraint firstItem="rhL-NV-qnV" firstAttribute="top" secondItem="mrM-Mw-0bv" secondAttribute="bottom" id="nul-yL-HQ3"/>
@@ -201,7 +190,6 @@
         </designable>
     </designables>
     <resources>
-        <image name="ic_back" width="24" height="24"/>
         <image name="img_Withdrawalrequest_150" width="150" height="150"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -36,7 +36,17 @@ class InquiryVC: BaseVC {
     }
 
     @IBAction func onContactus(_ sender: Any) {
-        self.pushVC(ContactusVC(nibName: "vc_contactus", bundle: nil), animated: true)
+        let vc = ContactusVC(nibName: "vc_contactus", bundle: nil)
+        vc.popDelegate = self
+        self.pushVC(vc, animated: true)
+    }
+    
+    
+    private func listChanged() {
+        tvList.reloadData()
+        vwEmpty.isHidden = !self.askList.isEmpty
+        vwContent.isHidden = self.askList.isEmpty
+        lblCount.text = "\(self.askList.count)"
     }
 }
 
@@ -48,28 +58,22 @@ extension InquiryVC: BaseRestApi {
         SVProgressHUD.show()
         Rest.getAskList(success: { [weak self] (result) -> Void in
             SVProgressHUD.dismiss()
+
+            self?.askList.removeAll()
             
-            guard let ret = result else {
-                return
-            }
-            
-            if ret.result == 0 {
-                let cardList = ret as! ModelCardList
-                for card in cardList.list {
-                    if card != nil {
-                        self?.askList.append(card!)
-                        self?.askListExpend.append(false)
-                    }
+            let cardList = result as! ModelCardList
+            for card in cardList.list {
+                if card != nil {
+                    self?.askList.append(card!)
+                    self?.askListExpend.append(false)
                 }
-                
-                self?.refreshList()
-            } else {
-                self?.view.showToast(ret.msg)
             }
-        }, failure: { (_, err) -> Void in
+
+            self?.listChanged()
+        }) { [weak self] (_, err) -> Void in
             SVProgressHUD.dismiss()
-            self.view.showToast(err)
-        })
+            self?.view.showToast(err)
+        }
     }
 }
 
@@ -87,10 +91,20 @@ extension InquiryVC: UITableViewDataSource, UITableViewDelegate {
         let index = indexPath.row
         let ask = askList[index]
         cell.lblTitle.text = ask.title
-        cell.lblDate.text = ask.create_time
+        cell.lblDate.text = ask.regTime
         cell.lblDetail.text = ask.content
         
         cell.isExpand = askListExpend[index]
+        
+        if ask.status == 0 {
+            cell.lblType.superview?.backgroundColor = UIColor(hex: 0xD0d7ff)
+            cell.lblType.textColor = UIColor(hex:0x1E319D);
+            cell.lblType.text = "reply_wait"._localized
+        } else {
+            cell.lblType.superview?.backgroundColor = UIColor(hex: 0xe7ebf1)
+            cell.lblType.textColor = UIColor(hex:0x666666);
+            cell.lblType.text = "answer_done"._localized
+        }
         
         return cell
     }
@@ -100,4 +114,15 @@ extension InquiryVC: UITableViewDataSource, UITableViewDelegate {
         askListExpend[index] = !askListExpend[index]
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
+}
+
+
+extension InquiryVC: PopViewControllerDelegate {
+    func onWillBack(_ sender: String, _ result: Any?) {
+        if result as! String == "updated" {
+            updateList()
+        }
+    }
+    
+    
 }

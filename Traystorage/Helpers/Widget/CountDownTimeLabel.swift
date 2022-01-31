@@ -7,6 +7,10 @@
 import Foundation
 import UIKit
 
+protocol CountDownTimeIsUp {
+    func onTimeIsUp(sender: CountDownTimeLabel)
+}
+
 @IBDesignable
 class CountDownTimeLabel: UIFontLabel {
     @IBInspectable var startDownTime: Int = 180 {
@@ -15,8 +19,10 @@ class CountDownTimeLabel: UIFontLabel {
         }
     }
     
+    open var timeIsUpDelegate: CountDownTimeIsUp?
+    
     var countDownTimer:  Timer?
-    var countDownTime = 0
+    private var countDownTime = 0
     
     func startCountDownTimer() {
         stopTimer()
@@ -34,6 +40,10 @@ class CountDownTimeLabel: UIFontLabel {
             
             if weakSelf.countDownTime <= 0 {
                 timer.invalidate()
+                
+                if let delegate = weakSelf.timeIsUpDelegate {
+                    delegate.onTimeIsUp(sender: weakSelf)
+                }
             }
             
             weakSelf.updateCountDownLabelText()
@@ -46,7 +56,7 @@ class CountDownTimeLabel: UIFontLabel {
         
     }
     
-    private func stopTimer() {
+    func stopTimer() {
         if let oldTimer = self.countDownTimer {
             oldTimer.invalidate()
         }
@@ -54,6 +64,8 @@ class CountDownTimeLabel: UIFontLabel {
     
     private func updateCountDownLabelText() {
         let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.minute, .second]
+        formatter.zeroFormattingBehavior = .pad
         self.text = formatter.string(from: TimeInterval(self.countDownTime))
     }
 }

@@ -17,6 +17,7 @@ class FaqVC: BaseVC {
         super.viewDidLoad()
         initVC()
         loadFAQCategoryList() // category and item
+        loadFAQList(-1)
     }
     
     private func initVC() {
@@ -37,11 +38,12 @@ class FaqVC: BaseVC {
 // MARK: - RestApi
 //
 extension FaqVC: BaseRestApi {
-    func loadFAQList() {
+    func loadFAQList(_ catId:Int) {
         SVProgressHUD.show()
-        Rest.getFAQList(success: { [weak self] (result) -> Void in
+        Rest.getFAQList(faqItemId: catId, success: { [weak self] (result) -> Void in
             SVProgressHUD.dismiss()
             let faqList = result as! ModelFAQList
+            self?.faqList.removeAll()
             for faq in faqList.list {
                 self?.faqList.append(faq)
                 self?.faqExpend.append(false)
@@ -61,10 +63,14 @@ extension FaqVC: BaseRestApi {
             SVProgressHUD.dismiss()
             
             let faqList = result as! ModelFAQCateList
+            
+            self?.faqCategoryList.removeAll()
+            self?.faqCategoryList.append(ModelFAQCategory())
+            
             self?.faqCategoryList.append(contentsOf: faqList.list)
             self?.cvCategory.reloadData()
             
-            self?.loadFAQList()
+            //self?.loadFAQList(-1)
 
         }, failure: { (_, err) -> Void in
             SVProgressHUD.dismiss()
@@ -95,6 +101,8 @@ extension FaqVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollect
             let oldIndexPath = IndexPath(item: selectedCategory, section: 0)
             selectedCategory = indexPath.row
             collectionView.reloadItems(at: [oldIndexPath, indexPath])
+            
+            loadFAQList(faqCategoryList[selectedCategory].faq_id)
         }
     }
 }

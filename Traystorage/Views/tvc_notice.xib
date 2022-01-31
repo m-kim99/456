@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -21,44 +22,59 @@
                 <rect key="frame" x="0.0" y="0.0" width="332.5" height="95"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKS-aZ-wJa" userLabel="root">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKS-aZ-wJa" userLabel="root">
                         <rect key="frame" x="20" y="28" width="292.5" height="45"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="2021.11.01" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWH-L6-5Ro" userLabel="date" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                <rect key="frame" x="48" y="31.5" width="58" height="13.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
-                                        <real key="value" value="13"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How can I invite friends?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMB-od-aNf" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                <rect key="frame" x="48" y="0.0" width="165.5" height="17.5"/>
-                                <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="15"/>
-                                <color key="textColor" red="0.082352941176470587" green="0.082352941176470587" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
-                                        <real key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="Icon-C-Megaphone-Black-24" translatesAutoresizingMaskIntoConstraints="NO" id="hF5-w1-Gxb">
-                                <rect key="frame" x="8" y="0.0" width="24" height="24"/>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="1Dp-Cn-NbP">
+                                <rect key="frame" x="8" y="0.0" width="276.5" height="45"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="Icon-C-Megaphone-Black-24" translatesAutoresizingMaskIntoConstraints="NO" id="hF5-w1-Gxb">
+                                        <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCR-B0-c8J">
+                                        <rect key="frame" x="40" y="0.0" width="236.5" height="45"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How can I invite friends?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMB-od-aNf" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="165.5" height="17.5"/>
+                                                <fontDescription key="fontDescription" name="NotoSansKR-Regular" family="Noto Sans KR" pointSize="15"/>
+                                                <color key="textColor" red="0.082352941176470587" green="0.082352941176470587" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="2021.11.01" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWH-L6-5Ro" userLabel="date" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="31.5" width="62" height="13.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="eWH-L6-5Ro" firstAttribute="leading" secondItem="tMB-od-aNf" secondAttribute="leading" id="BcR-X7-hCh"/>
+                                            <constraint firstItem="eWH-L6-5Ro" firstAttribute="leading" secondItem="sCR-B0-c8J" secondAttribute="leading" id="GiS-6o-n5C"/>
+                                            <constraint firstItem="tMB-od-aNf" firstAttribute="top" secondItem="sCR-B0-c8J" secondAttribute="top" id="ZXW-Wr-m0p"/>
+                                            <constraint firstItem="eWH-L6-5Ro" firstAttribute="top" secondItem="tMB-od-aNf" secondAttribute="bottom" constant="14" id="rnT-bZ-0QY"/>
+                                            <constraint firstAttribute="bottom" secondItem="eWH-L6-5Ro" secondAttribute="bottom" id="tVr-gi-eHc"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eWH-L6-5Ro" firstAttribute="leading" secondItem="tMB-od-aNf" secondAttribute="leading" id="1dp-XJ-j4C"/>
-                            <constraint firstItem="hF5-w1-Gxb" firstAttribute="top" secondItem="xKS-aZ-wJa" secondAttribute="top" id="3mJ-qa-aY9"/>
-                            <constraint firstItem="tMB-od-aNf" firstAttribute="leading" secondItem="hF5-w1-Gxb" secondAttribute="trailing" constant="16" id="Ego-3X-Soh"/>
-                            <constraint firstAttribute="bottom" secondItem="eWH-L6-5Ro" secondAttribute="bottom" id="Khf-rf-JnQ"/>
-                            <constraint firstItem="tMB-od-aNf" firstAttribute="top" secondItem="xKS-aZ-wJa" secondAttribute="top" id="QDc-IS-4Z5"/>
-                            <constraint firstItem="hF5-w1-Gxb" firstAttribute="leading" secondItem="xKS-aZ-wJa" secondAttribute="leading" constant="8" id="YpY-gf-ryT"/>
-                            <constraint firstItem="eWH-L6-5Ro" firstAttribute="top" secondItem="tMB-od-aNf" secondAttribute="bottom" constant="14" id="ua4-cb-w5O"/>
+                            <constraint firstAttribute="bottom" secondItem="1Dp-Cn-NbP" secondAttribute="bottom" id="HnQ-1S-ULn"/>
+                            <constraint firstAttribute="trailing" secondItem="1Dp-Cn-NbP" secondAttribute="trailing" constant="8" id="LQa-Z7-1lG"/>
+                            <constraint firstItem="1Dp-Cn-NbP" firstAttribute="top" secondItem="xKS-aZ-wJa" secondAttribute="top" id="MqK-FC-i4I"/>
+                            <constraint firstItem="1Dp-Cn-NbP" firstAttribute="leading" secondItem="xKS-aZ-wJa" secondAttribute="leading" constant="8" id="hRg-a0-4m4"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -82,7 +98,7 @@
     </objects>
     <designables>
         <designable name="eWH-L6-5Ro">
-            <size key="intrinsicContentSize" width="58" height="14.5"/>
+            <size key="intrinsicContentSize" width="62" height="16"/>
         </designable>
         <designable name="tMB-od-aNf">
             <size key="intrinsicContentSize" width="165.5" height="17.5"/>
@@ -90,5 +106,8 @@
     </designables>
     <resources>
         <image name="Icon-C-Megaphone-Black-24" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

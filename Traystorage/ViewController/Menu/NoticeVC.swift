@@ -16,6 +16,10 @@ class NoticeVC: BaseVC {
         super.viewDidLoad()
         initVC()
         
+//        loadNoticeList()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         loadNoticeList()
     }
     
@@ -36,28 +40,15 @@ extension NoticeVC: BaseRestApi {
         SVProgressHUD.show()
         Rest.getNoticeList(success: { [weak self](result) -> Void in
             SVProgressHUD.dismiss()
-
-            guard let ret = result else {
-                return
-            }
             
-            if ret.result == 0 {
-                
-            } else {
-                self?.view.showToast(ret.msg)
-            }
-            
-            let noticeList = ret as! ModelNoticeList
-            
-            for notice in noticeList.list {
-                self?.noticeList.append(notice)
-            }
-            
+            let noticeList = result! as! ModelNoticeList
+            self?.noticeList.removeAll()
+            self?.noticeList.append(contentsOf: noticeList.list)
             self?.tvList.reloadData()
-        }, failure: { [weak self](_, err) -> Void in
+        }) { [weak self](_, err) -> Void in
             SVProgressHUD.dismiss()
             self?.view.showToast(err)
-        })
+        }
     }
 }
 
@@ -83,7 +74,7 @@ extension NoticeVC: UITableViewDataSource, UITableViewDelegate {
         }
         
         if let imageView = cell.viewWithTag(3) as? UIImageView {
-            imageView.isHidden = (indexPath.row % 2 == 0)
+            imageView.isHidden = (notice.view_count > 0)
         }
         
         return cell

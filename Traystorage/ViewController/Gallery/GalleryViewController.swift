@@ -33,6 +33,8 @@ class GalleryViewController: BaseVC {
     
     var thumbnailSize: CGSize!
     
+    let picker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -42,6 +44,8 @@ class GalleryViewController: BaseVC {
     func initUI() {
         clvImage.register(UINib.init(nibName: "cvc_gallery_image_list", bundle: nil), forCellWithReuseIdentifier: "ImageListCVC")
         checkPermission()
+        
+        picker.delegate = self
     }
     
     func checkPermission() {
@@ -210,6 +214,18 @@ class GalleryViewController: BaseVC {
         nav.setViewControllers(viewVCs, animated: true)
     }
     
+    func onClickCamera() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            return
+        }
+        
+        picker.sourceType = .camera
+        picker.mediaTypes = ["public.image"]
+        picker.allowsEditing = false
+        picker.showsCameraControls = true
+        present(picker, animated: true)
+    }
+    
     
     @IBAction func onClickDone(_ sender: Any) {
         if selectedImgList.count == 0 {
@@ -310,5 +326,17 @@ extension GalleryViewController : UICollectionViewDelegate, UICollectionViewData
         }
         
         return cell
+    }
+}
+
+extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as! UIImage
+
+        selectedImgList.removeAll()
+        selectedImgList.append(image)
+        onClickDone("")
+        
+        dismiss(animated: true)
     }
 }

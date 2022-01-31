@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EveryDayDialog" customModule="Traystorage" customModuleProvider="target">
             <connections>
+                <outlet property="btnNeverShow" destination="Eb7-6c-aYq" id="s9P-WA-pX3"/>
                 <outlet property="ivContent" destination="Vg0-3p-Chh" id="Vw1-Yh-wNv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="vwBg" destination="Lt5-1S-3lh" id="Cjg-zm-6aW"/>
@@ -43,7 +44,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="649"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vg0-3p-Chh">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vg0-3p-Chh">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="649"/>
                                                 </imageView>
                                             </subviews>

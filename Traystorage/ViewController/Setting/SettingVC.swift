@@ -26,7 +26,6 @@ class SettingVC: BaseVC {
         }
 
         editID.text = user.uid
-//        btnChallengeAlarm.isSelected = (user.alarm_challenge_yn == "y")
 //        lblVersionValue.text = getLangString("setting_latest_version_using")
     }
     
@@ -34,6 +33,7 @@ class SettingVC: BaseVC {
     // MARK: - ACTION
     //
     @IBAction func onEditPassword(_ sender: Any) {
+        
     }
     
     @objc func onClickItem(_ sender: UITapGestureRecognizer) {
@@ -46,22 +46,23 @@ class SettingVC: BaseVC {
             break
         case 2:
             self.pushVC(LicenseVC(nibName: "vc_license", bundle: nil), animated: true)
-            break
         case 3:
-            self.pushVC(TermsVC(nibName: "vc_terms", bundle: nil), animated: true)
-            break
+            let vc = TermsVC(nibName: "vc_terms", bundle: nil)
+            vc.pageType = .term
+            self.pushVC(vc, animated: true)
         case 4:
-            //            self.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true)
-            break
+            let vc = TermsVC(nibName: "vc_terms", bundle: nil)
+            vc.pageType = .privacy
+            self.pushVC(vc, animated: true)
         case 5:
-            //            self.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true)
-            break
+            let vc = TermsVC(nibName: "vc_terms", bundle: nil)
+            vc.pageType = .marketing
+            self.pushVC(vc, animated: true)
         case 6:
             onClickLogout(1);
             break
         case 7:
             self.pushVC(WithdrawalVC(nibName: "vc_withdrawal", bundle: nil), animated: true)
-            break
         default:
             break
         }
@@ -69,63 +70,19 @@ class SettingVC: BaseVC {
     
     @IBAction func onClickPwd(_ sender: Any) {
         ConfirmDialog.show(self, title:"setting_password_change_title"._localized, message: "setting_password_change_detail"._localized, showCancelBtn : true) { [weak self]() -> Void in
-            self?.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true)
+            
+            let vc = FindIdVC(nibName: "vc_find_id", bundle: nil)
+            vc.findIDRequest = .changePassword
+            self?.pushVC(vc, animated: true)
         }
     }
     
     @IBAction func onClickLogout(_ sender: Any) {
         ConfirmDialog.show(self, title:"logout_alert_title"._localized, message: "", showCancelBtn : true) { [weak self]() -> Void in
-            Local.deleteUser()
-            Rest.user = nil
-            Local.removeAutoLogin()
             
-            if let nv = self?.navigationController {
-                let vcs = nv.viewControllers
-                for vc in vcs {
-//                    if vc is LoginVC {
-//                        let logVC = vc as! LoginVC
-//                        logVC.resetLoginInputInformation()
-//                        nv.popToViewController(vc, animated: true)
-//                        break
-//                    }
-                    
-                    if vc is IntroVC {
-                        let introVC = vc as! IntroVC
-                        introVC.openLogSingupView()
-                        nv.popToViewController(vc, animated: true)
-                        break
-                    }
-
-                }
+            if let weakSelf = self {
+                IntroVC.logOutProcess(weakSelf)
             }
         }
-    }
-}
-
-//
-// MARK: - RestApi
-//
-extension SettingVC: BaseRestApi {
-    func changeAlarm(type: String, alarm_yn: String) {
-//        SVProgressHUD.show()
-//        Rest.changeAlarm(type: type, alarm_yn: alarm_yn, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
-//            if result?.result == 0 {
-//                if type == "push" {
-//                    self.user.alarm_push_yn = alarm_yn
-//                    self.lblPushAllowValue.text = (self.user.alarm_push_yn == "y") ? getLangString("setting_on") : getLangString("setting_off")
-//                    self.btnPushAllow.isSelected = (self.user.alarm_push_yn == "y")
-//                } else {
-//                    self.user.alarm_challenge_yn = alarm_yn
-//                    self.lblChallengeValue.text = (self.user.alarm_challenge_yn == "y") ? getLangString("setting_on") : getLangString("setting_off")
-//                    self.btnChallengeAlarm.isSelected = (self.user.alarm_challenge_yn == "y")
-//                }
-//
-//                Local.setUser(self.user)
-//            }
-//        }, failure: { (_, err) -> Void in
-//            SVProgressHUD.dismiss()
-//            self.view.showToast(err)
-//        })
     }
 }

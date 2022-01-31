@@ -42,4 +42,8 @@ class Validations {
         }
         return false
     }
+    
+    static func isValid(password: String) -> Bool {
+        return password.count >= 6
+    }
 }

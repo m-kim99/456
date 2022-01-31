@@ -2,20 +2,46 @@ import SVProgressHUD
 import UIKit
 import WebKit
 
-class TermsVC: BaseVC {
+enum WebPageType: Int {
+    case term = 0
+    case privacy = 1
+    case marketing = 2
+}
 
+class TermsVC: BaseVC {
     @IBOutlet weak var lblPageTitle: UILabel!
-    
     @IBOutlet weak var vwTermsWeb: WKWebView!
+    
+    var pageType: WebPageType = .term
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        switch pageType {
+        case .term:
+            params["title"] = "terms_of_use"._localized
+            params["url"] = API_TERM_URL
+        case .privacy:
+            params["title"] = "privacy_policy"._localized
+            params["url"] = API_PRIVACY_URL
+        case .marketing:
+            params["title"] = "marketing_consent"._localized
+            params["url"] = API_MARKETING_URL
+        }
         
         initVC()
     }
     
     private func initVC() {
-
+        if let title = params["title"] as? String {
+            lblPageTitle.text = title
+        }
+        
+        if let url = params["url"] as? String {
+            let myURL = URL(string: url)
+            let myRequest = URLRequest(url: myURL!)
+            vwTermsWeb.load(myRequest)
+        }
     }
     
     //
@@ -23,32 +49,3 @@ class TermsVC: BaseVC {
     //
     
 }
-
-//
-// MARK: - RestApi
-//
-extension TermsVC: BaseRestApi {
-    func getContent(type: String, alarm_yn: String) {
-//        SVProgressHUD.show()
-//        Rest.changeAlarm(type: type, alarm_yn: alarm_yn, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
-//            if result?.result == 0 {
-//                if type == "push" {
-//                    self.user.alarm_push_yn = alarm_yn
-//                    self.lblPushAllowValue.text = (self.user.alarm_push_yn == "y") ? getLangString("setting_on") : getLangString("setting_off")
-//                    self.btnPushAllow.isSelected = (self.user.alarm_push_yn == "y")
-//                } else {
-//                    self.user.alarm_challenge_yn = alarm_yn
-//                    self.lblChallengeValue.text = (self.user.alarm_challenge_yn == "y") ? getLangString("setting_on") : getLangString("setting_off")
-//                    self.btnChallengeAlarm.isSelected = (self.user.alarm_challenge_yn == "y")
-//                }
-//
-//                Local.setUser(self.user)
-//            }
-//        }, failure: { (_, err) -> Void in
-//            SVProgressHUD.dismiss()
-//            self.view.showToast(err)
-//        })
-    }
-}
-

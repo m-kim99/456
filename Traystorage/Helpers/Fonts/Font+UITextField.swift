@@ -15,9 +15,18 @@ class UIFontTextField: UITextField {
         }
     }
     
+    @IBInspectable var isBold: Bool = false {
+        didSet {
+            self.font = textFont()
+        }
+    }
+    
     @IBInspectable var closeButtonOffset: CGFloat = CGFloat.infinity
     
     func textFont() -> UIFont {
+        if isBold {
+            return AppFont.createBoldFont(name: fontFamily, size: xFontSize)
+        }
         return AppFont.createFont(name: fontFamily, size: xFontSize)
     }
     

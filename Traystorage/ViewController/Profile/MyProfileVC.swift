@@ -17,7 +17,15 @@ class MyProfileVC: BaseVC {
     @IBOutlet weak var femaleButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
-    var isUserMale = true
+    
+    
+    var gender: Int = 0
+    var avatarImage: UIImage?
+    var avatarImageURL: String?
+    var avatarImageName: String? // used to send "api"
+    
+    
+    var isModified = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,33 +36,23 @@ class MyProfileVC: BaseVC {
     
     
     func initVC() {
-        let user = Local.getUser()
-        if let url = user.profile_img {
-            vwAvatar.kf.setImage(with: URL(string: url))
+        let user = Rest.user!
+        avatarImageURL = user.profile_img
+        if let avatarUrl = URL(string:avatarImageURL ?? "") {
+            avatarImageName = avatarUrl.lastPathComponent
+            vwAvatar.kf.setImage(with: avatarUrl, placeholder: UIImage(named: "Icon-C-User-60")!)
         }
 
         labelName.text = user.name
+        editName.text = labelName.text
         editName.text = user.name
         birthdayEdit.text = user.birthday
-        
         emailEdit.text = user.email
+
+        gender = user.gender
+        updateGender()
         
-        isUserMale = user.gender ?? "0" == "0"
-    }
-    
-    func loadUser() {
-        SVProgressHUD.show()
-        let user = Local.getUser()
-        guard let uid = user.uid else {
-            return
-        }
-        Rest.otherUserInfo(user_uid: uid, success: { (result) -> Void in
-            SVProgressHUD.dismiss()
-//            self.setUserInfo(result as! ModelUser)
-        }, failure: { (_, err) -> Void in
-            SVProgressHUD.dismiss()
-            self.view.showToast(err)
-        })
+        NotificationCenter.default.addObserver(self, selector: #selector(imgPick(_:)), name: NSNotification.Name(rawValue: "image_pick"), object: nil)
     }
     
     override func hideKeyboard() {
@@ -69,8 +67,8 @@ class MyProfileVC: BaseVC {
     }
     
     private func updateGender() {
-        let maleColor = isUserMale ? AppColor.active : AppColor.gray
-        let femaleColor = !isUserMale ? AppColor.active : AppColor.gray
+        let maleColor = gender == 0 ? AppColor.active : AppColor.gray
+        let femaleColor = gender == 1 ? AppColor.active : AppColor.gray
         
         maleButton.borderColor = maleColor
         maleButton.tintColor = maleColor
@@ -78,53 +76,84 @@ class MyProfileVC: BaseVC {
         femaleButton.tintColor = femaleColor
     }
     
+    @objc func imgPick(_ notification : Notification) {
+        let imgList = notification.object as! [UIImage]
+        let image = imgList[0]
+        avatarImage = image
+        vwAvatar.image = image
+        isModified = true
+    }
+    
+    private func onUploadedAvatar(url: String, name: String) {
+        avatarImageURL = url
+        avatarImage = nil
+        avatarImageName = name
+        
+        onSave("")
+    }
+    
     override func onBackProcess(_ viewController: UIViewController) {
-        ConfirmDialog.show(self, title: "Edits are not saved when moving to the previous screen", message: "Do you want to go to the previous screen?", showCancelBtn: true) { [weak self] () -> Void in
+        if !isModified {
+            super.onBackProcess(viewController)
+            return
+        }
+        ConfirmDialog.show(self, title: "profile_discard_title"._localized, message: "profile_discard_desc"._localized, showCancelBtn: true) { [weak self] () -> Void in
             self?.popVC()
         }
     }
     
     @IBAction func onChangeAvatar(_ sender: Any) {
-        
+        let vc = GalleryViewController(nibName: "vc_gallery", bundle: nil)
+        vc.multi = 0
+        self.pushVC(vc, animated: true)
     }
     
     @IBAction func onEditName(_ sender: Any) {
         updateEditState(true)
         editName.becomeFirstResponder()
     }
+    
     @IBAction func onSave(_ sender: Any) {
-        guard let name = labelName.text, !name.isEmpty else {
-            self.view.showToast("Your name is invalid")
+        guard let name = editName.text, !name.isEmpty else {
+            self.view.showToast("empty_name_toast"._localized)
             return
         }
         
-        guard let email = emailEdit.text, !email.isEmpty else {
-            self.view.showToast("Your email is invalid")
+        guard let email = emailEdit.text, !email.isEmpty, Validations.email(email) else {
+            self.view.showToast("invalid_email_toast"._localized)
             return
         }
         
-        self.view.showToast("Your profile was changed")
-        popVC()
+        if let image = avatarImage {
+            uploadProfileImage(image: image)
+            return
+        }
+        
+        updateProfile(name: name, birthDay: self.birthdayEdit.text ?? "", email: email, gender: gender, profileImage:avatarImageName ?? "")
     }
     
     @IBAction func onEditNameDidEnd(_ sender: UITextField!) {
         updateEditState(false)
         labelName.text = sender.text
+        isModified = true
     }
     
     
     @IBAction func onClickGender(_ sender: Any) {
         if let button = sender as? UIButton {
-            isUserMale = button == maleButton
+            gender = button == maleButton ? 0 : 1
             updateGender()
+            isModified = true
         }
     }
     
     @IBAction func onClickBirthDay(_ sender: Any) {
-        DatepickerDialog.show(self) { [weak self](date) in
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let birthday = dateFormatter.date(from: birthdayEdit.text ?? "")
+        DatepickerDialog.show(self, date:birthday) { [weak self](date) in
             self?.birthdayEdit.text = dateFormatter.string(from: date)
+            self?.isModified = true
         }
     }
 }
@@ -137,7 +166,69 @@ extension MyProfileVC: UITextFieldDelegate {
         if textField == editName, newLen > 20 {
             return false
         }
+        
+        if textField == emailEdit, newLen > 30 {
+            return false
+        }
+        
+        if textField == emailEdit {
+            isModified = true
+        }
 
         return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == editName {
+            editName.resignFirstResponder()
+        }
+        
+        return true
+    }
+}
+
+//
+// MARK: - RestApi
+//
+extension MyProfileVC: BaseRestApi {
+    func updateProfile(name: String, birthDay:String, email: String, gender: Int, profileImage: String) {
+        SVProgressHUD.show()
+        
+        Rest.makeProfile(name: name, birthday: birthDay, gender: gender, email: email, profileImage:profileImage, success: { [weak self, gender] (result) -> Void in
+            SVProgressHUD.dismiss()
+            
+            let user = Rest.user!
+            let pwd = user.pwd;
+            
+            Rest.user = (result as! ModelUser)
+            Rest.user.pwd = pwd
+            Local.setUser(Rest.user)
+            
+            self?.view.showToast("profile_changed"._localized)
+            self?.popVC()
+        }) { [weak self](_, err) -> Void in
+            SVProgressHUD.dismiss()
+            self?.view.showToast(err)
+        }
+    }
+    
+    func uploadProfileImage(image: UIImage) {
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+            return
+        }
+        SVProgressHUD.show()
+        
+        Rest.uploadFiles(files: [imageData], success: { [weak self] (result) -> Void in
+            SVProgressHUD.dismiss()
+            
+            let retFileName = result as! ModelUploadFileList
+            
+            let fileName = retFileName.fileNames[0]
+            let fileUrl = retFileName.fileUrls[0]
+            self?.onUploadedAvatar(url: fileUrl, name: fileName)
+        }) { [weak self](_, err) -> Void in
+            SVProgressHUD.dismiss()
+            self?.view.showToast(err)
+        }
     }
 }

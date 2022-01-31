@@ -17,18 +17,10 @@ class ImageSlideViewVC: BaseVC {
         super.viewDidLoad()
         imageSliderView.delegate = self
         var images = [InputSource]()
-        for i in 0..<modelDocument.imagesUrlList.count {
-            if let imageURL = modelDocument.imagesUrlList[i] {
-                images.append(KingfisherSource(url: imageURL))
-            } else if let image = modelDocument.images[i] {
-                images.append(ImageSource(image: image))
-            }
-        }
-        
-        for i in 0..<modelDocument.imagesUrlList.count {
-            if let imageURL = modelDocument.imagesUrlList[i] {
-                images.append(KingfisherSource(url: imageURL))
-            } else if let image = modelDocument.images[i] {
+        for item in modelDocument.images {
+            if let url = item["url"] as? String {
+                images.append(KingfisherSource(url: url))
+            } else if let image = item["image"] as? UIImage {
                 images.append(ImageSource(image: image))
             }
         }

@@ -2,6 +2,7 @@ import SVProgressHUD
 import UIKit
 import PullToRefresh
 import ImageSlideshow
+import Kingfisher
 
 class DocumentDetailVC: BaseVC {
     
@@ -23,6 +24,7 @@ class DocumentDetailVC: BaseVC {
     let viewTagImageCollectionView = 1
     let viewTagTagCollectionView = 2
     
+    var isAppearFromAddDoc = false
     var isUpdated = false
     
     private var refreshControl = UIRefreshControl()
@@ -39,6 +41,11 @@ class DocumentDetailVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if isAppearFromAddDoc {
+            self.view.showToast("doc_add_success_toast"._localized)
+        }
+        
         loadContentsFormDoc()
 
 //        initVC()
@@ -67,10 +74,20 @@ class DocumentDetailVC: BaseVC {
     }
     
     override func onBackProcess(_ viewController: UIViewController) {
-        if isUpdated, let popDelegate = self.popDelegate {
-            popDelegate.onWillBack("update", document?.doc_id)
+        guard let vcs = self.navigationController?.viewControllers else {
+            return
         }
-        super.onBackProcess(self)
+        
+        for vc in vcs {
+            if vc is MainVC {
+                if isUpdated, let mainVC = vc as? MainVC {
+                    mainVC.onWillBack("update", document?.doc_id)
+                }
+                
+                self.navigationController?.popToViewController(vc, animated: true)
+                break
+            }
+        }
     }
 
     //
@@ -86,7 +103,7 @@ class DocumentDetailVC: BaseVC {
     }
 
     @IBAction func onClickEdit(_ sender: Any) {
-        let editVC = DocumentRegisterVC(nibName: "vc_document_edit", bundle: nil)
+        let editVC = DocumentRegisterVC(nibName: "vc_document_register", bundle: nil)
         editVC.document = self.document
         editVC.popDelegate = self
         pushVC(editVC, animated: true, params: self.params)
@@ -139,12 +156,7 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
         switch collectionViewTag {
         case viewTagImageCollectionView:
             if let imageView = cell.viewWithTag(2) as? UIImageView {
-                if let url = document.imagesUrlList[index] {
-                    imageView.kf.setImage(with: URL(string: url))
-                } else {
-                    imageView.kf.cancelDownloadTask()
-                    imageView.image = document.images[index]    
-                }
+                document.setToImageView(at: index, imageView: imageView)
             }
             break
         case viewTagTagCollectionView:
@@ -192,10 +204,10 @@ extension DocumentDetailVC: BaseRestApi {
             SVProgressHUD.dismiss()
             self?.document = (result as! ModelDocument)
             self?.loadContentsFormDoc()
-        }, failure: { (_, err) -> Void in
+        }) { [weak self](_, err) -> Void in
             SVProgressHUD.dismiss()
-            self.view.showToast(err)
-        })
+            self?.view.showToast(err)
+        }
     }
     
     func deleteDocument(_ docID: Int!) {

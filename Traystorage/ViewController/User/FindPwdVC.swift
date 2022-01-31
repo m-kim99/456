@@ -7,9 +7,14 @@ class FindPwdVC: BaseVC {
     @IBOutlet weak var tfID: UITextField!
     @IBOutlet weak var tfPhonenumber: UITextField!
     @IBOutlet weak var tfCertification: UITextField!
-    @IBOutlet weak var btnReset: UIButton!
+    @IBOutlet weak var btnConfirm: UIButton!
     
+    @IBOutlet weak var phoneEditRightView: UIView!
     @IBOutlet weak var lblDownTime: CountDownTimeLabel!
+    @IBOutlet weak var groupResend: UIView!
+    
+    var authStatus:UNAuthorizationStatus = .notDetermined
+    var authCode:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,13 +41,58 @@ class FindPwdVC: BaseVC {
         tfCertification.resignFirstResponder()
     }
     
+    private func changeAuthStatus(auth: UNAuthorizationStatus) {
+        authStatus = auth
+        switch auth {
+        case .denied:
+            groupResend.isHidden = true
+            btnConfirm.isEnabled = false
+        case .authorized:
+            lblDownTime.stopTimer()
+            lblDownTime.isHidden = true
+            groupResend.isHidden = true
+            break
+        case .provisional:
+            groupResend.isHidden = false
+            lblDownTime.startCountDownTimer()
+            lblDownTime.isHidden = false
+            break
+        default:
+            break
+        }
+    }
+    
     
     private func showNonRegisterPhone() {
         AlertDialog.show(self, title: "no_phone_title"._localized, message: "no_phone_desc"._localized)
     }
     
     private func onResetSuccess(userID: String, phone: String, code: String) {
-        self.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true, params: ["userID":userID, "phone": phone, "code": code])
+        self.pushVC(PwdChangeVC(nibName: "vc_pwd_change", bundle: nil), animated: true, params: ["userID":userID])
+    }
+    
+    func findPwd() {
+        guard let loginID = tfID.text, !loginID.isEmpty else {
+            self.view.showToast("empty_id_toast"._localized)
+            return
+        }
+        
+        guard let phoneNumber = tfPhonenumber.text, !phoneNumber.isEmpty else {
+            self.view.showToast("empty_phone_toast"._localized)
+            return
+        }
+        
+        guard let code = tfCertification.text, !code.isEmpty else {
+            self.view.showToast("empty_cert_code_toast"._localized)
+            return
+        }
+        
+        if code == self.authCode {
+            changeAuthStatus(auth: .authorized)
+            onResetSuccess(userID: loginID, phone: phoneNumber, code: code)
+        } else {
+            self.view.showToast("mismatch_cert_code_toast"._localized)
+        }
     }
     
     //
@@ -53,7 +103,7 @@ class FindPwdVC: BaseVC {
         hideKeyboard()
         
         guard let textID = tfID.text, !textID.isEmpty else {
-            self.view.showToast("Please input your ID!")
+            self.view.showToast("signup_id_empty_alert"._localized)
             return
         }
         
@@ -61,28 +111,50 @@ class FindPwdVC: BaseVC {
     }
     
     @IBAction func onAuthReqest(_ sender: Any) {
+        guard let textID = tfID.text, !textID.isEmpty else {
+            self.view.showToast("signup_id_empty_alert"._localized)
+            return
+        }
+        
         guard let phoneNumber = tfPhonenumber.text, !phoneNumber.isEmpty else {
             self.view.showToast("empty_phone_toast"._localized)
             return
         }
         
-        authRequest(phoneNumber: phoneNumber)
+        authRequest(loginId: textID, phoneNumber: phoneNumber)
     }
+    
+    @IBAction func onClickClearPhoneEdit(_ sender: Any) {
+        tfPhonenumber.text = nil
+        phoneEditRightView.isHidden = true
+    }
+    
+    @IBAction func textFieldDidChanged(_ sender: UITextField) {
+        if sender == tfPhonenumber {
+            guard let phone = tfPhonenumber.text, !phone.isEmpty else {
+                phoneEditRightView.isHidden = true
+                return
+            }
+            
+            phoneEditRightView.isHidden = false
+        } else if sender == tfCertification {
+            guard let code = tfCertification.text, !code.isEmpty else {
+                btnConfirm.isEnabled = false
+                return
+            }
+            
+            if authStatus == .provisional {
+                btnConfirm.isEnabled = true
+            }
+        }
+    }
+    
 }
 
 //
 // MARK: - UITextFieldDelegate
 //
 extension FindPwdVC: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        tfEmail.resignFirstResponder()
-        findPwd()
-        return true
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let newLen = (textField.text?.count ?? 0) - range.length + string.count
@@ -99,49 +171,28 @@ extension FindPwdVC: UITextFieldDelegate {
 // MARK: - RestApi
 //
 extension FindPwdVC: BaseRestApi {
-    func authRequest(phoneNumber: String) {
+    func authRequest(loginId:String, phoneNumber: String) {
         SVProgressHUD.show()
-        Rest.send_code(phoneNumber: phoneNumber, success: { [weak self](result) -> Void in
+        Rest.request_code_for_find(loginId:loginId, phoneNumber: phoneNumber, success: { [weak self](result) -> Void in
             SVProgressHUD.dismiss()
-            self?.lblDownTime.startCountDownTimer()
+            self?.authCode = result?.code
+            self?.changeAuthStatus(auth: .provisional)
         }) { [weak self](code, err) -> Void in
             SVProgressHUD.dismiss()
-            if code == 202 {
+            if code == ResponseResultCode.ERROR_USER_NO_EXIST.rawValue {
                 self?.showNonRegisterPhone()
             } else {
                 self?.view.showToast(err)
             }
+            
+            self?.changeAuthStatus(auth: .notDetermined)
         }
     }
-    
-    func findPwd() {
-        guard let loginID = tfID.text, !loginID.isEmpty else {
-            self.view.showToast("empty_id_toast"._localized)
-            return
-        }
-        
-        guard let phoneNumber = tfPhonenumber.text, !phoneNumber.isEmpty else {
-            self.view.showToast("empty_phone_toast"._localized)
-            return
-        }
-        
-        guard let code = tfCertification.text, !code.isEmpty else {
-            self.view.showToast("Please input your certification code")
-            return
-        }
-        
-        SVProgressHUD.show()
-        Rest.findPwd(loginid: loginID, phoneNumber: phoneNumber, code: code, success: { [weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
-            let data = result as! ModelPhoneVerify
-            self?.onResetSuccess(userID: loginID, phone: phoneNumber, code: data.code.description)
-        }, failure: { (code, err) -> Void in
-            SVProgressHUD.dismiss()
-            if code == 202 {
-                //self?.showError(err)
-                return
-            }
-            self.view.showToast(err)
-        })
+}
+
+extension FindPwdVC: CountDownTimeIsUp {
+    func onTimeIsUp(sender: CountDownTimeLabel) {
+        sender.isHidden = true
+        changeAuthStatus(auth: .denied)
     }
 }

@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupAgreeTerms" customModule="Traystorage" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupPage3VC" customModule="Traystorage" customModuleProvider="target">
             <connections>
                 <outlet property="btnAllAgree" destination="lyX-zs-wec" id="LV7-ki-7ZS"/>
                 <outlet property="btnNext" destination="rHc-7e-C7U" id="lbh-kW-ZS5"/>
@@ -29,44 +29,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nun-WN-oga" userLabel="root">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Anr-EP-rs9" userLabel="header">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gil-tk-b1c" userLabel="back">
-                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="Gil-tk-b1c" secondAttribute="height" id="fa7-nI-nDg"/>
-                                    </constraints>
-                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                    <state key="normal" image="ic_back"/>
-                                    <connections>
-                                        <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="bet-8W-Shw"/>
-                                    </connections>
-                                </button>
-                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" translatesAutoresizingMaskIntoConstraints="NO" id="443-dL-mke">
-                                    <rect key="frame" x="0.0" y="56" width="414" height="4"/>
-                                    <color key="tintColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </progressView>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="Gil-tk-b1c" secondAttribute="bottom" id="08t-KD-ZVl"/>
-                                <constraint firstAttribute="bottom" secondItem="443-dL-mke" secondAttribute="bottom" id="8rr-Po-hHa"/>
-                                <constraint firstAttribute="height" constant="60" id="Gyu-YM-guc"/>
-                                <constraint firstAttribute="trailing" secondItem="443-dL-mke" secondAttribute="trailing" id="ZqK-xf-jvm"/>
-                                <constraint firstItem="Gil-tk-b1c" firstAttribute="top" secondItem="Anr-EP-rs9" secondAttribute="top" id="Zzi-wn-UiB"/>
-                                <constraint firstItem="443-dL-mke" firstAttribute="leading" secondItem="Anr-EP-rs9" secondAttribute="leading" id="ekN-fD-co5"/>
-                                <constraint firstItem="Gil-tk-b1c" firstAttribute="leading" secondItem="Anr-EP-rs9" secondAttribute="leading" id="qUT-dx-rDR"/>
-                            </constraints>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEt-dI-M6X" userLabel="content">
-                            <rect key="frame" x="20" y="90" width="374" height="708"/>
+                            <rect key="frame" x="20" y="0.0" width="374" height="798"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Ypl-Cp-2Lj" userLabel="title">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="41"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Please agree to the terms and conditions to sign up" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcu-Ha-S4B" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="352.5" height="26.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348.5" height="41"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -78,7 +48,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3/3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDf-jB-hqA" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="352.5" y="9.5" width="21.5" height="17"/>
+                                            <rect key="frame" x="348.5" y="20.5" width="25.5" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" systemColor="systemGrayColor"/>
                                             <nil key="highlightedColor"/>
@@ -91,7 +61,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="cdW-4V-d4E" userLabel="agree group">
-                                    <rect key="frame" x="0.0" y="70.5" width="374" height="248"/>
+                                    <rect key="frame" x="0.0" y="85" width="374" height="248"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TrY-SO-wru" userLabel="agree group">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
@@ -130,8 +100,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZD-Gw-HcA">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="88"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sjw-gX-kek" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="198" height="88"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sjw-gX-kek" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="199.5" height="88"/>
                                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="Terms of use (required)" image="Icon-C-Check-24"/>
@@ -146,7 +116,7 @@
                                                                 <action selector="onClickTerms:" destination="-1" eventType="touchUpInside" id="vc0-KH-PYb"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GiI-gc-kgK">
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GiI-gc-kgK">
                                                             <rect key="frame" x="320.5" y="0.0" width="53.5" height="88"/>
                                                             <color key="tintColor" systemColor="systemGrayColor"/>
                                                             <state key="normal" title="Button"/>
@@ -172,8 +142,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXu-Yk-llh">
                                                     <rect key="frame" x="0.0" y="110" width="374" height="88"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mue-ga-S13" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="201" height="88"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mue-ga-S13" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="205.5" height="88"/>
                                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="Privacy Policy (required)" image="Icon-C-Check-24"/>
@@ -188,7 +158,7 @@
                                                                 <action selector="onClickPrivacy:" destination="-1" eventType="touchUpInside" id="hQ5-av-Enc"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jh6-cH-qU9">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jh6-cH-qU9">
                                                             <rect key="frame" x="320.5" y="0.0" width="53.5" height="88"/>
                                                             <color key="tintColor" systemColor="systemGrayColor"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -217,7 +187,7 @@
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHc-7e-C7U" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="654" width="374" height="54"/>
+                                    <rect key="frame" x="0.0" y="744" width="374" height="54"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="54" id="pie-Cw-6ug"/>
                                     </constraints>
@@ -263,10 +233,7 @@
                         <constraint firstAttribute="bottom" secondItem="SEt-dI-M6X" secondAttribute="bottom" constant="20" id="7F7-S6-A9w"/>
                         <constraint firstItem="SEt-dI-M6X" firstAttribute="leading" secondItem="nun-WN-oga" secondAttribute="leading" constant="20" id="Eqg-es-kFM"/>
                         <constraint firstAttribute="trailing" secondItem="SEt-dI-M6X" secondAttribute="trailing" constant="20" id="IiY-9L-fCQ"/>
-                        <constraint firstItem="Anr-EP-rs9" firstAttribute="leading" secondItem="nun-WN-oga" secondAttribute="leading" id="MSl-Os-ddV"/>
-                        <constraint firstItem="Anr-EP-rs9" firstAttribute="top" secondItem="nun-WN-oga" secondAttribute="top" id="Mfn-ZK-rkm"/>
-                        <constraint firstAttribute="trailing" secondItem="Anr-EP-rs9" secondAttribute="trailing" id="Wtu-Dv-Sxw"/>
-                        <constraint firstItem="SEt-dI-M6X" firstAttribute="top" secondItem="Anr-EP-rs9" secondAttribute="bottom" constant="30" id="iO3-5U-dw6"/>
+                        <constraint firstItem="SEt-dI-M6X" firstAttribute="top" secondItem="nun-WN-oga" secondAttribute="top" id="bvn-Iu-r1Q"/>
                     </constraints>
                 </view>
             </subviews>
@@ -283,28 +250,27 @@
     </objects>
     <designables>
         <designable name="Mue-ga-S13">
-            <size key="intrinsicContentSize" width="201" height="38"/>
+            <size key="intrinsicContentSize" width="205.5" height="38"/>
         </designable>
         <designable name="Sjw-gX-kek">
-            <size key="intrinsicContentSize" width="198" height="38"/>
+            <size key="intrinsicContentSize" width="199.5" height="38"/>
         </designable>
         <designable name="eDf-jB-hqA">
-            <size key="intrinsicContentSize" width="21.5" height="17"/>
+            <size key="intrinsicContentSize" width="25.5" height="20.5"/>
         </designable>
         <designable name="gcu-Ha-S4B">
-            <size key="intrinsicContentSize" width="192" height="26.5"/>
+            <size key="intrinsicContentSize" width="390.5" height="20.5"/>
         </designable>
         <designable name="lyX-zs-wec">
-            <size key="intrinsicContentSize" width="87" height="24"/>
+            <size key="intrinsicContentSize" width="81" height="24"/>
         </designable>
         <designable name="rHc-7e-C7U">
-            <size key="intrinsicContentSize" width="45" height="30"/>
+            <size key="intrinsicContentSize" width="46" height="30"/>
         </designable>
     </designables>
     <resources>
         <image name="Icon-C-Check-24" width="24" height="24"/>
         <image name="Icon-C-CheckOff-24" width="24" height="24"/>
-        <image name="ic_back" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

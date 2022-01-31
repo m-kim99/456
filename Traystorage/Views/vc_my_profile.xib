@@ -89,7 +89,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpZ-Jj-tpW" userLabel="icon">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="86"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-C-User-60" translatesAutoresizingMaskIntoConstraints="NO" id="zb9-dp-S1F">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-C-User-60" translatesAutoresizingMaskIntoConstraints="NO" id="zb9-dp-S1F">
                                                             <rect key="frame" x="0.0" y="0.0" width="86" height="86"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="86" id="8X3-Ne-E3J"/>
@@ -129,7 +129,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="rJD-au-LTO" userLabel="label">
                                                             <rect key="frame" x="0.0" y="0.0" width="69.333333333333329" height="50"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="du2-n3-LJz" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="du2-n3-LJz" userLabel="name label" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="29.333333333333332" height="50"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -151,14 +151,15 @@
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
-                                                        <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pMV-mo-ecz" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
+                                                        <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pMV-mo-ecz" userLabel="name edit" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="name"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                                     <real key="value" value="24"/>
                                                                 </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <action selector="onEditNameDidEnd:" destination="-1" eventType="editingDidEnd" id="z9x-tN-hkO"/>
@@ -209,7 +210,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="enB-mh-8Vn">
                                                             <rect key="frame" x="0.0" y="0.0" width="335" height="46"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="birthday" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6b-Sq-Ahe" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="birthday" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6b-Sq-Ahe" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="46"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="80" id="Iz1-Sy-MA8"/>
@@ -227,7 +228,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1pW-T6-X4Q" userLabel="birthday">
                                                                     <rect key="frame" x="88" y="0.0" width="247" height="46"/>
                                                                     <subviews>
-                                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FV3-vF-VYR" userLabel="birthday button" customClass="UIFontTextField">
+                                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="birthday" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FV3-vF-VYR" userLabel="birthday button" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="247" height="46"/>
                                                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -235,7 +236,7 @@
                                                                             <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next" textContentType="tel"/>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="xibPlaceholder" value="birthday"/>
-                                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                                                     <real key="value" value="14"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
@@ -273,7 +274,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MCn-iz-jXg">
                                                             <rect key="frame" x="0.0" y="76" width="335" height="46"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeH-pv-IkU" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeH-pv-IkU" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="46"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="80" id="Pes-uW-W5z"/>
@@ -304,7 +305,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="a2L-B2-a2Y">
                                                             <rect key="frame" x="0.0" y="152.00000000000006" width="335" height="46"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gender" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjY-Vm-arp" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="gender" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjY-Vm-arp" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="14" width="80" height="18"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="80" id="tZK-TY-1uC"/>
@@ -471,7 +472,7 @@
             <size key="intrinsicContentSize" width="4" height="19.666666666666668"/>
         </designable>
         <designable name="FV3-vF-VYR">
-            <size key="intrinsicContentSize" width="32" height="34"/>
+            <size key="intrinsicContentSize" width="81.666666666666671" height="34"/>
         </designable>
         <designable name="KrO-07-RtU">
             <size key="intrinsicContentSize" width="49" height="18"/>

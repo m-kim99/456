@@ -144,7 +144,13 @@ class Net {
                     print("Upload Progress: \(progress.fractionCompleted)")
                 })
                 upload.responseString { response in
-                    let result = response.result.value ?? ""
+                    guard let result = response.result.value, !result.isEmpty else {
+                        if let failure = failure {
+                            failure(-900, "Failed to parse server response(invalid object)")
+                        }
+                        return
+                    }
+
                     print(result)
                     
                     let res = JSON(result.data(using: .utf8)! as Any)

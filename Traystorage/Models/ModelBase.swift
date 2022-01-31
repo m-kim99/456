@@ -5,6 +5,8 @@ public class ModelBase {
     var result: Int!
     var msg: String!
     var reason: String!
+    var code: String!
+    var loginId: String!//find id
     
     init() {}
     
@@ -12,6 +14,8 @@ public class ModelBase {
         result = json["result"].intValue
         msg = json["msg"].stringValue
         reason = json["reason"].stringValue
+        code = json["code"].stringValue
+        loginId = json["login_id"].stringValue
     }
 }
 
@@ -31,4 +35,23 @@ public class ModelList: ModelBase {
         page_cnt = json["page_cnt"].intValue
         is_last = json["is_last"].boolValue
     }
+}
+
+public class ModelUploadFileList: ModelList {
+    var fileNames = [String]()
+    var fileUrls = [String]()
+    
+    override init() {
+        super.init()
+    }
+    
+    override init(_ json: JSON) {
+        super.init(json)
+        
+        for jfile in json.arrayValue {
+            fileNames.append(jfile["file_name"].stringValue)
+            fileUrls.append(jfile["file_url"].stringValue)
+        }
+    }
+
 }

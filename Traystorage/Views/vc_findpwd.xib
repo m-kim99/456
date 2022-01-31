@@ -12,9 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FindPwdVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
-                <outlet property="btnReset" destination="k6Y-k7-IZS" id="FbJ-G7-Aln"/>
+                <outlet property="btnConfirm" destination="k6Y-k7-IZS" id="9tz-5J-LjE"/>
+                <outlet property="groupResend" destination="52S-wx-203" id="teL-T6-4b3"/>
                 <outlet property="keyboardAvoidScroll" destination="d7q-Oj-HvT" id="ywh-TA-Aeb"/>
                 <outlet property="lblDownTime" destination="Xxk-yM-t1L" id="q5F-RW-2vP"/>
+                <outlet property="phoneEditRightView" destination="zn2-8u-E22" id="GWJ-23-luv"/>
                 <outlet property="tfCertification" destination="2Zw-vF-aAs" id="qw7-7F-urj"/>
                 <outlet property="tfID" destination="iOh-fg-FCa" id="IdQ-F9-Xp5"/>
                 <outlet property="tfPhonenumber" destination="pQr-Y2-qH6" id="uz7-QZ-laA"/>
@@ -49,13 +51,13 @@
                             <rect key="frame" x="0.0" y="50" width="414" height="768"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wvq-Wm-MsI" userLabel="scroll content">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="587.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="624.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DCl-m3-u07" userLabel="margin content">
-                                            <rect key="frame" x="20" y="20" width="374" height="547.5"/>
+                                            <rect key="frame" x="20" y="20" width="374" height="584.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please verify your registered ID and mobile phone number." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PjA-CI-Ywd" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="53"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -67,13 +69,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="RyP-dH-KeW" userLabel="data">
-                                                    <rect key="frame" x="0.0" y="70.5" width="374" height="351"/>
+                                                    <rect key="frame" x="0.0" y="97" width="374" height="361.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="RZi-Jn-gmi" userLabel="stack2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="93"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="96.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCP-iO-yfh" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -85,7 +87,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iOh-fg-FCa" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="37" width="374" height="56"/>
+                                                                    <rect key="frame" x="0.0" y="40.5" width="374" height="56"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="56" id="1X5-V8-8qv"/>
                                                                     </constraints>
@@ -101,10 +103,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bDl-he-Xvv" userLabel="stack2">
-                                                            <rect key="frame" x="0.0" y="129" width="374" height="93"/>
+                                                            <rect key="frame" x="0.0" y="132.5" width="374" height="96.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-xo-unI" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -116,7 +118,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5R-DS-qLA">
-                                                                    <rect key="frame" x="0.0" y="37" width="374" height="56"/>
+                                                                    <rect key="frame" x="0.0" y="40.5" width="374" height="56"/>
                                                                     <subviews>
                                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pQr-Y2-qH6" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="56"/>
@@ -132,20 +134,24 @@
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
+                                                                                <action selector="textFieldDidChanged:" destination="-1" eventType="editingChanged" id="5vv-MM-KDH"/>
                                                                                 <outlet property="delegate" destination="-1" id="CdZ-Zf-byM"/>
                                                                             </connections>
                                                                         </textField>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zn2-8u-E22">
-                                                                            <rect key="frame" x="168" y="9" width="206" height="38"/>
+                                                                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zn2-8u-E22">
+                                                                            <rect key="frame" x="215" y="9" width="159" height="38"/>
                                                                             <subviews>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YvQ-6s-b4S">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="48" height="38"/>
                                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                                     <state key="normal" image="Icon-Common-24x24-Close"/>
                                                                                     <buttonConfiguration key="configuration" style="plain" image="Icon-Common-24x24-Close"/>
+                                                                                    <connections>
+                                                                                        <action selector="onClickClearPhoneEdit:" destination="-1" eventType="touchUpInside" id="JiG-53-8kQ"/>
+                                                                                    </connections>
                                                                                 </button>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3n-nj-YrJ" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                                                    <rect key="frame" x="56" y="0.0" width="150" height="38"/>
+                                                                                    <rect key="frame" x="56" y="0.0" width="103" height="38"/>
                                                                                     <color key="tintColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -186,10 +192,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="C3l-yk-dsM" userLabel="stack3">
-                                                            <rect key="frame" x="0.0" y="258" width="374" height="93"/>
+                                                            <rect key="frame" x="0.0" y="265" width="374" height="96.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Certification number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IY8-Ud-O5O" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -201,7 +207,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oke-F9-YAt">
-                                                                    <rect key="frame" x="0.0" y="37" width="374" height="56"/>
+                                                                    <rect key="frame" x="0.0" y="40.5" width="374" height="56"/>
                                                                     <subviews>
                                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Certification number input" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Zw-vF-aAs" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="56"/>
@@ -216,9 +222,12 @@
                                                                                     <real key="value" value="15"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <action selector="textFieldDidChanged:" destination="-1" eventType="editingChanged" id="7q1-x8-Gf2"/>
+                                                                            </connections>
                                                                         </textField>
                                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02:57" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxk-yM-t1L" customClass="CountDownTimeLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                            <rect key="frame" x="336" y="19.5" width="38" height="17"/>
+                                                                            <rect key="frame" x="329.5" y="18" width="44.5" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" systemColor="systemRedColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -244,13 +253,13 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jbx-yS-Rwd" userLabel="stack4">
-                                                    <rect key="frame" x="251" y="429.5" width="123" height="31"/>
+                                                    <rect key="frame" x="374" y="466.5" width="0.0" height="0.0"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="52S-wx-203">
-                                                            <rect key="frame" x="0.0" y="0.0" width="123" height="31"/>
+                                                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="52S-wx-203">
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="31"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IB5-FA-TrA" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="123" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
                                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                                     <color key="tintColor" systemColor="systemGrayColor"/>
                                                                     <state key="normal" title="Resend verification code"/>
@@ -262,7 +271,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </button>
                                                                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="75" translatesAutoresizingMaskIntoConstraints="NO" id="SnA-aO-uWe">
-                                                                    <rect key="frame" x="0.0" y="30" width="123" height="1"/>
+                                                                    <rect key="frame" x="0.0" y="30" width="0.0" height="1"/>
                                                                     <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="1" id="QPg-EF-xKF"/>
@@ -272,8 +281,8 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-k7-IZS" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="493.5" width="374" height="54"/>
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-k7-IZS" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="530.5" width="374" height="54"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="54" id="jXA-WU-WuR"/>
                                                     </constraints>
@@ -359,37 +368,37 @@
     </objects>
     <designables>
         <designable name="2Zw-vF-aAs">
-            <size key="intrinsicContentSize" width="374" height="34"/>
+            <size key="intrinsicContentSize" width="207.5" height="34"/>
         </designable>
         <designable name="IB5-FA-TrA">
-            <size key="intrinsicContentSize" width="123" height="30"/>
+            <size key="intrinsicContentSize" width="169" height="30"/>
         </designable>
         <designable name="IY8-Ud-O5O">
-            <size key="intrinsicContentSize" width="135" height="17"/>
+            <size key="intrinsicContentSize" width="156.5" height="20.5"/>
         </designable>
         <designable name="PjA-CI-Ywd">
-            <size key="intrinsicContentSize" width="146.5" height="26.5"/>
+            <size key="intrinsicContentSize" width="550.5" height="26.5"/>
         </designable>
         <designable name="Xxk-yM-t1L">
-            <size key="intrinsicContentSize" width="38" height="17"/>
+            <size key="intrinsicContentSize" width="44.5" height="20.5"/>
         </designable>
         <designable name="ayc-xo-unI">
-            <size key="intrinsicContentSize" width="98" height="17"/>
+            <size key="intrinsicContentSize" width="111" height="20.5"/>
         </designable>
         <designable name="iOh-fg-FCa">
-            <size key="intrinsicContentSize" width="374" height="34"/>
+            <size key="intrinsicContentSize" width="83" height="34"/>
         </designable>
         <designable name="k6Y-k7-IZS">
-            <size key="intrinsicContentSize" width="52" height="30"/>
+            <size key="intrinsicContentSize" width="53" height="30"/>
         </designable>
         <designable name="pQr-Y2-qH6">
-            <size key="intrinsicContentSize" width="374" height="34"/>
+            <size key="intrinsicContentSize" width="202" height="34"/>
         </designable>
         <designable name="q3n-nj-YrJ">
-            <size key="intrinsicContentSize" width="150" height="17"/>
+            <size key="intrinsicContentSize" width="103" height="18"/>
         </designable>
         <designable name="sCP-iO-yfh">
-            <size key="intrinsicContentSize" width="12" height="17"/>
+            <size key="intrinsicContentSize" width="14" height="20.5"/>
         </designable>
     </designables>
     <resources>

@@ -5,10 +5,14 @@
 
 import Foundation
 import UIKit
+import SVProgressHUD
 
 class ContactusVC: BaseVC {
     @IBOutlet var tfSubject: UITextField!
     @IBOutlet var tvDetail: UITextView!
+    @IBOutlet var vwDetailHint: UILabel!
+    
+    private var isChanged: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,27 +30,48 @@ class ContactusVC: BaseVC {
         tvDetail.resignFirstResponder()
     }
     
+    override func onBackProcess(_ viewController: UIViewController) {
+        if let popDelegate = self.popDelegate {
+            popDelegate.onWillBack("contactus", isChanged ? "updated" : "none")
+        }
+        super.onBackProcess(viewController)
+    }
+    
     
     @IBAction func onClickSend(_ sender: Any) {
         hideKeyboard()
         
         guard let subject = tfSubject.text?.trimmingCharacters(in: CharacterSet.whitespaces), !subject.isEmpty else {
-            self.view.showToast("Please input a valid subject")
+            self.view.showToast("inquiry_title_input"._localized)
             return
         }
         
         guard let content = tvDetail.text?.trimmingCharacters(in: CharacterSet.whitespaces), !content.isEmpty else {
-            self.view.showToast("Please input a inqury content")
+            self.view.showToast("inquiry_content_input"._localized)
             return
         }
         
         if content.count < 10 {
-            self.view.showToast("Please input 10+ charaters for content")
+            self.view.showToast("inquiry_content10_input"._localized)
             return
         }
         
-        ConfirmDialog.show(self, title: "Send", message: "Would you like to inquire about what you have written?", showCancelBtn: true) { [weak self]() -> Void in
-            self?.popToGuidVC()
+        ConfirmDialog.show(self, title: "send"._localized, message: "inquiry_save"._localized, showCancelBtn: true) { [weak self]() -> Void in
+            self?.insertAsk(subject, content);
+        }
+    }
+    
+    private func insertAsk(_ subject:String,_ content:String) {
+        SVProgressHUD.show()
+        Rest.insertAsk(title:subject, content:content, success:{ [weak self](result) in
+            SVProgressHUD.dismiss()
+            self?.view.showToast("inquiry_save_confirm"._localized)
+            self?.tfSubject.text = ""
+            self?.tvDetail.text = ""
+            self?.isChanged = true
+        }) { [weak self](code, err) in
+            SVProgressHUD.dismiss()
+            self?.view.showToast(err)
         }
     }
 }
@@ -61,5 +86,17 @@ extension ContactusVC: UITextFieldDelegate {
         }
 
         return true
+    }
+}
+
+extension ContactusVC: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        vwDetailHint.isHidden = true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if let text = textView.text, text.isEmpty {
+            vwDetailHint.isHidden = false
+        }
     }
 }

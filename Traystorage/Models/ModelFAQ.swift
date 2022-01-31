@@ -3,7 +3,7 @@ import SwiftyJSON
 
 public class ModelFAQ: ModelBase {
     var faq_id: Int = -1
-    var code: String!
+    var faccode: String!
     var item_id: String!
     var platform: Int = 0
     var title: String!
@@ -16,7 +16,7 @@ public class ModelFAQ: ModelBase {
     override init(_ json: JSON) {
         super.init(json)
         faq_id = json["id"].intValue
-        code = json["code"].stringValue
+        faccode = json["code"].stringValue
         item_id = json["item_id"].stringValue
         platform = json["platform"].intValue
         title = json["title"].stringValue
@@ -50,18 +50,16 @@ public class ModelFAQList: ModelBase {
 
 public class ModelFAQCategory: ModelBase {
     var faq_id: Int = -1
-    var name: String!
-    var status: String!
-    var priority: Int = 0
-    var create_time: String!
+    var name: String = "all"._localized
+    
+    override init() {
+        super.init()
+    }
     
     override init(_ json: JSON) {
         super.init(json)
         faq_id = json["id"].intValue
         name = json["name"].stringValue
-        status = json["status"].stringValue
-        priority = json["priority"].intValue
-        create_time = json["create_time"].stringValue
     }
 }
 

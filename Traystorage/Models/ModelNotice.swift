@@ -3,7 +3,7 @@ import SwiftyJSON
 
 public class ModelNotice: ModelBase {
     var notice_id: Int = -1
-    var code: String!
+    var noticeCode: String!
     var platform: Int = 0
     var title: String!
     var content: String!
@@ -14,7 +14,7 @@ public class ModelNotice: ModelBase {
     override init(_ json: JSON) {
         super.init(json)
         notice_id = json["id"].intValue
-        code = json["code"].stringValue
+        noticeCode = json["code"].stringValue
         platform = json["platform"].intValue
         title = json["title"].stringValue
         content = json["content"].stringValue
