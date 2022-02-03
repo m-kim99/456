@@ -43,15 +43,37 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakaoe3c3adc5b61cc2c3940ed6217db8ee9e</string>
+				<string>kakao98498c102944c0477c37fcaa25a98fa7</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb480228780356602</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Bundle ID</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.kyad.traystorage</string>
 			</array>
 		</dict>
 	</array>
 	<key>KAKAO_APP_KEY</key>
-	<string>e3c3adc5b61cc2c3940ed6217db8ee9e</string>
+	<string>98498c102944c0477c37fcaa25a98fa7</string>
+	<key>FacebookAppID</key>
+	<string>480228780356602</string>
+	<key>FacebookDisplayName</key>
+	<string>traystorage</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>kakaoe3c3adc5b61cc2c3940ed6217db8ee9e</string>
+		<string>kakao98498c102944c0477c37fcaa25a98fa7</string>
 		<string>kakaokompassauth</string>
 		<string>storykompassauth</string>
 		<string>storylink</string>
@@ -98,6 +120,23 @@
 		<string>productpay</string>
 		<string>localpay</string>
 		<string>nmap</string>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbapi20130214</string>
+		<string>fbapi20130410</string>
+		<string>fbapi20130702</string>
+		<string>fbapi20131010</string>
+		<string>fbapi20131219</string>
+		<string>fbapi20140410</string>
+		<string>fbapi20140116</string>
+		<string>fbapi20150313</string>
+		<string>fbapi20150629</string>
+		<string>fbapi20160328</string>
+		<string>fb-messenger-api</string>
+		<string>fb-messenger-api20140430</string>
+		<string>fbauth2</string>
+		<string>fbauth</string>
+		<string>fbshareextension</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -108,6 +147,8 @@
 	<string>앱에서 본인의 유저프로필을 업로드하기 위해 이용합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>앱에서 본인의 유저프로필을 업로드하기 위해 이용합니다.</string>
+	<key>NFCReaderUsageDescription</key>
+	<string>NFC장치에 읽기/쓰기를 위해 이용합니다.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSansCJKkr-Bold.otf</string>
