@@ -13,7 +13,6 @@ class LoginVC: BaseVC {
     @IBOutlet weak var autoLoginCheckImage: UIImageView!
     
     var isAutoLogin = true
-    
     var loginAttempCount: Int = 0
     
     override func viewDidLoad() {
@@ -52,7 +51,7 @@ class LoginVC: BaseVC {
         let ud = UserDefaults.standard
         ud.set(isAutoLogin, forKey: Local.PREFS_APP_AUTO_LOGIN.rawValue)
         ud.synchronize()
-        openMainVC()
+        openAgreeView()
     }
     
     private func showInvalidAccount() {
@@ -175,10 +174,18 @@ extension LoginVC: UITextFieldDelegate {
 //
 extension LoginVC: BaseNavigation {
     func openMainVC() {
-        
         let mainVC = UIStoryboard(name: "vc_main", bundle: nil).instantiateInitialViewController()
 //        self.replaceVC(MainVC(nibName: "vc_main", bundle: nil), animated: true)
         self.pushVC(mainVC as! BaseVC, animated: true)
+    }
+    
+    
+    func openAgreeView() {
+        if Rest.user.isAgree == 0 {
+            pushVC(LoginAgreeTermsVC(nibName: "vc_login_agree_terms", bundle: nil), animated: true)
+        } else {
+            openMainVC()
+        }
     }
 }
 

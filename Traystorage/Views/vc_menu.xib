@@ -55,37 +55,40 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f67-xd-dop" userLabel="header">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="207"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-C-User-60" translatesAutoresizingMaskIntoConstraints="NO" id="A0C-PV-Woc">
-                                                            <rect key="frame" x="30" y="76" width="64" height="64"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="64" id="QMZ-bQ-nRq"/>
-                                                                <constraint firstAttribute="height" constant="64" id="sfE-EZ-ujS"/>
-                                                            </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="32"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test nim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-Sd-aVD" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="30" y="156" width="66" height="22"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
-                                                                    <real key="value" value="18"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wBi-n9-2ej">
+                                                            <rect key="frame" x="30" y="76" width="66" height="102"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon-C-User-60" translatesAutoresizingMaskIntoConstraints="NO" id="A0C-PV-Woc">
+                                                                    <rect key="frame" x="1" y="0.0" width="64" height="64"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="64" id="QMZ-bQ-nRq"/>
+                                                                        <constraint firstAttribute="height" constant="64" id="sfE-EZ-ujS"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="32"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test nim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxs-Sd-aVD" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="80" width="66" height="22"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                                            <real key="value" value="18"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.10980392156862745" green="0.19607843137254902" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="Xxs-Sd-aVD" firstAttribute="leading" secondItem="f67-xd-dop" secondAttribute="leading" constant="30" id="1GZ-OM-xky"/>
-                                                        <constraint firstItem="A0C-PV-Woc" firstAttribute="top" secondItem="f67-xd-dop" secondAttribute="top" constant="76" id="79G-6Y-2R3"/>
-                                                        <constraint firstItem="Xxs-Sd-aVD" firstAttribute="top" secondItem="A0C-PV-Woc" secondAttribute="bottom" constant="16" id="ItD-UZ-Wvx"/>
-                                                        <constraint firstItem="A0C-PV-Woc" firstAttribute="leading" secondItem="f67-xd-dop" secondAttribute="leading" constant="30" id="beY-AO-Tsd"/>
+                                                        <constraint firstItem="wBi-n9-2ej" firstAttribute="top" secondItem="f67-xd-dop" secondAttribute="top" constant="76" id="8WD-CF-QHG"/>
+                                                        <constraint firstItem="wBi-n9-2ej" firstAttribute="leading" secondItem="f67-xd-dop" secondAttribute="leading" constant="30" id="ALU-CN-JcP"/>
                                                         <constraint firstAttribute="height" constant="207" id="e70-GE-0en"/>
                                                     </constraints>
                                                 </view>

@@ -114,16 +114,20 @@
 
 "signup_agree_detail"="회원가입을 위해\n약관에 동의해주세요";
 
-"signup_phone_verify_success" = "인증코드 전송되었습니다.";
+"login_agree_detail"="TrayStorage 약관이 변경되었습니다.\n약관에 동의해 주세요.";
 
+"signup_phone_verify_success" = "휴대폰인증 요청이 전송되었습니다.";
 // signup 3rd screen
 "all_agree"="전체 동의";
 "terms_of_use_required" = "이용약관 (필수)";
 "privacy_policy_required" = "개인정보 취급방침 (필수)";
 "signup_agree_view" = "보기";
+"agree_view" = "내용";
+"agree_item_req_suffix"="(필수)";
 
 
 "signup_agree_confrim_title"="입력하신 정보로\n회원가입 하시겠습니까?";
+"login_agree_confrim_title"="Would you like to register as a member with the information you entered?";
 
 // signup complete
 "signup_complete_title"="회원가입이 완료되었습니다";
@@ -181,6 +185,7 @@
 "document_empty_desc"="지금 쉽고 편리하게 문서를 등록하고\nNFC태그를 통해 관리 및 공유해 보세요";
 "doc_empty_search"="검색어를 입력해 주세요.";
 "doc_deleted_toast"="문서 삭제되었습니다.";
+"doc_search_hint"="검색어를 입력해 주세요.";
 
 
 // document detail
@@ -264,6 +269,7 @@
 "not_see_today"="do not see today";
 "close"="닫기";
 "register"="register";
+"complete"="complete";
 
 // menu & vc title
 "profile_manage_title"="프로필 관리";

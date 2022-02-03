@@ -40,16 +40,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zq7-HX-ejf" userLabel="scroll content">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="461.33333333333331"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="432.33333333333331"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvS-VU-E8B" userLabel="margin content">
-                                                    <rect key="frame" x="20" y="30" width="335" height="411.33333333333331"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="432.33333333333331"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hWO-IN-S0P" userLabel="stack1">
-                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="26.333333333333332"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40.666666666666664"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Please verify your mobile phone  number to sign up" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1N-ag-8VX" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="305.66666666666669" height="26.333333333333332"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="342" height="40.666666666666664"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="2/3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ka-fG-Y9B" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="313.66666666666669" y="9.3333333333333286" width="21.333333333333314" height="17"/>
+                                                                    <rect key="frame" x="350" y="20.333333333333329" width="25" height="20.333333333333329"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -74,13 +74,13 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="H5O-fB-BnD" userLabel="data">
-                                                            <rect key="frame" x="0.0" y="70.333333333333343" width="335" height="222.00000000000003"/>
+                                                            <rect key="frame" x="0.0" y="84.666666666666671" width="375" height="228.66666666666663"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cYw-ey-E3r" userLabel="stack2">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="93"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="96.333333333333329"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjL-Ro-2f1" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="20.333333333333332"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -92,10 +92,10 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfP-KU-H1Q">
-                                                                            <rect key="frame" x="0.0" y="37" width="335" height="56"/>
+                                                                            <rect key="frame" x="0.0" y="40.333333333333343" width="375" height="56"/>
                                                                             <subviews>
                                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ku-mM-crv" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="56"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="56" id="Flw-TG-bbW"/>
                                                                                     </constraints>
@@ -113,7 +113,7 @@
                                                                                     </connections>
                                                                                 </textField>
                                                                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HiS-hV-0Lq">
-                                                                                    <rect key="frame" x="185" y="8" width="150" height="40"/>
+                                                                                    <rect key="frame" x="224" y="8" width="151" height="40"/>
                                                                                     <subviews>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPw-jg-iPv">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="48" height="40"/>
@@ -125,7 +125,7 @@
                                                                                             </connections>
                                                                                         </button>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQ4-hb-31s" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                                                            <rect key="frame" x="48" y="0.0" width="102" height="40"/>
+                                                                                            <rect key="frame" x="48" y="0.0" width="103" height="40"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="40" id="I2t-HU-Kew"/>
                                                                                             </constraints>
@@ -169,10 +169,10 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="arQ-ya-Qb5" userLabel="stack3">
-                                                                    <rect key="frame" x="0.0" y="128.99999999999997" width="335" height="93"/>
+                                                                    <rect key="frame" x="0.0" y="132.33333333333334" width="375" height="96.333333333333343"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Certification number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHL-4A-rqX" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="20.333333333333332"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -184,10 +184,10 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNF-Xi-RO8">
-                                                                            <rect key="frame" x="0.0" y="37" width="335" height="56"/>
+                                                                            <rect key="frame" x="0.0" y="40.333333333333314" width="375" height="56"/>
                                                                             <subviews>
                                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Certification number input" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BRO-02-Jd2" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="56"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="56" id="E3k-Q0-vGV"/>
                                                                                     </constraints>
@@ -205,7 +205,7 @@
                                                                                     </connections>
                                                                                 </textField>
                                                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elo-fb-Rp6" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                                                    <rect key="frame" x="269" y="8" width="66" height="40"/>
+                                                                                    <rect key="frame" x="306" y="8" width="69" height="40"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="40" id="TJq-XE-Md0"/>
                                                                                     </constraints>
@@ -249,13 +249,13 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xbw-vb-4Gf" userLabel="stack4">
-                                                            <rect key="frame" x="166.33333333333337" y="304.33333333333331" width="168.66666666666663" height="31"/>
+                                                            <rect key="frame" x="153.66666666666663" y="325.33333333333331" width="221.33333333333337" height="31"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xuR-h6-K7E">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="123" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="169" height="31"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZPc-NP-l2Z" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="123" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="169" height="30"/>
                                                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                                             <color key="tintColor" systemColor="systemGrayColor"/>
                                                                             <state key="normal" title="Resend verification code"/>
@@ -270,7 +270,7 @@
                                                                             </connections>
                                                                         </button>
                                                                         <view contentMode="scaleToFill" horizontalCompressionResistancePriority="75" translatesAutoresizingMaskIntoConstraints="NO" id="CGv-0q-c9V">
-                                                                            <rect key="frame" x="0.0" y="30" width="123" height="1"/>
+                                                                            <rect key="frame" x="0.0" y="30" width="169" height="1"/>
                                                                             <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="1" id="hSe-f5-m9w"/>
@@ -279,7 +279,7 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02:57" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeZ-is-966" customClass="CountDownTimeLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="130.99999999999997" y="7" width="37.666666666666657" height="17"/>
+                                                                    <rect key="frame" x="177.00000000000003" y="5.3333333333333712" width="44.333333333333343" height="20.333333333333332"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemRedColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -292,7 +292,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66K-LX-tfi" userLabel="NEXT" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="357.33333333333331" width="335" height="54"/>
+                                                            <rect key="frame" x="0.0" y="378.33333333333331" width="375" height="54"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="54" id="RY8-ez-wmk"/>
                                                             </constraints>
@@ -337,10 +337,10 @@
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="rvS-VU-E8B" firstAttribute="top" secondItem="Zq7-HX-ejf" secondAttribute="top" constant="30" id="APj-iv-Hr0"/>
-                                                <constraint firstAttribute="bottom" secondItem="rvS-VU-E8B" secondAttribute="bottom" constant="20" id="F35-Ur-LxY"/>
-                                                <constraint firstAttribute="trailing" secondItem="rvS-VU-E8B" secondAttribute="trailing" constant="20" id="ghD-9r-pUJ"/>
-                                                <constraint firstItem="rvS-VU-E8B" firstAttribute="leading" secondItem="Zq7-HX-ejf" secondAttribute="leading" constant="20" id="leC-KT-QM8"/>
+                                                <constraint firstItem="rvS-VU-E8B" firstAttribute="top" secondItem="Zq7-HX-ejf" secondAttribute="top" id="APj-iv-Hr0"/>
+                                                <constraint firstAttribute="bottom" secondItem="rvS-VU-E8B" secondAttribute="bottom" id="F35-Ur-LxY"/>
+                                                <constraint firstAttribute="trailing" secondItem="rvS-VU-E8B" secondAttribute="trailing" id="ghD-9r-pUJ"/>
+                                                <constraint firstItem="rvS-VU-E8B" firstAttribute="leading" secondItem="Zq7-HX-ejf" secondAttribute="leading" id="leC-KT-QM8"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -396,37 +396,37 @@
     </objects>
     <designables>
         <designable name="0ku-mM-crv">
-            <size key="intrinsicContentSize" width="335" height="34"/>
+            <size key="intrinsicContentSize" width="202" height="34"/>
         </designable>
         <designable name="66K-LX-tfi">
             <size key="intrinsicContentSize" width="30" height="30"/>
         </designable>
         <designable name="9ka-fG-Y9B">
-            <size key="intrinsicContentSize" width="21.333333333333332" height="17"/>
+            <size key="intrinsicContentSize" width="25" height="20.333333333333332"/>
         </designable>
         <designable name="AeZ-is-966">
-            <size key="intrinsicContentSize" width="37.666666666666664" height="17"/>
+            <size key="intrinsicContentSize" width="44.333333333333336" height="20.333333333333332"/>
         </designable>
         <designable name="BRO-02-Jd2">
-            <size key="intrinsicContentSize" width="335" height="34"/>
+            <size key="intrinsicContentSize" width="207.66666666666666" height="34"/>
         </designable>
         <designable name="XQ4-hb-31s">
-            <size key="intrinsicContentSize" width="102" height="17"/>
+            <size key="intrinsicContentSize" width="103" height="18"/>
         </designable>
         <designable name="ZPc-NP-l2Z">
-            <size key="intrinsicContentSize" width="123" height="30"/>
+            <size key="intrinsicContentSize" width="169" height="30"/>
         </designable>
         <designable name="bHL-4A-rqX">
-            <size key="intrinsicContentSize" width="135" height="17"/>
+            <size key="intrinsicContentSize" width="156.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="elo-fb-Rp6">
-            <size key="intrinsicContentSize" width="66" height="17"/>
+            <size key="intrinsicContentSize" width="69" height="18"/>
         </designable>
         <designable name="vjL-Ro-2f1">
-            <size key="intrinsicContentSize" width="98" height="17"/>
+            <size key="intrinsicContentSize" width="111" height="20.333333333333332"/>
         </designable>
         <designable name="x1N-ag-8VX">
-            <size key="intrinsicContentSize" width="199.66666666666666" height="26.333333333333332"/>
+            <size key="intrinsicContentSize" width="389" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>

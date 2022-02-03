@@ -3,7 +3,7 @@ import SwiftyJSON
 import Toast_Swift
 import UIKit
 
-class SignupAgreeTerms: BaseVC {
+class LoginAgreeTerms: BaseVC {
     @IBOutlet weak var btnNext: UIButton!
     
     @IBOutlet weak var btnAllAgree: UIButton!
@@ -85,7 +85,7 @@ class SignupAgreeTerms: BaseVC {
 //
 // MARK: - Action
 //
-extension SignupAgreeTerms: BaseAction {
+extension LoginAgreeTerms: BaseAction {
     @IBAction func onClickAllAgree(_ sender: Any) {
         isAllAgree = !isAllAgree
         updateAgreeState()
@@ -125,7 +125,7 @@ extension SignupAgreeTerms: BaseAction {
 //
 // MARK: - Navigation
 //
-extension SignupAgreeTerms: BaseNavigation {
+extension LoginAgreeTerms: BaseNavigation {
     private func goNext() {
         let vc = SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil)
     //        vc.authType = authType

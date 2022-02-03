@@ -91,7 +91,7 @@ extension SignupCompleteVC: BaseAction {
         hideKeyboard()
         DatepickerDialog.show(self, date:Date()) { [weak self](date) in
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.dateFormat = "yyyy.MM.dd"
             self?.tfBirthday.text = dateFormatter.string(from: date)
 //            self.isValidInput()
         }
@@ -161,6 +161,8 @@ extension SignupCompleteVC: BaseRestApi {
         let birthDay = tfBirthday.text ?? ""
         
         SVProgressHUD.show()
+        
+        let dbBirthday = birthDay.replaceAll(".", with: "-")
         
         Rest.makeProfile(name: name, birthday: birthDay, gender: userGender, email: email, profileImage:"", success: { [weak self, userGender] (result) -> Void in
             SVProgressHUD.dismiss()

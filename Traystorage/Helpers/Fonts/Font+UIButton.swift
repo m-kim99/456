@@ -80,7 +80,7 @@ class UIFontButton: UIButton {
         case (true, true):
             return AppColor.active
         case (false, true):
-            return AppColor.lightGray
+            return AppColor.lightlightGray
         case (_, false):
             break
         }

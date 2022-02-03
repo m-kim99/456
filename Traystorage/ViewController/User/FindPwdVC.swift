@@ -44,19 +44,20 @@ class FindPwdVC: BaseVC {
     private func changeAuthStatus(auth: UNAuthorizationStatus) {
         authStatus = auth
         switch auth {
-        case .denied:
+        case .notDetermined:
+            lblDownTime.stopTimer()
+            lblDownTime.isHidden = true
             groupResend.isHidden = true
             btnConfirm.isEnabled = false
         case .authorized:
             lblDownTime.stopTimer()
             lblDownTime.isHidden = true
             groupResend.isHidden = true
-            break
         case .provisional:
             groupResend.isHidden = false
             lblDownTime.startCountDownTimer()
             lblDownTime.isHidden = false
-            break
+            btnConfirm.isEnabled = true
         default:
             break
         }
@@ -127,10 +128,15 @@ class FindPwdVC: BaseVC {
     @IBAction func onClickClearPhoneEdit(_ sender: Any) {
         tfPhonenumber.text = nil
         phoneEditRightView.isHidden = true
+        changeAuthStatus(auth: .notDetermined)
     }
     
     @IBAction func textFieldDidChanged(_ sender: UITextField) {
-        if sender == tfPhonenumber {
+        if sender == tfID {
+            changeAuthStatus(auth: .notDetermined)
+        }
+        else if sender == tfPhonenumber {
+            changeAuthStatus(auth: .notDetermined)
             guard let phone = tfPhonenumber.text, !phone.isEmpty else {
                 phoneEditRightView.isHidden = true
                 return
@@ -193,6 +199,6 @@ extension FindPwdVC: BaseRestApi {
 extension FindPwdVC: CountDownTimeIsUp {
     func onTimeIsUp(sender: CountDownTimeLabel) {
         sender.isHidden = true
-        changeAuthStatus(auth: .denied)
+        changeAuthStatus(auth: .notDetermined)
     }
 }

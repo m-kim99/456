@@ -234,4 +234,22 @@ extension UIView {
         //print(name, "nil")
         return UIFont.systemFont(ofSize: size)
     }
+    
+    
+    func addSubView(subView: UIView, isFull: Bool) {
+        self.addSubview(subView)
+        
+        guard isFull else {
+            return
+        }
+        
+        let views:[String:Any] = ["view" : subView]
+
+        let constraints1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-|", options: [], metrics: nil, views: views)
+        let constraints2 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[view]-|", options: [], metrics: nil, views: views)
+        subView.translatesAutoresizingMaskIntoConstraints = false
+
+        addConstraints(constraints1)
+        addConstraints(constraints2)
+    }
 }

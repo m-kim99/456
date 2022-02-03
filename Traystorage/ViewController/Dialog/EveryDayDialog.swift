@@ -102,7 +102,11 @@ class EveryDayDialog: UIViewController {
                 UIApplication.shared.open(url, options: [:])
             }
         } else if content.moveType == 1 {
-            self.imageAction?()
+            dismiss(animated: true) {[weak self] in
+                self?.view.removeFromSuperview()
+                self?.removeFromParent()
+                self?.imageAction?()
+            }
         }
     }
 

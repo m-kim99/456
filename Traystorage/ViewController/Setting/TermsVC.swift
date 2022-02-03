@@ -17,17 +17,17 @@ class TermsVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        switch pageType {
-        case .term:
-            params["title"] = "terms_of_use"._localized
-            params["url"] = API_TERM_URL
-        case .privacy:
-            params["title"] = "privacy_policy"._localized
-            params["url"] = API_PRIVACY_URL
-        case .marketing:
-            params["title"] = "marketing_consent"._localized
-            params["url"] = API_MARKETING_URL
-        }
+//        switch pageType {
+//        case .term:
+//            params["title"] = "terms_of_use"._localized
+//            params["url"] = API_TERM_URL
+//        case .privacy:
+//            params["title"] = "privacy_policy"._localized
+//            params["url"] = API_PRIVACY_URL
+//        case .marketing:
+//            params["title"] = "marketing_consent"._localized
+//            params["url"] = API_MARKETING_URL
+//        }
         
         initVC()
     }
@@ -37,15 +37,34 @@ class TermsVC: BaseVC {
             lblPageTitle.text = title
         }
         
-        if let url = params["url"] as? String {
-            let myURL = URL(string: url)
-            let myRequest = URLRequest(url: myURL!)
-            vwTermsWeb.load(myRequest)
+        if let agreeID = params["id"] as? Int {
+            getAgreementDetail(agreeID: agreeID)
         }
+    }
+    
+    private func onLoadAgreement(agree: ModelAgreement) {
+        vwTermsWeb.loadHTMLString(agree.content, baseURL: nil)
     }
     
     //
     // MARK: - ACTION
     //
     
+}
+
+
+//
+// MARK: - RestApi
+//
+extension TermsVC: BaseRestApi {
+    func getAgreementDetail(agreeID: Int) {
+        SVProgressHUD.show()
+        Rest.getAgreementDetail(agreeID: agreeID, success: { [weak self](result) -> Void in
+            SVProgressHUD.dismiss()
+            self?.onLoadAgreement(agree: result! as! ModelAgreement)
+        }) { [weak self](code, err) -> Void in
+            SVProgressHUD.dismiss()
+            self?.showToast(err)
+        }
+    }
 }

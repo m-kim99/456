@@ -77,10 +77,19 @@ extension NoticeVC: UITableViewDataSource, UITableViewDelegate {
             imageView.isHidden = (notice.view_count > 0)
         }
         
+        if notice.view_count > 0 {
+            cell.backgroundColor = UIColor.white
+        } else {
+            cell.backgroundColor = AppColor.notice_UnreadBackColor
+        }
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let notice = noticeList[indexPath.row]
+        notice.view_count += 1
+        tableView.reloadRows(at: [indexPath], with: .automatic)
         self.pushVC(NoticeDetailVC(nibName: "vc_notice_detail", bundle: nil), animated: true, params:["id": noticeList[indexPath.row].notice_id])
     }
 }

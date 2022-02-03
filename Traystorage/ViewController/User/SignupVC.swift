@@ -38,18 +38,6 @@ class SignupVC: BaseVC {
     private func onRecvDuplicated() {
         AlertDialog.show(self, title: "signup_duplicated_id_title"._localized, message: "signup_duplicated_id_detail"._localized)
     }
-    
-    private func addSignupPageView(view: UIView) {
-        vwContent.addSubview(view)
-        let views:[String:Any] = ["view" : view]
-
-        let constraints1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[view]-|", options: [], metrics: nil, views: views)
-        let constraints2 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-[view]-|", options: [], metrics: nil, views: views)
-        view.translatesAutoresizingMaskIntoConstraints = false
-
-        vwContent.addConstraints(constraints1)
-        vwContent.addConstraints(constraints2)
-    }
 }
 
 //
@@ -72,23 +60,23 @@ extension SignupVC: SignupNextDelegate {
             let vc = SignupPage1VC(nibName: "vc_signup_page1", bundle: nil)
             vc.nextDelegate = self
             currentSignupPageVC = vc
-            addSignupPageView(view: vc.view)
+            vwContent.addSubView(subView: vc.view!, isFull: true)
             self.addChild(vc)
             vwSignupProgress.progress = 0.33
         case .auth:
             let vc = SignupPage2VC(nibName: "vc_signup_page2", bundle: nil)
             vc.nextDelegate = self
             vc.params = params
-            addSignupPageView(view: vc.view)
+            vwContent.addSubView(subView: vc.view!, isFull: true)
             
             self.addChild(vc)
             currentSignupPageVC = vc
             vwSignupProgress.progress = 0.66
         case .agree:
-            let vc = SignupPage3VC(nibName: "vc_signup_page3", bundle: nil)
+            let vc = AgreePageVC(nibName: "vc_agree_page", bundle: nil)
             vc.nextDelegate = self
             vc.params = params
-            addSignupPageView(view: vc.view)
+            vwContent.addSubView(subView: vc.view!, isFull: true)
             
             self.addChild(vc)
             currentSignupPageVC = vc

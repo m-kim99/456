@@ -73,7 +73,7 @@ class IntroVC: BaseVC {
 
     func nextScreen(_ logined: Bool) {
         if logined {
-            self.openMainVC()
+            self.openAgreeView()
         } else {
             let ud = UserDefaults.standard
             ud.set(true, forKey: Local.PREFS_APP_INTRO_SKIP.rawValue)
@@ -193,6 +193,15 @@ extension IntroVC: BaseNavigation {
         let mainVC = UIStoryboard(name: "vc_main", bundle: nil).instantiateInitialViewController()
         pushVC(mainVC! as! BaseVC, animated: true)
     }
+    
+    func openAgreeView() {
+        changeLoadingViewVisiblity(isHidden: true)
+        if Rest.user.isAgree == 0 {
+            pushVC(LoginAgreeTermsVC(nibName: "vc_login_agree_terms", bundle: nil), animated: true)
+        } else {
+            openMainVC()
+        }
+    }
 
     func openLogSingupView() {
 //        self.replaceVC(GuideVC(nibName: "vc_guide", bundle: nil), animated: true)
@@ -244,7 +253,7 @@ extension IntroVC: BaseRestApi {
             Rest.user = (result as! ModelUser)
             Rest.user.pwd = user.pwd
             Local.setUser(Rest.user)
-            self?.openMainVC()
+            self?.openAgreeView()
         }, failure: { [weak self](code, msg) in
             SVProgressHUD.dismiss()
             

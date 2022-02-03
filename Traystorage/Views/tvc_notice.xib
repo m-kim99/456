@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -57,7 +56,6 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="eWH-L6-5Ro" firstAttribute="leading" secondItem="tMB-od-aNf" secondAttribute="leading" id="BcR-X7-hCh"/>
                                             <constraint firstItem="eWH-L6-5Ro" firstAttribute="leading" secondItem="sCR-B0-c8J" secondAttribute="leading" id="GiS-6o-n5C"/>
@@ -69,7 +67,6 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="1Dp-Cn-NbP" secondAttribute="bottom" id="HnQ-1S-ULn"/>
                             <constraint firstAttribute="trailing" secondItem="1Dp-Cn-NbP" secondAttribute="trailing" constant="8" id="LQa-Z7-1lG"/>
@@ -93,6 +90,7 @@
                     <constraint firstItem="xKS-aZ-wJa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="28" id="jGc-0E-l2L"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <point key="canvasLocation" x="405.79710144927537" y="137.94642857142856"/>
         </tableViewCell>
     </objects>
@@ -106,8 +104,5 @@
     </designables>
     <resources>
         <image name="Icon-C-Megaphone-Black-24" width="24" height="24"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

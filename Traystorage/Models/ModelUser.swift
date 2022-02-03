@@ -8,7 +8,7 @@ public class ModelUser: ModelBase {
     var name: String!
     var profile_img: String!
     var phone: String!
-    var birthday: String!
+    var birthday = ""
     var gender: Int = 0
     var status: Int!
     var access_token: String!
@@ -16,6 +16,8 @@ public class ModelUser: ModelBase {
     var create_time: String!
     var exit_reg_time: String!
     var stop_remark: String!
+    
+    var isAgree: Int = 0
     
     var authCode: Int!
     
@@ -34,6 +36,7 @@ public class ModelUser: ModelBase {
         stop_remark = json["stop_remark"].stringValue
         access_token = json["access_token"].stringValue
         document_cnt = json["document_cnt"].intValue
+        isAgree = json["is_agree"].intValue
     }
     
     static func isIdValid(_ id: String) -> Bool {
@@ -85,8 +88,7 @@ public class ModelUser: ModelBase {
         dateFormatter.dateFormat = "yyMMdd"
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         
-        let date = dateFormatter.date(from: birthday)!
-        if date == nil {
+        if dateFormatter.date(from: birthday) != nil {
             return false
         }
                 

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PwdChangeVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
+                <outlet property="btnConfirm" destination="pZI-Bd-XGK" id="eZF-6E-F3j"/>
                 <outlet property="keyboardAvoidScroll" destination="T2d-Hw-ZwC" id="Nv1-ov-zP8"/>
                 <outlet property="tfConfirmPwd" destination="SMN-PM-XxA" id="tqA-bm-R35"/>
                 <outlet property="tfNewPwd" destination="Foe-Od-1oL" id="95U-SF-fdV"/>
@@ -92,6 +93,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
+                                                                        <action selector="textFieldDidChanged:" destination="-1" eventType="editingChanged" id="iFl-rW-xjk"/>
                                                                         <outlet property="delegate" destination="-1" id="a7s-73-8Ia"/>
                                                                     </connections>
                                                                 </textField>
@@ -128,6 +130,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                     <connections>
+                                                                        <action selector="textFieldDidChanged:" destination="-1" eventType="editingChanged" id="xTY-V1-mLU"/>
                                                                         <outlet property="delegate" destination="-1" id="OTD-wj-UDj"/>
                                                                     </connections>
                                                                 </textField>
@@ -135,7 +138,7 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZI-Bd-XGK" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZI-Bd-XGK" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="286.5" width="374" height="54"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="54" id="fiE-2V-agi"/>

@@ -358,7 +358,7 @@ class Rest: Net {
         failure: FailureBlock?
     ) {
         let params = [
-            "code": code,
+            "id": code,
             "is_code": 1,
             "access_token": user.access_token!
         ] as [String: AnyObject]
@@ -467,5 +467,43 @@ class Rest: Net {
         ] as [String: AnyObject]
 
         doRequest(method: .post, api: .CANCEL_EXIT, params: params, header: [:], success: success, failure: failure)
+    }
+    
+    public static func agreementTerms(
+        success: SuccessBlock?,
+        failure: FailureBlock?
+    ) {
+        let params = [
+            "access_token": user.access_token!,
+        ] as [String: AnyObject]
+
+        doRequest(method: .post, api: .AGREE_TERMS, params: params, header: [:], success: success, failure: failure)
+    }
+    
+    public static func getAgreementList(
+        isAll: Bool,
+        success: SuccessBlock?,
+        failure: FailureBlock?
+    ) {
+        
+        var params : [String: AnyObject] = [:]
+        
+        if !isAll, let user = self.user, let acces_token = user.access_token, !acces_token.isEmpty {
+            params["access_token"] = acces_token as AnyObject
+        }
+
+        doRequest(method: .post, api: .GET_AGREE_TERMS, params: params, header: [:], success: success, failure: failure)
+    }
+    
+    public static func getAgreementDetail(
+        agreeID: Int,
+        success: SuccessBlock?,
+        failure: FailureBlock?
+    ) {
+        let params = [
+            "id" : agreeID,
+        ] as [String: AnyObject]
+
+        doRequest(method: .post, api: .GET_AGREE_DETAIL, params: params, header: [:], success: success, failure: failure)
     }
 }

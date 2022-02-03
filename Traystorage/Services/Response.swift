@@ -73,6 +73,10 @@ func ParseResponse(api: API, json: JSON) throws -> ModelBase? {
         return ModelUploadFileList(json)
     case .CANCEL_EXIT:
         return ModelUser(json)
+    case .GET_AGREE_TERMS:
+        return ModelAgreementList(json)
+    case .GET_AGREE_DETAIL:
+        return ModelAgreement(json)
     default:
         break
     }

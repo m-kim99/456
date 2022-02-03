@@ -28,12 +28,12 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bpp-Gl-wTY" userLabel="back">
-                                    <rect key="frame" x="319" y="0.0" width="56" height="56"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="Bpp-Gl-wTY" secondAttribute="height" id="PP0-Qj-tVO"/>
                                     </constraints>
                                     <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                    <state key="normal" image="Icon-GNB-Close"/>
+                                    <state key="normal" image="ic_back"/>
                                     <connections>
                                         <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="RLE-Hn-usC"/>
                                     </connections>
@@ -46,7 +46,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="VHn-q5-5Dz" firstAttribute="leading" secondItem="1gy-IL-ng1" secondAttribute="leading" id="DTH-id-Jbe"/>
-                                <constraint firstAttribute="trailing" secondItem="Bpp-Gl-wTY" secondAttribute="trailing" id="LFA-pn-gLb"/>
+                                <constraint firstItem="Bpp-Gl-wTY" firstAttribute="leading" secondItem="1gy-IL-ng1" secondAttribute="leading" id="IdE-ez-iAH"/>
                                 <constraint firstItem="Bpp-Gl-wTY" firstAttribute="top" secondItem="1gy-IL-ng1" secondAttribute="top" id="Udn-gX-kjY"/>
                                 <constraint firstItem="VHn-q5-5Dz" firstAttribute="top" secondItem="Bpp-Gl-wTY" secondAttribute="bottom" id="hqG-Cy-Hwi"/>
                                 <constraint firstAttribute="height" constant="60" id="soG-a5-Fda"/>
@@ -55,20 +55,20 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGQ-wF-u4h" userLabel="signup page">
-                            <rect key="frame" x="0.0" y="60" width="375" height="674"/>
+                            <rect key="frame" x="20" y="80" width="335" height="634"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                     <constraints>
-                        <constraint firstItem="hGQ-wF-u4h" firstAttribute="leading" secondItem="Q9n-CI-eYx" secondAttribute="leading" id="Dg0-Pd-aNm"/>
-                        <constraint firstItem="hGQ-wF-u4h" firstAttribute="top" secondItem="1gy-IL-ng1" secondAttribute="bottom" id="Yzk-0z-MYj"/>
+                        <constraint firstItem="hGQ-wF-u4h" firstAttribute="leading" secondItem="Q9n-CI-eYx" secondAttribute="leading" constant="20" id="Dg0-Pd-aNm"/>
+                        <constraint firstItem="hGQ-wF-u4h" firstAttribute="top" secondItem="1gy-IL-ng1" secondAttribute="bottom" constant="20" id="Yzk-0z-MYj"/>
                         <constraint firstAttribute="trailing" secondItem="1gy-IL-ng1" secondAttribute="trailing" id="ddR-Py-gEF"/>
-                        <constraint firstAttribute="trailing" secondItem="hGQ-wF-u4h" secondAttribute="trailing" id="eAW-ui-bJT"/>
+                        <constraint firstAttribute="trailing" secondItem="hGQ-wF-u4h" secondAttribute="trailing" constant="20" id="eAW-ui-bJT"/>
                         <constraint firstItem="1gy-IL-ng1" firstAttribute="leading" secondItem="Q9n-CI-eYx" secondAttribute="leading" id="nkA-uX-MsY"/>
                         <constraint firstItem="1gy-IL-ng1" firstAttribute="top" secondItem="Q9n-CI-eYx" secondAttribute="top" id="plZ-pL-bvv"/>
-                        <constraint firstAttribute="bottom" secondItem="hGQ-wF-u4h" secondAttribute="bottom" id="v6T-Rg-kwB"/>
+                        <constraint firstAttribute="bottom" secondItem="hGQ-wF-u4h" secondAttribute="bottom" constant="20" id="v6T-Rg-kwB"/>
                     </constraints>
                 </view>
             </subviews>
@@ -85,7 +85,7 @@
         </view>
     </objects>
     <resources>
-        <image name="Icon-GNB-Close" width="24" height="24"/>
+        <image name="ic_back" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -40,6 +40,9 @@ enum API {
     case UPLOAD_FILES
     case REQUEST_EXIT
     case CANCEL_EXIT
+    case GET_AGREE_TERMS
+    case GET_AGREE_DETAIL
+    case AGREE_TERMS
     
     var url: String {
         switch self {
@@ -105,6 +108,12 @@ enum API {
             return "user/request_exit"
         case .CANCEL_EXIT:
             return "user/cancel_exit"
+        case .GET_AGREE_TERMS:
+            return "app/get_agree_list"
+        case .GET_AGREE_DETAIL:
+            return "app/get_agree_detail"
+        case .AGREE_TERMS:
+            return "user/agree_terms"
         }
     }
 }

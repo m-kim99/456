@@ -157,17 +157,7 @@ extension SignupAuthCodeVC: UITextFieldDelegate {
 //
 extension SignupAuthCodeVC: BaseNavigation {
     private func goNext(phone: String, code: String) {
-        let vc = SignupAgreeTerms(nibName: "vc_signup_agree_terms", bundle: nil)
-//        vc.authType = authType
-//        vc.authMedia = authMedia
-        var params: [String: Any] = [:]
-        for (k, v) in self.params {
-            params[k] = v
-        }
-        
-        params["phone"] = phone
-        params["code"] = code
-        self.pushVC(vc, animated: true, params: params)
+
     }
 }
 

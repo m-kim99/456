@@ -6,18 +6,18 @@ import ActionSheetController
 class MyProfileVC: BaseVC {
 
     @IBOutlet weak var vwAvatar: UIImageView!
+    @IBOutlet weak var btnAddAvatar: UIButton!
     @IBOutlet weak var vwNameLabelGroup: UIStackView!
     @IBOutlet weak var labelName: UILabel!
 
     @IBOutlet weak var editName: UITextField!
 
     @IBOutlet weak var birthdayEdit: UITextField!
+    @IBOutlet weak var birthdayButton: UIButton!
     @IBOutlet weak var emailEdit: UITextField!
     @IBOutlet weak var maleButton: UIButton!
     @IBOutlet weak var femaleButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
-    
-    
     
     var gender: Int = 0
     var avatarImage: UIImage?
@@ -30,7 +30,6 @@ class MyProfileVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         initVC()
-        
         updateGender()
     }
     
@@ -46,7 +45,7 @@ class MyProfileVC: BaseVC {
         labelName.text = user.name
         editName.text = labelName.text
         editName.text = user.name
-        birthdayEdit.text = user.birthday
+        birthdayEdit.text = user.birthday.replaceAll("-", with: ".")
         emailEdit.text = user.email
 
         gender = user.gender
@@ -62,8 +61,18 @@ class MyProfileVC: BaseVC {
     }
     
     private func updateEditState(_ isNameEditing: Bool) {
+        btnAddAvatar.isHidden = !isNameEditing
+        
         vwNameLabelGroup.isHidden = isNameEditing
         editName.isHidden = !isNameEditing
+        labelName.isHidden = isNameEditing
+
+        birthdayEdit.isEnabled = isNameEditing
+        birthdayButton.isEnabled = isNameEditing
+        emailEdit.isEnabled = isNameEditing
+        maleButton.isEnabled = isNameEditing
+        femaleButton.isEnabled = isNameEditing
+        saveButton.isEnabled = isNameEditing
     }
     
     private func updateGender() {
@@ -133,8 +142,8 @@ class MyProfileVC: BaseVC {
     }
     
     @IBAction func onEditNameDidEnd(_ sender: UITextField!) {
-        updateEditState(false)
-        labelName.text = sender.text
+//        updateEditState(false)
+//        labelName.text = sender.text
         isModified = true
     }
     
@@ -149,7 +158,7 @@ class MyProfileVC: BaseVC {
     
     @IBAction func onClickBirthDay(_ sender: Any) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyy.MM.dd"
         let birthday = dateFormatter.date(from: birthdayEdit.text ?? "")
         DatepickerDialog.show(self, date:birthday) { [weak self](date) in
             self?.birthdayEdit.text = dateFormatter.string(from: date)
@@ -194,7 +203,8 @@ extension MyProfileVC: BaseRestApi {
     func updateProfile(name: String, birthDay:String, email: String, gender: Int, profileImage: String) {
         SVProgressHUD.show()
         
-        Rest.makeProfile(name: name, birthday: birthDay, gender: gender, email: email, profileImage:profileImage, success: { [weak self, gender] (result) -> Void in
+        let dbDirthDay = birthDay.replaceAll(".", with: "-")
+        Rest.makeProfile(name: name, birthday: dbDirthDay, gender: gender, email: email, profileImage:profileImage, success: { [weak self, gender] (result) -> Void in
             SVProgressHUD.dismiss()
             
             let user = Rest.user!
@@ -202,9 +212,11 @@ extension MyProfileVC: BaseRestApi {
             
             Rest.user = (result as! ModelUser)
             Rest.user.pwd = pwd
+            Rest.user.gender = gender
             Local.setUser(Rest.user)
             
-            self?.view.showToast("profile_changed"._localized)
+            self?.isModified = false
+//            self?.showToast("profile_changed"._localized)
             self?.popVC()
         }) { [weak self](_, err) -> Void in
             SVProgressHUD.dismiss()

@@ -96,6 +96,10 @@ class FindIdVC: BaseVC {
     private func changeAuthStatus(auth: UNAuthorizationStatus) {
         authStatus = auth
         switch auth {
+        case .notDetermined:
+            lblDownTime.stopTimer()
+            groupResend.isHidden = true
+            btnConfirm.isEnabled = false
         case .denied:
             groupResend.isHidden = true
             btnConfirm.isEnabled = false
@@ -140,6 +144,7 @@ class FindIdVC: BaseVC {
     
     @IBAction func textDidChanged(_ sender: UITextField) {
         if sender == tfPhonenumber {
+            changeAuthStatus(auth: .notDetermined)
             guard let phone = tfPhonenumber.text, !phone.isEmpty else {
                 phoneEditRightView.isHidden = true
                 btnConfirm.isEnabled = false
@@ -171,7 +176,7 @@ class FindIdVC: BaseVC {
     @IBAction func onClickClearPhoneEdit(_ sender: Any) {
         tfPhonenumber.text = nil
         phoneEditRightView.isHidden = true
-        btnConfirm.isEnabled = false
+        changeAuthStatus(auth: .notDetermined)
     }
 }
 
@@ -179,11 +184,11 @@ class FindIdVC: BaseVC {
 // MARK: - UITextFieldDelegate
 //
 extension FindIdVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        tfEmail.resignFirstResponder()
-        doFindId()
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+////        tfEmail.resignFirstResponder()
+//        doFindId()
+//        return true
+//    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         

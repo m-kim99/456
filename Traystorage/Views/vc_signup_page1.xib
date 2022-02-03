@@ -33,16 +33,16 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcH-QN-X3W" userLabel="scroll content">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="561.66666666666663"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="511.66666666666669"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uW2-vN-alI" userLabel="margin">
-                                            <rect key="frame" x="20" y="30.000000000000028" width="335" height="511.66666666666674"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="511.66666666666669"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="ZlC-W8-Ybc" userLabel="stack1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="40.666666666666664"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="40.666666666666664"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Please enter your account information to sign up" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTQ-mq-zu0" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="315.66666666666669" height="40.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="355.66666666666669" height="40.666666666666664"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1/3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8q-ox-cJm" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="315.66666666666669" y="23.666666666666671" width="19.333333333333314" height="17"/>
+                                                            <rect key="frame" x="355.66666666666669" y="23.666666666666671" width="19.333333333333314" height="17"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                             <nil key="highlightedColor"/>
@@ -67,13 +67,13 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="FyB-Ss-FiZ" userLabel="stack2">
-                                                    <rect key="frame" x="0.0" y="84.666666666666657" width="335" height="333"/>
+                                                    <rect key="frame" x="0.0" y="84.666666666666657" width="375" height="333"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ocd-bs-1bT">
-                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="88.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="88.333333333333329"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lm0-BZ-M95" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="20.333333333333332"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="20.333333333333332"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -85,10 +85,10 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daG-j0-e9E">
-                                                                    <rect key="frame" x="0.0" y="40.333333333333343" width="335" height="48"/>
+                                                                    <rect key="frame" x="0.0" y="40.333333333333343" width="375" height="48"/>
                                                                     <subviews>
                                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iGv-F1-YN0" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="335" height="48"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="48" id="R6p-7d-5G5"/>
                                                                             </constraints>
@@ -106,7 +106,7 @@
                                                                             </connections>
                                                                         </textField>
                                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppc-AI-Mnk" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                                            <rect key="frame" x="226" y="5" width="109" height="38"/>
+                                                                            <rect key="frame" x="266" y="5" width="109" height="38"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="38" id="izX-Xm-ACA"/>
                                                                             </constraints>
@@ -142,10 +142,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="56J-AW-3Sh">
-                                                            <rect key="frame" x="0.0" y="122.33333333333334" width="335" height="88.333333333333343"/>
+                                                            <rect key="frame" x="0.0" y="122.33333333333334" width="375" height="88.333333333333343"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Uq-U4-bX2" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="20.333333333333332"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="20.333333333333332"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -157,7 +157,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mzC-YU-P6T" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="40.333333333333314" width="335" height="48"/>
+                                                                    <rect key="frame" x="0.0" y="40.333333333333314" width="375" height="48"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -174,10 +174,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="l80-m3-oGS">
-                                                            <rect key="frame" x="0.0" y="244.66666666666666" width="335" height="88.333333333333343"/>
+                                                            <rect key="frame" x="0.0" y="244.66666666666666" width="375" height="88.333333333333343"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password confirm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zw4-rk-782" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="335" height="20.333333333333332"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="20.333333333333332"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -189,7 +189,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YTy-ML-Aw0" customClass="FontTextField" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="40.333333333333371" width="335" height="48"/>
+                                                                    <rect key="frame" x="0.0" y="40.333333333333371" width="375" height="48"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -212,7 +212,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cmu-Iz-fXJ" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="457.66666666666663" width="335" height="54"/>
+                                                    <rect key="frame" x="0.0" y="457.66666666666669" width="375" height="54"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="54" id="oj8-aW-cvp"/>
                                                     </constraints>
@@ -251,10 +251,10 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="uW2-vN-alI" firstAttribute="leading" secondItem="KcH-QN-X3W" secondAttribute="leading" constant="20" id="EdR-42-rF4"/>
-                                        <constraint firstAttribute="trailing" secondItem="uW2-vN-alI" secondAttribute="trailing" constant="20" id="uAk-rb-Wb3"/>
-                                        <constraint firstAttribute="bottom" secondItem="uW2-vN-alI" secondAttribute="bottom" constant="20" id="wpb-Gy-c76"/>
-                                        <constraint firstItem="uW2-vN-alI" firstAttribute="top" secondItem="KcH-QN-X3W" secondAttribute="top" constant="30" id="xAj-X5-WdC"/>
+                                        <constraint firstItem="uW2-vN-alI" firstAttribute="leading" secondItem="KcH-QN-X3W" secondAttribute="leading" id="EdR-42-rF4"/>
+                                        <constraint firstAttribute="trailing" secondItem="uW2-vN-alI" secondAttribute="trailing" id="uAk-rb-Wb3"/>
+                                        <constraint firstAttribute="bottom" secondItem="uW2-vN-alI" secondAttribute="bottom" id="wpb-Gy-c76"/>
+                                        <constraint firstItem="uW2-vN-alI" firstAttribute="top" secondItem="KcH-QN-X3W" secondAttribute="top" id="xAj-X5-WdC"/>
                                     </constraints>
                                 </view>
                             </subviews>

@@ -40,14 +40,23 @@ class PwdChangeVC: BaseVC {
         popToLogVC()
     }
     
+    private func checkValidInput() {
+        guard let pass = tfNewPwd.text, let confirmPass = tfConfirmPwd.text, pass == confirmPass else {
+            btnConfirm.isEnabled = false
+            return
+        }
+        
+        btnConfirm.isEnabled = true
+    }
+    
     //
     // MARK: Action
     //
     
     @IBAction func onClickConfirm(_ sender: Any) {
         hideKeyboard()
-        guard let pass = tfNewPwd.text, pass.count < 6 else {
-            self.view.showToast("less_password_toast"._localized)
+        guard let pass = tfNewPwd.text, Validations.isValid(password: pass) else {
+            self.showToast(localized: "password_invalid")
             return
         }
         guard let confirmPass = tfConfirmPwd.text, pass == confirmPass else {
@@ -57,6 +66,10 @@ class PwdChangeVC: BaseVC {
         
         let loginID = params["userID"] as! String
         changePwd(userID: loginID, pwd: pass)
+    }
+    
+    @IBAction func textFieldDidChanged(_ sender: UITextField) {
+        checkValidInput()
     }
 }
 

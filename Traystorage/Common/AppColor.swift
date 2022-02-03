@@ -11,6 +11,7 @@ class AppColor {
     static let border = UIColor(hex: 0xDDDDDD)
     static let dark = UIColor(hex: 0x999999)
     static let gray = UIColor(hex: 0x808080)
+    static let lightlightGray  = UIColor(hex: 0xeeeeee)
     static let lightGray  = UIColor(hex: 0xC4C4C4)
     static let gradientStart = UIColor(hex: 0xe4e4e4)
     static let gradientEnd = UIColor(hex: 0xffffff)
@@ -32,6 +33,7 @@ class AppColor {
     static let grey = UIColor(hex: 0xF7F7F7)
     static let color_333333 = UIColor(hex: 0x333333)
     static let color_CCCCCC = UIColor(hex: 0xCCCCCC)
+    static let notice_UnreadBackColor = UIColor(hex: 0xe8eaf5)
     
     
     static let labelColors: [UIColor] = [UIColor(hex: 0xD80C18), UIColor(hex: 0xEE7800), UIColor(hex: 0xFABE00),
