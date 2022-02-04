@@ -45,9 +45,9 @@ class MainVC: BaseVC {
 //            return
 //        }
         
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.popupInfo(success:{ [weak self](result) in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
 
             let popupList = result! as! ModelPopupList
             guard !popupList.contents.isEmpty else {
@@ -59,7 +59,7 @@ class MainVC: BaseVC {
                 self?.pushVC(NoticeDetailVC(nibName: "vc_notice_detail", bundle: nil), animated: true, params:["code": popup.movePath])
             }
         }, failure: { [weak self](code, err) in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         })
 
@@ -71,15 +71,15 @@ class MainVC: BaseVC {
         self.documents.removeAll()
         tableViewDocument.reloadData()
 //        tableViewDocument.endUpdates()
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.documentList(keyword: tfSearchText.text ?? "", success: {[weak self] (result) in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
 
             let documentList = result! as! ModelDocumentList
             self?.documents.append(contentsOf: documentList.contents)
             self?.documentChanged()
         }) {[weak self]  _, msg in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(msg)
         }
     }

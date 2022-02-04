@@ -187,15 +187,15 @@ extension SignupPage2VC: BaseNavigation {
 //
 extension SignupPage2VC: BaseRestApi {
     private func sendPhoneAuth(_ phone: String) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         if authType == AuthType.phone {
             Rest.request_code_for_signup(phoneNumber: phone, success: {
                 [weak self](result) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 self?.authCode = result!.code
                 self?.changedAuthStatus(auth: .provisional)
             }) { [weak self] (code, msg) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 if code == 206 {
                     self?.onPhoneAuthDuplicated()
                 } else {

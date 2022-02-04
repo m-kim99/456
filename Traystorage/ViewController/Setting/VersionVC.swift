@@ -4,6 +4,13 @@ import UIKit
 class VersionVC: BaseVC {
 
     @IBOutlet weak var lblPageTitle: UILabel!
+    @IBOutlet weak var vwCurrentVersion: UIStackView!
+    @IBOutlet weak var lblCurrentVersion: UIFontLabel!
+    @IBOutlet weak var vwLatestVersion: UIStackView!
+    @IBOutlet weak var lblLatestVersion: UIFontLabel!
+    @IBOutlet weak var btnUpdate: UIFontButton!
+    
+    var latestVersion: ModelVersion!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,9 +21,27 @@ class VersionVC: BaseVC {
     }
     
     private func initVC() {
+        lblCurrentVersion.text = Utils.bundleVer()
+        vwLatestVersion.isHidden = true
+        btnUpdate.isHidden = true
     }
     
-    private func showVersionInfo() {
+    private func showVersionInfo(_ latestVersion: ModelVersion) {
+        self.latestVersion = latestVersion
+        
+        let curVersion = Utils.bundleVer()
+        if latestVersion.version.isEmpty || curVersion.isEqual(latestVersion.version) {
+            vwLatestVersion.isHidden = true
+            btnUpdate.isHidden = true
+            return;
+        }
+        
+        vwLatestVersion.isHidden = false
+        btnUpdate.isHidden = false
+        lblLatestVersion.text = latestVersion.version
+    }
+    
+    func go2Store(_ url: String) {
         
     }
     
@@ -26,6 +51,9 @@ class VersionVC: BaseVC {
     
 
     @IBAction func onUpdateVersion(_ sender: Any) {
+        if let version = latestVersion {
+            go2Store(version.storeUrl)
+        }
     }
 }
 
@@ -34,11 +62,14 @@ class VersionVC: BaseVC {
 //
 extension VersionVC: BaseRestApi {
     func loadVerionInfo() {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.getVersionInfo(success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
+            
+            let version = result as! ModelVersion
+            self?.showVersionInfo(version)
         }) { [weak self](_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }

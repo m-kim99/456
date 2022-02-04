@@ -39,7 +39,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms of Use" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxB-KL-QBv" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="134.33333333333334" y="19" width="106.66666666666666" height="22"/>
+                                    <rect key="frame" x="136" y="19" width="103.33333333333331" height="22"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -63,7 +63,7 @@
                         </view>
                         <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9fJ-cK-XLr">
                             <rect key="frame" x="20" y="68" width="335" height="646"/>
-                            <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <wkWebViewConfiguration key="configuration">
                                 <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                 <wkPreferences key="preferences"/>
@@ -95,7 +95,7 @@
     </objects>
     <designables>
         <designable name="bxB-KL-QBv">
-            <size key="intrinsicContentSize" width="106.66666666666667" height="21.666666666666668"/>
+            <size key="intrinsicContentSize" width="103.33333333333333" height="21.666666666666668"/>
         </designable>
     </designables>
     <resources>

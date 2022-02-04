@@ -223,14 +223,14 @@ extension FindIdVC: BaseRestApi {
     }
     
     func authRequest(phoneNumber: String) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.request_code_for_find(loginId:loginId ?? "", phoneNumber: phoneNumber, success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.authCode = result?.code
             self?.findId = result?.loginId
             self?.changeAuthStatus(auth: .provisional)
         }) { [weak self](code, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             if code == 202 {
                 self?.showNonRegisterPhone()
             } else {
@@ -240,13 +240,13 @@ extension FindIdVC: BaseRestApi {
     }
     
     func requestExit() {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.requestExit(success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             
             self?.pushVC(WithdrawalResultVC(nibName: "vc_withdrawal_result", bundle: nil), animated: true)
         }) { [weak self](code, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             if code == 202 {
                 self?.showNonRegisterPhone()
             } else {
@@ -256,14 +256,14 @@ extension FindIdVC: BaseRestApi {
     }
     
     func cancelExit(userID: String) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.cancelExit(userID: userID, success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             
             let user = result! as! ModelUser
             self?.onLoginSuccess(user: user)
         }) { [weak self](code, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             if code == 202 {
                 self?.showNonRegisterPhone()
             } else {

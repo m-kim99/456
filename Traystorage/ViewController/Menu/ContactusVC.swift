@@ -61,16 +61,21 @@ class ContactusVC: BaseVC {
         }
     }
     
+    public func onInsertAskSuccess() {
+        self.view.showToast("inquiry_save_confirm"._localized)
+        self.tfSubject.text = ""
+        self.tvDetail.text = ""
+        self.isChanged = true
+        self.onBackProcess(self)
+    }
+    
     private func insertAsk(_ subject:String,_ content:String) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.insertAsk(title:subject, content:content, success:{ [weak self](result) in
-            SVProgressHUD.dismiss()
-            self?.view.showToast("inquiry_save_confirm"._localized)
-            self?.tfSubject.text = ""
-            self?.tvDetail.text = ""
-            self?.isChanged = true
+            LoadingDialog.dismiss()
+            self?.onInsertAskSuccess()
         }) { [weak self](code, err) in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }

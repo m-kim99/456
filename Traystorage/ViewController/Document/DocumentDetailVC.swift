@@ -199,39 +199,39 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
 ////
 extension DocumentDetailVC: BaseRestApi {
     func loadDocumentDetail(_ document_uid: Int!) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.documentDetail(documentID: document_uid, success: { [weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.document = (result as! ModelDocument)
             self?.loadContentsFormDoc()
         }) { [weak self](_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }
     
     func deleteDocument(_ docID: Int!) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.documentDelete(id: docID.description, success: { [weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             if let popDelegate = self?.popDelegate {
                 popDelegate.onWillBack("delete", docID)
             }
             self?.popVC()
         }, failure: { (_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self.view.showToast(err)
         })
     }
 
 //    func loadVideoList(page: Int) {
 //        if (!refreshControl.isRefreshing) {
-//            SVProgressHUD.show()
+//            LoadingDialog.show()
 //        }
 //
 //        self.pageNo = page
 //        Rest.videoList(page: page, challenge_uid: challenge?.challenge_uid, user_uid: nil, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
+//            LoadingDialog.dismiss()
 //            let model = result as! ModelVideoList
 //            if self.pageNo == 0 {
 //                self.videoList.removeAll()
@@ -246,7 +246,7 @@ extension DocumentDetailVC: BaseRestApi {
 //            self.tvChallenge.reloadData()
 //            self.refreshControl.endRefreshing()
 //        }, failure: { (_, err) -> Void in
-//            SVProgressHUD.dismiss()
+//            LoadingDialog.dismiss()
 //            self.view.showToast(err)
 //        })
 //    }

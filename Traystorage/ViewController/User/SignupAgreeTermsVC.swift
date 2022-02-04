@@ -62,21 +62,21 @@ class LoginAgreeTerms: BaseVC {
     }
     
     private func signup() {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         let loginID = params["id"] as! String
         let pwd = params["pwd"] as! String
         let phone = params["phone"] as! String
         let code = params["code"] as! String
         
         Rest.signup(login_id:loginID, pwd: pwd, phone: phone, code: code, success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             let user = result as! ModelUser
             user.pwd = pwd
             Local.setUser(user)
             Rest.user = user
             self?.goNext()
         }) {[weak self] (_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }

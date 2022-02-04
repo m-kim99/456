@@ -201,11 +201,11 @@ extension MyProfileVC: UITextFieldDelegate {
 //
 extension MyProfileVC: BaseRestApi {
     func updateProfile(name: String, birthDay:String, email: String, gender: Int, profileImage: String) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         
         let dbDirthDay = birthDay.replaceAll(".", with: "-")
         Rest.makeProfile(name: name, birthday: dbDirthDay, gender: gender, email: email, profileImage:profileImage, success: { [weak self, gender] (result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             
             let user = Rest.user!
             let pwd = user.pwd;
@@ -219,7 +219,7 @@ extension MyProfileVC: BaseRestApi {
 //            self?.showToast("profile_changed"._localized)
             self?.popVC()
         }) { [weak self](_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }
@@ -228,10 +228,10 @@ extension MyProfileVC: BaseRestApi {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else {
             return
         }
-        SVProgressHUD.show()
+        LoadingDialog.show()
         
         Rest.uploadFiles(files: [imageData], success: { [weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             
             let retFileName = result as! ModelUploadFileList
             
@@ -239,7 +239,7 @@ extension MyProfileVC: BaseRestApi {
             let fileUrl = retFileName.fileUrls[0]
             self?.onUploadedAvatar(url: fileUrl, name: fileName)
         }) { [weak self](_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }

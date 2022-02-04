@@ -160,12 +160,12 @@ extension SignupCompleteVC: BaseRestApi {
         
         let birthDay = tfBirthday.text ?? ""
         
-        SVProgressHUD.show()
+        LoadingDialog.show()
         
         let dbBirthday = birthDay.replaceAll(".", with: "-")
         
         Rest.makeProfile(name: name, birthday: birthDay, gender: userGender, email: email, profileImage:"", success: { [weak self, userGender] (result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             
             let user = Rest.user!
             user.name = name
@@ -176,7 +176,7 @@ extension SignupCompleteVC: BaseRestApi {
             Local.setUser(user)
             self?.openMainVC()
         }) { [weak self](_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }

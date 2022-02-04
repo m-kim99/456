@@ -13,6 +13,9 @@
 // intro
 "intro_header1"="매일 산더미처럼\n쌓이는 문서들을\n어떻게 정리할까요?";
 "intro_header2"="복잡한 문서의\n보관·관리를 더 쉽게!";
+"update_version"="새로운 업데이트가 있습니다.\n지금 업데이트해 보세요.";
+"update"="업데이트";
+"later"="다음에";
 
 // (main)login/signup
 "start_header"="복잡한 문서의\n보관·관리를 더 쉽게";

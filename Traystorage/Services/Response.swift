@@ -62,7 +62,7 @@ func ParseResponse(api: API, json: JSON) throws -> ModelBase? {
     case .FAQ_CATE:
         return ModelFAQCateList(json)
     case .VERSION:
-        return ModelBase(json)
+        return ModelVersion(json)
     case .POPUP_INFO:
         return ModelPopupList(json)
     case .VIEW_CLICK_POPUP:

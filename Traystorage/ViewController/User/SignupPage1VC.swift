@@ -207,13 +207,13 @@ extension SignupPage1VC: BaseNavigation {
 //
 extension SignupPage1VC: BaseRestApi {
     private func sendCheckID(loginID: String) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.check_login_id(loginID: loginID, success: {[weak self] (result) in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.showToast(localized: "signup_id_unique")
             self?.isCheckedID = true
         }) {[weak self] (code, msg) in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             if code == 203 { // duplicated
                 self?.onRecvDuplicated()
             } else {

@@ -112,12 +112,12 @@ extension PwdChangeVC: UITextFieldDelegate {
 //
 extension PwdChangeVC: BaseRestApi {
     func changePwd(userID: String, pwd: String) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.changePwd(loginID: userID, password: pwd, success: { [weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.onPasswordChanged()
         }) { [weak self] (_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }

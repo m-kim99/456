@@ -33,6 +33,20 @@ enum Local : String {
     case PREFS_USER_ALARM_CHALLENGE_YN = "PREFS_USER_ALARM_CHALLENGE_YN"
     case PREFS_USER_DOCUMENT_CNT = "PREFS_USER_DOCUMENT_COUNT"
     
+    case PREFS_APP_VERSION = "PREFS_APP_VERSION"
+
+    public static func setAppVersion(_ version: String) {
+        let ud = UserDefaults.standard
+        ud.set(version, forKey: PREFS_APP_VERSION.rawValue)
+        ud.synchronize()
+    }
+    
+    public static func getAppVersion() -> String? {
+        let ud = UserDefaults.standard
+        let lang = ud.string(forKey: PREFS_APP_VERSION.rawValue)
+        return lang
+    }
+    
     public static func setLanguage(_ language: String) {
         let ud = UserDefaults.standard
         ud.set(language, forKey: PREFS_LANGUAGE.rawValue)

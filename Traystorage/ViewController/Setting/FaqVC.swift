@@ -39,9 +39,9 @@ class FaqVC: BaseVC {
 //
 extension FaqVC: BaseRestApi {
     func loadFAQList(_ catId:Int) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.getFAQList(faqItemId: catId, success: { [weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             let faqList = result as! ModelFAQList
             self?.faqList.removeAll()
             for faq in faqList.list {
@@ -52,15 +52,15 @@ extension FaqVC: BaseRestApi {
             self?.tvList.reloadData()
 
         }) { (_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self.view.showToast(err)
         }
     }
 
     func loadFAQCategoryList() {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.getFAQCategoryList(success: { [weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             
             let faqList = result as! ModelFAQCateList
             
@@ -73,7 +73,7 @@ extension FaqVC: BaseRestApi {
             //self?.loadFAQList(-1)
 
         }, failure: { (_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self.view.showToast(err)
         })
     }

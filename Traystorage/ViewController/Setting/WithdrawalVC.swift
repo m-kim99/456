@@ -31,9 +31,9 @@ class WithdrawalVC: BaseVC {
 //
 extension WithdrawalVC: BaseRestApi {
     func getContent(type: String, alarm_yn: String) {
-//        SVProgressHUD.show()
+//        LoadingDialog.show()
 //        Rest.changeAlarm(type: type, alarm_yn: alarm_yn, success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
+//            LoadingDialog.dismiss()
 //            if result?.result == 0 {
 //                if type == "push" {
 //                    self.user.alarm_push_yn = alarm_yn
@@ -48,7 +48,7 @@ extension WithdrawalVC: BaseRestApi {
 //                Local.setUser(self.user)
 //            }
 //        }, failure: { (_, err) -> Void in
-//            SVProgressHUD.dismiss()
+//            LoadingDialog.dismiss()
 //            self.view.showToast(err)
 //        })
     }

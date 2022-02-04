@@ -139,7 +139,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
             }
         case (versionSection, 0):
             if let versionLabel = cell.viewWithTag(1) as? UILabel {
-                versionLabel.text = "version?"
+                versionLabel.text = Utils.bundleVer()
             }
         case (versionSection, 1):
             cell.textLabel?.xibLocKey = "faq"
@@ -188,14 +188,14 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
 //
 extension SettingVC: BaseRestApi {
     func getAgreementList() {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.getAgreementList(isAll:true, success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             
             let agreementList = result! as! ModelAgreementList
             self?.onLoadAgreementSuccessed(agreementList)
         }) { [weak self](code, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.showToast(err)
         }
     }

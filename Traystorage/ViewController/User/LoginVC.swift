@@ -194,12 +194,12 @@ extension LoginVC: BaseNavigation {
 //
 extension LoginVC: BaseRestApi {
     func login(userID: String, password: String) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.login(id: userID, pwd: password, success: { [weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.onLoginSuccess(user: result! as? ModelUser, password: password)
         }) { [weak self](code, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             let resultCode = ResponseResultCode(rawValue: code) ?? .ERROR_SERVER
             switch resultCode {
             case .ERROR_WRONG_PWD:

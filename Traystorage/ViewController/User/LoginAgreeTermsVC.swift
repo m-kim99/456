@@ -36,12 +36,12 @@ extension LoginAgreeTermsVC: SignupNextDelegate {
 //
 extension LoginAgreeTermsVC: BaseRestApi {
     func agreeTerms() {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.agreementTerms(success: { [weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.openMainVC()
         }) { [weak self](code, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.showToast(err)
         }
     }

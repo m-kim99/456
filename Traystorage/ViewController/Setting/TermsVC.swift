@@ -58,12 +58,12 @@ class TermsVC: BaseVC {
 //
 extension TermsVC: BaseRestApi {
     func getAgreementDetail(agreeID: Int) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.getAgreementDetail(agreeID: agreeID, success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.onLoadAgreement(agree: result! as! ModelAgreement)
         }) { [weak self](code, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.showToast(err)
         }
     }

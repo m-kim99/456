@@ -83,11 +83,11 @@ class EveryDayDialog: UIViewController {
     }
 
     func sendViewPopup() {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.viewPopup(popupId: self.content.id, success:{ [weak self](result) in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
         }, failure: { [weak self](code, err) in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         })
     }
@@ -135,12 +135,12 @@ class EveryDayDialog: UIViewController {
     }
     
     @objc func onClickImage(_ sender: Any) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.clickPopup(popupId: self.content.id, success:{ [weak self](result) in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.onClickPopupSuccessed()
         }, failure: { [weak self](code, err) in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         })
     }

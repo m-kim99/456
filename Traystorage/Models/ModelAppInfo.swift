@@ -19,3 +19,16 @@ public class ModelAppInfo: ModelBase {
         live_img = json["live_img"].stringValue
     }
 }
+
+public class ModelVersion : ModelBase {
+    var version: String!
+    var requireUpdate: Int!
+    var storeUrl: String!
+    
+    override init(_ json: JSON) {
+        super.init(json)
+        version = json["version"].stringValue
+        requireUpdate = json["require_update"].intValue
+        storeUrl = json["store_url"].stringValue
+    }
+}

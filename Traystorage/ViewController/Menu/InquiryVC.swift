@@ -55,9 +55,9 @@ class InquiryVC: BaseVC {
 //
 extension InquiryVC: BaseRestApi {
     func updateList() {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.getAskList(success: { [weak self] (result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
 
             self?.askList.removeAll()
             
@@ -71,7 +71,7 @@ extension InquiryVC: BaseRestApi {
 
             self?.listChanged()
         }) { [weak self] (_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }

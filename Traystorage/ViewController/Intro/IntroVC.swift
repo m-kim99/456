@@ -33,15 +33,14 @@ class IntroVC: BaseVC {
         loadingImages.append(UIImage(named: "loading2")!)
         loadingImages.append(UIImage(named: "loading3")!)
 
-//        SVProgressHUD.setBackgroundColor(UIColor.clear)
-//        SVProgressHUD.setRingThickness(5)
+//        LoadingDialog.setBackgroundColor(UIColor.clear)
+//        LoadingDialog.setRingThickness(5)
 
 //        loadAppInfo()
 //        nextScreen(false)
 //        ConfirmDialog.show(self, title: "Please verify your mobile phone number.", message: "", showCancelBtn: true, okAction: nil)
 
         
-        changeLoadingViewVisiblity(isHidden: false)
         checkVersion()
     }
 
@@ -157,7 +156,42 @@ class IntroVC: BaseVC {
         }
     }
     
+    func onGetVersionSuccess(_ latestVersion: ModelVersion) {
+        let curVersion = Utils.bundleVer()
+        
+        if latestVersion.version.isEmpty || curVersion.isEqual(latestVersion.version) {
+            startApp()
+            return;
+        }
+        
+        if latestVersion.requireUpdate == 1 {
+            ConfirmDialog.show3(self, title: "update_version"._localized, message: "", okTitle: "update"._localized, cancelTitle:nil){[weak self] (result) -> Void in
+                if result == 0 {
+                    self?.go2Store(latestVersion.storeUrl)
+                } else {
+                    self?.startApp()
+                }
+            }
+        } else if let optionalVersion = Local.getAppVersion(), optionalVersion.isEqual(latestVersion.version) {
+            self.startApp()
+        } else {
+            ConfirmDialog.show3(self, title: "update_version"._localized, message: "", okTitle: "update"._localized, cancelTitle: "later"._localized){[weak self] (result) -> Void in
+                if result == 0 {
+                    self?.go2Store(latestVersion.storeUrl)
+                } else {
+                    if latestVersion.requireUpdate != 1 {
+                        Local.setAppVersion(latestVersion.version)
+                    }
+                    self?.startApp()
+                }
+            }
+        }
+    }
     
+    func go2Store(_ url: String) {
+        
+    }
+
     // MARK: - Action
 
     //
@@ -229,9 +263,9 @@ extension IntroVC: BaseNavigation {
 //
 extension IntroVC: BaseRestApi {
 //    func loadAppInfo() {
-//        SVProgressHUD.show()
+//        LoadingDialog.show()
 //        Rest.appInfo(success: { (result) -> Void in
-//            SVProgressHUD.dismiss()
+//            LoadingDialog.dismiss()
 //            Local.setAppInfo(result as! ModelAppInfo)
 //
 //            DispatchQueue.global().async {
@@ -241,21 +275,24 @@ extension IntroVC: BaseRestApi {
 //                }
 //            }
 //        }, failure: { (_, err) -> Void in
-//            SVProgressHUD.dismiss()
+//            LoadingDialog.dismiss()
 //            self.view.showToast(err)
 //        })
 //    }
 
     func autoLogin(_ user: (id: String, pwd: String)) {
-//        SVProgressHUD.show()
+//        LoadingDialog.show()
+        changeLoadingViewVisiblity(isHidden: false)
         Rest.login(id: user.id, pwd: user.pwd, success: {[weak self] (result) -> Void in
-//            SVProgressHUD.dismiss()
+//            LoadingDialog.dismiss()
+            self?.changeLoadingViewVisiblity(isHidden: true)
             Rest.user = (result as! ModelUser)
             Rest.user.pwd = user.pwd
             Local.setUser(Rest.user)
             self?.openAgreeView()
         }, failure: { [weak self](code, msg) in
-            SVProgressHUD.dismiss()
+            //LoadingDialog.dismiss()
+            self?.changeLoadingViewVisiblity(isHidden: true)
             
             let resposeCode = ResponseResultCode(rawValue: code) ?? .ERROR_SERVER
             
@@ -282,13 +319,15 @@ extension IntroVC: BaseRestApi {
     }
     
     func checkVersion() {
-//        SVProgressHUD.show()
+        changeLoadingViewVisiblity(isHidden: false)
         Rest.getVersionInfo(success: {[weak self] (result) -> Void in
-//            SVProgressHUD.dismiss()
-            print("version\(result!)")
-            self?.startApp()
+            self?.changeLoadingViewVisiblity(isHidden: true)
+            
+            let version = result as! ModelVersion
+            
+            self?.onGetVersionSuccess(version)
         }, failure: { [weak self](code, msg) in
-//            SVProgressHUD.dismiss()
+            self?.changeLoadingViewVisiblity(isHidden: true)
             self?.showAlert(title: "network_conect_fail_title"._localized
                             ,message: "network_conect_fail_desc"._localized)
         })

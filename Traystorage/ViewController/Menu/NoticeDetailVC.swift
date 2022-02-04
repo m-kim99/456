@@ -45,29 +45,29 @@ class NoticeDetailVC: BaseVC {
 //
 extension NoticeDetailVC: BaseRestApi {
     func loadNotice(noticeID: Int) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.getNotice(noticeID: noticeID, success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
 
             self?.notice = (result as! ModelNotice)
             self?.loadContents()
 
         }) { [weak self](_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }
     
     func loadNotice(noticeCode: String) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.getNotice(code: noticeCode, success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
 
             self?.notice = (result as! ModelNotice)
             self?.loadContents()
 
         }) { [weak self](_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }

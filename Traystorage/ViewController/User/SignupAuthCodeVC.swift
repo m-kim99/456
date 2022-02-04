@@ -166,14 +166,14 @@ extension SignupAuthCodeVC: BaseNavigation {
 //
 extension SignupAuthCodeVC: BaseRestApi {
     private func sendPhoneAuth(_ phone: String) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         if authType == AuthType.phone {
             Rest.request_code_for_signup(phoneNumber: phone, success: {
                 [weak self](result) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 self?.changedAuthStatus(auth: .provisional)
             }) { [weak self] (code, msg) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 if code == 206 {
                     self?.onPhoneAuthDuplicated()
                 } else {
@@ -182,7 +182,7 @@ extension SignupAuthCodeVC: BaseRestApi {
             }
         } else {
             Rest.sendCertKey(email: authMedia, success: { (result) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
 
                 let messageEmail = getLangString("dialog_auth_code_email_sent") + "\n\n\n" + self.authMedia
 
@@ -190,7 +190,7 @@ extension SignupAuthCodeVC: BaseRestApi {
 
                 }
             }, failure: { _, msg in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 self.view.showToast(msg)
             })
         }
@@ -201,26 +201,26 @@ extension SignupAuthCodeVC: BaseRestApi {
             return
         }
 
-        SVProgressHUD.show()
+        LoadingDialog.show()
         
         if authType == AuthType.phone {
             Rest.verifyPhoneCode(phone: phone, code: code, isContinue: 1, success: { [weak self](result) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 let phoneVerify = result as! ModelBase
                 self?.authData["phone"] = phone
                 self?.authData["code"] = phoneVerify.code.description
                 self?.changedAuthStatus(auth: .authorized)
             }) { [weak self](_, msg) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
 //                self?.changedAuthStatus(auth: .denied)
                 self?.view.showToast(msg)
             }
         } else {
 //            Rest.verifyCertKey(email: authMedia, certKey: certKey, success: { (result) in
-//                SVProgressHUD.dismiss()
+//                LoadingDialog.dismiss()
 //                self.goNext()
 //            }, failure: { _, msg in
-//                SVProgressHUD.dismiss()
+//                LoadingDialog.dismiss()
 //                self.view.showToast(msg)
 //            })
         }

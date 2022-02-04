@@ -10,13 +10,17 @@ class ConfirmDialog: BaseVC {
     @IBOutlet weak var vwRoot: UIView!
     
     public typealias Callback = () -> ()
-    
+    public typealias CallbackWith = (_ ret:Int?) -> ()
+
     private var okAction: Callback?
-    
+    private var retAction: CallbackWith?
+
     private var caption: String!
     private var content: String!
     private var showCancelBtn = false
-    
+    private var okTitle: String?
+    private var cancelTitle: String?
+
     static func show(_ vc: UIViewController,
                      title: String!,
                      message: String!,
@@ -39,13 +43,39 @@ class ConfirmDialog: BaseVC {
         vc.present(popup, animated: true, completion: nil)
     }
     
+    static func show3(_ vc: UIViewController,
+                     title: String!,
+                     message: String!,
+                     okTitle: String? = nil,
+                     cancelTitle: String? = nil,
+                     retAction: CallbackWith? = nil) {
+        let popup = ConfirmDialog("dialog_confirm", title: title, message: message, okTitle: okTitle, cancelTitle: cancelTitle, retAction: retAction)
+        popup.modalPresentationStyle = .overCurrentContext
+        popup.modalTransitionStyle = .crossDissolve
+        vc.present(popup, animated: true, completion: nil)
+    }
+    
     convenience init(_ nibName: String?, title: String!, message: String!, showCancelBtn: Bool!, okAction: Callback?) {
         self.init(nibName: nibName, bundle: nil)
         
         self.caption = title
         self.content = message
         self.okAction = okAction
+        self.retAction = nil
         self.showCancelBtn = showCancelBtn
+    }
+    
+    convenience init(_ nibName: String?, title: String!, message: String!, okTitle: String?, cancelTitle:String?, retAction: CallbackWith?) {
+        self.init(nibName: nibName, bundle: nil)
+        
+        self.caption = title
+        self.content = message
+        self.okAction = nil
+        self.retAction = retAction
+        self.showCancelBtn = showCancelBtn
+        
+        self.okTitle = okTitle
+        self.cancelTitle = cancelTitle
     }
     
     override func viewDidLoad() {
@@ -55,6 +85,14 @@ class ConfirmDialog: BaseVC {
         lblContent.text = content
 //        btnYes.setTitle(getLangString("confirm"), for: .normal)
 //        btnCancel.setTitle(getLangString("cancel"), for: .normal)
+        
+        if let title = okTitle {
+            self.btnYes.setTitle(title, for: .normal)
+        }
+        if let title = cancelTitle {
+            self.showCancelBtn = true
+            self.btnCancel.setTitle(title, for: .normal)
+        }
         
         if (self.showCancelBtn == false) {
             self.btnCancel.isHidden = true
@@ -80,7 +118,11 @@ class ConfirmDialog: BaseVC {
         dismiss(animated: true) {
             self.view.removeFromSuperview()
             self.removeFromParent()
-            self.okAction?()
+            if let act = self.retAction {
+                act(0)
+            } else {
+                self.okAction?()
+            }
         }
     }
     
@@ -88,6 +130,11 @@ class ConfirmDialog: BaseVC {
         dismiss(animated: true) {
             self.view.removeFromSuperview()
             self.removeFromParent()
+            if let act = self.retAction {
+                act(1)
+            } else {
+                self.okAction?()
+            }
         }
     }
 }

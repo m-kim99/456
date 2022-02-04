@@ -178,13 +178,13 @@ extension FindPwdVC: UITextFieldDelegate {
 //
 extension FindPwdVC: BaseRestApi {
     func authRequest(loginId:String, phoneNumber: String) {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.request_code_for_find(loginId:loginId, phoneNumber: phoneNumber, success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.authCode = result?.code
             self?.changeAuthStatus(auth: .provisional)
         }) { [weak self](code, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             if code == ResponseResultCode.ERROR_USER_NO_EXIST.rawValue {
                 self?.showNonRegisterPhone()
             } else {

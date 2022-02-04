@@ -202,9 +202,9 @@ class DocumentRegisterVC: BaseVC {
         }
         
         if files.count > 0 {
-            SVProgressHUD.show()
+            LoadingDialog.show()
             Rest.uploadFiles(files: files) { [weak self](result) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 
                 let fileList = result as! ModelUploadFileList
                 imageURLs.append(contentsOf: fileList.fileNames)
@@ -214,7 +214,7 @@ class DocumentRegisterVC: BaseVC {
                 self?.documentEditDone(title: title, content: content, lable: doc.label, tags: tags, images: images)
 
             } failure: { [weak self](_, err) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 self?.view.showToast(err)
             }
         } else {
@@ -237,25 +237,25 @@ class DocumentRegisterVC: BaseVC {
             doc.tags.append(tag.description)
         }
 
-        SVProgressHUD.show()
+        LoadingDialog.show()
         if isNewDocument {
             Rest.documentInsert(title: title, content: content, label: doc.label, tags: tags, images: images) { [weak self](result) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 self?.isModified = true
                 let addedDoc = result as! ModelDocument
                 doc.doc_id = addedDoc.doc_id
                 self?.onDocumentAddSuccess(doc: doc)
             } failure: { [weak self](_, err) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 self?.view.showToast(err)
             }
         } else {
             Rest.documentUpdate(id: doc.doc_id.description, title: title, content: content, label: lable, tags: tags, images: images, success: { [weak self] (result) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 self?.isModified = true
                 self?.onDocumentEditSuccess(doc: doc)
             }) {[weak self](_, err) in
-                SVProgressHUD.dismiss()
+                LoadingDialog.dismiss()
                 self?.view.showToast(err)
             }
         }

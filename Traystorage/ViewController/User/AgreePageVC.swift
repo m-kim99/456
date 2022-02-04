@@ -121,15 +121,15 @@ extension AgreePageVC: UITableViewDataSource {
 //
 extension AgreePageVC: BaseRestApi {
     func getAgreementList() {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         let isAll:Bool = agreeType == .login ? false : true
         Rest.getAgreementList(isAll: isAll, success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             
             let agreementList = result! as! ModelAgreementList
             self?.onLoadAgreementSuccessed(agreementList)
         }) { [weak self](code, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.showToast(err)
         }
     }

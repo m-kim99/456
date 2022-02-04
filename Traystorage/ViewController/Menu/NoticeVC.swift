@@ -37,16 +37,16 @@ class NoticeVC: BaseVC {
 //
 extension NoticeVC: BaseRestApi {
     func loadNoticeList() {
-        SVProgressHUD.show()
+        LoadingDialog.show()
         Rest.getNoticeList(success: { [weak self](result) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             
             let noticeList = result! as! ModelNoticeList
             self?.noticeList.removeAll()
             self?.noticeList.append(contentsOf: noticeList.list)
             self?.tvList.reloadData()
         }) { [weak self](_, err) -> Void in
-            SVProgressHUD.dismiss()
+            LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }
