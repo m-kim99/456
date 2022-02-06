@@ -200,7 +200,7 @@ There is a 14-day waiting period for withdrawal after authentication is complete
 "doc_empty_search"="Please input a search keyword.";
 "doc_deleted_toast"="문석 삭제되었습니다.";
 "doc_search_hint"="검색어를 입력해 주세요.";
-"search_empty_title"="search result empty";
+"search_empty_title"="검색결과가 없습니다.";
 
 // document detail
 "doc_detail"="문서상세";
