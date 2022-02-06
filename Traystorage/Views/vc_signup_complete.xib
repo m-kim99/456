@@ -32,14 +32,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lxs-or-LMm" userLabel="header">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTA-Sh-N5z">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTA-Sh-N5z">
                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="iTA-Sh-N5z" secondAttribute="height" id="nxJ-1P-4OH"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="ic_back"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="ic_back"/>
                                     <connections>
                                         <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="xUD-rG-bnK"/>
                                     </connections>
@@ -100,7 +99,7 @@
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="signup_complete_title"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please use the service after entering your profile information" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzI-Lx-hfN" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please use the service after entering your profile information" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzI-Lx-hfN" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="36.5" width="374" height="18"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" systemColor="systemGrayColor"/>
@@ -259,13 +258,14 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UeN-TP-17e">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UeN-TP-17e">
                                                                     <rect key="frame" x="0.0" y="37" width="374" height="38"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYI-pk-S5Z">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="69" height="38"/>
+                                                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYI-pk-S5Z">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="38"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="38" id="HG7-Mx-4Zc"/>
+                                                                                <constraint firstAttribute="width" constant="80" id="V9h-YQ-rsC"/>
                                                                             </constraints>
                                                                             <state key="normal" title="Button"/>
                                                                             <buttonConfiguration key="configuration" style="plain" title="male"/>
@@ -285,10 +285,11 @@
                                                                                 <action selector="onClickGender:" destination="-1" eventType="touchUpInside" id="4iI-X3-2F1"/>
                                                                             </connections>
                                                                         </button>
-                                                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQi-26-xU3">
-                                                                            <rect key="frame" x="77" y="0.0" width="68.5" height="38"/>
+                                                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uQi-26-xU3">
+                                                                            <rect key="frame" x="88" y="0.0" width="80" height="38"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="38" id="Whx-Ao-mlw"/>
+                                                                                <constraint firstAttribute="width" constant="80" id="vXR-w0-Ipq"/>
                                                                             </constraints>
                                                                             <state key="normal" title="Button"/>
                                                                             <buttonConfiguration key="configuration" style="plain" title="female"/>
@@ -309,16 +310,13 @@
                                                                             </connections>
                                                                         </button>
                                                                         <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="hu6-1M-nak">
-                                                                            <rect key="frame" x="153.5" y="19" width="220.5" height="0.0"/>
+                                                                            <rect key="frame" x="176" y="19" width="198" height="0.0"/>
                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" id="3mk-Jn-Hab"/>
                                                                             </constraints>
                                                                         </view>
                                                                     </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstItem="wYI-pk-S5Z" firstAttribute="width" secondItem="uQi-26-xU3" secondAttribute="width" id="bYa-RI-Vwx"/>
-                                                                    </constraints>
                                                                 </stackView>
                                                             </subviews>
                                                         </stackView>
@@ -359,13 +357,18 @@
                                                         <constraint firstItem="ILB-Oy-2fN" firstAttribute="height" secondItem="X7a-Le-ED0" secondAttribute="height" id="YmE-FG-yTo"/>
                                                     </constraints>
                                                 </stackView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLS-50-dI0" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLS-50-dI0" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="775" width="374" height="54"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="54" id="xJK-84-r5H"/>
                                                     </constraints>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="Use the service"/>
+                                                    <state key="normal" title="Use the service">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <state key="disabled">
+                                                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="15"/>

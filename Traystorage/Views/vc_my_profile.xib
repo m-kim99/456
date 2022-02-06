@@ -20,6 +20,7 @@
                 <outlet property="birthdayButton" destination="lhf-Eh-k3t" id="pNG-ca-N2m"/>
                 <outlet property="birthdayEdit" destination="FV3-vF-VYR" id="Prx-MT-fJy"/>
                 <outlet property="btnAddAvatar" destination="mpb-yK-ZND" id="CMD-G4-0Zf"/>
+                <outlet property="btnNameClear" destination="qv0-et-gJW" id="gtd-eJ-5jg"/>
                 <outlet property="editName" destination="pMV-mo-ecz" id="Vtn-u1-zp8"/>
                 <outlet property="emailEdit" destination="8oC-ca-87a" id="sZo-gi-Z4F"/>
                 <outlet property="femaleButton" destination="AH5-95-JbS" id="Ctg-Kx-iVu"/>
@@ -43,14 +44,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zv-hp-vh0" userLabel="header">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9D-2X-GDX">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9D-2X-GDX">
                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="J9D-2X-GDX" secondAttribute="height" id="J1k-Mv-3Qb"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="ic_back"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="ic_back"/>
                                     <connections>
                                         <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="QcB-5G-F4W"/>
                                     </connections>
@@ -165,20 +165,35 @@
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
                                                                 <action selector="onEditNameDidEnd:" destination="-1" eventType="editingDidEnd" id="z9x-tN-hkO"/>
+                                                                <action selector="textDidChanged:" destination="-1" eventType="editingChanged" id="jBo-w7-1cf"/>
                                                                 <outlet property="delegate" destination="-1" id="a8o-bf-tMI"/>
                                                             </connections>
                                                         </textField>
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qv0-et-gJW" userLabel="clear">
+                                                            <rect key="frame" x="287" y="0.0" width="48" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="48" id="n7I-wv-N1Q"/>
+                                                            </constraints>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" image="Icon-Common-24x24-Close"/>
+                                                            <connections>
+                                                                <action selector="onEditNameClear:" destination="-1" eventType="touchUpInside" id="ByV-ko-ZYO"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="rJD-au-LTO" secondAttribute="bottom" id="7N7-li-QCs"/>
+                                                        <constraint firstItem="qv0-et-gJW" firstAttribute="top" secondItem="mPH-XD-x7s" secondAttribute="top" id="8xa-Kt-1TW"/>
                                                         <constraint firstAttribute="bottom" secondItem="pMV-mo-ecz" secondAttribute="bottom" id="Af4-yn-ftU"/>
                                                         <constraint firstItem="pMV-mo-ecz" firstAttribute="leading" secondItem="mPH-XD-x7s" secondAttribute="leading" id="AhI-Lz-FxR"/>
                                                         <constraint firstAttribute="trailing" secondItem="pMV-mo-ecz" secondAttribute="trailing" id="BCe-3N-1p6"/>
                                                         <constraint firstAttribute="height" constant="50" id="TJD-68-yOe"/>
                                                         <constraint firstItem="pMV-mo-ecz" firstAttribute="top" secondItem="mPH-XD-x7s" secondAttribute="top" id="UhM-qd-TuR"/>
+                                                        <constraint firstAttribute="bottom" secondItem="qv0-et-gJW" secondAttribute="bottom" id="WL5-8C-Nq6"/>
                                                         <constraint firstItem="rJD-au-LTO" firstAttribute="leading" secondItem="mPH-XD-x7s" secondAttribute="leading" id="fQp-vr-64T"/>
                                                         <constraint firstItem="rJD-au-LTO" firstAttribute="top" secondItem="mPH-XD-x7s" secondAttribute="top" id="kia-ND-AjQ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="qv0-et-gJW" secondAttribute="trailing" id="pDj-4Y-eMK"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -323,10 +338,13 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="F01-Ob-UpO">
-                                                                    <rect key="frame" x="88" y="4" width="132" height="38"/>
+                                                                    <rect key="frame" x="88" y="4" width="168" height="38"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrO-07-RtU" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="62" height="38"/>
+                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrO-07-RtU" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="38"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="80" id="MB5-Wu-4ic"/>
+                                                                            </constraints>
                                                                             <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                             <state key="normal" title="male"/>
@@ -342,8 +360,8 @@
                                                                                 <action selector="onClickGender:" destination="-1" eventType="touchUpInside" id="BY5-4u-PRa"/>
                                                                             </connections>
                                                                         </button>
-                                                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AH5-95-JbS">
-                                                                            <rect key="frame" x="70" y="0.0" width="62" height="38"/>
+                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AH5-95-JbS">
+                                                                            <rect key="frame" x="88" y="0.0" width="80" height="38"/>
                                                                             <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                             <state key="normal" title="female"/>
@@ -369,7 +387,7 @@
                                                                     </constraints>
                                                                 </stackView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3tb-MU-D5B">
-                                                                    <rect key="frame" x="228" y="0.0" width="107" height="46"/>
+                                                                    <rect key="frame" x="264" y="0.0" width="71" height="46"/>
                                                                 </view>
                                                             </subviews>
                                                         </stackView>
@@ -394,7 +412,7 @@
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="27"/>
+                                                    <real key="value" value="10"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
@@ -508,6 +526,7 @@
         <image name="Icon-C-Add-24" width="24" height="24"/>
         <image name="Icon-C-Edit-LineGray-32" width="32" height="32"/>
         <image name="Icon-C-User-60" width="60" height="60"/>
+        <image name="Icon-Common-24x24-Close" width="24" height="24"/>
         <image name="ic_arrow_down" width="24" height="24"/>
         <image name="ic_back" width="24" height="24"/>
         <systemColor name="secondarySystemBackgroundColor">

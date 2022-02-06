@@ -77,12 +77,13 @@ class LoginVC: BaseVC {
         }
     }
     
-    private func onWithDrawUserExist() {
+    private func onWithDrawUserExist(_ loginId: String) {
         showConfirm(title: "login_withdrawal_title"._localized,
                     message: "login_withdrawal_desc"._localized, showCancelBtn: true) {
             [weak self] in
             let vc = FindIdVC(nibName: "vc_find_id", bundle: nil)
             vc.findIDRequest = .withDrawalCancel
+            vc.loginId = loginId
             self?.pushVC(vc, animated: true)
         }
     }
@@ -209,7 +210,7 @@ extension LoginVC: BaseRestApi {
                 self?.showInvalidAccount()
                 break
             case .ERROR_USER_EXIT:
-                self?.onWithDrawUserExist()
+                self?.onWithDrawUserExist(userID)
                 break
             case .ERROR_USER_PAUSED:
                 self?.onAccountPaused()

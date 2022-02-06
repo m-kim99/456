@@ -41,32 +41,37 @@ class IntroVC: BaseVC {
 //        ConfirmDialog.show(self, title: "Please verify your mobile phone number.", message: "", showCancelBtn: true, okAction: nil)
 
         
-        checkVersion()
+        //pushVC(SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil), animated: true)
+        startIntro()
     }
 
-    func startApp() {
+    func startIntro() {
         let ud = UserDefaults.standard
         
         let isAutoLogin = ud.bool(forKey: Local.PREFS_APP_AUTO_LOGIN.rawValue)
         if  isAutoLogin {
-            let user = Local.getUser()
-            
-            if let uid = user.uid, let pwd = user.pwd, !uid.isEmpty, !pwd.isEmpty {
-                self.autoLogin((id: uid, pwd: pwd))
-            } else {
-                self.nextScreen(false)
-                Local.removeAutoLogin()
-            }
+            checkVersion()
         } else {
             Local.deleteUser()
             
             let skipIntro = ud.bool(forKey: Local.PREFS_APP_INTRO_SKIP.rawValue)
             if skipIntro {
-                self.nextScreen(false)
+                checkVersion()//self.nextScreen(false)
             } else {
                 changeLoadingViewVisiblity(isHidden: true)
                 introView.isHidden = false;
             }
+        }
+    }
+    
+    func startApp() {
+        let user = Local.getUser()
+        
+        if let uid = user.uid, let pwd = user.pwd, !uid.isEmpty, !pwd.isEmpty {
+            self.autoLogin((id: uid, pwd: pwd))
+        } else {
+            self.nextScreen(false)
+            Local.removeAutoLogin()
         }
     }
 

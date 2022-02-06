@@ -89,9 +89,9 @@
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyy-3Q-pvK" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                <rect key="frame" x="177" y="4" width="57" height="30"/>
+                                                <rect key="frame" x="154" y="0.0" width="80" height="38"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="6KG-DP-h9D"/>
+                                                    <constraint firstAttribute="width" constant="80" id="bmY-JP-WXH"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
@@ -115,8 +115,10 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="Eyy-3Q-pvK" firstAttribute="top" secondItem="cv7-ZY-2HO" secondAttribute="top" id="49T-jy-WC5"/>
                                             <constraint firstItem="ySh-aF-htP" firstAttribute="top" secondItem="cv7-ZY-2HO" secondAttribute="top" id="H7f-Jx-XQ1"/>
                                             <constraint firstAttribute="trailing" secondItem="ySh-aF-htP" secondAttribute="trailing" id="VIS-uC-8cB"/>
+                                            <constraint firstAttribute="bottom" secondItem="Eyy-3Q-pvK" secondAttribute="bottom" id="afQ-tL-mt8"/>
                                             <constraint firstAttribute="bottom" secondItem="ySh-aF-htP" secondAttribute="bottom" id="fRG-ei-hu2"/>
                                             <constraint firstAttribute="trailing" secondItem="Eyy-3Q-pvK" secondAttribute="trailing" id="gXE-mM-uKM"/>
                                             <constraint firstItem="ySh-aF-htP" firstAttribute="leading" secondItem="cv7-ZY-2HO" secondAttribute="leading" id="tkA-NS-PHL"/>
@@ -143,22 +145,22 @@
     </objects>
     <designables>
         <designable name="Eyy-3Q-pvK">
-            <size key="intrinsicContentSize" width="57" height="17"/>
+            <size key="intrinsicContentSize" width="110" height="17"/>
         </designable>
         <designable name="LmZ-fD-dNy">
-            <size key="intrinsicContentSize" width="4" height="19.5"/>
+            <size key="intrinsicContentSize" width="234" height="32"/>
         </designable>
         <designable name="ccx-NK-9pM">
-            <size key="intrinsicContentSize" width="12.5" height="18"/>
+            <size key="intrinsicContentSize" width="69" height="18"/>
         </designable>
         <designable name="eih-E7-OQc">
-            <size key="intrinsicContentSize" width="94.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="136" height="18"/>
         </designable>
         <designable name="ySh-aF-htP">
-            <size key="intrinsicContentSize" width="30" height="18"/>
+            <size key="intrinsicContentSize" width="234" height="32"/>
         </designable>
         <designable name="ywG-4Z-ifg">
-            <size key="intrinsicContentSize" width="66" height="18"/>
+            <size key="intrinsicContentSize" width="122.5" height="18"/>
         </designable>
     </designables>
     <resources>

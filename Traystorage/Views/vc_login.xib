@@ -31,14 +31,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbf-Hw-JNj" userLabel="header">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRk-BU-Ziu">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRk-BU-Ziu">
                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="jRk-BU-Ziu" secondAttribute="height" id="bfP-cB-BEJ"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="ic_back"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="ic_back"/>
                                     <connections>
                                         <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="opG-MN-ciV"/>
                                     </connections>

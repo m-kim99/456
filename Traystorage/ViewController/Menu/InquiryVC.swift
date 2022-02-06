@@ -32,7 +32,7 @@ class InquiryVC: BaseVC {
     
     func initVC() {
         tvList.register(UINib(nibName: "tvc_inquiry", bundle: nil), forCellReuseIdentifier: "InquiryTVC")
-
+        vwEmpty.isHidden = true
     }
 
     @IBAction func onContactus(_ sender: Any) {
@@ -46,7 +46,7 @@ class InquiryVC: BaseVC {
         tvList.reloadData()
         vwEmpty.isHidden = !self.askList.isEmpty
         vwContent.isHidden = self.askList.isEmpty
-        lblCount.text = "\(self.askList.count)"
+        lblCount.text = "\(self.askList.count)" + "doc_gon"._localized
     }
 }
 

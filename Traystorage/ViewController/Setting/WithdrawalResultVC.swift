@@ -4,6 +4,7 @@ import UIKit
 class WithdrawalResultVC: BaseVC {
 
     @IBOutlet weak var lblPageTitle: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,6 +13,7 @@ class WithdrawalResultVC: BaseVC {
     }
     
     private func initVC() {
+        lblDate.text = params["date"] as? String
     }
     
     //

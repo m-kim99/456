@@ -107,4 +107,25 @@ class DateTimeUtils {
         let strRet = dtFmt.string(from: date)
         return strRet
     }
+    
+    static func getDateString(_ strDate: String) -> String {
+        let dtFmt = DateFormatter()
+        dtFmt.dateFormat = "YYYY-MM-dd"
+        var strRet: String = strDate
+        if let date = dtFmt.date(from: strDate) {
+            strRet = dtFmt.string(from: date)
+        }
+        return strRet
+    }
+    
+    static func getDateTimeString(_ strDate: String) -> String {
+        let dtFmt = DateFormatter()
+        dtFmt.dateFormat = "YYYY-MM-dd HH:mm:ss"
+        var strRet: String = strDate
+        if let date = dtFmt.date(from: strDate) {
+            dtFmt.dateFormat = "YYYY-MM-dd HH:mm"
+            strRet = dtFmt.string(from: date)
+        }
+        return strRet
+    }
 }

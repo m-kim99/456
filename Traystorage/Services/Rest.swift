@@ -88,7 +88,10 @@ class Rest: Net {
         login_id: String,
         pwd: String,
         phone: String,
-        code: String,
+        name: String,
+        birthday: String,
+        gender: Int,
+        email:String,
         success: SuccessBlock?,
         failure: FailureBlock?
     ) {
@@ -96,12 +99,36 @@ class Rest: Net {
             "login_id": login_id,
             "phone_number": phone,
             "password": pwd,
-            "code": code,
-            "signup_type": 0
+            "name": name,
+            "birthday": birthday,
+            "gender": gender,
+            "email": email,
         ] as [String: AnyObject]
 
         doRequest(method: .post, api: .USER_SIGNUP, params: params as [String: AnyObject], header: [:], success: success, failure: failure)
     }
+    
+    public static func makeProfile(
+        name: String,
+        birthday: String,
+        gender: Int,
+        email:String,
+        profileImage:String,
+        success: SuccessBlock?,
+        failure: FailureBlock?
+    ) {
+        let params = [
+            "access_token": user.access_token!,
+            "name": name,
+            "birthday": birthday,
+            "gender": gender,
+            "email": email,
+            "profile_image": profileImage,
+        ] as [String: AnyObject]
+        
+        doRequest(method: .post, api: .MAKE_PROFILE, params: params as [String: AnyObject], header: [:], success: success, failure: failure)
+    }
+    
     
     public static func find_login_id(
         phoneNumber: String,
@@ -169,27 +196,6 @@ class Rest: Net {
         ] as [String: AnyObject]
 
         doRequest(method: .post, api: .USER_FIND_PWD, params: params as [String: AnyObject], header: [:], success: success, failure: failure)
-    }
-    
-    public static func makeProfile(
-        name: String,
-        birthday: String,
-        gender: Int,
-        email:String,
-        profileImage:String,
-        success: SuccessBlock?,
-        failure: FailureBlock?
-    ) {
-        let params = [
-            "access_token": user.access_token,
-            "name": name,
-            "birthday": birthday,
-            "gender": gender,
-            "email": email,
-            "profile_image": profileImage,
-        ] as [String: AnyObject]
-        
-        doRequest(method: .post, api: .MAKE_PROFILE, params: params as [String: AnyObject], header: [:], success: success, failure: failure)
     }
     
     public static func uploadFiles(

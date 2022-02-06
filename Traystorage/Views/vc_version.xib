@@ -86,13 +86,13 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7Lc-Or-ToS">
-                            <rect key="frame" x="120.66666666666667" y="290.33333333333331" width="133.66666666666663" height="46"/>
+                            <rect key="frame" x="129.33333333333334" y="290.33333333333331" width="116.33333333333334" height="46"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ijD-b1-EHk">
-                                    <rect key="frame" x="0.0" y="0.0" width="133.66666666666666" height="18"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="116.33333333333333" height="18"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="current version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZ9-Im-5Uk" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="103.33333333333333" height="18"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -100,10 +100,11 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="cur_version"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.1v" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2M-3z-2wi" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="107.33333333333333" y="0.0" width="26.333333333333329" height="18"/>
+                                            <rect key="frame" x="84" y="0.0" width="32.333333333333343" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -116,10 +117,10 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="0qy-eo-Opy">
-                                    <rect key="frame" x="0.0" y="28" width="133.66666666666666" height="18"/>
+                                    <rect key="frame" x="0.0" y="28" width="116.33333333333333" height="18"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="newest version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frn-yv-7Ra" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="102.66666666666667" height="18"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="85.333333333333329" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -127,10 +128,11 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                     <real key="value" value="15"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="new_version"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.2v" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNu-Mh-Y6X" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="106.66666666666667" y="0.0" width="27.000000000000014" height="18"/>
+                                            <rect key="frame" x="89.333333333333314" y="0.0" width="27" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -201,10 +203,10 @@
             <size key="intrinsicContentSize" width="97.666666666666671" height="21.666666666666668"/>
         </designable>
         <designable name="frn-yv-7Ra">
-            <size key="intrinsicContentSize" width="102.66666666666667" height="18"/>
+            <size key="intrinsicContentSize" width="85.333333333333329" height="18"/>
         </designable>
         <designable name="lZ9-Im-5Uk">
-            <size key="intrinsicContentSize" width="103.33333333333333" height="18"/>
+            <size key="intrinsicContentSize" width="80" height="18"/>
         </designable>
         <designable name="m2M-3z-2wi">
             <size key="intrinsicContentSize" width="25" height="18"/>

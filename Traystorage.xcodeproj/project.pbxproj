@@ -35,13 +35,13 @@
 		10DE45D427956DE600C2F74A /* WithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DE45D327956DE600C2F74A /* WithdrawalVC.swift */; };
 		10DE45D62795726D00C2F74A /* vc_withdrawal_result.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DE45D52795726D00C2F74A /* vc_withdrawal_result.xib */; };
 		10E5EC80279317B400839E51 /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585BB278B127B0030B269 /* MyProfileVC.swift */; };
+		7951EDC327B004BD008AC61F /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 7951EDC227B004BC008AC61F /* fonts */; };
 		79632CD12785DD85007C427E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79632CD02785DD85007C427E /* AppDelegate.swift */; };
 		79632CD32785DD85007C427E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79632CD22785DD85007C427E /* SceneDelegate.swift */; };
 		79632CD52785DD85007C427E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79632CD42785DD85007C427E /* ViewController.swift */; };
 		79632CD82785DD85007C427E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79632CD62785DD85007C427E /* Main.storyboard */; };
 		79632CDA2785DD87007C427E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79632CD92785DD87007C427E /* Assets.xcassets */; };
 		79632CDD2785DD87007C427E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79632CDB2785DD87007C427E /* LaunchScreen.storyboard */; };
-		799870C327AD6F5D0005389F /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 799870C227AD6F5D0005389F /* fonts */; };
 		7A0DEDE7278EF4440025A534 /* SignupCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585CD278B127B0030B269 /* SignupCompleteVC.swift */; };
 		7A285A50278F1E9E007894F4 /* SignupAuthCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585CC278B127B0030B269 /* SignupAuthCodeVC.swift */; };
 		7A285A51278F38D3007894F4 /* SignupAgreeTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585D0278B127B0030B269 /* SignupAgreeTermsVC.swift */; };
@@ -210,6 +210,8 @@
 		10DE45D127956DD200C2F74A /* vc_withdrawal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = vc_withdrawal.xib; sourceTree = "<group>"; };
 		10DE45D327956DE600C2F74A /* WithdrawalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithdrawalVC.swift; sourceTree = "<group>"; };
 		10DE45D52795726D00C2F74A /* vc_withdrawal_result.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = vc_withdrawal_result.xib; sourceTree = "<group>"; };
+		7951EDC227B004BC008AC61F /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		7951EDC427B004C2008AC61F /* Traystorage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Traystorage.entitlements; sourceTree = "<group>"; };
 		79632CCD2785DD85007C427E /* Traystorage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traystorage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79632CD02785DD85007C427E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79632CD22785DD85007C427E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,8 +220,6 @@
 		79632CD92785DD87007C427E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79632CDC2785DD87007C427E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79632CDE2785DD87007C427E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		799870C127AD6F4A0005389F /* Traystorage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Traystorage.entitlements; sourceTree = "<group>"; };
-		799870C227AD6F5D0005389F /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		7A4AF42527924B2B00D69307 /* item_image.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = item_image.xib; sourceTree = "<group>"; };
 		7A4B031327A8B9D0007649B6 /* ModelAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelAgreement.swift; sourceTree = "<group>"; };
 		7A4B031527A8CDCE007649B6 /* tvc_setting_normal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tvc_setting_normal.xib; sourceTree = "<group>"; };
@@ -431,8 +431,8 @@
 		79632CCF2785DD85007C427E /* Traystorage */ = {
 			isa = PBXGroup;
 			children = (
-				799870C227AD6F5D0005389F /* fonts */,
-				799870C127AD6F4A0005389F /* Traystorage.entitlements */,
+				7951EDC427B004C2008AC61F /* Traystorage.entitlements */,
+				7951EDC227B004BC008AC61F /* fonts */,
 				7A9D653E27910BE100272EBE /* Models */,
 				7A9D65362790F63400272EBE /* Global.swift */,
 				7A65860C278B127B0030B269 /* Common */,
@@ -579,7 +579,6 @@
 				7A4B031B27A8DC2E007649B6 /* tvc_setting_logout.xib */,
 				7A4B031527A8CDCE007649B6 /* tvc_setting_normal.xib */,
 				7A4B031627A8CDCF007649B6 /* tvc_setting_version.xib */,
-				7A4F990427A4D3D000E8FC62 /* vc_agree_page.xib */,
 				7A652B2F27915F0B00AD4F8F /* vc_check_id.xib */,
 				7A8161D22792DF37000266A0 /* vc_contactus.xib */,
 				7A7B5BB82794EC84004457BB /* vc_document_detail.xib */,
@@ -608,6 +607,7 @@
 				7A6585FA278B127B0030B269 /* vc_signup_complete.xib */,
 				7A4F990127A4D31B00E8FC62 /* vc_signup_page1.xib */,
 				7A4F990327A4D3D000E8FC62 /* vc_signup_page2.xib */,
+				7A4F990427A4D3D000E8FC62 /* vc_agree_page.xib */,
 				7A6585F8278B127B0030B269 /* vc_signup.xib */,
 				10DE45CF27956C4C00C2F74A /* vc_terms.xib */,
 				10AD655027950D6100F17B31 /* vc_version.xib */,
@@ -875,7 +875,7 @@
 				7A8161DA2792DF38000266A0 /* vc_contactus.xib in Resources */,
 				7A8161E42792F0BB000266A0 /* tvc_inquiry.xib in Resources */,
 				7A4B031927A8CDCF007649B6 /* tvc_setting_version.xib in Resources */,
-				799870C327AD6F5D0005389F /* fonts in Resources */,
+				7951EDC327B004BD008AC61F /* fonts in Resources */,
 				10DE45D227956DD200C2F74A /* vc_withdrawal.xib in Resources */,
 				7A65868E278B127C0030B269 /* vc_findpwd.xib in Resources */,
 				7A8161DD2792DF38000266A0 /* vc_menu.xib in Resources */,

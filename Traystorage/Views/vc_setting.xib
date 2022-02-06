@@ -39,7 +39,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxB-KL-QBv" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="158.66666666666666" y="19.333333333333336" width="57.666666666666657" height="21.666666666666664"/>
+                                    <rect key="frame" x="140.33333333333334" y="19.333333333333336" width="94.333333333333343" height="21.666666666666664"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -96,7 +96,7 @@
     </objects>
     <designables>
         <designable name="bxB-KL-QBv">
-            <size key="intrinsicContentSize" width="57.666666666666664" height="21.666666666666668"/>
+            <size key="intrinsicContentSize" width="94.333333333333329" height="21.666666666666668"/>
         </designable>
     </designables>
     <resources>

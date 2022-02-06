@@ -83,7 +83,7 @@ extension SignupVC: SignupNextDelegate {
             vwSignupProgress.progress = 1
         case .complete:
             let vc = SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil)
-            self.pushVC(vc, animated: true)
+            self.pushVC(vc, animated: true, params:params)
         }
     }
 }

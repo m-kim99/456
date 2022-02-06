@@ -28,7 +28,7 @@ class NoticeVC: BaseVC {
     
     func initVC() {
         tvList.register(UINib(nibName: "tvc_notice", bundle: nil), forCellReuseIdentifier: "NoticeTVC")
-
+        tvList.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
     }
 }
 
@@ -70,7 +70,7 @@ extension NoticeVC: UITableViewDataSource, UITableViewDelegate {
         }
         
         if let dateLabel = cell.viewWithTag(2) as? UILabel {
-            dateLabel.text = notice.create_time
+            dateLabel.text = notice.reg_time
         }
         
         if let imageView = cell.viewWithTag(3) as? UIImageView {

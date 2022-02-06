@@ -60,26 +60,6 @@ class LoginAgreeTerms: BaseVC {
         btnTermsAgree.setTitle("terms_of_use_required"._localized, for: .normal)
         btnPolicyAgree.setTitle("privacy_policy_required"._localized, for: .normal)
     }
-    
-    private func signup() {
-        LoadingDialog.show()
-        let loginID = params["id"] as! String
-        let pwd = params["pwd"] as! String
-        let phone = params["phone"] as! String
-        let code = params["code"] as! String
-        
-        Rest.signup(login_id:loginID, pwd: pwd, phone: phone, code: code, success: { [weak self](result) -> Void in
-            LoadingDialog.dismiss()
-            let user = result as! ModelUser
-            user.pwd = pwd
-            Local.setUser(user)
-            Rest.user = user
-            self?.goNext()
-        }) {[weak self] (_, err) -> Void in
-            LoadingDialog.dismiss()
-            self?.view.showToast(err)
-        }
-    }
 }
 
 //
@@ -94,7 +74,7 @@ extension LoginAgreeTerms: BaseAction {
     @IBAction func onClickNext(_ sender: Any) {
         if isAllAgree {
             ConfirmDialog.show(self, title: "signup_agree_confrim_title".localized, message: "", showCancelBtn: true) { [weak self]() -> Void in
-                self?.signup()
+                self?.goNext()
             }
         }
         else {
@@ -128,10 +108,6 @@ extension LoginAgreeTerms: BaseAction {
 extension LoginAgreeTerms: BaseNavigation {
     private func goNext() {
         let vc = SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil)
-    //        vc.authType = authType
-    //        vc.authMedia = authMedia
-    //        vc.authCode = authCode
-    //        vc.authPwd = tfPwd.text!
-        self.pushVC(vc, animated: true)
+        self.pushVC(vc, animated: true, params: self.params)
     }
 }

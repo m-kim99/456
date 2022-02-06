@@ -83,7 +83,6 @@ class DocumentRegisterVC: BaseVC {
             popDelegate.onWillBack("insert", doc)
         }
         
-        
         let detailVC = DocumentDetailVC(nibName: "vc_document_detail", bundle: nil)
         detailVC.document = doc
         detailVC.isAppearFromAddDoc = true
@@ -155,6 +154,7 @@ class DocumentRegisterVC: BaseVC {
     override func onBackProcess(_ viewController: UIViewController) {
         if !isModified {
             super.onBackProcess(viewController)
+            return
         }
         
         ConfirmDialog.show(self, title: "doc_discard_title"._localized, message: "doc_discard_desc"._localized, showCancelBtn: true) { [weak self] () -> Void in
@@ -244,7 +244,8 @@ class DocumentRegisterVC: BaseVC {
                 self?.isModified = true
                 let addedDoc = result as! ModelDocument
                 doc.doc_id = addedDoc.doc_id
-                self?.onDocumentAddSuccess(doc: doc)
+                doc.reg_time = addedDoc.reg_time
+                self?.onDocumentAddSuccess(doc: addedDoc)
             } failure: { [weak self](_, err) in
                 LoadingDialog.dismiss()
                 self?.view.showToast(err)
@@ -316,7 +317,21 @@ extension DocumentRegisterVC: UITextFieldDelegate {
 }
 
 
-extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelegate {
+extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewTag = collectionView.tag
+        let doc = newDocument
+        switch collectionViewTag {
+        case viewTagTagCollectionView:
+            let strTitle = doc.tags[indexPath.row]
+            let width = strTitle.widthToFit(36, AppFont.appleGothicNeoRegular(16))
+            return CGSize(width: width + 52, height: 36)
+        default:
+            break
+        }
+        return (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let collectionViewTag = collectionView.tag
         let doc = newDocument
@@ -347,7 +362,7 @@ extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelega
             break
         case viewTagTagCollectionView:
             if let titleLabel = cell.viewWithTag(1) as? UILabel {
-                titleLabel.text = "#" + doc.tags[indexPath.row]
+                titleLabel.text = doc.tags[indexPath.row]
             }
             break
         case viewTagLabelCollectionView:

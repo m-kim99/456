@@ -17,6 +17,7 @@ class ModelDocument: ModelBase {
     var tags:[String] = []
     
     var create_time: String = ""
+    var reg_time: String = ""
     
     var label: Int = 0
         
@@ -42,6 +43,7 @@ class ModelDocument: ModelBase {
         content = json["content"].stringValue
         label = json["label"].intValue
         create_time = json["create_time"].stringValue
+        reg_time = json["reg_time"].stringValue
         
         let tagList = json["tag_list"]
         if tagList != . null {

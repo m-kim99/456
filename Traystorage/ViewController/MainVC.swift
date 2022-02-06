@@ -16,9 +16,10 @@ class MainVC: BaseVC {
     @IBOutlet weak var vwEmptyView: UIView!
     @IBOutlet weak var vwDocumentView: UIView!
     @IBOutlet weak var lblDocumentCount: UILabel!
+    @IBOutlet weak var lblSearchEmpty: UILabel!
     
     var documents: [ModelDocument] = []
-    var isFirstLoadDocument = false
+    var lastKeyword:String?
         
     private var vcMenu: MenuVC?
 
@@ -38,8 +39,20 @@ class MainVC: BaseVC {
         vcMenu = MenuVC(nibName: "vc_menu", bundle: Bundle.main)
         vcMenu?.delegate = self
         showPopup()
+        
+        vwEmptyView.isHidden = false
+        vwDocumentView.isHidden = false
+        lblSearchEmpty.isHidden = true
+        
+        let rightPanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(onPanOfRightEdge(_:)))
+        rightPanGesture.edges = .all
+        self.view.addGestureRecognizer(rightPanGesture)
     }
     
+    @objc func onPanOfRightEdge(_ sender: UIScreenEdgePanGestureRecognizer) {
+        onClickMenu("")
+    }
+
     private func showPopup() {
 //        if Local.getNeverShowPopup() {
 //            return
@@ -71,8 +84,11 @@ class MainVC: BaseVC {
         self.documents.removeAll()
         tableViewDocument.reloadData()
 //        tableViewDocument.endUpdates()
+        
+        lastKeyword = keyword
+        
         LoadingDialog.show()
-        Rest.documentList(keyword: tfSearchText.text ?? "", success: {[weak self] (result) in
+        Rest.documentList(keyword: keyword, success: {[weak self] (result) in
             LoadingDialog.dismiss()
 
             let documentList = result! as! ModelDocumentList
@@ -86,17 +102,18 @@ class MainVC: BaseVC {
     
     private func documentChanged() {
         tableViewDocument.reloadData()
-        lblDocumentCount.text = "\(self.documents.count)"
+        lblDocumentCount.text = "\(self.documents.count)" + "doc_gon"._localized
 
         let isEmptyDocList = self.documents.isEmpty
         
-        if !isFirstLoadDocument {
-            isFirstLoadDocument = true
+        if let keyword = lastKeyword, keyword.isEmpty {
             vwEmptyView.isHidden = !isEmptyDocList
             vwDocumentView.isHidden = isEmptyDocList
-        } else if isEmptyDocList == false {
-            vwEmptyView.isHidden = !isEmptyDocList
-            vwDocumentView.isHidden = isEmptyDocList
+            lblSearchEmpty.isHidden = true
+        } else {
+            vwEmptyView.isHidden = true
+            vwDocumentView.isHidden = false
+            lblSearchEmpty.isHidden = !isEmptyDocList
         }
     }
     
@@ -144,11 +161,17 @@ extension MainVC: UITableViewDataSource {
         let tags = cell.viewWithTag(3) as! UILabel
         let imageView = cell.viewWithTag(4) as! UIImageView
         let labelView = cell.viewWithTag(5)!
+        let date = cell.viewWithTag(6) as! UILabel
         
         let doc = documents[indexPath.row]
         title.text = doc.title
         content.text = doc.content
-        tags.text = doc.tags.joined(separator: " #")
+        if doc.tags.isEmpty {
+            tags.text = ""
+        } else {
+            tags.text = "#" + doc.tags.joined(separator: " #")
+        }
+        date.text = doc.reg_time
         
         if doc.images.count > 0 {
             doc.setToImageView(at: 0, imageView: imageView)

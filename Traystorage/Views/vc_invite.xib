@@ -25,20 +25,19 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbf-Hw-JNj" userLabel="header">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRk-BU-Ziu">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRk-BU-Ziu">
                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="jRk-BU-Ziu" secondAttribute="height" id="ZEy-Vb-Mj1"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="ic_back"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="ic_back"/>
                                     <connections>
                                         <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="opG-MN-ciV"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="invite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-iT-dIJ" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="185.5" y="19" width="43" height="22"/>
+                                    <rect key="frame" x="165" y="19" width="84.5" height="22"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -68,7 +67,7 @@
                                     <rect key="frame" x="132" y="0.0" width="150" height="150"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send invitations to friends who need Traystorage" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGz-hV-cC9" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="170" width="374" height="20.5"/>
+                                    <rect key="frame" x="20" y="170" width="374" height="26.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -139,13 +138,13 @@
     </objects>
     <designables>
         <designable name="Ice-r3-qIy">
-            <size key="intrinsicContentSize" width="89" height="30"/>
+            <size key="intrinsicContentSize" width="90" height="30"/>
         </designable>
         <designable name="kP6-iT-dIJ">
-            <size key="intrinsicContentSize" width="43" height="21.5"/>
+            <size key="intrinsicContentSize" width="84.5" height="22"/>
         </designable>
         <designable name="rGz-hV-cC9">
-            <size key="intrinsicContentSize" width="371" height="20.5"/>
+            <size key="intrinsicContentSize" width="107.5" height="26.5"/>
         </designable>
     </designables>
     <resources>

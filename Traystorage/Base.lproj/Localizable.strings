@@ -157,10 +157,20 @@
 "withdrawal_header"="계정 비활성화 및 삭제 시 주의사항";
 "withdrawal_request_button"="회원 탈퇴신청";
 "withdrawal_confirm_title"="정말 회원 탈퇴하시겠습니까?\n(유의사항 확인필요)";
+"withdrawal_content" = "Notice(must read)
+Please note that the account you are using cannot be recovered once the withdrawal is complete.
+If the withdrawal is completed, the app usage history (document history, NFC registration history, etc.) is deleted and cannot be recovered.
+Withdrawal method
+In order to prevent damage to illegal theft and disadvantages when choosing to withdraw from membership.
+The mobile phone verification process that was performed at the time of membership registration is in progress.
 
+After the mobile phone verification is completed, the membership withdrawal request is processed.
+Information on waiting period for membership withdrawal
+There is a 14-day waiting period for withdrawal after authentication is complete, and you can cancel the waiting period for withdrawal during the withdrawal waiting period.";
 // withdrawal_result
 "withdrawal_result_1"="회원탈퇴 신청이\n완료되었습니다";
 "withdrawal_result_2"="탈퇴 신청 날짜 :";
+"withdrawal_result_3"="14일 이내 재로그인 시 <font color='blue'>탈퇴회원복구</font> 절차를\n진행 하실 수 있습니다.";
 
 "new"="New";
 "inside"="Inside";
@@ -183,17 +193,20 @@
 
 // main vc
 "doc_count"="문서";
-"doc_reg_button"="+ 문서등록";
-"document_empty_title"="등록된 문서가 존재하지 않습니다";
-"document_empty_desc"="지금 쉽고 편리하게 문서를 등록하고\nNFC태그를 통해 관리 및 공유해 보세요";
-"doc_empty_search"="검색어를 입력해 주세요.";
-"doc_deleted_toast"="문서 삭제되었습니다.";
+"doc_gon"="건";
+"doc_reg_button"="+ 문서 등록";
+"document_empty_title"="등록된 문서가 존재하지 않습니다.";
+"document_empty_desc"="지금 쉽고 편리하게 문서를 등록하고 NFZ태그를\n통해 관리 및 공유해 보세요.";
+"doc_empty_search"="Please input a search keyword.";
+"doc_deleted_toast"="문석 삭제되었습니다.";
 "doc_search_hint"="검색어를 입력해 주세요.";
-
+"search_empty_title"="search result empty";
 
 // document detail
 "doc_detail"="문서상세";
 "nfc_register"="NFC 등록";
+"doc_del_query_title" = "문서를 삭제하시면\nNFC캐그 시 해당 문서가\n노출되지 않습니다.";
+"doc_del_query_desc" = "해당 문서를\n삭제 하시겠습니까?";
 
 // document register
 "doc_reg_title" = "문서등록";
@@ -322,7 +335,9 @@
 // version
 "version_title"="버전정보";
 "version_header"="최신 버전으로\n업데이트 해주세요";
-"update_version_button"="버전 업데이트하기";
+"cur_version"="현재버전";
+"new_version"="최신버전";
+"update_version_button"="버전 업데이트 하기";
 
 // profile
 "profile_main_info"="기본정보";

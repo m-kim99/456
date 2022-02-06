@@ -266,6 +266,7 @@ extension GalleryViewController : UICollectionViewDelegate, UICollectionViewData
                     } else {
                         selectedImgList.removeAll()
                         selectedImgList.append(imgList[row].image)
+                        self.onClickDone("");
                     }
                 } else {
                     var ind = -1

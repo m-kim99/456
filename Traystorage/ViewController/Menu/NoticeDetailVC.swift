@@ -30,7 +30,7 @@ class NoticeDetailVC: BaseVC {
     private func loadContents() {
         if let notice = notice {
             lblTitle.text = notice.title
-            lblRegTime.text = notice.create_time
+            lblRegTime.text = notice.reg_time
             wvContent.loadHTMLString(notice.content, baseURL: nil)
         } else {
             lblTitle.text = nil

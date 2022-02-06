@@ -38,7 +38,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Withdrawal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxB-KL-QBv" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="142.66666666666666" y="19.333333333333336" width="90" height="21.666666666666664"/>
+                                    <rect key="frame" x="123.66666666666666" y="19.333333333333336" width="127.66666666666666" height="21.666666666666664"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -61,7 +61,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes onn Account Deactivation and Deletion" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrM-Mw-0bv" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                            <rect key="frame" x="18" y="96" width="339" height="40.666666666666657"/>
+                            <rect key="frame" x="18" y="96" width="339" height="26.333333333333329"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -94,71 +94,8 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPg-8x-n7J" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                            <rect key="frame" x="18" y="154.66666666666666" width="339" height="368.66666666666674"/>
-                            <attributedString key="attributedText">
-                                <fragment content="Notice">
-                                    <attributes>
-                                        <font key="NSFont" size="14" name="AppleSDGothicNeo-Bold"/>
-                                        <font key="NSOriginalFont" size="14" name="AppleSDGothicNeo-Bold"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="(must read)">
-                                    <attributes>
-                                        <color key="NSColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                        <font key="NSFont" metaFont="system" size="14"/>
-                                        <font key="NSOriginalFont" metaFont="system" size="14"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment>
-                                    <string key="content">
-Please note that the account you are using cannot be recovered once the withdrawal is complete.
-If the withdrawal is completed, the app usage history (document history, NFC registration history, etc.) is deleted and cannot be recovered.
-</string>
-                                    <attributes>
-                                        <font key="NSFont" metaFont="system" size="14"/>
-                                        <font key="NSOriginalFont" metaFont="system" size="14"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="Withdrawal method">
-                                    <attributes>
-                                        <font key="NSFont" size="14" name="AppleSDGothicNeo-Bold"/>
-                                        <font key="NSOriginalFont" size="14" name="AppleSDGothicNeo-Bold"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment>
-                                    <string key="content">
-In order to prevent damage to illegal theft and disadvantages when choosing to withdraw from membership.
-The mobile phone verification process that was performed at the time of membership registration is in progress.
-
-After the mobile phone verification is completed, the membership withdrawal request is processed.
-</string>
-                                    <attributes>
-                                        <font key="NSFont" metaFont="system" size="14"/>
-                                        <font key="NSOriginalFont" metaFont="system" size="14"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="Information on waiting period for membership withdrawal">
-                                    <attributes>
-                                        <font key="NSFont" size="14" name="AppleSDGothicNeo-Bold"/>
-                                        <font key="NSOriginalFont" size="14" name="AppleSDGothicNeo-Bold"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment>
-                                    <string key="content">
-There is a 14-day waiting period for withdrawal after authentication is complete, and you can cancel the waiting period for withdrawal during the withdrawal waiting period.</string>
-                                    <attributes>
-                                        <font key="NSFont" metaFont="system" size="14"/>
-                                        <font key="NSOriginalFont" metaFont="system" size="14"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
+                            <rect key="frame" x="18" y="140.33333333333334" width="339" height="17"/>
+                            <attributedString key="attributedText"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
@@ -167,6 +104,7 @@ There is a 14-day waiting period for withdrawal after authentication is complete
                                 <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
                                     <real key="value" value="1.2"/>
                                 </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="withdrawal_content"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -201,16 +139,16 @@ There is a 14-day waiting period for withdrawal after authentication is complete
     </objects>
     <designables>
         <designable name="G51-mU-pL2">
-            <size key="intrinsicContentSize" width="219" height="30"/>
+            <size key="intrinsicContentSize" width="181" height="30"/>
         </designable>
         <designable name="WPg-8x-n7J">
-            <size key="intrinsicContentSize" width="1098.3333333333333" height="168.33333333333334"/>
+            <size key="intrinsicContentSize" width="126.66666666666667" height="17"/>
         </designable>
         <designable name="bxB-KL-QBv">
-            <size key="intrinsicContentSize" width="90" height="21.666666666666668"/>
+            <size key="intrinsicContentSize" width="127.66666666666667" height="21.666666666666668"/>
         </designable>
         <designable name="mrM-Mw-0bv">
-            <size key="intrinsicContentSize" width="345" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="181" height="26.333333333333332"/>
         </designable>
     </designables>
     <resources>

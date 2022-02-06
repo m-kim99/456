@@ -35,13 +35,13 @@
                             <color key="backgroundColor" white="0.13" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWv-87-cRh" userLabel="content">
-                            <rect key="frame" x="20" y="348" width="374" height="200"/>
+                            <rect key="frame" x="20" y="356" width="374" height="184.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IVB-KN-GMI">
-                                    <rect key="frame" x="20" y="20" width="334" height="160"/>
+                                    <rect key="frame" x="20" y="20" width="334" height="144.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complete" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tlo-EY-TZ3" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="334" height="22"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Yj-MR-52g" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="30" width="334" height="86"/>
+                                            <rect key="frame" x="0.0" y="28.5" width="334" height="72"/>
                                             <string key="text">Mosaic, etc. for privacy protection.
 After the oper, it will be published.
 There is no editing of the video itself. It may take some time</string>
@@ -67,10 +67,10 @@ There is no editing of the video itself. It may take some time</string>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OTy-mY-d6n" userLabel="buttons">
-                                            <rect key="frame" x="0.0" y="124" width="334" height="36"/>
+                                            <rect key="frame" x="0.0" y="108.5" width="334" height="36"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lQt-j9-hXz">
-                                                    <rect key="frame" x="186" y="0.0" width="148" height="36"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lQt-j9-hXz">
+                                                    <rect key="frame" x="184" y="0.0" width="150" height="36"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeh-mA-ZYT" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="36"/>
@@ -99,8 +99,11 @@ There is no editing of the video itself. It may take some time</string>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gy5-pw-mU3" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="78" y="0.0" width="70" height="36"/>
+                                                            <rect key="frame" x="80" y="0.0" width="70" height="36"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="xKF-7R-UEd"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                             <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -168,16 +171,16 @@ There is no editing of the video itself. It may take some time</string>
     </objects>
     <designables>
         <designable name="6Yj-MR-52g">
-            <size key="intrinsicContentSize" width="475" height="64.5"/>
+            <size key="intrinsicContentSize" width="407" height="54"/>
         </designable>
         <designable name="Gy5-pw-mU3">
-            <size key="intrinsicContentSize" width="70" height="17"/>
+            <size key="intrinsicContentSize" width="80" height="21"/>
         </designable>
         <designable name="Tlo-EY-TZ3">
-            <size key="intrinsicContentSize" width="77" height="22"/>
+            <size key="intrinsicContentSize" width="79" height="20.5"/>
         </designable>
         <designable name="yeh-mA-ZYT">
-            <size key="intrinsicContentSize" width="59" height="17"/>
+            <size key="intrinsicContentSize" width="61" height="18"/>
         </designable>
     </designables>
     <resources>

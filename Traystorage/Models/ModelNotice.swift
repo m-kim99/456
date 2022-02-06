@@ -9,6 +9,7 @@ public class ModelNotice: ModelBase {
     var content: String!
     var status: String!
     var create_time: String!
+    var reg_time: String!
     var view_count: Int = 0
     
     override init(_ json: JSON) {
@@ -20,6 +21,7 @@ public class ModelNotice: ModelBase {
         content = json["content"].stringValue
         status = json["status"].stringValue
         create_time = json["create_time"].stringValue
+        reg_time = json["reg_time"].stringValue
         view_count = json["view_count"].intValue
     }
 }

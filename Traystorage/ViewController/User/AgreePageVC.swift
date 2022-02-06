@@ -94,7 +94,7 @@ extension AgreePageVC: BaseAction {
 //
 extension AgreePageVC: BaseNavigation {
     private func goNext() {
-        nextDelegate?.onClickNext(step: .complete, params: [:])
+        nextDelegate?.onClickNext(step: .complete, params: params)
     }
 }
 

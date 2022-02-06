@@ -29,7 +29,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xbf-Hw-JNj" userLabel="header">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRk-BU-Ziu">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRk-BU-Ziu">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="Pgj-yR-tL7"/>
@@ -37,13 +37,12 @@
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" image="ic_back"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="ic_back"/>
                                     <connections>
                                         <action selector="onClickBack:" destination="-1" eventType="touchUpInside" id="opG-MN-ciV"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-iT-dIJ" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="143.66666666666666" y="14.666666666666664" width="87.666666666666657" height="21"/>
+                                    <rect key="frame" x="126" y="14.666666666666664" width="123.33333333333331" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -69,10 +68,10 @@
                             <rect key="frame" x="0.0" y="58" width="375" height="676"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4Z-wH-YKp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="655.66666666666663"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="608"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you send an inquiry related to Traystorage, the management team will check it and respond promptly." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGz-hV-cC9" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="36" width="335" height="61"/>
+                                            <rect key="frame" x="20" y="36" width="335" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -84,7 +83,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inquiry subject" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcM-XZ-UwP" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="126.99999999999999" width="112" height="20.333333333333329"/>
+                                            <rect key="frame" x="19.999999999999993" y="84" width="124.33333333333331" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -97,7 +96,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Please enter the subject of your inquiry" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eys-Dv-U1p" customClass="UIFontTextField" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="157.33333333333331" width="335" height="46"/>
+                                            <rect key="frame" x="20" y="112" width="335" height="46"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="46" id="uOj-DM-v1X"/>
                                             </constraints>
@@ -120,7 +119,7 @@
                                             </connections>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inquiry content" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pP8-Ci-uUc" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="19.999999999999993" y="233.33333333333331" width="114.33333333333331" height="20.333333333333343"/>
+                                            <rect key="frame" x="20.000000000000007" y="188" width="127.66666666666669" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -133,7 +132,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qU2-Vv-bav">
-                                            <rect key="frame" x="20" y="263.66666666666669" width="335" height="268.00000000000006"/>
+                                            <rect key="frame" x="20" y="216" width="335" height="268"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CA1-g0-Z7L">
                                                     <rect key="frame" x="4" y="4" width="327" height="260"/>
@@ -146,7 +145,7 @@
                                                     </connections>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your inquiry content" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gxN-sE-I2E" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                    <rect key="frame" x="7.9999999999999858" y="7.9999999999999982" width="250.66666666666663" height="20.333333333333329"/>
+                                                    <rect key="frame" x="8" y="8" width="171.33333333333334" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -181,7 +180,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ice-r3-qIy" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="581.66666666666663" width="335" height="54"/>
+                                            <rect key="frame" x="20" y="534" width="335" height="54"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="54" id="s9b-HU-zxK"/>
                                             </constraints>
@@ -273,25 +272,25 @@
     </objects>
     <designables>
         <designable name="Eys-Dv-U1p">
-            <size key="intrinsicContentSize" width="308.66666666666669" height="34"/>
+            <size key="intrinsicContentSize" width="216" height="34"/>
         </designable>
         <designable name="Ice-r3-qIy">
-            <size key="intrinsicContentSize" width="36" height="30"/>
+            <size key="intrinsicContentSize" width="32" height="30"/>
         </designable>
         <designable name="UcM-XZ-UwP">
-            <size key="intrinsicContentSize" width="112" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="124.33333333333333" height="18"/>
         </designable>
         <designable name="gxN-sE-I2E">
-            <size key="intrinsicContentSize" width="250.66666666666666" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="171.33333333333334" height="18"/>
         </designable>
         <designable name="kP6-iT-dIJ">
-            <size key="intrinsicContentSize" width="87.666666666666671" height="21.666666666666668"/>
+            <size key="intrinsicContentSize" width="123.33333333333333" height="21.666666666666668"/>
         </designable>
         <designable name="pP8-Ci-uUc">
-            <size key="intrinsicContentSize" width="114.33333333333333" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="127.66666666666667" height="18"/>
         </designable>
         <designable name="rGz-hV-cC9">
-            <size key="intrinsicContentSize" width="781.66666666666663" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="161.33333333333334" height="18"/>
         </designable>
     </designables>
     <resources>

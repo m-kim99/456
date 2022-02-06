@@ -11,6 +11,7 @@ class MyProfileVC: BaseVC {
     @IBOutlet weak var labelName: UILabel!
 
     @IBOutlet weak var editName: UITextField!
+    @IBOutlet weak var btnNameClear: UIButton!
 
     @IBOutlet weak var birthdayEdit: UITextField!
     @IBOutlet weak var birthdayButton: UIButton!
@@ -43,8 +44,8 @@ class MyProfileVC: BaseVC {
         }
 
         labelName.text = user.name
-        editName.text = labelName.text
         editName.text = user.name
+        btnNameClear.isHidden = true
         birthdayEdit.text = user.birthday.replaceAll("-", with: ".")
         emailEdit.text = user.email
 
@@ -65,13 +66,14 @@ class MyProfileVC: BaseVC {
         
         vwNameLabelGroup.isHidden = isNameEditing
         editName.isHidden = !isNameEditing
+        btnNameClear.isHidden = !isNameEditing
         labelName.isHidden = isNameEditing
 
         birthdayEdit.isEnabled = isNameEditing
         birthdayButton.isEnabled = isNameEditing
         emailEdit.isEnabled = isNameEditing
-        maleButton.isEnabled = isNameEditing
-        femaleButton.isEnabled = isNameEditing
+        maleButton.isUserInteractionEnabled = isNameEditing
+        femaleButton.isUserInteractionEnabled = isNameEditing
         saveButton.isEnabled = isNameEditing
     }
     
@@ -141,12 +143,26 @@ class MyProfileVC: BaseVC {
         updateProfile(name: name, birthDay: self.birthdayEdit.text ?? "", email: email, gender: gender, profileImage:avatarImageName ?? "")
     }
     
+    @IBAction func textDidChanged(_ sender: UITextField) {
+        if sender == editName {
+            guard let name = editName.text, !name.isEmpty else {
+                btnNameClear.isHidden = true
+                return
+            }
+            
+            btnNameClear.isHidden = false
+        }
+    }
     @IBAction func onEditNameDidEnd(_ sender: UITextField!) {
 //        updateEditState(false)
 //        labelName.text = sender.text
         isModified = true
     }
     
+    @IBAction func onEditNameClear(_ sender: Any) {
+        editName.text = nil
+        btnNameClear.isHidden = true
+    }
     
     @IBAction func onClickGender(_ sender: Any) {
         if let button = sender as? UIButton {
@@ -212,7 +228,6 @@ extension MyProfileVC: BaseRestApi {
             
             Rest.user = (result as! ModelUser)
             Rest.user.pwd = pwd
-            Rest.user.gender = gender
             Local.setUser(Rest.user)
             
             self?.isModified = false

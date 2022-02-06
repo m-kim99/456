@@ -24,17 +24,11 @@ class SignupCompleteVC: BaseVC {
         super.viewDidLoad()
         updateGender()
         
-        initLang()
-//        initVC()
-    }
-    
-    private func initLang() {
-//        lblWelcome.text = String.init(format: "%@%@", Local.getUser().name!, getLangString("signup_welcome"))
-//        lblDesc.text = getLangString("signup_complete_desc")
-//        btnStart.setTitle(getLangString("signup_do_start"), for: .normal)
+        initVC()
     }
     
     private func initVC() {
+        
     }
     
     private func authorize(_ status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus(), fromViewController: UIViewController, completion: @escaping (_ authorized: Bool) -> Void) {
@@ -163,16 +157,15 @@ extension SignupCompleteVC: BaseRestApi {
         LoadingDialog.show()
         
         let dbBirthday = birthDay.replaceAll(".", with: "-")
+        let loginID = params["id"] as! String
+        let pwd = params["pwd"] as! String
+        let phone = params["phone"] as! String
         
-        Rest.makeProfile(name: name, birthday: birthDay, gender: userGender, email: email, profileImage:"", success: { [weak self, userGender] (result) -> Void in
+        Rest.signup(login_id:loginID, pwd:pwd, phone:phone, name: name, birthday: dbBirthday, gender: userGender, email: email, success: { [weak self] (result) -> Void in
             LoadingDialog.dismiss()
             
-            let user = Rest.user!
-            user.name = name
-            user.birthday = birthDay
-            user.gender = userGender
-            user.email = email
-
+            let user = result as! ModelUser
+            Rest.user = user
             Local.setUser(user)
             self?.openMainVC()
         }) { [weak self](_, err) -> Void in

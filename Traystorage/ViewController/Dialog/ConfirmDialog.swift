@@ -132,8 +132,6 @@ class ConfirmDialog: BaseVC {
             self.removeFromParent()
             if let act = self.retAction {
                 act(1)
-            } else {
-                self.okAction?()
             }
         }
     }

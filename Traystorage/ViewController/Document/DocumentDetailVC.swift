@@ -3,6 +3,7 @@ import UIKit
 import PullToRefresh
 import ImageSlideshow
 import Kingfisher
+import SKPhotoBrowser
 
 class DocumentDetailVC: BaseVC {
     
@@ -13,7 +14,7 @@ class DocumentDetailVC: BaseVC {
     private var isLast = false
     
     @IBOutlet weak var imageCollectionView: UICollectionView!
-    @IBOutlet weak var tagCollectionView: UICollectionView!
+    @IBOutlet weak var tagView: UILabel!
     
     @IBOutlet weak var documentTitle: UILabel!
     @IBOutlet weak var documentContent: UILabel!
@@ -31,13 +32,7 @@ class DocumentDetailVC: BaseVC {
     
     var document: ModelDocument?
     
-//    private lazy var challenge: ModelChallenge? = {
-//        params["challenge"] as? ModelChallenge
-//    }()
-//
-//    private lazy var user: ModelUser = {
-//        Rest.user
-//    }()
+    var photoBrowser: SKPhotoBrowser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,24 +48,29 @@ class DocumentDetailVC: BaseVC {
 //        loadChallengeDetail(challenge?.challenge_uid)
         
         imageCollectionView.register(UINib(nibName: "item_image", bundle: nil), forCellWithReuseIdentifier: "cell")
-        tagCollectionView.register(UINib(nibName: "item_tag", bundle: nil), forCellWithReuseIdentifier: "cell")
     }
     
     private func loadContentsFormDoc() {
         if let document = document {
             documentTitle.text = document.title
             documentContent.text = document.content
-            documentDate.text = document.create_time.description
+            documentDate.text = document.reg_time
             documentLabel.backgroundColor = AppColor.labelColors[document.label]
+            if document.tags.isEmpty {
+                tagView.text = nil
+            } else {
+                tagView.text = "#" + document.tags.joined(separator: " #")
+            }
+
         } else {
             documentTitle.text = nil
             documentContent.text = nil
             documentDate.text = nil
             documentLabel.backgroundColor = nil
+            tagView.text = nil
         }
         
         imageCollectionView.reloadData()
-        tagCollectionView.reloadData()
     }
     
     override func onBackProcess(_ viewController: UIViewController) {
@@ -124,17 +124,7 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
         guard let doc = document else {
             return 0
         }
-        let collectionViewTag = collectionView.tag
-        switch collectionViewTag {
-        case viewTagImageCollectionView:
-            return doc.images.count
-        case viewTagTagCollectionView:
-            return doc.tags.count
-        default:
-            break
-        }
-
-        return 0
+        return doc.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -143,8 +133,6 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
             closeButton.removeFromSuperview()
         }
 
-        let collectionViewTag = collectionView.tag
-        
         if let contentView = cell.viewWithTag(5) {
             contentView.backgroundColor = UIColor.clear
         }
@@ -153,30 +141,45 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
         
         let document = self.document!
         
-        switch collectionViewTag {
-        case viewTagImageCollectionView:
-            if let imageView = cell.viewWithTag(2) as? UIImageView {
-                document.setToImageView(at: index, imageView: imageView)
-            }
-            break
-        case viewTagTagCollectionView:
-            if let titleLabel = cell.viewWithTag(1) as? UILabel {
-                titleLabel.text = "#" + document.tags[index]
-            }
-            break
-        default:
-            break
+        if let imageView = cell.viewWithTag(2) as? UIImageView {
+            document.setToImageView(at: index, imageView: imageView)
         }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == imageCollectionView {
-            let vc = ImageSlideViewVC(nibName: "vc_image_browser", bundle: nil)
-            vc.modelDocument = self.document!
-            pushVC(vc, animated: true)
+//        let vc = ImageSlideViewVC(nibName: "vc_image_browser", bundle: nil)
+//        vc.modelDocument = self.document!
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+        SKPhotoBrowserOptions.swapCloseAndDeleteButtons = true
+        SKPhotoBrowserOptions.displayAction = false
+        SKPhotoBrowserOptions.displayCounterLabel = true
+        SKPhotoBrowserOptions.displayBackAndForwardButton = false
+        SKButtonOptions.closeButtonPadding.y = self.view.safeAreaInsets.top
+        SKToolbarOptions.font = AppFont.appleGothicNeoRegular(15)
+        
+        let modelDocument = self.document!
+        
+        var images = [SKPhoto]()
+        for item in modelDocument.images {
+            if let url = item["url"] as? String {
+                images.append(SKPhoto.photoWithImageURL(url))
+            } else if let image = item["image"] as? UIImage {
+                images.append(SKPhoto.photoWithImage(image))
+            }
         }
+
+        photoBrowser = SKPhotoBrowser(photos: images)
+        photoBrowser.delegate = self
+        self.navigationController?.pushViewController(photoBrowser, animated: true)
+    }
+}
+
+extension DocumentDetailVC : SKPhotoBrowserDelegate {
+    func didDismissAtPageIndex(_ index: Int) {
+        popVC()
     }
 }
 

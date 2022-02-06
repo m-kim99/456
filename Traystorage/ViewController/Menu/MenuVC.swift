@@ -46,6 +46,12 @@ class MenuVC: BaseVC {
     }
     
     func initVC() {
+        let finalXOrigin: CGFloat = view.bounds.width
+    
+        var frame: CGRect = vwMenu.frame
+        frame.origin.x = finalXOrigin
+        self.vwMenu.frame = frame
+
         for (index, menu) in vwMenus.enumerated() {
             menu.tag = index
             menu.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickMenu(_:))))

@@ -43,9 +43,6 @@ class FindIdVC: BaseVC {
         
         if findIDRequest == .withDrawal || findIDRequest == .changePassword {
             lblTitle.text = "phone_verify_title"._localized
-        }
-        
-        if findIDRequest == .changePassword {
             loginId = Rest.user!.loginId
         }
     }
@@ -244,7 +241,7 @@ extension FindIdVC: BaseRestApi {
         Rest.requestExit(success: { [weak self](result) -> Void in
             LoadingDialog.dismiss()
             
-            self?.pushVC(WithdrawalResultVC(nibName: "vc_withdrawal_result", bundle: nil), animated: true)
+            self?.pushVC(WithdrawalResultVC(nibName: "vc_withdrawal_result", bundle: nil), animated: true, params: ["date" : result?.loginId])
         }) { [weak self](code, err) -> Void in
             LoadingDialog.dismiss()
             if code == 202 {

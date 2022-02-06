@@ -77,6 +77,8 @@ func ParseResponse(api: API, json: JSON) throws -> ModelBase? {
         return ModelAgreementList(json)
     case .GET_AGREE_DETAIL:
         return ModelAgreement(json)
+    case .REQUEST_EXIT:
+        return ModelBase(json)
     default:
         break
     }

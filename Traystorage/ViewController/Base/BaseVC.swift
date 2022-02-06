@@ -21,7 +21,7 @@ class BaseVC: UIViewController {
             // Fallback on earlier versions
         }
         SVProgressHUD.setContainerView(self.view)
-        LoadingDialog.setActiveController(self)
+        LoadingDialog.setActiveController(self.navigationController ?? self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
