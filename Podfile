@@ -33,4 +33,10 @@ target 'Traystorage' do
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'AEXML'
+  pod 'FBSDKLoginKit'
+  pod 'FBSDKShareKit'
+  pod 'naveridlogin-sdk-ios'
+  pod 'GoogleSignIn', '~> 4.4.0'
+  pod 'GTMAppAuth'
+  pod 'GoogleAPIClientForREST/PeopleService', '~> 1.3.8'
 end

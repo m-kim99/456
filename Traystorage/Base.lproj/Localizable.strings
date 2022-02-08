@@ -285,8 +285,8 @@ There is a 14-day waiting period for withdrawal after authentication is complete
 "terms_of_use"="Terms of Use";
 "not_see_today"="do not see today";
 "close"="닫기";
-"register"="register";
-"complete"="complete";
+"register"="등록";
+"complete"="완료";
 
 // menu & vc title
 "profile_manage_title"="프로필 관리";

@@ -21,10 +21,13 @@ class IntroVC: BaseVC {
     var loadingImageOffset = 0
     var loadingImages: [UIImage] = []
     var loadingProgressTimer: Timer?
-    
+    private var snsManager: SnsManager!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        snsManager = SnsManager(self)
+        snsManager.delegate = self
+
         signupButton.layer.shadowOpacity = 0.2
         signupButton.layer.shadowOffset = CGSize.zero
         signupButton.layer.shadowRadius = 8
@@ -287,12 +290,16 @@ extension IntroVC: BaseNavigation {
         // onSignup(sender)
         if sender.tag == 0 {
             // kakao
+            snsManager.start(type: .Kakao)
         } else if sender.tag == 1 {
             // google
+            snsManager.start(type: .Google)
         } else if sender.tag == 2 {
             // facebook
+            snsManager.start(type: .Facebook)
         } else if sender.tag == 3 {
             // naver
+            snsManager.start(type: .Naver)
         } else {
             // apple
             let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -456,5 +463,34 @@ extension IntroVC: UIScrollViewDelegate {
             let offset = scrollView.contentOffset.x
             onChangedPage(Int(offset / scrollView.frame.size.width) % pageCount)
         }
+    }
+}
+
+extension IntroVC: SnsManagerDelegate {
+    func snsAuthCompleted(_ me: SnsUserInfo) {
+        var snsId = ""
+        var type = 0
+        switch me.user_login_type {
+        case .Naver?:
+            type = 2
+            snsId = me.user_sns_id
+        case .Kakao?:
+            type = 5
+            snsId = me.user_sns_id
+        case .Facebook?:
+            type = 3
+            snsId = me.user_sns_id
+        case .Google?:
+            type = 1
+            snsId = me.user_sns_id
+        default:
+            break
+        }
+
+        snsLogin(_id: snsId, _pwd: snsId, _type: type)
+    }
+
+    func snsAuthError(_ type: SnsType, msg: String) {
+        self.view.showToast(msg)
     }
 }

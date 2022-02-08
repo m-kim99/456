@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NaverThirdPartyLogin
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -29,6 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        KOSession.handleDidBecomeActive()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -45,8 +47,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        KOSession.handleDidEnterBackground()
     }
 
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let url = URLContexts.first?.url {
+            let urlStr = url.absoluteString
+            print(urlStr)
 
+//            if urlStr.contains(self.SCHEME + "://") {
+//                self.showRecvData(recv: URLContexts)
+//                return
+//            }
+//
+//            if urlStr.contains("traystorage://") { // naver
+//                NaverThirdPartyLoginConnection
+//                    .getSharedInstance()?
+//                    .receiveAccessToken(URLContexts.first?.url)
+//                return
+//            }
+
+            KOSession.handleOpen(url)
+        }
+    }
 }
 

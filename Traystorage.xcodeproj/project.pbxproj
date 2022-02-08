@@ -35,7 +35,6 @@
 		10DE45D427956DE600C2F74A /* WithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DE45D327956DE600C2F74A /* WithdrawalVC.swift */; };
 		10DE45D62795726D00C2F74A /* vc_withdrawal_result.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DE45D52795726D00C2F74A /* vc_withdrawal_result.xib */; };
 		10E5EC80279317B400839E51 /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585BB278B127B0030B269 /* MyProfileVC.swift */; };
-		7924E70F27B2A00D0093033A /* Sns in Resources */ = {isa = PBXBuildFile; fileRef = 7924E70E27B2A00D0093033A /* Sns */; };
 		79632CD12785DD85007C427E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79632CD02785DD85007C427E /* AppDelegate.swift */; };
 		79632CD32785DD85007C427E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79632CD22785DD85007C427E /* SceneDelegate.swift */; };
 		79632CD52785DD85007C427E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79632CD42785DD85007C427E /* ViewController.swift */; };
@@ -43,6 +42,23 @@
 		79632CDA2785DD87007C427E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79632CD92785DD87007C427E /* Assets.xcassets */; };
 		79632CDD2785DD87007C427E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79632CDB2785DD87007C427E /* LaunchScreen.storyboard */; };
 		797BB5F627B1FF74001ABFE3 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 797BB5F527B1FF73001ABFE3 /* fonts */; };
+		797EA07F27B2B3FE00019BE9 /* SnsGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA06D27B2B3FE00019BE9 /* SnsGlobal.swift */; };
+		797EA08027B2B3FE00019BE9 /* SnsUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA06E27B2B3FE00019BE9 /* SnsUserInfo.swift */; };
+		797EA08127B2B3FE00019BE9 /* SnsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA06F27B2B3FE00019BE9 /* SnsManager.swift */; };
+		797EA08227B2B3FE00019BE9 /* FacebookUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA07227B2B3FE00019BE9 /* FacebookUserInfo.swift */; };
+		797EA08327B2B3FE00019BE9 /* FacebookUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA07327B2B3FE00019BE9 /* FacebookUtils.swift */; };
+		797EA08427B2B3FE00019BE9 /* KakaoCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797EA07527B2B3FE00019BE9 /* KakaoCommon.framework */; };
+		797EA08527B2B3FE00019BE9 /* KakaoLink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797EA07627B2B3FE00019BE9 /* KakaoLink.framework */; };
+		797EA08627B2B3FE00019BE9 /* KakaoMessageTemplate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797EA07727B2B3FE00019BE9 /* KakaoMessageTemplate.framework */; };
+		797EA08727B2B3FE00019BE9 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797EA07827B2B3FE00019BE9 /* KakaoOpenSDK.framework */; };
+		797EA08827B2B3FE00019BE9 /* KakaotalkUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA07927B2B3FE00019BE9 /* KakaotalkUserInfo.swift */; };
+		797EA08927B2B3FE00019BE9 /* KakaotalkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA07A27B2B3FE00019BE9 /* KakaotalkUtils.swift */; };
+		797EA08A27B2B3FE00019BE9 /* NaverThirdPartyLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 797EA07C27B2B3FE00019BE9 /* NaverThirdPartyLogin.framework */; };
+		797EA08B27B2B3FE00019BE9 /* NaverUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA07D27B2B3FE00019BE9 /* NaverUserInfo.swift */; };
+		797EA08C27B2B3FE00019BE9 /* NaverUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA07E27B2B3FE00019BE9 /* NaverUtils.swift */; };
+		797EA08E27B2CEFC00019BE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 797EA08D27B2CEFC00019BE9 /* GoogleService-Info.plist */; };
+		797EA09227B2CF9000019BE9 /* GoogleUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA09027B2CF9000019BE9 /* GoogleUserInfo.swift */; };
+		797EA09327B2CF9000019BE9 /* GoogleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA09127B2CF9000019BE9 /* GoogleUtils.swift */; };
 		7A0DEDE7278EF4440025A534 /* SignupCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585CD278B127B0030B269 /* SignupCompleteVC.swift */; };
 		7A285A50278F1E9E007894F4 /* SignupAuthCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585CC278B127B0030B269 /* SignupAuthCodeVC.swift */; };
 		7A285A51278F38D3007894F4 /* SignupAgreeTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585D0278B127B0030B269 /* SignupAgreeTermsVC.swift */; };
@@ -211,7 +227,6 @@
 		10DE45D127956DD200C2F74A /* vc_withdrawal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = vc_withdrawal.xib; sourceTree = "<group>"; };
 		10DE45D327956DE600C2F74A /* WithdrawalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithdrawalVC.swift; sourceTree = "<group>"; };
 		10DE45D52795726D00C2F74A /* vc_withdrawal_result.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = vc_withdrawal_result.xib; sourceTree = "<group>"; };
-		7924E70E27B2A00D0093033A /* Sns */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sns; sourceTree = "<group>"; };
 		79632CCD2785DD85007C427E /* Traystorage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traystorage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79632CD02785DD85007C427E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79632CD22785DD85007C427E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -223,6 +238,23 @@
 		797BB5F427B1FF4F001ABFE3 /* Traystorage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Traystorage.entitlements; sourceTree = "<group>"; };
 		797BB5F527B1FF73001ABFE3 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		797EA06427B2AD5300019BE9 /* traystorage-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "traystorage-Bridging-Header.h"; sourceTree = "<group>"; };
+		797EA06D27B2B3FE00019BE9 /* SnsGlobal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnsGlobal.swift; sourceTree = "<group>"; };
+		797EA06E27B2B3FE00019BE9 /* SnsUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnsUserInfo.swift; sourceTree = "<group>"; };
+		797EA06F27B2B3FE00019BE9 /* SnsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnsManager.swift; sourceTree = "<group>"; };
+		797EA07227B2B3FE00019BE9 /* FacebookUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookUserInfo.swift; sourceTree = "<group>"; };
+		797EA07327B2B3FE00019BE9 /* FacebookUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookUtils.swift; sourceTree = "<group>"; };
+		797EA07527B2B3FE00019BE9 /* KakaoCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoCommon.framework; sourceTree = "<group>"; };
+		797EA07627B2B3FE00019BE9 /* KakaoLink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoLink.framework; sourceTree = "<group>"; };
+		797EA07727B2B3FE00019BE9 /* KakaoMessageTemplate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoMessageTemplate.framework; sourceTree = "<group>"; };
+		797EA07827B2B3FE00019BE9 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KakaoOpenSDK.framework; sourceTree = "<group>"; };
+		797EA07927B2B3FE00019BE9 /* KakaotalkUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KakaotalkUserInfo.swift; sourceTree = "<group>"; };
+		797EA07A27B2B3FE00019BE9 /* KakaotalkUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KakaotalkUtils.swift; sourceTree = "<group>"; };
+		797EA07C27B2B3FE00019BE9 /* NaverThirdPartyLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NaverThirdPartyLogin.framework; sourceTree = "<group>"; };
+		797EA07D27B2B3FE00019BE9 /* NaverUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverUserInfo.swift; sourceTree = "<group>"; };
+		797EA07E27B2B3FE00019BE9 /* NaverUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverUtils.swift; sourceTree = "<group>"; };
+		797EA08D27B2CEFC00019BE9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		797EA09027B2CF9000019BE9 /* GoogleUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleUserInfo.swift; sourceTree = "<group>"; };
+		797EA09127B2CF9000019BE9 /* GoogleUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleUtils.swift; sourceTree = "<group>"; };
 		7A4AF42527924B2B00D69307 /* item_image.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = item_image.xib; sourceTree = "<group>"; };
 		7A4B031327A8B9D0007649B6 /* ModelAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelAgreement.swift; sourceTree = "<group>"; };
 		7A4B031527A8CDCE007649B6 /* tvc_setting_normal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tvc_setting_normal.xib; sourceTree = "<group>"; };
@@ -373,7 +405,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				797EA08A27B2B3FE00019BE9 /* NaverThirdPartyLogin.framework in Frameworks */,
 				EBFE9A5C743CEBC6072B05BE /* Pods_Traystorage.framework in Frameworks */,
+				797EA08427B2B3FE00019BE9 /* KakaoCommon.framework in Frameworks */,
+				797EA08727B2B3FE00019BE9 /* KakaoOpenSDK.framework in Frameworks */,
+				797EA08627B2B3FE00019BE9 /* KakaoMessageTemplate.framework in Frameworks */,
+				797EA08527B2B3FE00019BE9 /* KakaoLink.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +471,7 @@
 		79632CCF2785DD85007C427E /* Traystorage */ = {
 			isa = PBXGroup;
 			children = (
+				797EA08D27B2CEFC00019BE9 /* GoogleService-Info.plist */,
 				797EA06427B2AD5300019BE9 /* traystorage-Bridging-Header.h */,
 				797BB5F527B1FF73001ABFE3 /* fonts */,
 				797BB5F427B1FF4F001ABFE3 /* Traystorage.entitlements */,
@@ -456,9 +494,81 @@
 			path = Traystorage;
 			sourceTree = "<group>";
 		};
+		797EA06B27B2B3FE00019BE9 /* Sns */ = {
+			isa = PBXGroup;
+			children = (
+				797EA06C27B2B3FE00019BE9 /* Global */,
+				797EA06F27B2B3FE00019BE9 /* SnsManager.swift */,
+				797EA07027B2B3FE00019BE9 /* Vendors */,
+			);
+			path = Sns;
+			sourceTree = "<group>";
+		};
+		797EA06C27B2B3FE00019BE9 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				797EA06D27B2B3FE00019BE9 /* SnsGlobal.swift */,
+				797EA06E27B2B3FE00019BE9 /* SnsUserInfo.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		797EA07027B2B3FE00019BE9 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				797EA08F27B2CF9000019BE9 /* google */,
+				797EA07127B2B3FE00019BE9 /* facebook */,
+				797EA07427B2B3FE00019BE9 /* kakaotalk */,
+				797EA07B27B2B3FE00019BE9 /* naver */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		797EA07127B2B3FE00019BE9 /* facebook */ = {
+			isa = PBXGroup;
+			children = (
+				797EA07227B2B3FE00019BE9 /* FacebookUserInfo.swift */,
+				797EA07327B2B3FE00019BE9 /* FacebookUtils.swift */,
+			);
+			path = facebook;
+			sourceTree = "<group>";
+		};
+		797EA07427B2B3FE00019BE9 /* kakaotalk */ = {
+			isa = PBXGroup;
+			children = (
+				797EA07527B2B3FE00019BE9 /* KakaoCommon.framework */,
+				797EA07627B2B3FE00019BE9 /* KakaoLink.framework */,
+				797EA07727B2B3FE00019BE9 /* KakaoMessageTemplate.framework */,
+				797EA07827B2B3FE00019BE9 /* KakaoOpenSDK.framework */,
+				797EA07927B2B3FE00019BE9 /* KakaotalkUserInfo.swift */,
+				797EA07A27B2B3FE00019BE9 /* KakaotalkUtils.swift */,
+			);
+			path = kakaotalk;
+			sourceTree = "<group>";
+		};
+		797EA07B27B2B3FE00019BE9 /* naver */ = {
+			isa = PBXGroup;
+			children = (
+				797EA07C27B2B3FE00019BE9 /* NaverThirdPartyLogin.framework */,
+				797EA07D27B2B3FE00019BE9 /* NaverUserInfo.swift */,
+				797EA07E27B2B3FE00019BE9 /* NaverUtils.swift */,
+			);
+			path = naver;
+			sourceTree = "<group>";
+		};
+		797EA08F27B2CF9000019BE9 /* google */ = {
+			isa = PBXGroup;
+			children = (
+				797EA09027B2CF9000019BE9 /* GoogleUserInfo.swift */,
+				797EA09127B2CF9000019BE9 /* GoogleUtils.swift */,
+			);
+			path = google;
+			sourceTree = "<group>";
+		};
 		7A658592278B127B0030B269 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				797EA06B27B2B3FE00019BE9 /* Sns */,
 				7A74D163279A2F49004F04D8 /* Gallery */,
 				101ED36A2793197900F9681B /* Menu */,
 				7A658593278B127B0030B269 /* Base */,
@@ -647,7 +757,6 @@
 		7A658611278B127B0030B269 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				7924E70E27B2A00D0093033A /* Sns */,
 				7A658612278B127B0030B269 /* Fonts */,
 				7A658617278B127C0030B269 /* Language */,
 				7A658619278B127C0030B269 /* Utils */,
@@ -781,6 +890,7 @@
 				79632CCA2785DD85007C427E /* Frameworks */,
 				79632CCB2785DD85007C427E /* Resources */,
 				5397C86E3AA3775F1B83CE15 /* [CP] Embed Pods Frameworks */,
+				05DBCE85BD001D64A96EAF7D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -884,10 +994,10 @@
 				10DE45D227956DD200C2F74A /* vc_withdrawal.xib in Resources */,
 				7A65868E278B127C0030B269 /* vc_findpwd.xib in Resources */,
 				7A8161DD2792DF38000266A0 /* vc_menu.xib in Resources */,
+				797EA08E27B2CEFC00019BE9 /* GoogleService-Info.plist in Resources */,
 				7A652B3127915F0B00AD4F8F /* vc_check_id.xib in Resources */,
 				7A658677278B127C0030B269 /* dialog_confirm.xib in Resources */,
 				10DE45D62795726D00C2F74A /* vc_withdrawal_result.xib in Resources */,
-				7924E70F27B2A00D0093033A /* Sns in Resources */,
 				7A7B5BC12794FE46004457BB /* vc_document_nfc_register.xib in Resources */,
 				7A7B5BBF2794FB1C004457BB /* vc_document_edit.xib in Resources */,
 			);
@@ -896,6 +1006,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		05DBCE85BD001D64A96EAF7D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Traystorage/Pods-Traystorage-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Traystorage/Pods-Traystorage-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Traystorage/Pods-Traystorage-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4316AD8C5B8E5556B7C6329B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -958,11 +1085,13 @@
 				101ED36E279319A200F9681B /* InviteVC.swift in Sources */,
 				7A53F499278E0496001FF509 /* SignupVC.swift in Sources */,
 				1048489727950FD000D3F788 /* VersionVC.swift in Sources */,
+				797EA08127B2B3FE00019BE9 /* SnsManager.swift in Sources */,
 				79632CD12785DD85007C427E /* AppDelegate.swift in Sources */,
 				7A74D165279A2F49004F04D8 /* GalleryViewController.swift in Sources */,
 				7A9D65342790F59A00272EBE /* AlertDialog.swift in Sources */,
 				7A6586B0278B127C0030B269 /* Font+UIButton.swift in Sources */,
 				7A9D65352790F5D800272EBE /* AppLang.swift in Sources */,
+				797EA08227B2B3FE00019BE9 /* FacebookUserInfo.swift in Sources */,
 				7A285A52278F781B007894F4 /* FindPwdVC.swift in Sources */,
 				7A6586CE278B127C0030B269 /* UIButton+Extension.swift in Sources */,
 				7A6586D5278B127C0030B269 /* UIView+Extension.swift in Sources */,
@@ -977,6 +1106,7 @@
 				7A6586B4278B127C0030B269 /* Language.swift in Sources */,
 				7A4321F927918D350068A4DA /* DatepickerDialog.swift in Sources */,
 				7A6586D4278B127C0030B269 /* UITextField+Extension.swift in Sources */,
+				797EA08327B2B3FE00019BE9 /* FacebookUtils.swift in Sources */,
 				7A74D167279A2FAF004F04D8 /* ImageListCVC.swift in Sources */,
 				7A9D65382790F66100272EBE /* Local.swift in Sources */,
 				7A4F990A27A4D3E200E8FC62 /* SignupPage2VC.swift in Sources */,
@@ -997,6 +1127,7 @@
 				7A6586C6278B127C0030B269 /* NSObject+Extension.swift in Sources */,
 				7A6586CA278B127C0030B269 /* Switch.swift in Sources */,
 				7A6586D7278B13B40030B269 /* Font+UILabel.swift in Sources */,
+				797EA09327B2CF9000019BE9 /* GoogleUtils.swift in Sources */,
 				101ED37427931A4200F9681B /* ContactusVC.swift in Sources */,
 				7A6586BE278B127C0030B269 /* CircularSlider.swift in Sources */,
 				79632CD32785DD85007C427E /* SceneDelegate.swift in Sources */,
@@ -1004,13 +1135,16 @@
 				7A67528C27993A45003F3DB9 /* Net.swift in Sources */,
 				7A6586C1278B127C0030B269 /* DoubleHandleCircularSlider.swift in Sources */,
 				7A65866D278B127C0030B269 /* LoginVC.swift in Sources */,
+				797EA08827B2B3FE00019BE9 /* KakaotalkUserInfo.swift in Sources */,
 				7A6586D3278B127C0030B269 /* UITableViewCell+Extension.swift in Sources */,
 				7A6ECBC427A7F6B700F1B63B /* AgreeTVC.swift in Sources */,
 				7A6586D1278B127C0030B269 /* UILabel+Extension.swift in Sources */,
 				7A6586C9278B127C0030B269 /* ScalableImageView.swift in Sources */,
 				7A67528E27993ADF003F3DB9 /* Response.swift in Sources */,
 				7A285A50278F1E9E007894F4 /* SignupAuthCodeVC.swift in Sources */,
+				797EA08C27B2B3FE00019BE9 /* NaverUtils.swift in Sources */,
 				7A6586B9278B127C0030B269 /* LocalStoreUtils.swift in Sources */,
+				797EA09227B2CF9000019BE9 /* GoogleUserInfo.swift in Sources */,
 				7A652B3527915F1E00AD4F8F /* FindIdVC.swift in Sources */,
 				7A6586C2278B127C0030B269 /* GradientCircularSlider.swift in Sources */,
 				7A6586D0278B127C0030B269 /* UIImage+Extension.swift in Sources */,
@@ -1034,6 +1168,7 @@
 				7A652B2E2791450600AD4F8F /* Global.swift in Sources */,
 				7A5CE0DA278EEC58002A7347 /* ConfirmDialog.swift in Sources */,
 				7ABE8859279E464A0065629F /* ModelNotice.swift in Sources */,
+				797EA08027B2B3FE00019BE9 /* SnsUserInfo.swift in Sources */,
 				7A65865B278B127C0030B269 /* IntroVC.swift in Sources */,
 				7A658641278B127C0030B269 /* BaseVC.swift in Sources */,
 				7A6586CF278B127C0030B269 /* UIColor+Extension.swift in Sources */,
@@ -1042,9 +1177,11 @@
 				7A4321FA2791965B0068A4DA /* DocumentRegisterVC.swift in Sources */,
 				7A6586BC278B127C0030B269 /* Utils.swift in Sources */,
 				7A6586AC278B127C0030B269 /* AppColor.swift in Sources */,
+				797EA08927B2B3FE00019BE9 /* KakaotalkUtils.swift in Sources */,
 				7A67529227996E91003F3DB9 /* CountDownTimeLabel.swift in Sources */,
 				101926D12795391A00094328 /* FaqTVC.swift in Sources */,
 				7A67528B27993A2B003F3DB9 /* Rest.swift in Sources */,
+				797EA08B27B2B3FE00019BE9 /* NaverUserInfo.swift in Sources */,
 				7A4B031427A8B9D0007649B6 /* ModelAgreement.swift in Sources */,
 				10DE45CB27956A9B00C2F74A /* LicenseTVC.swift in Sources */,
 				7A6586CC278B127C0030B269 /* ToucheableCollectionView.swift in Sources */,
@@ -1053,6 +1190,7 @@
 				7A9D655F27910BE200272EBE /* ModelCard.swift in Sources */,
 				7A8C001927ABA69100417412 /* LoadingDialog.swift in Sources */,
 				101ED36C2793197A00F9681B /* MenuVC.swift in Sources */,
+				797EA07F27B2B3FE00019BE9 /* SnsGlobal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1212,6 +1350,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7X7X2AY733;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Traystorage/ViewController/Sns/Vendors/kakaotalk",
+					"$(PROJECT_DIR)/Traystorage/ViewController/Sns/Vendors/naver",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Traystorage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1244,6 +1387,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7X7X2AY733;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Traystorage/ViewController/Sns/Vendors/kakaotalk",
+					"$(PROJECT_DIR)/Traystorage/ViewController/Sns/Vendors/naver",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Traystorage/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
