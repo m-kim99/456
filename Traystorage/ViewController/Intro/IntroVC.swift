@@ -1,3 +1,4 @@
+import AuthenticationServices
 import SVProgressHUD
 import Toast_Swift
 import UIKit
@@ -8,10 +9,10 @@ class IntroVC: BaseVC {
     @IBOutlet var introView: UIView!
     @IBOutlet var loadingProgressView: UIView!
     @IBOutlet var startView: UIView!
-    @IBOutlet weak var signupButton: UIButton!
-    @IBOutlet weak var loadingImage1: UIImageView!
-    @IBOutlet weak var loadingImage2: UIImageView!
-    @IBOutlet weak var loadingImage3: UIImageView!
+    @IBOutlet var signupButton: UIButton!
+    @IBOutlet var loadingImage1: UIImageView!
+    @IBOutlet var loadingImage2: UIImageView!
+    @IBOutlet var loadingImage3: UIImageView!
     
     let pageCount = 2
     
@@ -37,8 +38,7 @@ class IntroVC: BaseVC {
 //        nextScreen(false)
 //        ConfirmDialog.show(self, title: "Please verify your mobile phone number.", message: "", showCancelBtn: true, okAction: nil)
 
-        
-        //pushVC(SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil), animated: true)
+        // pushVC(SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil), animated: true)
         startIntro()
     }
 
@@ -46,17 +46,17 @@ class IntroVC: BaseVC {
         let ud = UserDefaults.standard
         
         let isAutoLogin = ud.bool(forKey: Local.PREFS_APP_AUTO_LOGIN.rawValue)
-        if  isAutoLogin {
+        if isAutoLogin {
             checkVersion()
         } else {
             Local.deleteUser()
             
             let skipIntro = ud.bool(forKey: Local.PREFS_APP_INTRO_SKIP.rawValue)
             if skipIntro {
-                checkVersion()//self.nextScreen(false)
+                checkVersion() // self.nextScreen(false)
             } else {
                 changeLoadingViewVisiblity(isHidden: true)
-                introView.isHidden = false;
+                introView.isHidden = false
             }
         }
     }
@@ -65,24 +65,23 @@ class IntroVC: BaseVC {
         let user = Local.getUser()
         
         if let uid = user.uid, let pwd = user.pwd, !uid.isEmpty, !pwd.isEmpty {
-            self.autoLogin((id: uid, pwd: pwd))
+            autoLogin((id: uid, pwd: pwd))
         } else {
-            self.nextScreen(false)
+            nextScreen(false)
             Local.removeAutoLogin()
         }
     }
 
     func nextScreen(_ logined: Bool) {
         if logined {
-            self.openAgreeView()
+            openAgreeView()
         } else {
             let ud = UserDefaults.standard
             ud.set(true, forKey: Local.PREFS_APP_INTRO_SKIP.rawValue)
             ud.synchronize()
-            self.openLogSingupView()
+            openLogSingupView()
         }
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -94,7 +93,6 @@ class IntroVC: BaseVC {
         super.viewDidLayoutSubviews()
         setupPage()
     }
-    
     
     private func setupPage() {
         pageScrollView.contentOffset = CGPoint(x: view.frame.width * CGFloat(pageCount), y: 0)
@@ -128,7 +126,7 @@ class IntroVC: BaseVC {
     func startLoadingProgressTimer() {
         stopLoadingProgressTimer()
         
-        self.loadingProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true, block: {[weak self] timer in
+        loadingProgressTimer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true, block: { [weak self] _ in
             self?.advanceLoaddingImage()
         })
     }
@@ -163,11 +161,11 @@ class IntroVC: BaseVC {
         
         if latestVersion.version.isEmpty || curVersion.isEqual(latestVersion.version) {
             startApp()
-            return;
+            return
         }
         
         if latestVersion.requireUpdate == 1 {
-            ConfirmDialog.show3(self, title: "update_version"._localized, message: "", okTitle: "update"._localized, cancelTitle:nil){[weak self] (result) -> Void in
+            ConfirmDialog.show3(self, title: "update_version"._localized, message: "", okTitle: "update"._localized, cancelTitle: nil) { [weak self] result -> Void in
                 if result == 0 {
                     self?.go2Store(latestVersion.storeUrl)
                 } else {
@@ -175,9 +173,9 @@ class IntroVC: BaseVC {
                 }
             }
         } else if let optionalVersion = Local.getAppVersion(), optionalVersion.isEqual(latestVersion.version) {
-            self.startApp()
+            startApp()
         } else {
-            ConfirmDialog.show3(self, title: "update_version"._localized, message: "", okTitle: "update"._localized, cancelTitle: "later"._localized){[weak self] (result) -> Void in
+            ConfirmDialog.show3(self, title: "update_version"._localized, message: "", okTitle: "update"._localized, cancelTitle: "later"._localized) { [weak self] result -> Void in
                 if result == 0 {
                     self?.go2Store(latestVersion.storeUrl)
                 } else {
@@ -220,13 +218,38 @@ class IntroVC: BaseVC {
             }
         }
     }
+
     @IBAction func onClickSkip(_ sender: Any) {
         nextScreen(false)
+    }
+    
+    func snsLogin(_id: String, _pwd: String, _type: Int) {
+        changeLoadingViewVisiblity(isHidden: false)
+        Rest.login(id: _id, pwd: _pwd, success: { [weak self] result -> Void in
+            self?.changeLoadingViewVisiblity(isHidden: true)
+            Rest.user = (result as! ModelUser)
+            Rest.user.pwd = _pwd
+            Local.setUser(Rest.user)
+            self?.openAgreeView()
+        }, failure: { [weak self] code, msg in
+            self?.changeLoadingViewVisiblity(isHidden: true)
+                
+            let resposeCode = ResponseResultCode(rawValue: code) ?? .ERROR_SERVER
+            let code = resposeCode.rawValue
+            if code > 200 {
+                let vc = SignupVC(nibName: "vc_signup", bundle: nil)
+                vc.snsType = _type
+                vc.snsID = _id
+                self!.pushVC(vc, animated: true)
+            }
+        })
     }
 }
 
 //
+
 // MARK: - RestApi
+
 //
 extension IntroVC: BaseNavigation {
     func openMainVC() {
@@ -260,13 +283,101 @@ extension IntroVC: BaseNavigation {
         pushVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
     }
     
-    @IBAction func onSignupSNS(_ sender: Any) {
-        onSignup(sender)
+    @IBAction func onSignupSNS(_ sender: UIButton) {
+        // onSignup(sender)
+        if sender.tag == 0 {
+            // kakao
+        } else if sender.tag == 1 {
+            // google
+        } else if sender.tag == 2 {
+            // facebook
+        } else if sender.tag == 3 {
+            // naver
+        } else {
+            // apple
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            let request = appleIDProvider.createRequest()
+            request.requestedScopes = [.fullName, .email]
+
+            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+            authorizationController.delegate = self
+            authorizationController.presentationContextProvider = self
+            authorizationController.performRequests()
+        }
+    }
+}
+
+extension IntroVC: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        let err = error as? ASAuthorizationError
+
+        var errKorMsg = ""
+        if err!.errorCode == ASAuthorizationError.Code.failed.rawValue { // FAILED
+        } else if err!.errorCode == ASAuthorizationError.Code.canceled.rawValue { // CANCELED
+            errKorMsg = "apple_login_fail1".localized
+        } else if err!.errorCode == ASAuthorizationError.Code.invalidResponse.rawValue { // INVALID_RESPONSE
+            errKorMsg = "apple_login_fail2".localized
+        } else if err!.errorCode == ASAuthorizationError.Code.notHandled.rawValue { // NOT_HANDLED
+            errKorMsg = "apple_login_fail3".localized
+        } else if err!.errorCode == ASAuthorizationError.Code.unknown.rawValue { // UNKNOWN
+        }
+
+        if errKorMsg == "" {
+            return
+        }
+        let alert = UIAlertController(title: "alarm".localized, message: errKorMsg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "confirm".localized, style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            // Create an account in your system.
+            // For the purpose of this demo app, store the these details in the keychain.
+            print("User Id - \(appleIDCredential.user)")
+            print("User Name - \(appleIDCredential.fullName?.description ?? "N/A")")
+            print("User Email - \(appleIDCredential.email ?? "N/A")")
+            print("Real User Status - \(appleIDCredential.realUserStatus.rawValue)")
+
+            if let identityTokenData = appleIDCredential.identityToken,
+               let identityTokenString = String(data: identityTokenData, encoding: .utf8)
+            {
+                print("Identity Token \(identityTokenString)")
+            }
+
+            let _appid = appleIDCredential.user
+//            loginType = "7"
+            let snsId = _appid.replacingOccurrences(of: ".", with: "")
+            snsLogin(_id: snsId, _pwd: snsId, _type: 4)
+
+        } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
+            // Sign in using an existing iCloud Keychain credential.
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+
+            // For the purpose of this demo app, show the password credential as an alert.
+            DispatchQueue.main.async {
+                let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
+                let alertController = UIAlertController(title: "Keychain Credential Received",
+                                                        message: message,
+                                                        preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+extension IntroVC: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window!
     }
 }
 
 //
+
 // MARK: - RestApi
+
 //
 extension IntroVC: BaseRestApi {
 //    func loadAppInfo() {
@@ -290,15 +401,15 @@ extension IntroVC: BaseRestApi {
     func autoLogin(_ user: (id: String, pwd: String)) {
 //        LoadingDialog.show()
         changeLoadingViewVisiblity(isHidden: false)
-        Rest.login(id: user.id, pwd: user.pwd, success: {[weak self] (result) -> Void in
+        Rest.login(id: user.id, pwd: user.pwd, success: { [weak self] result -> Void in
 //            LoadingDialog.dismiss()
             self?.changeLoadingViewVisiblity(isHidden: true)
             Rest.user = (result as! ModelUser)
             Rest.user.pwd = user.pwd
             Local.setUser(Rest.user)
             self?.openAgreeView()
-        }, failure: { [weak self](code, msg) in
-            //LoadingDialog.dismiss()
+        }, failure: { [weak self] code, msg in
+            // LoadingDialog.dismiss()
             self?.changeLoadingViewVisiblity(isHidden: true)
             
             let resposeCode = ResponseResultCode(rawValue: code) ?? .ERROR_SERVER
@@ -313,34 +424,31 @@ extension IntroVC: BaseRestApi {
                 break
             case .ERROR_WRONG_PWD:
                 Local.removeAutoLogin()
-                break
             default:
                 self?.view.showToast(msg)
-                break
             }
             
 //            if code == 205 {
-                self?.openLogSingupView()
+            self?.openLogSingupView()
 //            }
         })
     }
     
     func checkVersion() {
         changeLoadingViewVisiblity(isHidden: false)
-        Rest.getVersionInfo(success: {[weak self] (result) -> Void in
+        Rest.getVersionInfo(success: { [weak self] result -> Void in
             self?.changeLoadingViewVisiblity(isHidden: true)
             
             let version = result as! ModelVersion
             
             self?.onGetVersionSuccess(version)
-        }, failure: { [weak self](code, msg) in
+        }, failure: { [weak self] _, _ in
             self?.changeLoadingViewVisiblity(isHidden: true)
-            self?.showAlert(title: "network_conect_fail_title"._localized
-                            ,message: "network_conect_fail_desc"._localized)
+            self?.showAlert(title: "network_conect_fail_title"._localized,
+                            message: "network_conect_fail_desc"._localized)
         })
     }
 }
-
 
 extension IntroVC: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

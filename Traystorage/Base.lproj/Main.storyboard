@@ -235,27 +235,30 @@
                                                 <rect key="frame" x="0.0" y="58" width="414" height="760"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FVg-gm-WBv">
-                                                <rect key="frame" x="20" y="50" width="374" height="515.5"/>
+                                                <rect key="frame" x="20" y="50" width="374" height="495.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SIY-ow-m1y">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="140"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="120"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appicon_login_100" translatesAutoresizingMaskIntoConstraints="NO" id="940-bQ-KkN">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="80" id="Fk8-Os-fq5"/>
+                                                                </constraints>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_texttype" translatesAutoresizingMaskIntoConstraints="NO" id="tJ7-9O-2Uo">
-                                                                <rect key="frame" x="0.0" y="100" width="374" height="40"/>
+                                                                <rect key="frame" x="0.0" y="80" width="374" height="40"/>
                                                             </imageView>
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSh-1Y-Laa" userLabel="space">
-                                                        <rect key="frame" x="0.0" y="140" width="374" height="24"/>
+                                                        <rect key="frame" x="0.0" y="120" width="374" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="lRk-Cw-un8"/>
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xck-ya-ByQ">
-                                                        <rect key="frame" x="0.0" y="164" width="374" height="83.5"/>
+                                                        <rect key="frame" x="0.0" y="144" width="374" height="83.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Easier storage and management of complex document" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0G-VQ-bDF" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
                                                                 <rect key="frame" x="38" y="0.0" width="298" height="83.5"/>
@@ -281,14 +284,14 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7x-ri-R2v" userLabel="space">
-                                                        <rect key="frame" x="0.0" y="247.5" width="374" height="32"/>
+                                                        <rect key="frame" x="0.0" y="227.5" width="374" height="32"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="32" id="ewu-2D-8xa"/>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="GQO-cN-LaA">
-                                                        <rect key="frame" x="0.0" y="279.5" width="374" height="120"/>
+                                                        <rect key="frame" x="0.0" y="259.5" width="374" height="120"/>
                                                         <subviews>
                                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbg-TC-uDb" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="54"/>
@@ -342,15 +345,15 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1o-A5-gie">
-                                                        <rect key="frame" x="0.0" y="399.5" width="374" height="40"/>
+                                                        <rect key="frame" x="0.0" y="379.5" width="374" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="47u-aC-zUe"/>
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="o0c-WC-zod">
-                                                        <rect key="frame" x="0.0" y="439.5" width="374" height="76"/>
+                                                        <rect key="frame" x="0.0" y="419.5" width="374" height="76"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQH-6e-OQQ">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQH-6e-OQQ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="76"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="Icon-SNS-kakao-60"/>
@@ -359,7 +362,7 @@
                                                                     <action selector="onSignupSNS:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HeY-l8-0sJ"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06Z-Eu-lfu">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06Z-Eu-lfu">
                                                                 <rect key="frame" x="75" y="0.0" width="74.5" height="76"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="Icon-SNS-Google-60"/>
@@ -368,7 +371,7 @@
                                                                     <action selector="onSignupSNS:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4uu-cf-Lf2"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ao-u4-FCf">
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ao-u4-FCf">
                                                                 <rect key="frame" x="149.5" y="0.0" width="75" height="76"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="Icon-SNS-Facebook-60"/>
@@ -377,7 +380,7 @@
                                                                     <action selector="onSignupSNS:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BZG-e3-CMK"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cf7-yi-ISP">
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cf7-yi-ISP">
                                                                 <rect key="frame" x="224.5" y="0.0" width="74.5" height="76"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="Icon-SNS-Naver-60"/>
@@ -386,11 +389,11 @@
                                                                     <action selector="onSignupSNS:" destination="BYZ-38-t0r" eventType="touchUpInside" id="imw-5c-5CZ"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OtB-oT-Ea5">
+                                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OtB-oT-Ea5">
                                                                 <rect key="frame" x="299" y="0.0" width="75" height="76"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" image="Icon-SNS-Naver-60"/>
-                                                                <buttonConfiguration key="configuration" style="plain" image="Oval"/>
+                                                                <buttonConfiguration key="configuration" style="plain" image="icon_sns_apple_60"/>
                                                                 <connections>
                                                                     <action selector="onSignupSNS:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cts-A7-adE"/>
                                                                 </connections>
@@ -482,22 +485,22 @@
     </scenes>
     <designables>
         <designable name="2uG-9I-fHQ">
-            <size key="intrinsicContentSize" width="30" height="32"/>
+            <size key="intrinsicContentSize" width="33" height="34"/>
         </designable>
         <designable name="jCs-cd-VHv">
-            <size key="intrinsicContentSize" width="156.5" height="34.5"/>
+            <size key="intrinsicContentSize" width="546" height="31.5"/>
         </designable>
         <designable name="jjK-sz-1cW">
-            <size key="intrinsicContentSize" width="45" height="30"/>
+            <size key="intrinsicContentSize" width="30" height="30"/>
         </designable>
         <designable name="l0G-VQ-bDF">
-            <size key="intrinsicContentSize" width="103.5" height="24"/>
+            <size key="intrinsicContentSize" width="438" height="21.5"/>
         </designable>
         <designable name="nGO-4P-C69">
-            <size key="intrinsicContentSize" width="153.5" height="37.5"/>
+            <size key="intrinsicContentSize" width="564.5" height="31.5"/>
         </designable>
         <designable name="vbg-TC-uDb">
-            <size key="intrinsicContentSize" width="33" height="30"/>
+            <size key="intrinsicContentSize" width="30" height="30"/>
         </designable>
     </designables>
     <color key="tintColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -506,8 +509,8 @@
         <image name="Icon-SNS-Google-60" width="62" height="62"/>
         <image name="Icon-SNS-Naver-60" width="62" height="62"/>
         <image name="Icon-SNS-kakao-60" width="62" height="62"/>
-        <image name="Oval" width="62" height="62"/>
-        <image name="appicon_login_100" width="100" height="100"/>
+        <image name="appicon_login_100" width="100" height="140"/>
+        <image name="icon_sns_apple_60" width="62" height="62"/>
         <image name="img_landing_bg" width="360" height="760"/>
         <image name="intro1" width="360" height="541"/>
         <image name="intro2" width="360" height="541"/>

@@ -30,4 +30,7 @@ target 'Traystorage' do
   pod 'ActionSheetController'
   pod 'SwiftyGif'
   pod 'REFrostedViewController', '~> 2.4'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  pod 'AEXML'
 end

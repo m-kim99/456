@@ -262,7 +262,7 @@ There is a 14-day waiting period for withdrawal after authentication is complete
 
 "signout_confirm"="Are you sure you want to leave?";
 
-"search"="Search";
+"search"="검색";
 "detail"="detail";
 
 
@@ -376,3 +376,7 @@ There is a 14-day waiting period for withdrawal after authentication is complete
 
 "network_conect_fail_title"="네트워크에 연결되어 있지 않습니다.";
 "network_conect_fail_desc"="네으워크 연결 상태 확인 후\n다시 시동해주세요.";
+
+"apple_login_fail1" = "사용자가 인증 시도를 취소했습니다.";
+"apple_login_fail2" = "승인 요청에 잘못된 응답이 수신되었습니다.";
+"apple_login_fail3" = "승인 요청이 처리되지 않았습니다.";

@@ -23,9 +23,17 @@ class SignupVC: BaseVC {
     
     private var curTab = AuthType.phone
     
+    var snsType = 0
+    var snsID = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        onClickNext(step: .first, params:[:])
+        
+        if snsID != "" {
+            onClickNext(step: .auth, params: ["snsID": snsID, "pwd": snsID, "type": snsType])
+        } else {
+            onClickNext(step: .first, params:["type": snsType])
+        }
     }
     
     override func onBackProcess(_ viewController: UIViewController) {

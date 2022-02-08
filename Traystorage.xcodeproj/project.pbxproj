@@ -35,6 +35,7 @@
 		10DE45D427956DE600C2F74A /* WithdrawalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DE45D327956DE600C2F74A /* WithdrawalVC.swift */; };
 		10DE45D62795726D00C2F74A /* vc_withdrawal_result.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DE45D52795726D00C2F74A /* vc_withdrawal_result.xib */; };
 		10E5EC80279317B400839E51 /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585BB278B127B0030B269 /* MyProfileVC.swift */; };
+		7924E70F27B2A00D0093033A /* Sns in Resources */ = {isa = PBXBuildFile; fileRef = 7924E70E27B2A00D0093033A /* Sns */; };
 		79632CD12785DD85007C427E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79632CD02785DD85007C427E /* AppDelegate.swift */; };
 		79632CD32785DD85007C427E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79632CD22785DD85007C427E /* SceneDelegate.swift */; };
 		79632CD52785DD85007C427E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79632CD42785DD85007C427E /* ViewController.swift */; };
@@ -210,6 +211,7 @@
 		10DE45D127956DD200C2F74A /* vc_withdrawal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = vc_withdrawal.xib; sourceTree = "<group>"; };
 		10DE45D327956DE600C2F74A /* WithdrawalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithdrawalVC.swift; sourceTree = "<group>"; };
 		10DE45D52795726D00C2F74A /* vc_withdrawal_result.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = vc_withdrawal_result.xib; sourceTree = "<group>"; };
+		7924E70E27B2A00D0093033A /* Sns */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sns; sourceTree = "<group>"; };
 		79632CCD2785DD85007C427E /* Traystorage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traystorage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79632CD02785DD85007C427E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79632CD22785DD85007C427E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		79632CDE2785DD87007C427E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		797BB5F427B1FF4F001ABFE3 /* Traystorage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Traystorage.entitlements; sourceTree = "<group>"; };
 		797BB5F527B1FF73001ABFE3 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		797EA06427B2AD5300019BE9 /* traystorage-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "traystorage-Bridging-Header.h"; sourceTree = "<group>"; };
 		7A4AF42527924B2B00D69307 /* item_image.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = item_image.xib; sourceTree = "<group>"; };
 		7A4B031327A8B9D0007649B6 /* ModelAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelAgreement.swift; sourceTree = "<group>"; };
 		7A4B031527A8CDCE007649B6 /* tvc_setting_normal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tvc_setting_normal.xib; sourceTree = "<group>"; };
@@ -431,6 +434,7 @@
 		79632CCF2785DD85007C427E /* Traystorage */ = {
 			isa = PBXGroup;
 			children = (
+				797EA06427B2AD5300019BE9 /* traystorage-Bridging-Header.h */,
 				797BB5F527B1FF73001ABFE3 /* fonts */,
 				797BB5F427B1FF4F001ABFE3 /* Traystorage.entitlements */,
 				7A9D653E27910BE100272EBE /* Models */,
@@ -643,6 +647,7 @@
 		7A658611278B127B0030B269 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				7924E70E27B2A00D0093033A /* Sns */,
 				7A658612278B127B0030B269 /* Fonts */,
 				7A658617278B127C0030B269 /* Language */,
 				7A658619278B127C0030B269 /* Utils */,
@@ -882,6 +887,7 @@
 				7A652B3127915F0B00AD4F8F /* vc_check_id.xib in Resources */,
 				7A658677278B127C0030B269 /* dialog_confirm.xib in Resources */,
 				10DE45D62795726D00C2F74A /* vc_withdrawal_result.xib in Resources */,
+				7924E70F27B2A00D0093033A /* Sns in Resources */,
 				7A7B5BC12794FE46004457BB /* vc_document_nfc_register.xib in Resources */,
 				7A7B5BBF2794FB1C004457BB /* vc_document_edit.xib in Resources */,
 			);
@@ -1222,6 +1228,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kyad.traystorage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Traystorage/traystorage-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1253,6 +1260,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kyad.traystorage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Traystorage/traystorage-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
