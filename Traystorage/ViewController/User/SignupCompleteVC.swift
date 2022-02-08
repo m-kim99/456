@@ -157,11 +157,11 @@ extension SignupCompleteVC: BaseRestApi {
         LoadingDialog.show()
         
         let dbBirthday = birthDay.replaceAll(".", with: "-")
-        let loginID = params["id"] as! String
-        let pwd = params["pwd"] as! String
-        let phone = params["phone"] as! String
+        let loginID = params["id"] as? String
+        let pwd = params["pwd"] as? String
+        let phone = params["phone"] as? String
         
-        Rest.signup(login_id:loginID, pwd:pwd, phone:phone, name: name, birthday: dbBirthday, gender: userGender, email: email, success: { [weak self] (result) -> Void in
+        Rest.signup(login_id:loginID ?? "", pwd:pwd ?? "", phone:phone ?? "", name: name, birthday: dbBirthday, gender: userGender, email: email, signup_type: 0, success: { [weak self] (result) -> Void in
             LoadingDialog.dismiss()
             
             let user = result as! ModelUser

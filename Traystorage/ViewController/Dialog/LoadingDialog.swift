@@ -28,8 +28,10 @@ class LoadingDialog: UIViewController {
     static var sActiveController: UIViewController?
     
     
-    static func setActiveController(_ viewController: UIViewController) {
-        sActiveController = viewController;
+    static func setActiveController(_ viewController: UIViewController?) {
+        if let vc = viewController {
+            sActiveController = vc
+        }
     }
     
     static func sharedDialog() -> LoadingDialog! {
@@ -140,9 +142,9 @@ class LoadingDialog: UIViewController {
     //
     
     @IBAction func onClose(_ sender: Any) {
-        dismiss(animated: true) {[weak self] in
-            self?.view.removeFromSuperview()
-            self?.removeFromParent()
+        dismiss(animated: false) {
+            self.view.removeFromSuperview()
+            self.removeFromParent()
         }
     }
 }

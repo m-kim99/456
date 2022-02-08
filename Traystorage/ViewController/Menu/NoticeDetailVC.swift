@@ -18,7 +18,15 @@ class NoticeDetailVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadContents()
+        
+        let preferences = WKPreferences()
+        preferences.javaScriptEnabled = true
+        let configuration = WKWebViewConfiguration()
+        configuration.preferences = preferences
+//        webView = WKWebView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - 50)), configuration: configuration)
+        wvContent.backgroundColor = AppColor.white
+        wvContent.scrollView.backgroundColor = AppColor.white
+        wvContent.isOpaque = false
         
         if let noticeID = params["id"] as? Int {
             loadNotice(noticeID: noticeID)

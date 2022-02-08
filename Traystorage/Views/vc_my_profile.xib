@@ -340,7 +340,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="F01-Ob-UpO">
                                                                     <rect key="frame" x="88" y="4" width="168" height="38"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrO-07-RtU" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KrO-07-RtU">
                                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="38"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="80" id="MB5-Wu-4ic"/>
@@ -355,6 +355,12 @@
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isOutline" value="YES"/>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
                                                                                 <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="male"/>
+                                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                    <color key="value" systemColor="systemGrayColor"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                    <real key="value" value="1"/>
+                                                                                </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
                                                                             <connections>
                                                                                 <action selector="onClickGender:" destination="-1" eventType="touchUpInside" id="BY5-4u-PRa"/>
@@ -436,19 +442,16 @@
                                         <constraint firstAttribute="trailing" secondItem="w3I-M2-S0f" secondAttribute="trailing" constant="20" id="bQ7-d7-88w"/>
                                         <constraint firstItem="Ui9-cc-vIa" firstAttribute="top" secondItem="wyG-Pq-zSG" secondAttribute="bottom" constant="40" id="cjM-LP-7KM"/>
                                         <constraint firstAttribute="trailing" secondItem="Ujj-vb-bNu" secondAttribute="trailing" constant="20" id="d45-qA-3sJ"/>
-                                        <constraint firstItem="Ujj-vb-bNu" firstAttribute="top" secondItem="KmB-RY-Wef" secondAttribute="top" constant="20" id="k8m-sX-mnP"/>
                                         <constraint firstAttribute="bottom" secondItem="w3I-M2-S0f" secondAttribute="bottom" constant="20" id="rG7-Qx-a01"/>
+                                        <constraint firstItem="Ujj-vb-bNu" firstAttribute="top" secondItem="KmB-RY-Wef" secondAttribute="top" constant="20" id="uNH-dW-KVc"/>
                                     </constraints>
                                 </view>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="KmB-RY-Wef" firstAttribute="leading" secondItem="LJK-p2-L8c" secondAttribute="leading" id="0j6-dC-Dbn"/>
-                                <constraint firstItem="KmB-RY-Wef" firstAttribute="top" secondItem="LJK-p2-L8c" secondAttribute="top" id="QoB-YM-dOC"/>
+                                <constraint firstItem="KmB-RY-Wef" firstAttribute="top" secondItem="kNX-RR-EGr" secondAttribute="top" id="NMK-hy-8uM"/>
                                 <constraint firstItem="KmB-RY-Wef" firstAttribute="leading" secondItem="kNX-RR-EGr" secondAttribute="leading" id="SIi-kj-mpW"/>
-                                <constraint firstItem="KmB-RY-Wef" firstAttribute="trailing" secondItem="LJK-p2-L8c" secondAttribute="trailing" id="U7Q-2h-gUW"/>
                                 <constraint firstAttribute="trailing" secondItem="KmB-RY-Wef" secondAttribute="trailing" id="V5g-4T-yUL"/>
                                 <constraint firstAttribute="bottom" secondItem="KmB-RY-Wef" secondAttribute="bottom" id="bkA-ci-SyV"/>
-                                <constraint firstItem="KmB-RY-Wef" firstAttribute="top" secondItem="kNX-RR-EGr" secondAttribute="top" id="feb-EK-0ga"/>
                             </constraints>
                             <viewLayoutGuide key="contentLayoutGuide" id="fJ0-Tc-oks"/>
                             <viewLayoutGuide key="frameLayoutGuide" id="LJK-p2-L8c"/>

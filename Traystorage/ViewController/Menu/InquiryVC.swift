@@ -93,6 +93,7 @@ extension InquiryVC: UITableViewDataSource, UITableViewDelegate {
         cell.lblTitle.text = ask.title
         cell.lblDate.text = ask.regTime
         cell.lblDetail.text = ask.content
+        cell.lblAnswer.text = ask.reply
         
         cell.isExpand = askListExpend[index]
         

@@ -1,6 +1,6 @@
 import UIKit
 
-class DatepickerDialog: BaseVC {
+class DatepickerDialog: UIViewController {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var datepickerView: UIDatePicker!
     @IBOutlet weak var btnConfirm: UIButton!
@@ -52,7 +52,7 @@ class DatepickerDialog: BaseVC {
     }
     
     @IBAction func onClickBg(_ sender: Any) {
-        close()
+        self.close()
     }
     
     @IBAction func onClickConfirm(_ sender: Any) {
@@ -64,6 +64,6 @@ class DatepickerDialog: BaseVC {
     }
     
     @IBAction func onClickCancel(_ sender: Any) {
-        close()
+        self.close()
     }
 }

@@ -19,6 +19,7 @@ class MenuVC: BaseVC {
     @IBOutlet var vwMenus: [UIView]!
     @IBOutlet weak var vwAvatar: UIImageView!
     @IBOutlet weak var vwName: UILabel!
+    @IBOutlet weak var leadingLayoutConstraint: NSLayoutConstraint!
     
     var delegate: MenuDelegate?
     let transitionTime = 0.5
@@ -29,29 +30,20 @@ class MenuVC: BaseVC {
     }
     
     override func removeFromParent() {
-        let finalXOrigin: CGFloat = view.bounds.width
-    
-        var frame: CGRect = vwMenu.frame
-        frame.origin.x = finalXOrigin
-        
-        DispatchQueue.main.async(execute: {
+        self.leadingLayoutConstraint.constant = 0
+
+//        DispatchQueue.main.async(execute: {
             UIView.animate(withDuration: self.transitionTime, animations: {
-                self.vwMenu.frame = frame
+                self.view.layoutIfNeeded()
                 self.vwBg.alpha = 0
             }) { (_) in
                 self.view.removeFromSuperview()
                 self.dismiss(animated: true, completion: nil)
             }
-        })
+//        })
     }
     
     func initVC() {
-        let finalXOrigin: CGFloat = view.bounds.width
-    
-        var frame: CGRect = vwMenu.frame
-        frame.origin.x = finalXOrigin
-        self.vwMenu.frame = frame
-
         for (index, menu) in vwMenus.enumerated() {
             menu.tag = index
             menu.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onClickMenu(_:))))
@@ -63,18 +55,16 @@ class MenuVC: BaseVC {
         
         self.view.frame = CGRect.init(x: 0, y: 0, width: superview.frame.size.width, height: superview.frame.size.height)
         
-        let finalXOrigin: CGFloat = view.bounds.width - vwMenu.frame.size.width
-                
-        var frame = vwMenu.frame
-        frame.origin.x = finalXOrigin
+        let frame = vwMenu.frame
+        self.leadingLayoutConstraint.constant = frame.width
         vwBg.alpha = 0
-        
-        DispatchQueue.main.async(execute: {
+
+//        DispatchQueue.main.async(execute: {
             UIView.animate(withDuration: self.transitionTime) {
-                self.vwMenu.frame = frame
+                self.view.layoutIfNeeded()
                 self.vwBg.alpha = 0.2
             }
-        })
+//        })
         
         let user = Rest.user!
         if let url = user.profile_img {

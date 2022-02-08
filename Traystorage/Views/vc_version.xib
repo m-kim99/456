@@ -15,6 +15,7 @@
                 <outlet property="lblCurrentVersion" destination="m2M-3z-2wi" id="9bs-eB-Z0l"/>
                 <outlet property="lblLatestVersion" destination="xNu-Mh-Y6X" id="92p-AW-aUU"/>
                 <outlet property="lblPageTitle" destination="bxB-KL-QBv" id="cX2-1s-0ln"/>
+                <outlet property="lblVersionHeader" destination="mrM-Mw-0bv" id="hf0-n8-SbG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="vwCurrentVersion" destination="ijD-b1-EHk" id="vkZ-pe-ce9"/>
                 <outlet property="vwLatestVersion" destination="0qy-eo-Opy" id="2uc-dt-WDv"/>

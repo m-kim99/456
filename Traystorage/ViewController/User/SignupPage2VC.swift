@@ -111,6 +111,7 @@ extension SignupPage2VC: BaseAction {
     }
     
     @IBAction func onClickConfirmCertNum(_ sender: Any) {
+        hideKeyboard()
         guard let code = tfCertificationNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines), !code.isEmpty else {
             return
         }

@@ -21,7 +21,7 @@
                         <rect key="frame" x="20" y="11" width="304.5" height="74"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="version info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qls-wD-h8h" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="88" height="74"/>
+                                <rect key="frame" x="0.0" y="0.0" width="140" height="74"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -33,7 +33,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.1v" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cs9-a5-wIf" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                <rect key="frame" x="96" y="0.0" width="208.5" height="74"/>
+                                <rect key="frame" x="148" y="0.0" width="156.5" height="74"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -57,4 +57,12 @@
             <point key="canvasLocation" x="405.79710144927537" y="137.94642857142856"/>
         </tableViewCell>
     </objects>
+    <designables>
+        <designable name="Cs9-a5-wIf">
+            <size key="intrinsicContentSize" width="23" height="18"/>
+        </designable>
+        <designable name="Qls-wD-h8h">
+            <size key="intrinsicContentSize" width="140" height="18"/>
+        </designable>
+    </designables>
 </document>

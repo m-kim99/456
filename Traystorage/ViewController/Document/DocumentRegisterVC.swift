@@ -30,8 +30,6 @@ class DocumentRegisterVC: BaseVC {
     let viewTagStartImage = 1000
     let viewTagStartTag = 2000
     
-    var isModified = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,6 +61,8 @@ class DocumentRegisterVC: BaseVC {
             origDoc.title = newDoc.title
             origDoc.content = newDoc.content
             origDoc.label = newDoc.label
+            origDoc.reg_time = newDoc.reg_time
+            origDoc.create_time = newDoc.create_time
             
             origDoc.tags.replaceSubrange(0..<origDoc.tags.count, with: newDoc.tags)
             origDoc.images.replaceSubrange(0..<origDoc.images.count, with: newDoc.images)
@@ -78,7 +78,24 @@ class DocumentRegisterVC: BaseVC {
         }
     }
     
+    private func checkIsModified() -> Bool {
+        guard let origDoc = document else {
+            return !newDocument.title.isEmpty || !newDocument.content.isEmpty || !newDocument.tags.isEmpty || !newDocument.images.isEmpty || newDocument.label != 0
+        }
+        let newDoc = newDocument
+        return newDoc.title != origDoc.title || newDoc.content != origDoc.content || newDoc.label != origDoc.label || newDoc.tags.count != origDoc.tags.count || newDoc.tags != origDoc.tags ||  newDoc.images.count != origDoc.images.count || !newDoc.images.elementsEqual(origDoc.images, by: { element1, element2 in
+            return element1.elementsEqual(element2) { dic1, dic2 in
+                if let val1 = dic1.value as? String, let val2 = dic2.value as? String {
+                    return val1 == val2
+                }
+                return false
+            }
+        })
+    }
+    
     private func onDocumentAddSuccess(doc: ModelDocument!) {
+        copyDocument(toOrigin: true)
+
         if let popDelegate = popDelegate {
             popDelegate.onWillBack("insert", doc)
         }
@@ -90,31 +107,33 @@ class DocumentRegisterVC: BaseVC {
     }
     
     private func onDocumentEditSuccess(doc: ModelDocument!) {
+        copyDocument(toOrigin: true)
         if let popDelegate = self.popDelegate {
-            copyDocument(toOrigin: true)
             popDelegate.onWillBack("update", doc)
         }
         popVC()
     }
 
     @IBAction func onClickRegister(_ sender: Any) {
-        guard let title = tfTitle.text, !title.isEmpty else {
+        hideKeyboard()
+
+        let doc = newDocument
+        if doc.title.isEmpty {
             self.view.showToast("doc_title_empty"._localized)
             return
         }
         
-        guard let content = tfDetail.text, !content.isEmpty else {
+        if doc.content.isEmpty {
             self.view.showToast("doc_content_empty"._localized)
             return
         }
 
-        let doc = newDocument
         if doc.tags.count < 1 {
             self.view.showToast("doc_tag_empty"._localized)
             return
         }
 
-        documentImageUpload(title:title, content: content)
+        documentImageUpload()
     }
 
     @IBAction func onClickAddImage(_ sender: Any) {
@@ -132,18 +151,20 @@ class DocumentRegisterVC: BaseVC {
         
         if doc.tags.count < 5 {
             if doc.tags.contains(tagText) {
+                hideKeyboard()
                 self.view.showToast("doc_duplicated_tag"._localized)
             } else {
                 doc.tags.insert(tagText, at: 0)
                 tagCollectionView.reloadData()
-                isModified = true
                 tfTag.text = nil
+                let bottomRect = CGRect(origin: CGPoint(x: 0, y: self.keyboardAvoidScroll?.contentSize.height ?? 0), size: CGSize(width: 1, height: 1))
+                self.keyboardAvoidScroll?.scrollRectToVisible(bottomRect, animated: true)
             }
         } else {
+            hideKeyboard()
             self.view.showToast("doc_tag_limit_5"._localized)
         }
     }
-    
     
     override func hideKeyboard() {
         tfTitle.resignFirstResponder()
@@ -152,7 +173,7 @@ class DocumentRegisterVC: BaseVC {
     }
     
     override func onBackProcess(_ viewController: UIViewController) {
-        if !isModified {
+        if !checkIsModified() {
             super.onBackProcess(viewController)
             return
         }
@@ -174,8 +195,6 @@ class DocumentRegisterVC: BaseVC {
         }
         self.imageCollectionView.reloadData()
         self.updateImageAddButtonAndCollectionView()
-        
-        isModified = true
     }
     
     private func updateImageAddButtonAndCollectionView() {
@@ -185,11 +204,9 @@ class DocumentRegisterVC: BaseVC {
         imageCollectionView.isHidden = noImage
     }
     
-    private func documentImageUpload(title:String!, content:String!) {
+    private func documentImageUpload() {
         let doc = newDocument
         
-        let tags = doc.tags.joined(separator: ",")
-
         var files:[Data] = []
         var imageURLs: [String] = []
         for item in doc.images {
@@ -211,7 +228,7 @@ class DocumentRegisterVC: BaseVC {
                 
                 let images = imageURLs.joined(separator: ",")
                 
-                self?.documentEditDone(title: title, content: content, lable: doc.label, tags: tags, images: images)
+                self?.documentEditDone(images: images)
 
             } failure: { [weak self](_, err) in
                 LoadingDialog.dismiss()
@@ -220,28 +237,17 @@ class DocumentRegisterVC: BaseVC {
         } else {
             let images = imageURLs.joined(separator: ",")
 
-            documentEditDone(title: title, content: content, lable: doc.label, tags: tags, images: images)
+            documentEditDone(images: images)
         }
     }
     
-    private func documentEditDone(title: String, content: String, lable: Int, tags: String, images: String) {
+    private func documentEditDone(images: String) {
         let doc = newDocument
-        
-        doc.title = title
-        doc.content = content
-        doc.label = lable
-        doc.tags.removeAll()
-        
-        let tagList = tags.split(separator: ",")
-        for tag in tagList {
-            doc.tags.append(tag.description)
-        }
 
         LoadingDialog.show()
         if isNewDocument {
-            Rest.documentInsert(title: title, content: content, label: doc.label, tags: tags, images: images) { [weak self](result) in
+            Rest.documentInsert(title: doc.title, content: doc.content, label: doc.label, tags: doc.tags.joined(separator: ","), images: images) { [weak self](result) in
                 LoadingDialog.dismiss()
-                self?.isModified = true
                 let addedDoc = result as! ModelDocument
                 doc.doc_id = addedDoc.doc_id
                 doc.reg_time = addedDoc.reg_time
@@ -251,9 +257,8 @@ class DocumentRegisterVC: BaseVC {
                 self?.view.showToast(err)
             }
         } else {
-            Rest.documentUpdate(id: doc.doc_id.description, title: title, content: content, label: lable, tags: tags, images: images, success: { [weak self] (result) in
+            Rest.documentUpdate(id: doc.doc_id.description, title: doc.title, content: doc.content, label: doc.label, tags: doc.tags.joined(separator: ","), images: images, success: { [weak self] (result) in
                 LoadingDialog.dismiss()
-                self?.isModified = true
                 self?.onDocumentEditSuccess(doc: doc)
             }) {[weak self](_, err) in
                 LoadingDialog.dismiss()
@@ -273,22 +278,24 @@ class DocumentRegisterVC: BaseVC {
             let index = viewTag - viewTagStartTag
             doc.tags.remove(at: index)
             tagCollectionView.reloadData()
-            isModified = true
             self.view.showToast("doc_tag_deleted"._localized)
         } else {
             let index = viewTag - viewTagStartImage
             doc.removeImage(at: index)
             imageCollectionView.reloadData()
-            isModified = true
             updateImageAddButtonAndCollectionView()
         }
+    }
+    
+    @IBAction func onTitleChanged(_ sender: UITextField) {
+        newDocument.title = sender.text ?? ""
     }
 }
 
 extension DocumentRegisterVC: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         updateDetailPlaceHolderVisible(textView.text ?? "")
-        isModified = true
+        newDocument.content = textView.text
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -308,10 +315,6 @@ extension DocumentRegisterVC: UITextFieldDelegate {
             return false
         }
         
-        if textField == tfTitle {
-            isModified = true
-        }
-
         return true
     }
 }
@@ -402,7 +405,6 @@ extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelega
             break
         case viewTagLabelCollectionView:
             doc.label = indexPath.row
-            isModified = true
             labelCollectionView.reloadData()
             break
         default:

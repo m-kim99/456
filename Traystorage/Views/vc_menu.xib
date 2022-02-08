@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
+                <outlet property="leadingLayoutConstraint" destination="Mv6-NL-65X" id="WfW-aZ-0Ey"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="vwAvatar" destination="A0C-PV-Woc" id="Ekl-pu-N1i"/>
                 <outlet property="vwBg" destination="ozw-jU-Bai" id="vDR-QT-KFX"/>
@@ -44,7 +45,7 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYw-nS-ybz" userLabel="menu">
-                            <rect key="frame" x="114" y="0.0" width="300" height="818"/>
+                            <rect key="frame" x="414" y="0.0" width="300" height="818"/>
                             <subviews>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAs-yA-eNT">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="818"/>
@@ -321,9 +322,10 @@
                         <constraint firstItem="ucc-Ss-cDG" firstAttribute="top" secondItem="yOP-vm-sJC" secondAttribute="top" id="AsG-7F-LGb"/>
                         <constraint firstItem="ozw-jU-Bai" firstAttribute="top" secondItem="yOP-vm-sJC" secondAttribute="top" id="Hai-Ua-b5Z"/>
                         <constraint firstAttribute="trailing" secondItem="ozw-jU-Bai" secondAttribute="trailing" id="Ld0-fI-PP1"/>
+                        <constraint firstAttribute="trailing" secondItem="oYw-nS-ybz" secondAttribute="leading" id="Mv6-NL-65X"/>
                         <constraint firstAttribute="bottom" secondItem="oYw-nS-ybz" secondAttribute="bottom" id="Typ-3N-5BW"/>
                         <constraint firstItem="oYw-nS-ybz" firstAttribute="top" secondItem="yOP-vm-sJC" secondAttribute="top" id="are-Jx-81Q"/>
-                        <constraint firstAttribute="trailing" secondItem="oYw-nS-ybz" secondAttribute="trailing" id="bBm-bJ-vtF"/>
+                        <constraint firstAttribute="trailing" secondItem="oYw-nS-ybz" secondAttribute="trailing" priority="750" id="bBm-bJ-vtF"/>
                         <constraint firstItem="ucc-Ss-cDG" firstAttribute="leading" secondItem="yOP-vm-sJC" secondAttribute="leading" id="gLA-ir-uaf"/>
                         <constraint firstItem="ozw-jU-Bai" firstAttribute="leading" secondItem="yOP-vm-sJC" secondAttribute="leading" id="svJ-Fl-dBQ"/>
                         <constraint firstAttribute="bottom" secondItem="ozw-jU-Bai" secondAttribute="bottom" id="txm-0z-6Qn"/>

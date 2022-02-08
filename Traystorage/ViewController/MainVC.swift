@@ -18,6 +18,11 @@ class MainVC: BaseVC {
     @IBOutlet weak var lblDocumentCount: UILabel!
     @IBOutlet weak var lblSearchEmpty: UILabel!
     
+    @IBOutlet weak var lblCountTitle: UIFontLabel!
+    @IBOutlet weak var vwHeaderMain: UIView!
+    @IBOutlet weak var vwHeaderSearch: UIView!
+    @IBOutlet weak var btnDocRegister: UIButton!
+    
     var documents: [ModelDocument] = []
     var lastKeyword:String?
         
@@ -32,7 +37,7 @@ class MainVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         initVC()
-        loadDocument("")
+        updateViewContent(isSearchResult:false)
     }
 
     private func initVC() {
@@ -51,6 +56,26 @@ class MainVC: BaseVC {
     
     @objc func onPanOfRightEdge(_ sender: UIScreenEdgePanGestureRecognizer) {
         onClickMenu("")
+    }
+    
+    private func updateViewContent(isSearchResult:Bool) {
+        let searchText = tfSearchText.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        if isSearchResult {
+            if searchText.isEmpty {
+                self.view.showToast("doc_empty_search"._localized)
+                return
+            }
+        }
+        vwHeaderMain.isHidden = isSearchResult
+        vwHeaderSearch.isHidden = !isSearchResult
+        btnDocRegister.isHidden = isSearchResult
+        lblCountTitle.text = isSearchResult ? "search_result"._localized : "doc_count"._localized
+        
+        if isSearchResult {
+            loadDocument(searchText)
+        } else {
+            loadDocument("")
+        }
     }
 
     private func showPopup() {
@@ -120,6 +145,18 @@ class MainVC: BaseVC {
     //
     // MARK: - Action
     //
+    @IBAction func onSearchDone(_ sender: Any) {
+        updateViewContent(isSearchResult: true)
+    }
+    
+    @IBAction func onSearchResultBack(_ sender: Any) {
+        updateViewContent(isSearchResult: false)
+    }
+    
+    internal override func hideKeyboard() {
+        super.hideKeyboard()
+        tfSearchText.resignFirstResponder()
+    }
     
     @IBAction func onClickTabHome(_ sender: Any) {
 //        changeTab(Tab.home)
@@ -137,14 +174,9 @@ class MainVC: BaseVC {
     }
     
     @IBAction func onClickSearch(_ sender: Any) {
-//        guard let searchText = tfSearchText.text?.trimmingCharacters(in: .whitespacesAndNewlines), !searchText.isEmpty else {
-//            self.view.showToast("doc_empty_search"._localized)
-//            return
-//        }
-        
-        let searchText = tfSearchText.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        
-        loadDocument(searchText)
+        hideKeyboard()
+
+        updateViewContent(isSearchResult: true)
     }
 }
 

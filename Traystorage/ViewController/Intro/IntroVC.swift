@@ -33,9 +33,6 @@ class IntroVC: BaseVC {
         loadingImages.append(UIImage(named: "loading2")!)
         loadingImages.append(UIImage(named: "loading3")!)
 
-//        LoadingDialog.setBackgroundColor(UIColor.clear)
-//        LoadingDialog.setRingThickness(5)
-
 //        loadAppInfo()
 //        nextScreen(false)
 //        ConfirmDialog.show(self, title: "Please verify your mobile phone number.", message: "", showCancelBtn: true, okAction: nil)
@@ -193,8 +190,13 @@ class IntroVC: BaseVC {
         }
     }
     
-    func go2Store(_ url: String) {
-        
+    func go2Store(_ storeUrl: String) {
+        guard let url = URL(string: storeUrl) else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
 
     // MARK: - Action

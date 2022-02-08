@@ -205,13 +205,13 @@ Meeting were held on a variety of tpics, Numberous comments were made</string>
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="LHr-fb-sHE">
+                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="LHr-fb-sHE">
                                                                     <rect key="frame" x="0.0" y="68" width="335" height="100"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="100" id="HkD-9q-hRv"/>
                                                                     </constraints>
-                                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b1B-nL-aai">
+                                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b1B-nL-aai">
                                                                         <size key="itemSize" width="100" height="100"/>
                                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -363,6 +363,9 @@ Meeting were held on a variety of tpics, Numberous comments were made</string>
         </designable>
         <designable name="ZYM-a4-Dp2">
             <size key="intrinsicContentSize" width="102.66666666666667" height="17"/>
+        </designable>
+        <designable name="btQ-mJ-v2e">
+            <size key="intrinsicContentSize" width="28.333333333333332" height="17"/>
         </designable>
     </designables>
     <resources>

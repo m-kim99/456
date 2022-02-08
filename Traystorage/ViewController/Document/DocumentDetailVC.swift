@@ -80,11 +80,12 @@ class DocumentDetailVC: BaseVC {
         
         for vc in vcs {
             if vc is MainVC {
+                self.navigationController?.popToViewController(vc, animated: true)
+
                 if isUpdated, let mainVC = vc as? MainVC {
                     mainVC.onWillBack("update", document?.doc_id)
                 }
-                
-                self.navigationController?.popToViewController(vc, animated: true)
+
                 break
             }
         }

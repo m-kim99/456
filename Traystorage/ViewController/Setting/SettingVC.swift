@@ -75,12 +75,15 @@ class SettingVC: BaseVC {
 
 extension SettingVC: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return /*user.signup_type != 0 ? 4 :*/ 6
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch section {
+        var sectionT = section;
+//        if user.signup_type != 0 {
+//            sectionT = section + 2
+//        }
+        switch sectionT {
         case infoSection:
             return 1
         case separatorSection1:
@@ -104,8 +107,12 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         // Fetch a cell of the appropriate type.
         
         var cellIdentifier = "cell"
-        
-        switch (indexPath.section, indexPath.row) {
+        var sectionT = indexPath.section;
+//        if user.signup_type != 0 {
+//            sectionT = indexPath.section + 2
+//        }
+
+        switch (sectionT, indexPath.row) {
         case (infoSection, _):
             cellIdentifier = "accountCell"
         case (separatorSection1, _):
@@ -124,7 +131,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
        
         // Configure the cell’s contents.
         
-        switch (indexPath.section, indexPath.row) {
+        switch (sectionT, indexPath.row) {
         case (infoSection, _):
             if let userIDEditor = cell.viewWithTag(1) as? UITextField {
                 userIDEditor.text = user.uid
@@ -161,7 +168,11 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch (indexPath.section, indexPath.row) {
+        var sectionT = indexPath.section;
+//        if user.signup_type != 0 {
+//            sectionT = indexPath.section + 2
+//        }
+        switch (sectionT, indexPath.row) {
         case (versionSection, 0):
             self.pushVC(VersionVC(nibName: "vc_version", bundle: nil), animated: true)
         case (versionSection, 1):

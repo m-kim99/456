@@ -92,6 +92,7 @@ class Rest: Net {
         birthday: String,
         gender: Int,
         email:String,
+        signup_type:Int,
         success: SuccessBlock?,
         failure: FailureBlock?
     ) {
@@ -103,6 +104,7 @@ class Rest: Net {
             "birthday": birthday,
             "gender": gender,
             "email": email,
+            "signup_type": signup_type
         ] as [String: AnyObject]
 
         doRequest(method: .post, api: .USER_SIGNUP, params: params as [String: AnyObject], header: [:], success: success, failure: failure)

@@ -1,8 +1,8 @@
 import Foundation
 
 //let Server_Url = "http://192.168.2.101:8005/api/" //py
-//let Server_Url = "http://traystorage.kr/server/api/" //real server
-let Server_Url = "http://192.168.0.13:8205/api/" //local server
+let Server_Url = "http://traystorage.kr/server/api/" //real server
+//let Server_Url = "http://192.168.0.13:8205/api/" //local server
 
 let API_TERM_URL = Server_Url + "app/term?type=term"
 let API_PRIVACY_URL = Server_Url + "app/term?type=privacy"

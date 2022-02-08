@@ -135,6 +135,7 @@ extension SignupPage1VC: BaseAction {
     }
     
     @IBAction func onClickDuplicate(_ sender: Any) {
+        hideKeyboard()
         guard let newID = tfID.text?.trimmingCharacters(in: .whitespacesAndNewlines), !newID.isEmpty else {
             self.showToast(localized: "signup_id_empty_alert")
             return

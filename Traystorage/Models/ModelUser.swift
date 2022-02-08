@@ -16,7 +16,8 @@ public class ModelUser: ModelBase {
     var create_time: String!
     var exit_reg_time: String!
     var stop_remark: String!
-    
+    var signup_type: Int = 0
+
     var isAgree: Int = 0
     
     var authCode: Int!
@@ -37,6 +38,7 @@ public class ModelUser: ModelBase {
         access_token = json["access_token"].stringValue
         document_cnt = json["document_cnt"].intValue
         isAgree = json["is_agree"].intValue
+        signup_type = json["signup_type"].intValue
     }
     
     static func isIdValid(_ id: String) -> Bool {

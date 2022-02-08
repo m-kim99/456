@@ -26,7 +26,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NFC register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ogr-lu-rOZ" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="159" y="20" width="96" height="20.5"/>
+                                    <rect key="frame" x="160.5" y="19" width="93.5" height="22"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -53,10 +53,10 @@
                                     <rect key="frame" x="112" y="0.0" width="150" height="150"/>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lLs-hg-ef7">
-                                    <rect key="frame" x="0.0" y="210" width="374" height="82"/>
+                                    <rect key="frame" x="0.0" y="210" width="374" height="42.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register the document by tagging the mobile phone on the NFC sticker." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xvh-vC-DXN" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="41"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -70,8 +70,8 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="nfc_header"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register docments easily and conveniently now, manage and share theme throught NFC tags" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDA-Nn-kA9" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="41" width="374" height="41"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register docments easily and conveniently now, manage and share theme throught NFC tags" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDA-Nn-kA9" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="24" width="374" height="18.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" systemColor="systemGrayColor"/>
                                             <nil key="highlightedColor"/>
@@ -148,16 +148,16 @@
     </objects>
     <designables>
         <designable name="Ogr-lu-rOZ">
-            <size key="intrinsicContentSize" width="96" height="20.5"/>
+            <size key="intrinsicContentSize" width="93.5" height="22"/>
         </designable>
         <designable name="VDA-Nn-kA9">
-            <size key="intrinsicContentSize" width="705" height="20.5"/>
+            <size key="intrinsicContentSize" width="59" height="18.5"/>
         </designable>
         <designable name="Xvh-vC-DXN">
-            <size key="intrinsicContentSize" width="543" height="20.5"/>
+            <size key="intrinsicContentSize" width="91.5" height="24"/>
         </designable>
         <designable name="itV-pi-k1H">
-            <size key="intrinsicContentSize" width="48" height="30"/>
+            <size key="intrinsicContentSize" width="42" height="30"/>
         </designable>
     </designables>
     <resources>

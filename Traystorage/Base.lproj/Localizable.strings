@@ -201,6 +201,7 @@ There is a 14-day waiting period for withdrawal after authentication is complete
 "doc_deleted_toast"="문석 삭제되었습니다.";
 "doc_search_hint"="검색어를 입력해 주세요.";
 "search_empty_title"="검색결과가 없습니다.";
+"search_result"="검색 결과";
 
 // document detail
 "doc_detail"="문서상세";
@@ -335,6 +336,7 @@ There is a 14-day waiting period for withdrawal after authentication is complete
 // version
 "version_title"="버전정보";
 "version_header"="최신 버전으로\n업데이트 해주세요";
+"version_header1"="현재 최신버전을 사용하고 계십니다.";
 "cur_version"="현재버전";
 "new_version"="최신버전";
 "update_version_button"="버전 업데이트 하기";

@@ -112,6 +112,8 @@ class FindPwdVC: BaseVC {
     }
     
     @IBAction func onAuthReqest(_ sender: Any) {
+        hideKeyboard()
+        
         guard let textID = tfID.text, !textID.isEmpty else {
             self.view.showToast("signup_id_empty_alert"._localized)
             return

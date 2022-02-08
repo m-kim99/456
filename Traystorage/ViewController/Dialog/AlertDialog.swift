@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class AlertDialog: BaseVC {
+class AlertDialog: UIViewController {
     @IBOutlet weak var vwBg: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblContent: UILabel!

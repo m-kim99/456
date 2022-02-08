@@ -16,11 +16,12 @@ class InquiryTVC: UITableViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblDetail: UILabel!
-    
+    @IBOutlet weak var lblAnswer: UILabel!
     
     var isExpand = false {
         didSet {
             lblDetail.isHidden = !isExpand
+            lblAnswer.isHidden = !isExpand || (lblAnswer.text?.isEmpty ?? true)
             let image = isExpand ? "ic_arrow_up" : "ic_arrow_down"
             imageExpand.image = UIImage(named: image)
         }

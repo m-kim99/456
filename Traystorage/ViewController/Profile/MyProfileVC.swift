@@ -25,8 +25,11 @@ class MyProfileVC: BaseVC {
     var avatarImageURL: String?
     var avatarImageName: String? // used to send "api"
     
+    var isModified: Bool! = false
     
-    var isModified = false
+    private lazy var user: ModelUser = {
+        return Rest.user
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +39,6 @@ class MyProfileVC: BaseVC {
     
     
     func initVC() {
-        let user = Rest.user!
         avatarImageURL = user.profile_img
         if let avatarUrl = URL(string:avatarImageURL ?? "") {
             avatarImageName = avatarUrl.lastPathComponent
@@ -125,6 +127,8 @@ class MyProfileVC: BaseVC {
     }
     
     @IBAction func onSave(_ sender: Any) {
+        hideKeyboard()
+        
         guard let name = editName.text, !name.isEmpty else {
             self.view.showToast("empty_name_toast"._localized)
             return
@@ -154,9 +158,7 @@ class MyProfileVC: BaseVC {
         }
     }
     @IBAction func onEditNameDidEnd(_ sender: UITextField!) {
-//        updateEditState(false)
-//        labelName.text = sender.text
-        isModified = true
+        isModified = isModified || user.name != sender.text
     }
     
     @IBAction func onEditNameClear(_ sender: Any) {
@@ -168,17 +170,19 @@ class MyProfileVC: BaseVC {
         if let button = sender as? UIButton {
             gender = button == maleButton ? 0 : 1
             updateGender()
-            isModified = true
+            isModified = isModified || user.gender != gender
         }
     }
     
     @IBAction func onClickBirthDay(_ sender: Any) {
+        hideKeyboard()
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         let birthday = dateFormatter.date(from: birthdayEdit.text ?? "")
         DatepickerDialog.show(self, date:birthday) { [weak self](date) in
             self?.birthdayEdit.text = dateFormatter.string(from: date)
-            self?.isModified = true
+            self?.isModified = (self?.isModified)! || self?.user.birthday != self?.birthdayEdit.text
         }
     }
 }

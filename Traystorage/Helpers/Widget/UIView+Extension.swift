@@ -197,7 +197,7 @@ extension UIView {
     func showToast(_ msg: String) {
         var style = ToastStyle()
         style.messageColor = UIColor.white
-        self.makeToast(msg, duration: 1.0, position: .bottom, style: style)
+        self.makeToast(msg, duration: 2.0, position: .bottom, style: style)
     }
     
     func setShadow(radius: CGFloat = 1.0) {

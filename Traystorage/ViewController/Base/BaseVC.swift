@@ -21,7 +21,7 @@ class BaseVC: UIViewController {
             // Fallback on earlier versions
         }
         SVProgressHUD.setContainerView(self.view)
-        LoadingDialog.setActiveController(self.navigationController ?? self)
+        LoadingDialog.setActiveController(self.navigationController)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,7 +32,6 @@ class BaseVC: UIViewController {
         self.unregisterForKeyboardNotifications()
         SVProgressHUD.popActivity()
         SVProgressHUD.dismiss()
-        //LoadingDialog.dismiss()
     }
   
     override func didReceiveMemoryWarning() {

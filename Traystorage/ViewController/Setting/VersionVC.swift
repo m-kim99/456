@@ -6,6 +6,7 @@ class VersionVC: BaseVC {
     @IBOutlet weak var lblPageTitle: UILabel!
     @IBOutlet weak var vwCurrentVersion: UIStackView!
     @IBOutlet weak var lblCurrentVersion: UIFontLabel!
+    @IBOutlet weak var lblVersionHeader: UIFontLabel!
     @IBOutlet weak var vwLatestVersion: UIStackView!
     @IBOutlet weak var lblLatestVersion: UIFontLabel!
     @IBOutlet weak var btnUpdate: UIFontButton!
@@ -21,6 +22,7 @@ class VersionVC: BaseVC {
     }
     
     private func initVC() {
+        lblVersionHeader.text = "version_header"._localized
         lblCurrentVersion.text = Utils.bundleVer()
         vwLatestVersion.isHidden = true
         btnUpdate.isHidden = true
@@ -31,6 +33,7 @@ class VersionVC: BaseVC {
         
         let curVersion = Utils.bundleVer()
         if latestVersion.version.isEmpty || curVersion.isEqual(latestVersion.version) {
+            lblVersionHeader.text = "version_header1"._localized
             vwLatestVersion.isHidden = true
             btnUpdate.isHidden = true
             return;
@@ -41,8 +44,13 @@ class VersionVC: BaseVC {
         lblLatestVersion.text = latestVersion.version
     }
     
-    func go2Store(_ url: String) {
-        
+    func go2Store(_ storeUrl: String) {
+        guard let url = URL(string: storeUrl) else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:])
+        }
     }
     
     //
