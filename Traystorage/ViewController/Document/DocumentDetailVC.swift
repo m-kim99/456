@@ -111,7 +111,10 @@ class DocumentDetailVC: BaseVC {
     }
     
     @IBAction func onClickNFCRegister(_ sender: Any) {
-        pushVC(DocumentNFCRegisterVC(nibName: "vc_document_nfc_register", bundle: nil), animated: true, params: params as [String : Any])
+        let vc = DocumentNFCRegisterVC(nibName: "vc_document_nfc_register", bundle: nil)
+        vc.documentID = document!.doc_id
+        vc.documentCode = document!.code
+        pushVC(vc, animated: true)
     }
 }
 

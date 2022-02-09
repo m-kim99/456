@@ -102,7 +102,7 @@
                             <color key="backgroundColor" red="0.95294117647058818" green="0.96078431372549022" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="qNu-3N-UxD" firstAttribute="leading" secondItem="EIs-Jt-aDq" secondAttribute="leading" constant="30" id="32P-8G-0Zu"/>
-                                <constraint firstItem="qNu-3N-UxD" firstAttribute="top" secondItem="EIs-Jt-aDq" secondAttribute="top" constant="24" id="Vvt-y2-0al"/>
+                                <constraint firstItem="qNu-3N-UxD" firstAttribute="top" secondItem="EIs-Jt-aDq" secondAttribute="top" constant="35" id="Vvt-y2-0al"/>
                                 <constraint firstAttribute="bottom" secondItem="qNu-3N-UxD" secondAttribute="bottom" constant="24" id="as8-yl-l5v"/>
                                 <constraint firstAttribute="trailing" secondItem="qNu-3N-UxD" secondAttribute="trailing" constant="30" id="t9p-51-jLt"/>
                             </constraints>
@@ -148,7 +148,7 @@
                         <constraint firstItem="Esz-7l-4gH" firstAttribute="centerX" secondItem="OCI-2f-bWh" secondAttribute="centerX" id="7SO-7B-euf"/>
                         <constraint firstItem="tbL-2l-PHA" firstAttribute="centerX" secondItem="OCI-2f-bWh" secondAttribute="centerX" id="ELJ-ma-8G4"/>
                         <constraint firstItem="EIs-Jt-aDq" firstAttribute="top" secondItem="tbL-2l-PHA" secondAttribute="bottom" id="Fbc-y4-czZ"/>
-                        <constraint firstItem="tbL-2l-PHA" firstAttribute="top" secondItem="mrM-Mw-0bv" secondAttribute="bottom" id="ROw-T8-9KI"/>
+                        <constraint firstItem="tbL-2l-PHA" firstAttribute="top" secondItem="mrM-Mw-0bv" secondAttribute="bottom" constant="10" id="ROw-T8-9KI"/>
                         <constraint firstAttribute="trailing" secondItem="I58-Be-tpg" secondAttribute="trailing" id="VCx-23-Cg7"/>
                         <constraint firstItem="EIs-Jt-aDq" firstAttribute="leading" secondItem="OCI-2f-bWh" secondAttribute="leading" constant="18" id="XP7-mV-Wqk"/>
                         <constraint firstItem="mrM-Mw-0bv" firstAttribute="top" secondItem="Esz-7l-4gH" secondAttribute="bottom" id="dSa-4g-R9J"/>
