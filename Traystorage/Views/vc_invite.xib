@@ -37,7 +37,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="invite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kP6-iT-dIJ" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="165" y="19" width="84.5" height="22"/>
+                                    <rect key="frame" x="185.5" y="19" width="43" height="22"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -67,7 +67,7 @@
                                     <rect key="frame" x="132" y="0.0" width="150" height="150"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send invitations to friends who need Traystorage" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGz-hV-cC9" userLabel="test" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="20" y="170" width="374" height="26.5"/>
+                                    <rect key="frame" x="20" y="170" width="374" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -107,6 +107,9 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="invite_friends"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onClickInvite:" destination="-1" eventType="touchUpInside" id="F3n-l9-K56"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -138,13 +141,13 @@
     </objects>
     <designables>
         <designable name="Ice-r3-qIy">
-            <size key="intrinsicContentSize" width="90" height="30"/>
+            <size key="intrinsicContentSize" width="89" height="30"/>
         </designable>
         <designable name="kP6-iT-dIJ">
-            <size key="intrinsicContentSize" width="84.5" height="22"/>
+            <size key="intrinsicContentSize" width="43" height="21.5"/>
         </designable>
         <designable name="rGz-hV-cC9">
-            <size key="intrinsicContentSize" width="107.5" height="26.5"/>
+            <size key="intrinsicContentSize" width="371" height="20.5"/>
         </designable>
     </designables>
     <resources>
