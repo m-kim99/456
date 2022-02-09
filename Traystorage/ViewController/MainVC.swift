@@ -38,6 +38,8 @@ class MainVC: BaseVC {
         super.viewDidLoad()
         initVC()
         updateViewContent(isSearchResult:false)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(docReg), name: NSNotification.Name(rawValue: "doc_reg"), object: nil)
     }
 
     private func initVC() {
@@ -52,6 +54,10 @@ class MainVC: BaseVC {
         let rightPanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(onPanOfRightEdge(_:)))
         rightPanGesture.edges = .all
         self.view.addGestureRecognizer(rightPanGesture)
+    }
+    
+    @objc func docReg(_ notification: NSNotification) {
+        loadDocument("")
     }
     
     @objc func onPanOfRightEdge(_ sender: UIScreenEdgePanGestureRecognizer) {

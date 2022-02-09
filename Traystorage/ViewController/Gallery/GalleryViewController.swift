@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import TOCropViewController
 
 class galleryList: NSObject {
     var image: UIImage!
@@ -235,6 +236,18 @@ class GalleryViewController: BaseVC {
         NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue:"image_pick"), object: selectedImgList))
         popVC()
     }
+    
+    func presentCropViewController(_ image: UIImage) {
+        let cropViewController = TOCropViewController(croppingStyle: .default, image: image)
+        cropViewController.delegate = self
+        if image.size.width > image.size.height {
+            cropViewController.imageCropFrame = CGRect(x: 0, y: 0, width: image.size.height, height: image.size.height)
+        } else {
+            cropViewController.imageCropFrame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.width)
+        }
+        cropViewController.aspectRatioPickerButtonHidden = true
+        present(cropViewController, animated: true, completion: nil)
+    }
 
 }
 
@@ -254,7 +267,8 @@ extension GalleryViewController : UICollectionViewDelegate, UICollectionViewData
             popVC()
         } else {
             if indexPath.row == 0 { // camera
-                AlertDialog.show(self, title: "Camera", message: "Not implement camera")
+                //AlertDialog.show(self, title: "Camera", message: "Not implement camera")
+                onClickCamera()
             } else {
                 let row = indexPath.row - 1
                 imgList[row].select = !imgList[row].select
@@ -332,12 +346,19 @@ extension GalleryViewController : UICollectionViewDelegate, UICollectionViewData
 
 extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: false, completion: nil)
         let image = info[.originalImage] as! UIImage
 
         selectedImgList.removeAll()
         selectedImgList.append(image)
         onClickDone("")
-        
-        dismiss(animated: true)
+    }
+}
+
+extension GalleryViewController: TOCropViewControllerDelegate {
+    func cropViewController(_ cropViewController: TOCropViewController, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
+        dismiss(animated: true, completion: nil)
+
+        //uploadImage(img: image)
     }
 }

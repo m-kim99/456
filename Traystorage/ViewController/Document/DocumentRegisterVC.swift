@@ -104,6 +104,7 @@ class DocumentRegisterVC: BaseVC {
         detailVC.document = doc
         detailVC.isAppearFromAddDoc = true
         self.pushVC(detailVC, animated: true)
+        NotificationCenter.default.post(name: NSNotification.Name("doc_reg"), object: nil)
     }
     
     private func onDocumentEditSuccess(doc: ModelDocument!) {
