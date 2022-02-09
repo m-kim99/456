@@ -72,6 +72,8 @@ class DocumentRegisterVC: BaseVC {
             newDoc.title = origDoc.title
             newDoc.content = origDoc.content
             newDoc.label = origDoc.label
+            newDoc.create_time = origDoc.create_time
+            newDoc.reg_time = origDoc.reg_time
             
             newDoc.tags.replaceSubrange(0..<newDoc.tags.count, with: origDoc.tags)
             newDoc.images.replaceSubrange(0..<newDoc.images.count, with: origDoc.images)

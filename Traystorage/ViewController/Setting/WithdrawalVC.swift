@@ -5,6 +5,7 @@ class WithdrawalVC: BaseVC {
 
     @IBOutlet weak var lblPageTitle: UILabel!
     
+    @IBOutlet weak var lblContent: UIFontLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -12,6 +13,16 @@ class WithdrawalVC: BaseVC {
     }
     
     private func initVC() {
+        let string = "withdrawal_content"._localized
+//        let data = string.data(using: String.Encoding.utf8)!
+//        do {
+//            var attrDict = AutoreleasingUnsafeMutablePointer<NSDictionary?>( [NSAttributedString.DocumentAttributeKey.defaultAttributes: [NSAttributedString.Key.font: AppFont.appleGothicNeoRegular(14)]]._bridgeToObjectiveC())
+//            lblContent.attributedText = try NSAttributedString(data: data, options:[.documentType: NSAttributedString.DocumentType.html], documentAttributes: attrDict)
+//        }
+//        catch let error {
+//            print("invalid attributed string: \(error.localizedDescription)")
+            lblContent.text = string
+//        }
     }
     
     //

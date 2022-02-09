@@ -46,7 +46,11 @@ class SettingVC: BaseVC {
     
     private func onLoadAgreementSuccessed(_ agrements: ModelAgreementList) {
         self.agreementList.append(contentsOf: agrements.terms)
-        settingTableView.reloadSections([termsSection], with: .automatic)
+        var termsSectionNo = termsSection;
+        if user.signup_type != 0 {
+            termsSectionNo = termsSection - 2
+        }
+        settingTableView.reloadSections([termsSectionNo], with: .automatic)
     }
     
     //
@@ -75,14 +79,14 @@ class SettingVC: BaseVC {
 
 extension SettingVC: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return /*user.signup_type != 0 ? 4 :*/ 6
+        return user.signup_type != 0 ? 4 : 6
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var sectionT = section;
-//        if user.signup_type != 0 {
-//            sectionT = section + 2
-//        }
+        if user.signup_type != 0 {
+            sectionT = section + 2
+        }
         switch sectionT {
         case infoSection:
             return 1
@@ -108,9 +112,9 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         
         var cellIdentifier = "cell"
         var sectionT = indexPath.section;
-//        if user.signup_type != 0 {
-//            sectionT = indexPath.section + 2
-//        }
+        if user.signup_type != 0 {
+            sectionT = indexPath.section + 2
+        }
 
         switch (sectionT, indexPath.row) {
         case (infoSection, _):
@@ -169,9 +173,9 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var sectionT = indexPath.section;
-//        if user.signup_type != 0 {
-//            sectionT = indexPath.section + 2
-//        }
+        if user.signup_type != 0 {
+            sectionT = indexPath.section + 2
+        }
         switch (sectionT, indexPath.row) {
         case (versionSection, 0):
             self.pushVC(VersionVC(nibName: "vc_version", bundle: nil), animated: true)

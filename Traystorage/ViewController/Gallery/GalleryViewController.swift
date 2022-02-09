@@ -254,7 +254,7 @@ class GalleryViewController: BaseVC {
 extension GalleryViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.bounds.size.width - 3) / 3, height: (collectionView.bounds.size.width - 4) / 3 )
+        return CGSize(width: (collectionView.bounds.size.width - 3) / 3, height: (collectionView.bounds.size.width - 3) / 3 )
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

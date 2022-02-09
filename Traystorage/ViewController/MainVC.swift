@@ -57,7 +57,7 @@ class MainVC: BaseVC {
     }
     
     @objc func docReg(_ notification: NSNotification) {
-        loadDocument("")
+        loadDocument("", showLoading: true)
     }
     
     @objc func onPanOfRightEdge(_ sender: UIScreenEdgePanGestureRecognizer) {
@@ -78,9 +78,10 @@ class MainVC: BaseVC {
         lblCountTitle.text = isSearchResult ? "search_result"._localized : "doc_count"._localized
         
         if isSearchResult {
-            loadDocument(searchText)
+            loadDocument(searchText, showLoading: true)
         } else {
-            loadDocument("")
+            tfSearchText.text = nil
+            loadDocument("", showLoading: true)
         }
     }
 
@@ -110,7 +111,7 @@ class MainVC: BaseVC {
 
     }
     
-    private func loadDocument(_ keyword: String) {
+    private func loadDocument(_ keyword: String, showLoading:Bool) {
 //        tableViewDocument.beginUpdates()
         self.documents.removeAll()
         tableViewDocument.reloadData()
@@ -118,15 +119,21 @@ class MainVC: BaseVC {
         
         lastKeyword = keyword
         
-        LoadingDialog.show()
+        if showLoading {
+            LoadingDialog.show()
+        }
         Rest.documentList(keyword: keyword, success: {[weak self] (result) in
-            LoadingDialog.dismiss()
-
+            if showLoading {
+                LoadingDialog.dismiss()
+            }
+            
             let documentList = result! as! ModelDocumentList
             self?.documents.append(contentsOf: documentList.contents)
             self?.documentChanged()
         }) {[weak self]  _, msg in
-            LoadingDialog.dismiss()
+            if showLoading {
+                LoadingDialog.dismiss()
+            }
             self?.view.showToast(msg)
         }
     }
@@ -144,6 +151,7 @@ class MainVC: BaseVC {
         } else {
             vwEmptyView.isHidden = true
             vwDocumentView.isHidden = false
+            lblSearchEmpty.text = "search_empty_title"._localized + (lastKeyword ?? "")
             lblSearchEmpty.isHidden = !isEmptyDocList
         }
     }
@@ -262,9 +270,9 @@ extension MainVC: MenuDelegate {
 extension MainVC: PopViewControllerDelegate {
     func onWillBack(_ sender: String, _ result: Any?) {
         if sender == "insert" {
-            onClickSearch("")
+            loadDocument(lastKeyword ?? "", showLoading: false)
         } else if sender == "update" {
-            onClickSearch("")
+            loadDocument(lastKeyword ?? "", showLoading: false)
         } else if sender == "delete" {
             let documentID = result as! Int
             

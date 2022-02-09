@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 import SVProgressHUD
-import WebKit
+import WebKit 
 
 class NoticeDetailVC: BaseVC {
     
@@ -18,6 +18,9 @@ class NoticeDetailVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lblTitle.text = nil
+        lblRegTime.text = nil
         
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
@@ -39,6 +42,12 @@ class NoticeDetailVC: BaseVC {
         if let notice = notice {
             lblTitle.text = notice.title
             lblRegTime.text = notice.reg_time
+            
+//            var tempContents: NSString! = notice.content! as NSString
+//            tempContents = tempContents.htmlString(byAppendingStyles: false)! as NSString
+//            tempContents = tempContents.htmlStringByAppendingBodyStyle(withName: "word-wrap", contents: "break-word")! as NSString
+//            tempContents = tempContents.htmlStringByAppendingDeviceWidthMetaInfo()! as NSString
+//
             wvContent.loadHTMLString(notice.content, baseURL: nil)
         } else {
             lblTitle.text = nil

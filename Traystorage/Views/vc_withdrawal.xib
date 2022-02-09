@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WithdrawalVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
+                <outlet property="lblContent" destination="WPg-8x-n7J" id="FT9-QZ-606"/>
                 <outlet property="lblPageTitle" destination="bxB-KL-QBv" id="cX2-1s-0ln"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -94,7 +95,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPg-8x-n7J" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                            <rect key="frame" x="18" y="140.33333333333334" width="339" height="17"/>
+                            <rect key="frame" x="18" y="140.33333333333334" width="339" height="0.0"/>
                             <attributedString key="attributedText"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
@@ -104,7 +105,6 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
                                     <real key="value" value="1.2"/>
                                 </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="withdrawal_content"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -141,9 +141,7 @@
         <designable name="G51-mU-pL2">
             <size key="intrinsicContentSize" width="181" height="30"/>
         </designable>
-        <designable name="WPg-8x-n7J">
-            <size key="intrinsicContentSize" width="126.66666666666667" height="17"/>
-        </designable>
+        <designable name="WPg-8x-n7J"/>
         <designable name="bxB-KL-QBv">
             <size key="intrinsicContentSize" width="127.66666666666667" height="21.666666666666668"/>
         </designable>
