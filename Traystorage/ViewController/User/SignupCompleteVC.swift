@@ -160,7 +160,10 @@ extension SignupCompleteVC: BaseRestApi {
         let loginID = params["id"] as? String
         let pwd = params["pwd"] as? String
         let phone = params["phone"] as? String
-        let type = params["type"] as? Int
+        var type = params["type"] as? Int
+        if type == nil {
+            type = 0
+        }
         
         Rest.signup(login_id:loginID ?? "", pwd:pwd ?? "", phone:phone ?? "", name: name, birthday: dbBirthday, gender: userGender, email: email, signup_type: type!, success: { [weak self] (result) -> Void in
             LoadingDialog.dismiss()

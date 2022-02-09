@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SignupCompleteVC.makeProfile():SignupCompleteVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "params">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in closure #2 in DocumentNFCRegisterVC.readerSession(_:didDetect:):DocumentNFCRegisterVC.swift">
          <PersistentStrings>
             <PersistentString
