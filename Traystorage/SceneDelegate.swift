@@ -5,19 +5,22 @@
 //  Created by Star_Man on 1/5/22.
 //
 
-import UIKit
+import Firebase
+import FirebaseDynamicLinks
 import NaverThirdPartyLogin
+import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        if let userActivity = connectionOptions.userActivities.first {
+            self.scene(scene, continue: userActivity)
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -60,15 +63,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //                return
 //            }
 //
-//            if urlStr.contains("traystorage://") { // naver
-//                NaverThirdPartyLoginConnection
-//                    .getSharedInstance()?
-//                    .receiveAccessToken(URLContexts.first?.url)
-//                return
-//            }
+            if urlStr.contains("traystorage://") { // naver
+                NaverThirdPartyLoginConnection
+                    .getSharedInstance()?
+                    .receiveAccessToken(URLContexts.first?.url)
+                return
+            }
 
             KOSession.handleOpen(url)
         }
     }
-}
 
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if let incomingURL = userActivity.webpageURL {
+            let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(incomingURL) { dynamicLink, _ in
+
+                // dynamic link 처리
+                print(dynamicLink?.url?.absoluteString)
+                let link = dynamicLink?.url?.absoluteString
+                if link == nil || link == "" {
+                    return
+                }
+                if link!.contains("https://traystorage.page.link/") {
+                    print(link)
+                    Local.setDimLink(link!)
+                    NotificationCenter.default.post(name: NSNotification.Name("dimlink"), object: nil)
+                }
+            }
+        }
+    }
+}

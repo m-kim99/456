@@ -4,7 +4,7 @@
 //
 //  Created by Star_Man on 1/5/22.
 //
-
+import Firebase
 import UIKit
 import FBSDKCoreKit
 import NaverThirdPartyLogin
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         thirdConn.setOnlyPortraitSupportInIphone(true)
         
         GIDSignIn.sharedInstance().clientID = GOOGLEKEY
-        
+        FirebaseApp.configure()
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
@@ -48,6 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+            // Handle the deep link. For example, show the deep-linked content or
+            // apply a promotional offer to the user's account.
+            // ...
+            return true
+          }
         // kakao
         if KOSession.isKakaoAccountLoginCallback(url) {
             return KOSession.handleOpen(url)
@@ -66,7 +72,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return ApplicationDelegate.shared.application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
         }
         NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options)
-        return true
+        return application(app, open: url,
+                            sourceApplication: options[UIApplication.OpenURLOptionsKey
+                              .sourceApplication] as? String,
+                            annotation: "")
     }
        
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
@@ -144,5 +153,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            
         // With swizzling disabled you must set the APNs token here.
 //        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+      let handled = DynamicLinks.dynamicLinks()
+        .handleUniversalLink(userActivity.webpageURL!) { dynamiclink, error in
+            if error != nil {
+                print(error)
+            }
+          print(dynamiclink)
+        }
+
+      return handled
     }
 }

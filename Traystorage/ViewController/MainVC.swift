@@ -54,6 +54,17 @@ class MainVC: BaseVC {
         let rightPanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(onPanOfRightEdge(_:)))
         rightPanGesture.edges = .all
         self.view.addGestureRecognizer(rightPanGesture)
+        
+        let link = Local.getDimLink()
+        if link != "" {
+            DispatchQueue.global().async {
+                Thread.sleep(forTimeInterval: 0.5)
+                DispatchQueue.main.async {
+                    self.goDetailPage()
+                }
+            }
+            return
+        }
     }
     
     @objc func docReg(_ notification: NSNotification) {

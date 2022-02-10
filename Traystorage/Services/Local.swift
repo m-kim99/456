@@ -34,6 +34,7 @@ enum Local : String {
     case PREFS_USER_DOCUMENT_CNT = "PREFS_USER_DOCUMENT_COUNT"
     
     case PREFS_APP_VERSION = "PREFS_APP_VERSION"
+    case PREFS_DIM_LINK = "PREFS_DIM_LINK"
 
     public static func setAppVersion(_ version: String) {
         let ud = UserDefaults.standard
@@ -223,4 +224,21 @@ enum Local : String {
         ud.removeObject(forKey: PREFS_APP_AUTO_LOGIN.rawValue)
         ud.synchronize()
     }
+    
+    public static func getDimLink() -> String! {
+        let ud = UserDefaults.standard
+        var pushKey = ud.string(forKey: PREFS_DIM_LINK.rawValue)
+        if pushKey == nil {
+            pushKey = ""
+        }
+        
+        return pushKey
+    }
+    
+    public static func setDimLink(_ key: String) {
+        let ud = UserDefaults.standard
+        ud.set(key, forKey: PREFS_DIM_LINK.rawValue)
+        ud.synchronize()
+    }
+
 }

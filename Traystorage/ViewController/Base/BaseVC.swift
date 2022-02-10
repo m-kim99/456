@@ -22,6 +22,7 @@ class BaseVC: UIViewController {
         }
         SVProgressHUD.setContainerView(self.view)
         LoadingDialog.setActiveController(self.navigationController)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.dimLink), name: NSNotification.Name(rawValue: "dimlink"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -224,5 +225,34 @@ class BaseVC: UIViewController {
         }
         
         ConfirmDialog.show(vc, title: title, message: message, showCancelBtn: showCancelBtn, okAction: okAction)
+    }
+    
+    @objc func dimLink(_ notification: NSNotification) {
+        self.goDetailPage()
+    }
+
+    func goDetailPage() {
+        let link = Local.getDimLink()
+        if link == "" {
+            return
+        }
+        let strLink = link
+        Local.setDimLink("")
+        
+        let temp = (strLink! as NSString).lastPathComponent
+        let documentUID = Int(temp )
+        Rest.documentDetail(documentID: documentUID!, success: {[weak self] (result) in
+            
+            let dic = result! as! ModelDocument
+            self!.goDocDetailPage(info: dic)
+        }) {[weak self]  _, msg in
+            self?.view.showToast(msg)
+        }
+    }
+    
+    func goDocDetailPage(info : ModelDocument)  {
+        let detailVC = DocumentDetailVC(nibName: "vc_document_detail", bundle: nil)
+        detailVC.document = info
+        pushVC(detailVC, animated: true)
     }
 }

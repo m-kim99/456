@@ -51,6 +51,8 @@ func ParseResponse(api: API, json: JSON) throws -> ModelBase? {
         return ModelDocumentList(json)
     case .DOCUMENT_INSERT:
         return ModelDocument(json)
+    case .DOCUMENT_DETAIL:
+        return ModelDocument(json)
     case .ASK_LIST:
         return ModelCardList(json)
     case .GET_NOTICE_LIST:
