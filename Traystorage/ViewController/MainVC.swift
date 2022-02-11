@@ -51,9 +51,9 @@ class MainVC: BaseVC {
         vwDocumentView.isHidden = false
         lblSearchEmpty.isHidden = true
         
-        let rightPanGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(onPanOfRightEdge(_:)))
-        rightPanGesture.edges = .all
-        self.view.addGestureRecognizer(rightPanGesture)
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
         
         let link = Local.getDimLink()
         if link != "" {
@@ -71,10 +71,12 @@ class MainVC: BaseVC {
         loadDocument("", showLoading: true)
     }
     
-    @objc func onPanOfRightEdge(_ sender: UIScreenEdgePanGestureRecognizer) {
-        onClickMenu("")
+    @objc func swiped(_ gesture: UISwipeGestureRecognizer) {
+        if gesture.direction == .left {
+            onClickMenu("")
+        }
     }
-    
+
     private func updateViewContent(isSearchResult:Bool) {
         let searchText = tfSearchText.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         if isSearchResult {
@@ -139,6 +141,7 @@ class MainVC: BaseVC {
             }
             
             let documentList = result! as! ModelDocumentList
+            self?.documents.removeAll()
             self?.documents.append(contentsOf: documentList.contents)
             self?.documentChanged()
         }) {[weak self]  _, msg in
@@ -236,6 +239,12 @@ extension MainVC: UITableViewDataSource {
             imageView.image = nil
         }
         labelView.backgroundColor = AppColor.labelColors[doc.label]
+        labelView.borderColor = .black
+        if doc.label == 9 {
+            labelView.borderWidth = 1.0
+        } else {
+            labelView.borderWidth = 0
+        }
         
         return cell
     }
@@ -245,7 +254,7 @@ extension MainVC: UITableViewDataSource {
 extension MainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DocumentDetailVC(nibName: "vc_document_detail", bundle: nil)
-        detailVC.document = self.documents[indexPath.row]
+        detailVC.documentId = self.documents[indexPath.row].doc_id
         detailVC.popDelegate = self
         self.pushVC(detailVC, animated: true)
     }

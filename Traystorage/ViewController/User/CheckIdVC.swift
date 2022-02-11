@@ -11,11 +11,11 @@ class CheckIdVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         userLoginID = params["userID"] as! String
-        if userLoginID.count > 4 {
-            lblLoginID.text = "****\(userLoginID.substring(from: 4))"
-        } else {
+//        if userLoginID.count > 4 {
+//            lblLoginID.text = "****\(userLoginID.substring(from: 4))"
+//        } else {
             lblLoginID.text = userLoginID
-        }
+//        }
     }
     
     //

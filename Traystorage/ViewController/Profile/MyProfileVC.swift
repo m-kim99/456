@@ -144,7 +144,11 @@ class MyProfileVC: BaseVC {
             return
         }
         
-        updateProfile(name: name, birthDay: self.birthdayEdit.text ?? "", email: email, gender: gender, profileImage:avatarImageName ?? "")
+        let birthday = self.birthdayEdit.text ?? ""
+        
+        ConfirmDialog.show(self, title: "profile_save"._localized, message: "", showCancelBtn: true) { [weak self] in
+            self?.updateProfile(name: name, birthDay: birthday, email: email, gender: self?.gender ?? 0, profileImage:self?.avatarImageName ?? "")
+        }
     }
     
     @IBAction func textDidChanged(_ sender: UITextField) {

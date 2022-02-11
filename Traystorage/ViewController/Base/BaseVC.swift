@@ -241,18 +241,8 @@ class BaseVC: UIViewController {
         
         let temp = (strLink! as NSString).lastPathComponent
         let documentUID = Int(temp )
-        Rest.documentDetail(documentID: documentUID!, success: {[weak self] (result) in
-            
-            let dic = result! as! ModelDocument
-            self!.goDocDetailPage(info: dic)
-        }) {[weak self]  _, msg in
-            self?.view.showToast(msg)
-        }
-    }
-    
-    func goDocDetailPage(info : ModelDocument)  {
         let detailVC = DocumentDetailVC(nibName: "vc_document_detail", bundle: nil)
-        detailVC.document = info
-        pushVC(detailVC, animated: true)
+        detailVC.documentId = documentUID
+        self.pushVC(detailVC, animated: true)
     }
 }

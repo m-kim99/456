@@ -157,24 +157,17 @@
 "withdrawal_header"="계정 비활성화 및 삭제 시 주의사항";
 "withdrawal_request_button"="회원 탈퇴신청";
 "withdrawal_confirm_title"="정말 회원 탈퇴하시겠습니까?\n(유의사항 확인필요)";
-"withdrawal_content" = "유의사항(잎독사항)
-사용하고 계신 계정은 탈퇴가 완료 될 경우
-복구가 불가하니 유의 부탁드립니다.
+"withdrawal_content" = "<b>Notice<font color='red'>(must read)</font></b><br/>
+Please note that the account you are using cannot be recovered once the withdrawal is complete.<br/>
+If the withdrawal is completed, the app usage history (document history, NFC registration history, etc.) is deleted and cannot be recovered.<br/><br/>
+<b>Withdrawal method</b><br/>
+In order to prevent damage to illegal theft and disadvantages when choosing to withdraw from membership.<br/>
+The mobile phone verification process that was performed at the time of membership registration is in progress.<br/>
+<br/>
+After the mobile phone verification is completed, the membership withdrawal request is processed.<br/><br/>
+<b>Information on waiting period for membership withdrawal</b><br/>
+There is a 14-day waiting period for withdrawal after authentication is complete, and you can cancel the waiting period for withdrawal during the withdrawal waiting period.";
 
-탈퇴가 완료될 경우 앱 이용내역이(문서 내역,
-NFC등록내역 등)삭제되며 복구가 불가능합니다.
-
-회원탈퇴 진행방법
-회원탈퇴 선택 시 불법도용 및 불이익에 대한 피해를
-방지하고자 회원가입 시 진행된 휴대폰인증
-절차가 진행됩니다.
-
-휴대폰인증 완료 후 회원탈퇴 신청이 진행 됩니다.
-
-회원탈퇴 대기기간 안내
-
-인증 완료 후 14일간의 탈퇴 대기기간이 잇으며,
-타퇴 대기기간 동안 탈퇴대기 취소를 할 수 있습니다.";
 // withdrawal_result
 "withdrawal_result_1"="회원탈퇴 신청이\n완료되었습니다";
 "withdrawal_result_2"="탈퇴 신청 날짜 :";
@@ -302,6 +295,7 @@ NFC등록내역 등)삭제되며 복구가 불가능합니다.
 "contact_us_title"="문의하기";
 "notice_title"="공지사항";
 "setting_title"="설정";
+"copyright"="@ 2022 thinkstep\nAll rights reserved";
 
 //notice
 "notice_count"="문서";
@@ -354,6 +348,7 @@ NFC등록내역 등)삭제되며 복구가 불가능합니다.
 "profile_discard_title"="이전화면으로 이동 시\n수정내역이 저장되지 않습니다.";
 "profile_discard_desc"="이전화면으로 이동 하시겠습니까?";
 "profile_changed"="프로필 변경되었습니다.";
+"profile_save"="변경된 내용을 저장하겠습니까?";
 
 // photo select
 "gallery_tilte"=" 사진선택";

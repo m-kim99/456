@@ -273,6 +273,7 @@
                                                                         <real key="value" value="1.1000000000000001"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="start_header"/>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isBold" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                         </subviews>
@@ -485,22 +486,22 @@
     </scenes>
     <designables>
         <designable name="2uG-9I-fHQ">
-            <size key="intrinsicContentSize" width="33" height="34"/>
+            <size key="intrinsicContentSize" width="30" height="32"/>
         </designable>
         <designable name="jCs-cd-VHv">
-            <size key="intrinsicContentSize" width="546" height="31.5"/>
+            <size key="intrinsicContentSize" width="156.5" height="34.5"/>
         </designable>
         <designable name="jjK-sz-1cW">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="45" height="30"/>
         </designable>
         <designable name="l0G-VQ-bDF">
-            <size key="intrinsicContentSize" width="438" height="21.5"/>
+            <size key="intrinsicContentSize" width="100" height="24"/>
         </designable>
         <designable name="nGO-4P-C69">
-            <size key="intrinsicContentSize" width="564.5" height="31.5"/>
+            <size key="intrinsicContentSize" width="153.5" height="37.5"/>
         </designable>
         <designable name="vbg-TC-uDb">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="33" height="30"/>
         </designable>
     </designables>
     <color key="tintColor" red="0.1333333333" green="0.20000000000000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>

@@ -1,26 +1,29 @@
-import SVProgressHUD
-import UIKit
-import PullToRefresh
 import ImageSlideshow
 import Kingfisher
+import PullToRefresh
 import SKPhotoBrowser
+import SVProgressHUD
+import UIKit
 
 class DocumentDetailVC: BaseVC {
-    
-    @IBOutlet weak var lblChallengeName: UILabel!
+    @IBOutlet var lblChallengeName: UILabel!
     
     private var imageList: [UIImage] = []
     private var pageNo = 0
     private var isLast = false
     
-    @IBOutlet weak var imageCollectionView: UICollectionView!
-    @IBOutlet weak var tagView: UILabel!
+    @IBOutlet var imageCollectionView: UICollectionView!
+    @IBOutlet var tagView: UILabel!
     
-    @IBOutlet weak var documentTitle: UILabel!
-    @IBOutlet weak var documentContent: UILabel!
-    @IBOutlet weak var documentDate: UILabel!
-    @IBOutlet weak var documentLabel: UIView!
+    @IBOutlet var documentTitle: UILabel!
+    @IBOutlet var documentContent: UILabel!
+    @IBOutlet var documentDate: UILabel!
+    @IBOutlet var documentLabel: UIView!
+    @IBOutlet var btnDelete: UIButton!
+    @IBOutlet var btnEdit: UIFontButton!
+    @IBOutlet var btnNFCRegister: UIFontButton!
     
+    public var documentId: Int! = 0
     
     let viewTagImageCollectionView = 1
     let viewTagTagCollectionView = 2
@@ -29,23 +32,18 @@ class DocumentDetailVC: BaseVC {
     var isUpdated = false
     
     private var refreshControl = UIRefreshControl()
-    
-    var document: ModelDocument?
-    
-    var photoBrowser: SKPhotoBrowser!
+    private var document: ModelDocument?
+    private var photoBrowser: SKPhotoBrowser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if isAppearFromAddDoc {
-            self.view.showToast("doc_add_success_toast"._localized)
+            view.showToast("doc_add_success_toast"._localized)
         }
         
         loadContentsFormDoc()
-
-//        initVC()
-//        initPullToRefresh()
-//        loadChallengeDetail(challenge?.challenge_uid)
+        loadDocumentDetail(documentId)
         
         imageCollectionView.register(UINib(nibName: "item_image", bundle: nil), forCellWithReuseIdentifier: "cell")
     }
@@ -56,11 +54,23 @@ class DocumentDetailVC: BaseVC {
             documentContent.text = document.content
             documentDate.text = document.reg_time
             documentLabel.backgroundColor = AppColor.labelColors[document.label]
+            documentLabel.borderColor = .black
+            if document.label == 9 {
+                documentLabel.borderWidth = 1.0
+            } else {
+                documentLabel.borderWidth = 0
+            }
+
             if document.tags.isEmpty {
                 tagView.text = nil
             } else {
                 tagView.text = "#" + document.tags.joined(separator: " #")
             }
+            
+            let isVisible = document.user_id == Rest.user.id
+            btnDelete.isHidden = !isVisible
+            btnEdit.isHidden = !isVisible
+            btnNFCRegister.isHidden = !isVisible
 
         } else {
             documentTitle.text = nil
@@ -74,13 +84,13 @@ class DocumentDetailVC: BaseVC {
     }
     
     override func onBackProcess(_ viewController: UIViewController) {
-        guard let vcs = self.navigationController?.viewControllers else {
+        guard let vcs = navigationController?.viewControllers else {
             return
         }
         
         for vc in vcs {
             if vc is MainVC {
-                self.navigationController?.popToViewController(vc, animated: true)
+                navigationController?.popToViewController(vc, animated: true)
 
                 if isUpdated, let mainVC = vc as? MainVC {
                     mainVC.onWillBack("update", document?.doc_id)
@@ -97,17 +107,17 @@ class DocumentDetailVC: BaseVC {
 
     //
     @IBAction func onClickTrash(_ sender: Any) {
-        let docID = self.document?.doc_id
-        ConfirmDialog.show2(self, title: "doc_del_query_title"._localized, message: "doc_del_query_desc"._localized, showCancelBtn: true) { [weak self]() -> Void in
+        let docID = document?.doc_id
+        ConfirmDialog.show2(self, title: "doc_del_query_title"._localized, message: "doc_del_query_desc"._localized, showCancelBtn: true) { [weak self] () -> Void in
             self?.deleteDocument(docID)
         }
     }
 
     @IBAction func onClickEdit(_ sender: Any) {
         let editVC = DocumentRegisterVC(nibName: "vc_document_register", bundle: nil)
-        editVC.document = self.document
+        editVC.document = document
         editVC.popDelegate = self
-        pushVC(editVC, animated: true, params: self.params)
+        pushVC(editVC, animated: true, params: params)
     }
     
     @IBAction func onClickNFCRegister(_ sender: Any) {
@@ -121,7 +131,6 @@ class DocumentDetailVC: BaseVC {
 //
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
-
 
 extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -161,10 +170,10 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
         SKPhotoBrowserOptions.displayAction = false
         SKPhotoBrowserOptions.displayCounterLabel = true
         SKPhotoBrowserOptions.displayBackAndForwardButton = false
-        SKButtonOptions.closeButtonPadding.y = self.view.safeAreaInsets.top
+        SKButtonOptions.closeButtonPadding.y = view.safeAreaInsets.top
         SKToolbarOptions.font = AppFont.appleGothicNeoRegular(15)
         
-        let modelDocument = self.document!
+        let modelDocument = document!
         
         var images = [SKPhoto]()
         for item in modelDocument.images {
@@ -177,11 +186,11 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
 
         photoBrowser = SKPhotoBrowser(photos: images)
         photoBrowser.delegate = self
-        self.navigationController?.pushViewController(photoBrowser, animated: true)
+        navigationController?.pushViewController(photoBrowser, animated: true)
     }
 }
 
-extension DocumentDetailVC : SKPhotoBrowserDelegate {
+extension DocumentDetailVC: SKPhotoBrowserDelegate {
     func didDismissAtPageIndex(_ index: Int) {
         popVC()
     }
@@ -192,12 +201,12 @@ extension DocumentDetailVC : SKPhotoBrowserDelegate {
 //// MARK: - Navigation
 //
 ////
-//extension ChallengeDetailVC: BaseNavigation {
+// extension ChallengeDetailVC: BaseNavigation {
 //    private func goVideoDetail(model: ModelVideo) {
 //        let params = ["videoUid": model.video_uid]
 //        pushVC(VideoDetailVC(nibName: "vc_video_detail", bundle: nil), animated: true, params: params as [String : Any])
 //    }
-//}
+// }
 //
 ////
 //
@@ -207,11 +216,11 @@ extension DocumentDetailVC : SKPhotoBrowserDelegate {
 extension DocumentDetailVC: BaseRestApi {
     func loadDocumentDetail(_ document_uid: Int!) {
         LoadingDialog.show()
-        Rest.documentDetail(documentID: document_uid, success: { [weak self] (result) -> Void in
+        Rest.documentDetail(documentID: document_uid, success: { [weak self] result -> Void in
             LoadingDialog.dismiss()
             self?.document = (result as! ModelDocument)
             self?.loadContentsFormDoc()
-        }) { [weak self](_, err) -> Void in
+        }) { [weak self] _, err -> Void in
             LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
@@ -219,13 +228,13 @@ extension DocumentDetailVC: BaseRestApi {
     
     func deleteDocument(_ docID: Int!) {
         LoadingDialog.show()
-        Rest.documentDelete(id: docID.description, success: { [weak self] (result) -> Void in
+        Rest.documentDelete(id: docID.description, success: { [weak self] _ -> Void in
             LoadingDialog.dismiss()
             if let popDelegate = self?.popDelegate {
                 popDelegate.onWillBack("delete", docID)
             }
             self?.popVC()
-        }, failure: { (_, err) -> Void in
+        }, failure: { _, err -> Void in
             LoadingDialog.dismiss()
             self.view.showToast(err)
         })
@@ -259,8 +268,7 @@ extension DocumentDetailVC: BaseRestApi {
 //    }
 }
 
-extension DocumentDetailVC: PopViewControllerDelegate
-{
+extension DocumentDetailVC: PopViewControllerDelegate {
     func onWillBack(_ sender: String, _ result: Any?) {
         if sender == "update" {
             loadContentsFormDoc()

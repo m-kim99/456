@@ -2,6 +2,7 @@ import Foundation
 import SwiftyJSON
 
 public class ModelUser: ModelBase {
+    var id: Int = 0
     var uid: String = ""
     var email: String!
     var pwd: String!
@@ -24,6 +25,7 @@ public class ModelUser: ModelBase {
     
     override init(_ json: JSON) {
         super.init(json)
+        id = json["id"].intValue
         uid = json["login_id"].stringValue
         name = json["name"].stringValue
         phone = json["phone_number"].stringValue

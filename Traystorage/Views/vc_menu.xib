@@ -259,39 +259,46 @@
                                                         <constraint firstAttribute="height" constant="53" id="xEu-cH-BTN"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2mU-oR-wpi">
-                                                    <rect key="frame" x="0.0" y="488" width="300" height="330"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CgV-EX-T57">
+                                                    <rect key="frame" x="0.0" y="488" width="300" height="258"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3J6-09-YCm">
+                                                    <rect key="frame" x="0.0" y="746" width="300" height="72"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="72" id="nas-Pg-x6K"/>
+                                                    </constraints>
+                                                    <string key="text">Copyright
+Copyright</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="copyright"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="PWD-Jz-m4F" secondAttribute="trailing" id="9qg-fS-fk3"/>
                                                 <constraint firstAttribute="trailing" secondItem="BlV-r8-fSN" secondAttribute="trailing" id="CA6-mc-NGC"/>
                                                 <constraint firstItem="BlV-r8-fSN" firstAttribute="top" secondItem="kNh-uo-XIZ" secondAttribute="bottom" id="N9P-je-LT9"/>
-                                                <constraint firstAttribute="bottom" secondItem="2mU-oR-wpi" secondAttribute="bottom" id="Oir-ev-Wjf"/>
-                                                <constraint firstAttribute="trailing" secondItem="2mU-oR-wpi" secondAttribute="trailing" id="PiM-uJ-XOg"/>
                                                 <constraint firstItem="Djd-zb-qnQ" firstAttribute="top" secondItem="BlV-r8-fSN" secondAttribute="bottom" id="TKq-bc-936"/>
                                                 <constraint firstAttribute="trailing" secondItem="kNh-uo-XIZ" secondAttribute="trailing" id="UiX-jU-WLz"/>
                                                 <constraint firstItem="Djd-zb-qnQ" firstAttribute="leading" secondItem="5tn-c2-ZoK" secondAttribute="leading" id="VMa-E3-4dw"/>
                                                 <constraint firstAttribute="trailing" secondItem="hHp-yO-zzY" secondAttribute="trailing" id="VfR-ah-h6Q"/>
-                                                <constraint firstItem="2mU-oR-wpi" firstAttribute="leading" secondItem="5tn-c2-ZoK" secondAttribute="leading" id="c5u-L7-zW1"/>
                                                 <constraint firstItem="kNh-uo-XIZ" firstAttribute="leading" secondItem="5tn-c2-ZoK" secondAttribute="leading" id="dKQ-S8-qw8"/>
                                                 <constraint firstItem="hHp-yO-zzY" firstAttribute="top" secondItem="f67-xd-dop" secondAttribute="bottom" id="dQe-IS-m2f"/>
                                                 <constraint firstItem="Dgf-QE-fay" firstAttribute="top" secondItem="hHp-yO-zzY" secondAttribute="bottom" id="ehE-GO-UMR"/>
                                                 <constraint firstItem="Dgf-QE-fay" firstAttribute="leading" secondItem="5tn-c2-ZoK" secondAttribute="leading" id="eo1-tr-KnH"/>
                                                 <constraint firstItem="PWD-Jz-m4F" firstAttribute="top" secondItem="Djd-zb-qnQ" secondAttribute="bottom" id="guQ-Zc-qas"/>
-                                                <constraint firstItem="2mU-oR-wpi" firstAttribute="top" secondItem="PWD-Jz-m4F" secondAttribute="bottom" id="hUv-Q6-shn"/>
-                                                <constraint firstItem="2mU-oR-wpi" firstAttribute="leading" secondItem="5tn-c2-ZoK" secondAttribute="leading" id="hvL-x7-7H4"/>
                                                 <constraint firstAttribute="trailing" secondItem="Djd-zb-qnQ" secondAttribute="trailing" id="kW7-Ec-GpS"/>
                                                 <constraint firstItem="kNh-uo-XIZ" firstAttribute="top" secondItem="Dgf-QE-fay" secondAttribute="bottom" id="qPQ-Sx-ztb"/>
                                                 <constraint firstItem="PWD-Jz-m4F" firstAttribute="top" secondItem="Djd-zb-qnQ" secondAttribute="bottom" id="qpE-AZ-4ue"/>
                                                 <constraint firstAttribute="trailing" secondItem="f67-xd-dop" secondAttribute="trailing" id="sC5-1V-gc6"/>
                                                 <constraint firstItem="PWD-Jz-m4F" firstAttribute="leading" secondItem="5tn-c2-ZoK" secondAttribute="leading" id="stN-im-g2X"/>
-                                                <constraint firstAttribute="trailing" secondItem="2mU-oR-wpi" secondAttribute="trailing" id="tep-kx-Wi3"/>
                                                 <constraint firstItem="BlV-r8-fSN" firstAttribute="leading" secondItem="5tn-c2-ZoK" secondAttribute="leading" id="uYU-nu-qSQ"/>
                                                 <constraint firstItem="hHp-yO-zzY" firstAttribute="leading" secondItem="5tn-c2-ZoK" secondAttribute="leading" id="wEp-sK-Ge0"/>
-                                                <constraint firstAttribute="bottom" secondItem="2mU-oR-wpi" secondAttribute="bottom" id="zRK-FC-26D"/>
                                                 <constraint firstAttribute="trailing" secondItem="Dgf-QE-fay" secondAttribute="trailing" id="zWN-OC-G7V"/>
                                             </constraints>
                                         </stackView>

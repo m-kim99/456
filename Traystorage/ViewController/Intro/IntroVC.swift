@@ -15,16 +15,17 @@ class IntroVC: BaseVC {
     @IBOutlet var loadingImage3: UIImageView!
     
     let pageCount = 2
-    
     private var currentPage = 0
+    var slidingTimer: Timer?
     
     var loadingImageOffset = 0
     var loadingImages: [UIImage] = []
     var loadingProgressTimer: Timer?
+    
     private var snsManager: SnsManager!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         snsManager = SnsManager(self)
         snsManager.delegate = self
 
@@ -41,7 +42,8 @@ class IntroVC: BaseVC {
 //        nextScreen(false)
 //        ConfirmDialog.show(self, title: "Please verify your mobile phone number.", message: "", showCancelBtn: true, okAction: nil)
 
-        // pushVC(SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil), animated: true)
+//        pushVC(WithdrawalVC(nibName: "vc_withdrawal", bundle: nil), animated: true)
+//        pushVC(SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil), animated: true)
         startIntro()
     }
 
@@ -53,14 +55,41 @@ class IntroVC: BaseVC {
             checkVersion()
         } else {
             Local.deleteUser()
-            
+
             let skipIntro = ud.bool(forKey: Local.PREFS_APP_INTRO_SKIP.rawValue)
             if skipIntro {
                 checkVersion() // self.nextScreen(false)
             } else {
                 changeLoadingViewVisiblity(isHidden: true)
                 introView.isHidden = false
+                autoSlideTimer()
             }
+        }
+    }
+    
+    func slideToNextPage() {
+        onChangedPage(currentPage + 1)
+        pageScrollView.setContentOffset(CGPoint(x: view.frame.width * CGFloat(currentPage), y: 0), animated: true)
+        currentPage = currentPage + 1
+    }
+    
+    func autoSlideTimer() {
+        slidingTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { [weak self] _ in
+            if let this = self {
+                if this.currentPage >= this.pageCount {
+                    this.stopSlidingTimer()
+                    this.startApp()
+                } else {
+                    this.slideToNextPage()
+                }
+            }
+        })
+    }
+    
+    func stopSlidingTimer() {
+        if let timer = slidingTimer {
+            timer.invalidate()
+            slidingTimer = nil
         }
     }
     
@@ -234,7 +263,7 @@ class IntroVC: BaseVC {
             Rest.user.pwd = _pwd
             Local.setUser(Rest.user)
             self?.openAgreeView()
-        }, failure: { [weak self] code, msg in
+        }, failure: { [weak self] code, _ in
             self?.changeLoadingViewVisiblity(isHidden: true)
                 
             let resposeCode = ResponseResultCode(rawValue: code) ?? .ERROR_SERVER
@@ -288,6 +317,7 @@ extension IntroVC: BaseNavigation {
     
     @IBAction func onSignupSNS(_ sender: UIButton) {
         // onSignup(sender)
+        
         if sender.tag == 0 {
             // kakao
             snsManager.start(type: .Kakao)
@@ -491,6 +521,6 @@ extension IntroVC: SnsManagerDelegate {
     }
 
     func snsAuthError(_ type: SnsType, msg: String) {
-        self.view.showToast(msg)
+        view.showToast(msg)
     }
 }

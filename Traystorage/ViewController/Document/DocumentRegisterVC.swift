@@ -103,10 +103,9 @@ class DocumentRegisterVC: BaseVC {
         }
         
         let detailVC = DocumentDetailVC(nibName: "vc_document_detail", bundle: nil)
-        detailVC.document = doc
+        detailVC.documentId = doc.doc_id
         detailVC.isAppearFromAddDoc = true
         self.pushVC(detailVC, animated: true)
-        NotificationCenter.default.post(name: NSNotification.Name("doc_reg"), object: nil)
     }
     
     private func onDocumentEditSuccess(doc: ModelDocument!) {
@@ -378,6 +377,13 @@ extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelega
             
             if let labelColorView = cell.viewWithTag(21) {
                 labelColorView.backgroundColor = AppColor.labelColors[indexPath.row]
+                labelColorView.borderColor = .black
+                if indexPath.row == 9 {
+                    labelColorView.borderWidth = 1.0
+                } else {
+                    labelColorView.borderWidth = 0
+                }
+
             }
             break
         default:

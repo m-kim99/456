@@ -14,15 +14,29 @@ class WithdrawalVC: BaseVC {
     
     private func initVC() {
         let string = "withdrawal_content"._localized
-//        let data = string.data(using: String.Encoding.utf8)!
-//        do {
-//            var attrDict = AutoreleasingUnsafeMutablePointer<NSDictionary?>( [NSAttributedString.DocumentAttributeKey.defaultAttributes: [NSAttributedString.Key.font: AppFont.appleGothicNeoRegular(14)]]._bridgeToObjectiveC())
-//            lblContent.attributedText = try NSAttributedString(data: data, options:[.documentType: NSAttributedString.DocumentType.html], documentAttributes: attrDict)
-//        }
-//        catch let error {
-//            print("invalid attributed string: \(error.localizedDescription)")
+        let data = string.data(using: String.Encoding.utf8)!
+        do {
+//            var attrs:NSDictionary? = NSDictionary(object:[NSAttributedString.Key.font : AppFont.appleGothicNeoRegular(15)], forKey:NSAttributedString.DocumentAttributeKey.defaultAttributes.rawValue as NSCopying)
+            let regularFont = AppFont.appleGothicNeoRegular(15)
+            let boldFont = AppFont.appleGothicNeoBold(15)
+            let attrString = try NSMutableAttributedString(data: data, options:[.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)// &attrs)
+            attrString.enumerateAttribute(NSAttributedString.Key.font, in: NSMakeRange(0, attrString.length), options: NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired) { value, range, _ in
+                let font = value as! UIFont
+                if font.fontDescriptor.symbolicTraits.contains(.traitBold) {
+                    attrString.addAttributes([NSAttributedString.Key.font : boldFont], range: range)
+                } else {
+                    attrString.addAttributes([NSAttributedString.Key.font : regularFont], range: range)
+                }
+            }
+            let paraStyle = NSMutableParagraphStyle()
+            paraStyle.lineSpacing = 1.5
+            attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paraStyle, range: NSMakeRange(0, attrString.length))
+            lblContent.attributedText = attrString
+        }
+        catch let error {
+            print("invalid attributed string: \(error.localizedDescription)")
             lblContent.text = string
-//        }
+        }
     }
     
     //

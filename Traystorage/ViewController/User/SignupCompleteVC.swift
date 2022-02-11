@@ -103,6 +103,7 @@ extension SignupCompleteVC: BaseAction {
     }
     
     @IBAction func onClickUseService(_ sender: Any) {
+        hideKeyboard()
         makeProfile()
     }
 }

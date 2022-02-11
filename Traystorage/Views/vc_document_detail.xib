@@ -12,6 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DocumentDetailVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
+                <outlet property="btnDelete" destination="E0N-Vp-Dln" id="V4G-PE-Q97"/>
+                <outlet property="btnEdit" destination="Y7P-tH-Vec" id="SAc-ij-val"/>
+                <outlet property="btnNFCRegister" destination="Djw-DZ-iZC" id="Lx4-BY-mZi"/>
                 <outlet property="documentContent" destination="4iR-ps-qYv" id="Xpq-cM-v4f"/>
                 <outlet property="documentDate" destination="ZYM-a4-Dp2" id="dgJ-tC-ifP"/>
                 <outlet property="documentLabel" destination="MNP-l3-pn8" id="Ra6-g4-2fv"/>
