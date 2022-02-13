@@ -39,7 +39,7 @@ class DocumentDetailVC: BaseVC {
         super.viewDidLoad()
         
         if isAppearFromAddDoc {
-            view.showToast("doc_add_success_toast"._localized)
+            self.view.showToast("doc_add_success_toast"._localized)
         }
         
         loadContentsFormDoc()
@@ -55,7 +55,7 @@ class DocumentDetailVC: BaseVC {
             documentDate.text = document.reg_time
             documentLabel.backgroundColor = AppColor.labelColors[document.label]
             documentLabel.borderColor = .black
-            if document.label == 9 {
+            if document.label == 0 {
                 documentLabel.borderWidth = 1.0
             } else {
                 documentLabel.borderWidth = 0
@@ -84,13 +84,13 @@ class DocumentDetailVC: BaseVC {
     }
     
     override func onBackProcess(_ viewController: UIViewController) {
-        guard let vcs = navigationController?.viewControllers else {
+        guard let vcs = self.navigationController?.viewControllers else {
             return
         }
         
         for vc in vcs {
             if vc is MainVC {
-                navigationController?.popToViewController(vc, animated: true)
+                self.navigationController?.popToViewController(vc, animated: true)
 
                 if isUpdated, let mainVC = vc as? MainVC {
                     mainVC.onWillBack("update", document?.doc_id)
@@ -107,23 +107,24 @@ class DocumentDetailVC: BaseVC {
 
     //
     @IBAction func onClickTrash(_ sender: Any) {
-        let docID = document?.doc_id
-        ConfirmDialog.show2(self, title: "doc_del_query_title"._localized, message: "doc_del_query_desc"._localized, showCancelBtn: true) { [weak self] () -> Void in
+        let docID = self.document?.doc_id
+        ConfirmDialog.show2(self, title: "doc_del_query_title"._localized, message: "doc_del_query_desc"._localized, showCancelBtn: true) { [weak self]() -> Void in
             self?.deleteDocument(docID)
         }
     }
 
     @IBAction func onClickEdit(_ sender: Any) {
         let editVC = DocumentRegisterVC(nibName: "vc_document_register", bundle: nil)
-        editVC.document = document
+        editVC.document = self.document
         editVC.popDelegate = self
-        pushVC(editVC, animated: true, params: params)
+        pushVC(editVC, animated: true, params: self.params)
     }
     
     @IBAction func onClickNFCRegister(_ sender: Any) {
         let vc = DocumentNFCRegisterVC(nibName: "vc_document_nfc_register", bundle: nil)
-        vc.documentID = document!.doc_id
-        vc.documentCode = document!.code
+        //yj comment
+//        vc.documentID = document!.doc_id
+//        vc.documentCode = document!.code
         pushVC(vc, animated: true)
     }
 }
@@ -170,10 +171,10 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
         SKPhotoBrowserOptions.displayAction = false
         SKPhotoBrowserOptions.displayCounterLabel = true
         SKPhotoBrowserOptions.displayBackAndForwardButton = false
-        SKButtonOptions.closeButtonPadding.y = view.safeAreaInsets.top
+        SKButtonOptions.closeButtonPadding.y = self.view.safeAreaInsets.top
         SKToolbarOptions.font = AppFont.appleGothicNeoRegular(15)
         
-        let modelDocument = document!
+        let modelDocument = self.document!
         
         var images = [SKPhoto]()
         for item in modelDocument.images {
@@ -186,11 +187,11 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
 
         photoBrowser = SKPhotoBrowser(photos: images)
         photoBrowser.delegate = self
-        navigationController?.pushViewController(photoBrowser, animated: true)
+        self.navigationController?.pushViewController(photoBrowser, animated: true)
     }
 }
 
-extension DocumentDetailVC: SKPhotoBrowserDelegate {
+extension DocumentDetailVC : SKPhotoBrowserDelegate {
     func didDismissAtPageIndex(_ index: Int) {
         popVC()
     }
@@ -201,12 +202,12 @@ extension DocumentDetailVC: SKPhotoBrowserDelegate {
 //// MARK: - Navigation
 //
 ////
-// extension ChallengeDetailVC: BaseNavigation {
+//extension ChallengeDetailVC: BaseNavigation {
 //    private func goVideoDetail(model: ModelVideo) {
 //        let params = ["videoUid": model.video_uid]
 //        pushVC(VideoDetailVC(nibName: "vc_video_detail", bundle: nil), animated: true, params: params as [String : Any])
 //    }
-// }
+//}
 //
 ////
 //
@@ -216,11 +217,11 @@ extension DocumentDetailVC: SKPhotoBrowserDelegate {
 extension DocumentDetailVC: BaseRestApi {
     func loadDocumentDetail(_ document_uid: Int!) {
         LoadingDialog.show()
-        Rest.documentDetail(documentID: document_uid, success: { [weak self] result -> Void in
+        Rest.documentDetail(documentID: document_uid, success: { [weak self] (result) -> Void in
             LoadingDialog.dismiss()
             self?.document = (result as! ModelDocument)
             self?.loadContentsFormDoc()
-        }) { [weak self] _, err -> Void in
+        }) { [weak self](_, err) -> Void in
             LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
@@ -228,13 +229,13 @@ extension DocumentDetailVC: BaseRestApi {
     
     func deleteDocument(_ docID: Int!) {
         LoadingDialog.show()
-        Rest.documentDelete(id: docID.description, success: { [weak self] _ -> Void in
+        Rest.documentDelete(id: docID.description, success: { [weak self] (result) -> Void in
             LoadingDialog.dismiss()
             if let popDelegate = self?.popDelegate {
                 popDelegate.onWillBack("delete", docID)
             }
             self?.popVC()
-        }, failure: { _, err -> Void in
+        }, failure: { (_, err) -> Void in
             LoadingDialog.dismiss()
             self.view.showToast(err)
         })
@@ -268,7 +269,8 @@ extension DocumentDetailVC: BaseRestApi {
 //    }
 }
 
-extension DocumentDetailVC: PopViewControllerDelegate {
+extension DocumentDetailVC: PopViewControllerDelegate
+{
     func onWillBack(_ sender: String, _ result: Any?) {
         if sender == "update" {
             loadContentsFormDoc()

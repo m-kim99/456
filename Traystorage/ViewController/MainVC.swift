@@ -240,7 +240,7 @@ extension MainVC: UITableViewDataSource {
         }
         labelView.backgroundColor = AppColor.labelColors[doc.label]
         labelView.borderColor = .black
-        if doc.label == 9 {
+        if doc.label == 0 {
             labelView.borderWidth = 1.0
         } else {
             labelView.borderWidth = 0

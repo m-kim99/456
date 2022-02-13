@@ -378,12 +378,11 @@ extension DocumentRegisterVC: UICollectionViewDataSource, UICollectionViewDelega
             if let labelColorView = cell.viewWithTag(21) {
                 labelColorView.backgroundColor = AppColor.labelColors[indexPath.row]
                 labelColorView.borderColor = .black
-                if indexPath.row == 9 {
+                if indexPath.row == 0 {
                     labelColorView.borderWidth = 1.0
                 } else {
                     labelColorView.borderWidth = 0
                 }
-
             }
             break
         default:

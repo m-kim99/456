@@ -36,7 +36,7 @@ class AppColor {
     static let notice_UnreadBackColor = UIColor(hex: 0xe8eaf5)
     
     
-    static let labelColors: [UIColor] = [UIColor(hex: 0xD80C18), UIColor(hex: 0xEE7800), UIColor(hex: 0xFABE00),
+    static let labelColors: [UIColor] = [UIColor.white, UIColor(hex: 0xD80C18), UIColor(hex: 0xEE7800), UIColor(hex: 0xFABE00),
                               UIColor(hex: 0x5CB531), UIColor(hex: 0x00A0E9), UIColor(hex: 0x890C84),
-                              UIColor(hex: 0x8C4800), UIColor(hex: 0xAAABAB), UIColor.black, UIColor.white]
+                              UIColor(hex: 0x8C4800), UIColor(hex: 0xAAABAB), UIColor.black]
 }
