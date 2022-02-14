@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -138,53 +137,44 @@
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Il2-Ov-uAO" userLabel="stack3">
-                                                    <rect key="frame" x="0.0" y="335.33333333333331" width="335" height="33"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MeE-Ul-EWQ" userLabel="View1">
+                                                    <rect key="frame" x="47" y="151" width="240" height="128"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2CY-83-fDV">
-                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="33"/>
-                                                            <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="Icon-C-CheckOff-24" translatesAutoresizingMaskIntoConstraints="NO" id="zzp-3I-cJN">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="24" height="33"/>
-                                                                </imageView>
-                                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOh-rS-yGj" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                                    <rect key="frame" x="32" y="0.0" width="68" height="33"/>
-                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                    <state key="normal" title="auto login">
-                                                                        <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    </state>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
-                                                                            <real key="value" value="14"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="auto_login"/>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                    <connections>
-                                                                        <action selector="onClickAutoLogin:" destination="-1" eventType="touchUpInside" id="EKe-BR-Yuc"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                        </stackView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Kb-Zh-WCU" userLabel="line">
-                                                            <rect key="frame" x="128" y="0.0" width="9" height="33"/>
-                                                            <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYp-Ng-S1C">
-                                                                    <rect key="frame" x="4" y="8" width="1" height="17"/>
-                                                                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" constant="1" id="s6D-4O-LXX"/>
-                                                                    </constraints>
-                                                                </view>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="JYp-Ng-S1C" firstAttribute="leading" secondItem="3Kb-Zh-WCU" secondAttribute="leading" constant="4" id="9yi-tH-LKE"/>
-                                                                <constraint firstAttribute="trailing" secondItem="JYp-Ng-S1C" secondAttribute="trailing" constant="4" id="PhL-dT-nTR"/>
-                                                                <constraint firstItem="JYp-Ng-S1C" firstAttribute="top" secondItem="3Kb-Zh-WCU" secondAttribute="top" constant="8" id="efA-3T-p7C"/>
-                                                                <constraint firstAttribute="bottom" secondItem="JYp-Ng-S1C" secondAttribute="bottom" constant="8" id="kBs-y7-9KE"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HyQ-SY-amj" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="165" y="0.0" width="45" height="33"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="Icon-C-CheckOff-24" translatesAutoresizingMaskIntoConstraints="NO" id="zzp-3I-cJN">
+                                                            <rect key="frame" x="108" y="47" width="24" height="33"/>
+                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOh-rS-yGj" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                            <rect key="frame" x="86" y="47" width="68" height="33"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                            <state key="normal" title="auto login">
+                                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
+                                                                    <real key="value" value="14"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="auto_login"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="onClickAutoLogin:" destination="-1" eventType="touchUpInside" id="EKe-BR-Yuc"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="zzp-3I-cJN" firstAttribute="leading" secondItem="MeE-Ul-EWQ" secondAttribute="leading" id="HnE-si-1Zj"/>
+                                                        <constraint firstAttribute="height" constant="33" id="QPn-6z-kJJ"/>
+                                                        <constraint firstItem="BOh-rS-yGj" firstAttribute="centerY" secondItem="MeE-Ul-EWQ" secondAttribute="centerY" id="Tlk-c1-kAF"/>
+                                                        <constraint firstItem="zzp-3I-cJN" firstAttribute="centerY" secondItem="MeE-Ul-EWQ" secondAttribute="centerY" id="Yhv-2Y-Vhh"/>
+                                                        <constraint firstAttribute="trailing" secondItem="BOh-rS-yGj" secondAttribute="trailing" id="nCh-rs-Efs"/>
+                                                        <constraint firstItem="BOh-rS-yGj" firstAttribute="leading" secondItem="zzp-3I-cJN" secondAttribute="trailing" constant="10" id="yeF-QQ-ZFq"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1R-9K-E5b" userLabel="View2">
+                                                    <rect key="frame" x="47" y="151" width="240" height="128"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qce-Jq-Mqr" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                            <rect key="frame" x="97" y="47" width="45" height="33"/>
                                                             <state key="normal" title="find id">
                                                                 <color key="titleColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
@@ -195,29 +185,27 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="find_id"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="onFindID:" destination="-1" eventType="touchUpInside" id="S94-2h-hdM"/>
+                                                                <action selector="onFindID:" destination="-1" eventType="touchUpInside" id="js2-cX-R7Y"/>
                                                             </connections>
                                                         </button>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFM-Ry-X43" userLabel="line">
-                                                            <rect key="frame" x="238" y="0.0" width="9" height="33"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4a-41-fyb" userLabel="line">
+                                                            <rect key="frame" x="115" y="47" width="9" height="33"/>
                                                             <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xz2-uy-SGc">
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Njd-fv-GPK">
                                                                     <rect key="frame" x="4" y="8" width="1" height="17"/>
                                                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="1" id="iMZ-do-k5i"/>
+                                                                        <constraint firstAttribute="width" constant="1" id="Tc1-DB-6DS"/>
                                                                     </constraints>
                                                                 </view>
                                                             </subviews>
+                                                            <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstItem="Xz2-uy-SGc" firstAttribute="leading" secondItem="bFM-Ry-X43" secondAttribute="leading" constant="4" id="Bsw-z3-iZb"/>
-                                                                <constraint firstAttribute="trailing" secondItem="Xz2-uy-SGc" secondAttribute="trailing" constant="4" id="XrJ-ob-ghh"/>
-                                                                <constraint firstAttribute="bottom" secondItem="Xz2-uy-SGc" secondAttribute="bottom" constant="8" id="aJa-w4-fQJ"/>
-                                                                <constraint firstItem="Xz2-uy-SGc" firstAttribute="top" secondItem="bFM-Ry-X43" secondAttribute="top" constant="8" id="svb-a1-xVq"/>
+                                                                <constraint firstAttribute="width" constant="1" id="oUk-CK-WhL"/>
                                                             </constraints>
                                                         </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="87P-yy-4g5" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                            <rect key="frame" x="275" y="0.0" width="60" height="33"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSN-Ne-EJ7" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
+                                                            <rect key="frame" x="90" y="47" width="60" height="33"/>
                                                             <state key="normal" title="password reset">
                                                                 <color key="titleColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
@@ -228,14 +216,25 @@
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="find_pwd"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
-                                                                <action selector="onFindPassword:" destination="-1" eventType="touchUpInside" id="2Iv-SD-4lU"/>
+                                                                <action selector="onFindPassword:" destination="-1" eventType="touchUpInside" id="3Qf-3h-JUh"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="33" id="Ppo-Te-dkn"/>
+                                                        <constraint firstItem="Qce-Jq-Mqr" firstAttribute="top" secondItem="V1R-9K-E5b" secondAttribute="top" id="0zM-lw-H9J"/>
+                                                        <constraint firstItem="Qce-Jq-Mqr" firstAttribute="leading" secondItem="V1R-9K-E5b" secondAttribute="leading" id="4me-Gb-urm"/>
+                                                        <constraint firstItem="OSN-Ne-EJ7" firstAttribute="top" secondItem="V1R-9K-E5b" secondAttribute="top" id="9Rc-Kt-gEX"/>
+                                                        <constraint firstAttribute="height" constant="33" id="KOK-Ot-ryR"/>
+                                                        <constraint firstAttribute="bottom" secondItem="OSN-Ne-EJ7" secondAttribute="bottom" id="QJK-W8-mD4"/>
+                                                        <constraint firstItem="OSN-Ne-EJ7" firstAttribute="leading" secondItem="v4a-41-fyb" secondAttribute="trailing" constant="8" id="TVm-mV-9hJ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="v4a-41-fyb" secondAttribute="bottom" constant="8" id="Z2I-Ln-pBc"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Qce-Jq-Mqr" secondAttribute="bottom" id="ZOx-1s-uIF"/>
+                                                        <constraint firstItem="v4a-41-fyb" firstAttribute="leading" secondItem="Qce-Jq-Mqr" secondAttribute="trailing" constant="8" id="dwL-JO-Iwh"/>
+                                                        <constraint firstItem="v4a-41-fyb" firstAttribute="top" secondItem="V1R-9K-E5b" secondAttribute="top" constant="8" id="icB-EF-IyP"/>
+                                                        <constraint firstAttribute="trailing" secondItem="OSN-Ne-EJ7" secondAttribute="trailing" id="n4B-eH-oLu"/>
                                                     </constraints>
-                                                </stackView>
+                                                </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pue-sy-meH" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="376.33333333333331" width="335" height="54"/>
                                                     <constraints>
@@ -265,17 +264,18 @@
                                             <constraints>
                                                 <constraint firstItem="pue-sy-meH" firstAttribute="leading" secondItem="5ML-LO-MhT" secondAttribute="leading" id="4xa-4m-XQ8"/>
                                                 <constraint firstAttribute="trailing" secondItem="kUJ-oh-pco" secondAttribute="trailing" id="GFh-iF-jC7"/>
-                                                <constraint firstItem="Il2-Ov-uAO" firstAttribute="top" secondItem="kUJ-oh-pco" secondAttribute="bottom" constant="10" id="GMQ-m3-YeP"/>
-                                                <constraint firstItem="kUJ-oh-pco" firstAttribute="top" secondItem="Eqc-Hz-O7Q" secondAttribute="bottom" constant="60" id="Sz5-rA-HUs"/>
-                                                <constraint firstItem="pue-sy-meH" firstAttribute="top" secondItem="Il2-Ov-uAO" secondAttribute="bottom" constant="8" symbolic="YES" id="bs8-px-W7o"/>
-                                                <constraint firstAttribute="trailing" secondItem="Il2-Ov-uAO" secondAttribute="trailing" id="c6r-dJ-NWi"/>
-                                                <constraint firstItem="Il2-Ov-uAO" firstAttribute="leading" secondItem="5ML-LO-MhT" secondAttribute="leading" id="dRk-mq-2Gv"/>
+                                                <constraint firstItem="V1R-9K-E5b" firstAttribute="top" secondItem="MeE-Ul-EWQ" secondAttribute="bottom" constant="5" id="OJ5-8C-CBh"/>
+                                                <constraint firstItem="MeE-Ul-EWQ" firstAttribute="top" secondItem="kUJ-oh-pco" secondAttribute="bottom" constant="10" id="Pil-OF-H8P"/>
+                                                <constraint firstItem="kUJ-oh-pco" firstAttribute="top" secondItem="Eqc-Hz-O7Q" secondAttribute="bottom" constant="36" id="Sz5-rA-HUs"/>
                                                 <constraint firstItem="Eqc-Hz-O7Q" firstAttribute="top" secondItem="5ML-LO-MhT" secondAttribute="top" id="dfn-8X-eSq"/>
                                                 <constraint firstAttribute="bottom" secondItem="pue-sy-meH" secondAttribute="bottom" id="iiV-pD-9ic"/>
                                                 <constraint firstAttribute="trailing" secondItem="pue-sy-meH" secondAttribute="trailing" id="izx-zH-0lp"/>
+                                                <constraint firstItem="pue-sy-meH" firstAttribute="top" secondItem="V1R-9K-E5b" secondAttribute="bottom" constant="5" id="ngU-zj-V5E"/>
                                                 <constraint firstAttribute="trailing" secondItem="Eqc-Hz-O7Q" secondAttribute="trailing" id="o3B-VZ-TBP"/>
                                                 <constraint firstItem="kUJ-oh-pco" firstAttribute="leading" secondItem="5ML-LO-MhT" secondAttribute="leading" id="rWE-sE-eVM"/>
                                                 <constraint firstItem="Eqc-Hz-O7Q" firstAttribute="leading" secondItem="5ML-LO-MhT" secondAttribute="leading" id="uh1-NN-YJq"/>
+                                                <constraint firstItem="MeE-Ul-EWQ" firstAttribute="centerX" secondItem="5ML-LO-MhT" secondAttribute="centerX" id="v2e-hw-4vQ"/>
+                                                <constraint firstItem="V1R-9K-E5b" firstAttribute="centerX" secondItem="5ML-LO-MhT" secondAttribute="centerX" id="zGZ-va-SDr"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -337,14 +337,8 @@
         <designable name="63L-k3-lnv">
             <size key="intrinsicContentSize" width="135" height="43.333333333333336"/>
         </designable>
-        <designable name="87P-yy-4g5">
-            <size key="intrinsicContentSize" width="60" height="29"/>
-        </designable>
         <designable name="BOh-rS-yGj">
             <size key="intrinsicContentSize" width="68" height="29"/>
-        </designable>
-        <designable name="HyQ-SY-amj">
-            <size key="intrinsicContentSize" width="45" height="29"/>
         </designable>
         <designable name="Vhp-XE-V27">
             <size key="intrinsicContentSize" width="116.66666666666667" height="34"/>
