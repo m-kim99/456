@@ -34,7 +34,8 @@ class ContactusVC: BaseVC {
         if let popDelegate = self.popDelegate {
             popDelegate.onWillBack("contactus", isChanged ? "updated" : "none")
         }
-        super.onBackProcess(viewController)
+        //super.onBackProcess(viewController)
+        popVC()
     }
     
     
@@ -66,7 +67,15 @@ class ContactusVC: BaseVC {
         self.tfSubject.text = ""
         self.tvDetail.text = ""
         self.isChanged = true
-        self.onBackProcess(self)
+//        self.onBackProcess(self)
+        if let popDelegate = self.popDelegate {
+            popDelegate.onWillBack("contactus", isChanged ? "updated" : "none")
+        }
+        //super.onBackProcess(viewController)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.popVC()
+        }
+        
     }
     
     private func insertAsk(_ subject:String,_ content:String) {
