@@ -57,8 +57,6 @@
 		797EA08B27B2B3FE00019BE9 /* NaverUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA07D27B2B3FE00019BE9 /* NaverUserInfo.swift */; };
 		797EA08C27B2B3FE00019BE9 /* NaverUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA07E27B2B3FE00019BE9 /* NaverUtils.swift */; };
 		797EA08E27B2CEFC00019BE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 797EA08D27B2CEFC00019BE9 /* GoogleService-Info.plist */; };
-		797EA09227B2CF9000019BE9 /* GoogleUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA09027B2CF9000019BE9 /* GoogleUserInfo.swift */; };
-		797EA09327B2CF9000019BE9 /* GoogleUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797EA09127B2CF9000019BE9 /* GoogleUtils.swift */; };
 		7A0DEDE7278EF4440025A534 /* SignupCompleteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585CD278B127B0030B269 /* SignupCompleteVC.swift */; };
 		7A285A50278F1E9E007894F4 /* SignupAuthCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585CC278B127B0030B269 /* SignupAuthCodeVC.swift */; };
 		7A285A51278F38D3007894F4 /* SignupAgreeTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6585D0278B127B0030B269 /* SignupAgreeTermsVC.swift */; };
@@ -253,8 +251,6 @@
 		797EA07D27B2B3FE00019BE9 /* NaverUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverUserInfo.swift; sourceTree = "<group>"; };
 		797EA07E27B2B3FE00019BE9 /* NaverUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaverUtils.swift; sourceTree = "<group>"; };
 		797EA08D27B2CEFC00019BE9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		797EA09027B2CF9000019BE9 /* GoogleUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleUserInfo.swift; sourceTree = "<group>"; };
-		797EA09127B2CF9000019BE9 /* GoogleUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleUtils.swift; sourceTree = "<group>"; };
 		7A4AF42527924B2B00D69307 /* item_image.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = item_image.xib; sourceTree = "<group>"; };
 		7A4B031327A8B9D0007649B6 /* ModelAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelAgreement.swift; sourceTree = "<group>"; };
 		7A4B031527A8CDCE007649B6 /* tvc_setting_normal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tvc_setting_normal.xib; sourceTree = "<group>"; };
@@ -559,8 +555,6 @@
 		797EA08F27B2CF9000019BE9 /* google */ = {
 			isa = PBXGroup;
 			children = (
-				797EA09027B2CF9000019BE9 /* GoogleUserInfo.swift */,
-				797EA09127B2CF9000019BE9 /* GoogleUtils.swift */,
 			);
 			path = google;
 			sourceTree = "<group>";
@@ -890,7 +884,6 @@
 				79632CCA2785DD85007C427E /* Frameworks */,
 				79632CCB2785DD85007C427E /* Resources */,
 				5397C86E3AA3775F1B83CE15 /* [CP] Embed Pods Frameworks */,
-				05DBCE85BD001D64A96EAF7D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1006,23 +999,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05DBCE85BD001D64A96EAF7D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Traystorage/Pods-Traystorage-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Traystorage/Pods-Traystorage-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Traystorage/Pods-Traystorage-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4316AD8C5B8E5556B7C6329B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1127,7 +1103,6 @@
 				7A6586C6278B127C0030B269 /* NSObject+Extension.swift in Sources */,
 				7A6586CA278B127C0030B269 /* Switch.swift in Sources */,
 				7A6586D7278B13B40030B269 /* Font+UILabel.swift in Sources */,
-				797EA09327B2CF9000019BE9 /* GoogleUtils.swift in Sources */,
 				101ED37427931A4200F9681B /* ContactusVC.swift in Sources */,
 				7A6586BE278B127C0030B269 /* CircularSlider.swift in Sources */,
 				79632CD32785DD85007C427E /* SceneDelegate.swift in Sources */,
@@ -1144,7 +1119,6 @@
 				7A285A50278F1E9E007894F4 /* SignupAuthCodeVC.swift in Sources */,
 				797EA08C27B2B3FE00019BE9 /* NaverUtils.swift in Sources */,
 				7A6586B9278B127C0030B269 /* LocalStoreUtils.swift in Sources */,
-				797EA09227B2CF9000019BE9 /* GoogleUserInfo.swift in Sources */,
 				7A652B3527915F1E00AD4F8F /* FindIdVC.swift in Sources */,
 				7A6586C2278B127C0030B269 /* GradientCircularSlider.swift in Sources */,
 				7A6586D0278B127C0030B269 /* UIImage+Extension.swift in Sources */,
@@ -1348,7 +1322,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Traystorage/Traystorage.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 7X7X2AY733;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1391,7 +1365,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Traystorage/Traystorage.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 7X7X2AY733;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1,7 +1,10 @@
 import AuthenticationServices
+import GoogleSignIn
 import SVProgressHUD
 import Toast_Swift
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class IntroVC: BaseVC {
     @IBOutlet var pageScrollView: UIScrollView!
@@ -23,6 +26,7 @@ class IntroVC: BaseVC {
     var loadingProgressTimer: Timer?
     
     private var snsManager: SnsManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -323,7 +327,17 @@ extension IntroVC: BaseNavigation {
             snsManager.start(type: .Kakao)
         } else if sender.tag == 1 {
             // google
-            snsManager.start(type: .Google)
+//             snsManager.start(type: .Google)
+            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+            let config = GIDConfiguration(clientID: clientID)
+            GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { user, error in
+                if let error = error {
+                    self.view.showToast("구글정보를 얻어올수 없습니다.")
+                    return
+                }
+                let snsId = user?.userID
+                self.snsLogin(_id: snsId!, _pwd: snsId!, _type: 1)
+            }
         } else if sender.tag == 2 {
             // facebook
             snsManager.start(type: .Facebook)

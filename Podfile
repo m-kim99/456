@@ -36,8 +36,9 @@ target 'Traystorage' do
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
   pod 'naveridlogin-sdk-ios'
-  pod 'GoogleSignIn', '~> 4.4.0'
-  pod 'GTMAppAuth'
-  pod 'GoogleAPIClientForREST/PeopleService', '~> 1.3.8'
+  pod 'GoogleSignIn'
+#  pod 'GTMAppAuth'
+#  pod 'GoogleAPIClientForREST/PeopleService', '~> 1.3.8'
   pod 'Firebase/DynamicLinks'
+  pod 'Firebase/Auth'
 end

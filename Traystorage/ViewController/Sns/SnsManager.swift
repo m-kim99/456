@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
 
 protocol SnsManagerDelegate {
     func snsAuthCompleted(_ me: SnsUserInfo)
@@ -19,12 +20,13 @@ class SnsManager {
     private var mSnsUserInfo = SnsUserInfo()
     private var mNaverUtil: NaverUtils
     public var delegate: SnsManagerDelegate?
-    private var mGoogleUtil: GoogleUtils
+//    private var mGoogleUtil: GoogleUtils
     
     public init(_ vc: UIViewController?) {
         self.mViewController = vc
         self.mNaverUtil = NaverUtils(mViewController)
-        self.mGoogleUtil = GoogleUtils(mViewController)
+//        self.mGoogleUtil = GoogleUtils(mViewController)
+//        self.mGoogleUtil = GoogleSignInAuthenticator(authViewModel: mViewController!.self)
     }
     
     public func getSnsGender(gender: String?) -> SnsGenderType {
@@ -78,10 +80,10 @@ class SnsManager {
         } else if type == .Naver {
             mNaverUtil.delegate = self
             mNaverUtil.getNaverInfo()
-        }else if type == .Google {
-            mGoogleUtil.delegate = self
-            mGoogleUtil.GoogleSignIn()
-          }
+        } else if type == .Google {
+//            mGoogleUtil.delegate = self
+//            mGoogleUtil.GoogleSignIn()
+        }
     }
     
     public func logout() {
@@ -91,11 +93,12 @@ class SnsManager {
         case .Naver?:
             mNaverUtil.logout()
         case .Google?:
-            mGoogleUtil.logout()
+            // mGoogleUtil.logout()
+            mNaverUtil.logout()
         case .Facebook?:
             FacebookUtils.logoutFacebook()
-        //default:
-            //sns_type_str = "Unknown"
+        // default:
+        // sns_type_str = "Unknown"
         case .none:
             print("no Unknown")
         }
@@ -113,7 +116,7 @@ class SnsManager {
         case .Naver?:
             sns_type_str = "네이버"
         case .Google?:
-          sns_type_str = "구글"
+            sns_type_str = "구글"
         case .Facebook?:
             sns_type_str = "페이스북"
         default:
@@ -148,19 +151,22 @@ extension SnsManager: NaverUtilsDelegate {
         delegate?.snsAuthError(.Naver, msg: "네이버정보를 얻어올수 없습니다.")
     }
 }
-extension SnsManager: GoogleUtilsDelegate {
-  func GoogleSign(info userInfo: GoogleUserInfo) {
-      gMeInfo.user_sns_id = userInfo.id
-      gMeInfo.user_name = userInfo.name
-      gMeInfo.user_email = userInfo.email == "" ? userInfo.id + "@google.sns" : userInfo.email
-      gMeInfo.user_photo_url = userInfo.profile_img_url
-      gMeInfo.user_birth = userInfo.birthday
-      gMeInfo.user_login_type = .Google
+
+/*
+ extension SnsManager: GoogleUtilsDelegate {
+   func GoogleSign(info userInfo: GoogleUserInfo) {
+       gMeInfo.user_sns_id = userInfo.id
+       gMeInfo.user_name = userInfo.name
+       gMeInfo.user_email = userInfo.email == "" ? userInfo.id + "@google.sns" : userInfo.email
+       gMeInfo.user_photo_url = userInfo.profile_img_url
+       gMeInfo.user_birth = userInfo.birthday
+       gMeInfo.user_login_type = .Google
     
-    requestLogin()
-  }
+     requestLogin()
+   }
   
-  func GoogleSignError() {
-    delegate?.snsAuthError(.Google, msg: "구글정보를 얻어올수 없습니다.")
-  }
-}
+   func GoogleSignError() {
+     delegate?.snsAuthError(.Google, msg: "구글정보를 얻어올수 없습니다.")
+   }
+ }
+ */

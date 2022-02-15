@@ -9,6 +9,7 @@ import Firebase
 import FirebaseDynamicLinks
 import NaverThirdPartyLogin
 import UIKit
+import GoogleSignIn
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?

@@ -27,9 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         thirdConn.consumerSecret = kConsumerSecret
         thirdConn.setOnlyPortraitSupportInIphone(true)
         
-        GIDSignIn.sharedInstance().clientID = GOOGLEKEY
+        //GIDSignIn.sharedInstance().clientID = GOOGLEKEY
         FirebaseApp.configure()
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         return true
     }
 
@@ -72,10 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return ApplicationDelegate.shared.application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
         }
         NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options)
-        return application(app, open: url,
-                            sourceApplication: options[UIApplication.OpenURLOptionsKey
-                              .sourceApplication] as? String,
-                            annotation: "")
+//        return application(app, open: url,
+//                            sourceApplication: options[UIApplication.OpenURLOptionsKey
+//                              .sourceApplication] as? String,
+//                            annotation: "")
+        return GIDSignIn.sharedInstance.handle(url)
     }
        
     func application(_ application: UIApplication, handleOpen url: URL) -> Bool {

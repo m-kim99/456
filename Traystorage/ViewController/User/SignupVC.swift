@@ -30,7 +30,7 @@ class SignupVC: BaseVC {
         super.viewDidLoad()
         
         if snsID != "" {
-            onClickNext(step: .auth, params: ["snsID": snsID, "pwd": snsID, "type": snsType])
+            onClickNext(step: .auth, params: ["id": snsID, "pwd": snsID, "type": snsType])
         } else {
             onClickNext(step: .first, params:["type": snsType])
         }
