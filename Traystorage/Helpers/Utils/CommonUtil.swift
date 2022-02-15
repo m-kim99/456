@@ -120,10 +120,6 @@ class CommonUtil {
         return false
     }
     
-    static func loadUrl(_ wvView: UIWebView, _ str: String) {
-        return wvView.loadRequest(URLRequest(url: URL(string: str)!))
-    }
-    
     static func formatNum(_ val: Int) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.decimal
