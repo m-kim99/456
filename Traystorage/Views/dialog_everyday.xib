@@ -67,7 +67,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="187" height="56"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="never look again"/>
+                                                    <state key="normal" title="다시 보지 않기"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
                                                             <real key="value" value="18"/>
@@ -146,7 +146,7 @@
             <size key="intrinsicContentSize" width="43" height="34"/>
         </designable>
         <designable name="Eb7-6c-aYq">
-            <size key="intrinsicContentSize" width="112" height="30"/>
+            <size key="intrinsicContentSize" width="103" height="34"/>
         </designable>
     </designables>
     <resources>

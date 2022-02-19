@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WithdrawalResultVC" customModule="Traystorage" customModuleProvider="target">
             <connections>
                 <outlet property="lblDate" destination="P5g-Z7-R5w" id="5d8-SQ-aSI"/>
+                <outlet property="lblDesc" destination="qNu-3N-UxD" id="y5d-gl-Ti7"/>
                 <outlet property="lblPageTitle" destination="bxB-KL-QBv" id="cX2-1s-0ln"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
