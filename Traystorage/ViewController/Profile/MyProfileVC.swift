@@ -1,24 +1,23 @@
+import ActionSheetController
+import Photos
 import SVProgressHUD
 import UIKit
-import Photos
-import ActionSheetController
 
 class MyProfileVC: BaseVC {
+    @IBOutlet var vwAvatar: UIImageView!
+    @IBOutlet var btnAddAvatar: UIButton!
+    @IBOutlet var vwNameLabelGroup: UIStackView!
+    @IBOutlet var labelName: UILabel!
 
-    @IBOutlet weak var vwAvatar: UIImageView!
-    @IBOutlet weak var btnAddAvatar: UIButton!
-    @IBOutlet weak var vwNameLabelGroup: UIStackView!
-    @IBOutlet weak var labelName: UILabel!
+    @IBOutlet var editName: UITextField!
+    @IBOutlet var btnNameClear: UIButton!
 
-    @IBOutlet weak var editName: UITextField!
-    @IBOutlet weak var btnNameClear: UIButton!
-
-    @IBOutlet weak var birthdayEdit: UITextField!
-    @IBOutlet weak var birthdayButton: UIButton!
-    @IBOutlet weak var emailEdit: UITextField!
-    @IBOutlet weak var maleButton: UIButton!
-    @IBOutlet weak var femaleButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet var birthdayEdit: UITextField!
+    @IBOutlet var birthdayButton: UIButton!
+    @IBOutlet var emailEdit: UITextField!
+    @IBOutlet var maleButton: UIButton!
+    @IBOutlet var femaleButton: UIButton!
+    @IBOutlet var saveButton: UIButton!
     
     var gender: Int = 0
     var avatarImage: UIImage?
@@ -28,7 +27,7 @@ class MyProfileVC: BaseVC {
     var isModified: Bool! = false
     
     private lazy var user: ModelUser = {
-        return Rest.user
+        Rest.user
     }()
     
     override func viewDidLoad() {
@@ -37,10 +36,10 @@ class MyProfileVC: BaseVC {
         updateGender()
     }
     
-    
     func initVC() {
+        editName.delegate = self
         avatarImageURL = user.profile_img
-        if let avatarUrl = URL(string:avatarImageURL ?? "") {
+        if let avatarUrl = URL(string: avatarImageURL ?? "") {
             avatarImageName = avatarUrl.lastPathComponent
             vwAvatar.kf.setImage(with: avatarUrl, placeholder: UIImage(named: "Icon-C-User-60")!)
         }
@@ -89,7 +88,7 @@ class MyProfileVC: BaseVC {
         femaleButton.tintColor = femaleColor
     }
     
-    @objc func imgPick(_ notification : Notification) {
+    @objc func imgPick(_ notification: Notification) {
         let imgList = notification.object as! [UIImage]
         let image = imgList[0]
         avatarImage = image
@@ -118,7 +117,7 @@ class MyProfileVC: BaseVC {
     @IBAction func onChangeAvatar(_ sender: Any) {
         let vc = GalleryViewController(nibName: "vc_gallery", bundle: nil)
         vc.multi = 0
-        self.pushVC(vc, animated: true)
+        pushVC(vc, animated: true)
     }
     
     @IBAction func onEditName(_ sender: Any) {
@@ -130,12 +129,12 @@ class MyProfileVC: BaseVC {
         hideKeyboard()
         
         guard let name = editName.text, !name.isEmpty else {
-            self.view.showToast("empty_name_toast"._localized)
+            view.showToast("empty_name_toast"._localized)
             return
         }
         
         guard let email = emailEdit.text, !email.isEmpty, Validations.email(email) else {
-            self.view.showToast("invalid_email_toast"._localized)
+            view.showToast("invalid_email_toast"._localized)
             return
         }
         
@@ -144,10 +143,10 @@ class MyProfileVC: BaseVC {
             return
         }
         
-        let birthday = self.birthdayEdit.text ?? ""
+        let birthday = birthdayEdit.text ?? ""
         
         ConfirmDialog.show(self, title: "profile_save"._localized, message: "", showCancelBtn: true) { [weak self] in
-            self?.updateProfile(name: name, birthDay: birthday, email: email, gender: self?.gender ?? 0, profileImage:self?.avatarImageName ?? "")
+            self?.updateProfile(name: name, birthDay: birthday, email: email, gender: self?.gender ?? 0, profileImage: self?.avatarImageName ?? "")
         }
     }
     
@@ -161,6 +160,7 @@ class MyProfileVC: BaseVC {
             btnNameClear.isHidden = false
         }
     }
+
     @IBAction func onEditNameDidEnd(_ sender: UITextField!) {
         isModified = isModified || user.name != sender.text
     }
@@ -184,7 +184,7 @@ class MyProfileVC: BaseVC {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         let birthday = dateFormatter.date(from: birthdayEdit.text ?? "")
-        DatepickerDialog.show(self, date:birthday) { [weak self](date) in
+        DatepickerDialog.show(self, date: birthday) { [weak self] date in
             self?.birthdayEdit.text = dateFormatter.string(from: date)
             self?.isModified = (self?.isModified)! || self?.user.birthday != self?.birthdayEdit.text
         }
@@ -193,10 +193,9 @@ class MyProfileVC: BaseVC {
 
 extension MyProfileVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            
         let newLen = (textField.text?.count ?? 0) - range.length + string.count
 
-        if textField == editName, newLen > 20 {
+        if textField == editName, newLen > 10 {
             return false
         }
         
@@ -221,18 +220,20 @@ extension MyProfileVC: UITextFieldDelegate {
 }
 
 //
+
 // MARK: - RestApi
+
 //
 extension MyProfileVC: BaseRestApi {
-    func updateProfile(name: String, birthDay:String, email: String, gender: Int, profileImage: String) {
+    func updateProfile(name: String, birthDay: String, email: String, gender: Int, profileImage: String) {
         LoadingDialog.show()
         
         let dbDirthDay = birthDay.replaceAll(".", with: "-")
-        Rest.makeProfile(name: name, birthday: dbDirthDay, gender: gender, email: email, profileImage:profileImage, success: { [weak self, gender] (result) -> Void in
+        Rest.makeProfile(name: name, birthday: dbDirthDay, gender: gender, email: email, profileImage: profileImage, success: { [weak self, gender] result -> Void in
             LoadingDialog.dismiss()
             
             let user = Rest.user!
-            let pwd = user.pwd;
+            let pwd = user.pwd
             
             Rest.user = (result as! ModelUser)
             Rest.user.pwd = pwd
@@ -241,7 +242,7 @@ extension MyProfileVC: BaseRestApi {
             self?.isModified = false
 //            self?.showToast("profile_changed"._localized)
             self?.popVC()
-        }) { [weak self](_, err) -> Void in
+        }) { [weak self] _, err -> Void in
             LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
@@ -253,7 +254,7 @@ extension MyProfileVC: BaseRestApi {
         }
         LoadingDialog.show()
         
-        Rest.uploadFiles(files: [imageData], success: { [weak self] (result) -> Void in
+        Rest.uploadFiles(files: [imageData], success: { [weak self] result -> Void in
             LoadingDialog.dismiss()
             
             let retFileName = result as! ModelUploadFileList
@@ -261,9 +262,10 @@ extension MyProfileVC: BaseRestApi {
             let fileName = retFileName.fileNames[0]
             let fileUrl = retFileName.fileUrls[0]
             self?.onUploadedAvatar(url: fileUrl, name: fileName)
-        }) { [weak self](_, err) -> Void in
+        }) { [weak self] _, err -> Void in
             LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
     }
 }
+
