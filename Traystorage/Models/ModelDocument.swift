@@ -84,6 +84,7 @@ class ModelDocument: ModelBase {
         } else {
             imageView.image = item["image"] as? UIImage
         }
+        imageView.contentMode = .scaleAspectFill
     }
 }
 

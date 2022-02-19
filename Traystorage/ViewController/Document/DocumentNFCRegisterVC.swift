@@ -72,14 +72,7 @@ class DocumentNFCRegisterVC: BaseVC, NFCNDEFReaderSessionDelegate {
                     session.alertMessage = "Tag is read only."
                     session.invalidate()
                 case .readWrite:
-                    let date = Date()
-                    let calendar = Calendar.current
-                    let hour = calendar.component(.hour, from: date)
-                    let minutes = calendar.component(.minute, from: date)
-                    let year = calendar.component(.year, from: date)
-                    let month = calendar.component(.month, from: date)
-                    let day = calendar.component(.day, from: date)
-                    let currentTime = String(format: "%d-%d-%d %d:%d", year, month, day, hour, minutes)
+                    
 //                    let message = NFCNDEFMessage(data: currentTime.data(using: .utf8)!)
 //                    var message: NFCNDEFMessage = .init(records: [])
 
