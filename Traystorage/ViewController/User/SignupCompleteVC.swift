@@ -143,12 +143,12 @@ extension SignupCompleteVC: BaseRestApi {
             return
         }
         
-        guard let email = tfEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !email.isEmpty else {
-            self.view.showToast("empty_email_toast"._localized)
-            return
-        }
+//        guard let email = tfEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), !email.isEmpty else {
+//            self.view.showToast("empty_email_toast"._localized)
+//            return
+//        }
         
-        guard Validations.email(email) else {
+        guard let email = tfEmail.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines), email.isEmpty || Validations.email(email) else {
             self.view.showToast("invalid_email_toast"._localized)
             return
         }

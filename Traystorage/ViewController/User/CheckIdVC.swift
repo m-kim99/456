@@ -11,11 +11,26 @@ class CheckIdVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         userLoginID = params["userID"] as! String
-//        if userLoginID.count > 4 {
-//            lblLoginID.text = "****\(userLoginID.substring(from: 4))"
-//        } else {
+        let signupType = params["type"] as! Int
+        switch signupType {
+        case 0:
             lblLoginID.text = userLoginID
-//        }
+            break
+        case 1:
+            lblLoginID.text = "google signuped"
+            break
+        case 2:
+            lblLoginID.text = "naver signuped"
+            break
+        case 3:
+            lblLoginID.text = "facebook signuped"
+            break
+        case 4:
+            lblLoginID.text = "kakaos signuped"
+            break
+        default:
+            break
+        }
     }
     
     //

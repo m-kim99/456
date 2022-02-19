@@ -51,10 +51,10 @@ class MenuVC: BaseVC {
     }
     
     func slideOpen(_ superview : UIView) {
-        superview.addSubview(self.view)
         
         self.view.frame = CGRect.init(x: 0, y: 0, width: superview.frame.size.width, height: superview.frame.size.height)
-        
+        superview.addSubview(self.view)
+
         let frame = vwMenu.frame
         self.leadingLayoutConstraint.constant = frame.width
         vwBg.alpha = 0

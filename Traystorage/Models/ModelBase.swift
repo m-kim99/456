@@ -7,7 +7,8 @@ public class ModelBase {
     var reason: String!
     var code: String!
     var loginId: String!//find id
-    
+    var signup_type: Int = 0
+
     init() {}
     
     init(_ json: JSON) {
@@ -16,6 +17,7 @@ public class ModelBase {
         reason = json["reason"].stringValue
         code = json["code"].stringValue
         loginId = json["login_id"].stringValue
+        signup_type = json["signup_type"].intValue
     }
 }
 

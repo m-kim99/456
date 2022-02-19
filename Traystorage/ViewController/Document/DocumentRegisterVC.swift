@@ -17,6 +17,7 @@ class DocumentRegisterVC: BaseVC {
     
     @IBOutlet weak var btnAddImageMain: UIButton!
     @IBOutlet weak var btnAddImageSub: UIButton!
+    @IBOutlet weak var btnAction: UIButton!
     
     var isNewDocument = false
     
@@ -48,6 +49,11 @@ class DocumentRegisterVC: BaseVC {
         tfTitle.text = newDocument.title
         tfDetail.text = newDocument.content
         updateDetailPlaceHolderVisible(newDocument.content)
+        if isNewDocument {
+            btnAction.setTitle("doc_reg"._localized, for: .normal)
+        } else {
+            btnAction.setTitle("save"._localized, for: .normal)
+        }
     }
     
     private func copyDocument(toOrigin: Bool) {

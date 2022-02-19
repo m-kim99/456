@@ -88,7 +88,7 @@
 "new_password_hint" = "영문, 숫자 포함 4~12자 조합";
 "password_confirm" = "비밀번호 확인";
 "password_confirm_hint" = "비밀번호 재입력";
-"duplicate_check" = "증복체크";
+"duplicate_check" = "중복체크";
 "password_mismatch_confirm" = "두 비빌번호가 일치하지 않습니다.";
 "empty_password_toast"="비밀번호를 입력해 주세요.";
 "less_password_toast"="비밀번호를 6자이상 입력해 주세요.";

@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DocumentRegisterVC">
             <connections>
+                <outlet property="btnAction" destination="BXr-M2-AYb" id="Sr5-OQ-yyD"/>
                 <outlet property="btnAddImageMain" destination="jy3-hm-jEN" id="ZV0-7g-dfV"/>
                 <outlet property="btnAddImageSub" destination="smX-2z-2mH" id="u2S-pn-bSl"/>
                 <outlet property="hideKeyboardGesture" destination="bzA-Sa-Z9a" id="yhl-e6-twF"/>
@@ -109,7 +110,7 @@
                                                                             <color key="textColor" systemColor="systemRedColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smX-2z-2mH">
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smX-2z-2mH" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
                                                                             <rect key="frame" x="326" y="0.0" width="48" height="30"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="wod-Zt-ztC"/>
@@ -239,7 +240,7 @@
                                                                             <rect key="frame" x="4" y="4" width="366" height="142"/>
                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             <color key="textColor" systemColor="labelColor"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
                                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                             <connections>
                                                                                 <outlet property="delegate" destination="-1" id="08z-Qi-ghd"/>

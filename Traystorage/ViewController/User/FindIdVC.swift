@@ -26,7 +26,8 @@ class FindIdVC: BaseVC {
     var authStatus:UNAuthorizationStatus = .notDetermined
     var authCode: String?
     var findId: String?
-    
+    var signupType: Int?
+
     var isPhoneVerify = false
     var findIDRequest: IDRequest = .findID
     var loginId: String?
@@ -62,7 +63,7 @@ class FindIdVC: BaseVC {
     private func onResetSuccess(userID: String) {
         switch findIDRequest {
         case .findID:
-            pushVC(CheckIdVC(nibName: "vc_check_id", bundle: nil), animated: true, params: ["userID": userID])
+            pushVC(CheckIdVC(nibName: "vc_check_id", bundle: nil), animated: true, params: ["userID": userID, "type":signupType])
             break
         case .changePassword:
             let user = Rest.user!
@@ -223,8 +224,10 @@ extension FindIdVC: BaseRestApi {
         LoadingDialog.show()
         Rest.request_code_for_find(loginId:loginId ?? "", phoneNumber: phoneNumber, success: { [weak self](result) -> Void in
             LoadingDialog.dismiss()
-            self?.authCode = result?.code
-            self?.findId = result?.loginId
+            let modelCode = result as! ModelBase
+            self?.authCode = modelCode.code
+            self?.findId = modelCode.loginId
+            self?.signupType = modelCode.signup_type
             self?.changeAuthStatus(auth: .provisional)
         }) { [weak self](code, err) -> Void in
             LoadingDialog.dismiss()
