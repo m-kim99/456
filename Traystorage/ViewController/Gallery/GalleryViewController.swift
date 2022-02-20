@@ -151,7 +151,7 @@ class GalleryViewController: BaseVC {
         let cameraRollResult = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: fetchOptions)
         
         // Albums fetch result
-        let albumResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
+        let albumResult = PHAssetCollection.fetchAssetCollections(with: .moment, subtype: .any, options: fetchOptions)
         
         let arrCamera = initAlbumItem(cameraRollResult)
         let arrAlbum = initAlbumItem(albumResult)

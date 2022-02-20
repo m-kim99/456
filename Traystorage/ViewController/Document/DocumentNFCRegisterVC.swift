@@ -1,21 +1,22 @@
 import CoreNFC
-import UIKit
 import Firebase
 import FirebaseDynamicLinks
+import UIKit
+import SVProgressHUD
 
 class DocumentNFCRegisterVC: BaseVC, NFCNDEFReaderSessionDelegate {
     var documentID = 0
     var documentCode = ""
     var dimLink = ""
-    
+
     var session: NFCNDEFReaderSession?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         getDimLink()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.startNFCScan()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//            self.startNFCScan()
+//        }
     }
 
     func startNFCScan() {
@@ -72,20 +73,20 @@ class DocumentNFCRegisterVC: BaseVC, NFCNDEFReaderSessionDelegate {
                     session.alertMessage = "Tag is read only."
                     session.invalidate()
                 case .readWrite:
-                    
+
 //                    let message = NFCNDEFMessage(data: currentTime.data(using: .utf8)!)
 //                    var message: NFCNDEFMessage = .init(records: [])
 
                     let uriPayloadFromString = NFCNDEFPayload.wellKnownTypeURIPayload(
                         string: dimLink // dim link
                     )!
-                    let uriPayloadFromURL = NFCNDEFPayload.wellKnownTypeURIPayload(
-                        url: URL(string: "www.apple.com")! // dim link
-                    )!
+//                    let uriPayloadFromURL = NFCNDEFPayload.wellKnownTypeURIPayload(
+//                        url: URL(string: "www.apple.com")! // dim link
+//                    )!
 
                     // 2
                     let textPayload = NFCNDEFPayload.wellKnownTypeTextPayload(
-                        string: self.documentCode,//currentTime,
+                        string: self.documentCode, // currentTime,
                         locale: Locale(identifier: "en")
                     )!
 
@@ -99,7 +100,7 @@ class DocumentNFCRegisterVC: BaseVC, NFCNDEFReaderSessionDelegate {
                     let message = NFCNDEFMessage(
                         records: [
                             uriPayloadFromString,
-                            uriPayloadFromURL,
+//                            uriPayloadFromURL,
                             textPayload,
                             customTextPayload
                         ]
@@ -123,19 +124,28 @@ class DocumentNFCRegisterVC: BaseVC, NFCNDEFReaderSessionDelegate {
     func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
         print(error.localizedDescription)
     }
-    
+
     func getDimLink() {
+        SVProgressHUD.show()
         let _url = String(format: "https://traystorage.page.link/document/%d", documentID)
-        
+
         guard let link = URL(string: _url) else { return }
-        let dynamicLinksDomainURIPrefix = "https://iamground.page.link"
+        let dynamicLinksDomainURIPrefix = "https://traystorage.page.link"
         let linkBuilder = DynamicLinkComponents(link: link, domainURIPrefix: dynamicLinksDomainURIPrefix)
         linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: "com.kyad.traystorage")
         linkBuilder?.androidParameters = DynamicLinkAndroidParameters(packageName: "com.kyad.traystorage")
 
-        guard let longDynamicLink = linkBuilder?.url else { return }
-        print("The long URL is: \(longDynamicLink)")
-        dimLink = longDynamicLink.absoluteString
+//        guard let longDynamicLink = linkBuilder?.url else { return }
+//        print("The long URL is: \(longDynamicLink)")
+//        dimLink = longDynamicLink.absoluteString
+//        linkBuilder?.options = DynamicLinkComponentsOptions()
+//        linkBuilder?.options!.pathLength = .short
+        linkBuilder?.shorten { url, _, _ in
+            // guard let url = url, error != nil else { return }
+            SVProgressHUD.dismiss()
+            print("The short URL is: \(url)")
+            self.dimLink = url!.absoluteString
+            self.startNFCScan()
+        }
     }
 }
-

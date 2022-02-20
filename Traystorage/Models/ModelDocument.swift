@@ -18,6 +18,7 @@ class ModelDocument: ModelBase {
     
     var create_time: String = ""
     var reg_time: String = ""
+    var code1: String = ""
     
     var label: Int = 0
         
@@ -40,6 +41,7 @@ class ModelDocument: ModelBase {
         doc_id = json["id"].intValue
         user_id = json["user_id"].intValue
         title = json["title"].stringValue
+        code1 = json["code"].stringValue
         content = json["content"].stringValue
         label = json["label"].intValue
         create_time = json["create_time"].stringValue

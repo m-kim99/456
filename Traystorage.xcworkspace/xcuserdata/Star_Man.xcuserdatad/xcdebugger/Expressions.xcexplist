@@ -3,6 +3,28 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "DocumentDetailVC.onClickNFCRegister(_:):DocumentDetailVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "document!.code1">
+            </PersistentString>
+            <PersistentString
+               value = "document!.doc_id">
+            </PersistentString>
+            <PersistentString
+               value = "document!.code">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DocumentNFCRegisterVC.getDimLink():DocumentNFCRegisterVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "url!.absoluteString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SignupCompleteVC.makeProfile():SignupCompleteVC.swift">
          <PersistentStrings>
             <PersistentString
@@ -15,6 +37,33 @@
          <PersistentStrings>
             <PersistentString
                value = "documentCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DocumentNFCRegisterVC.getDimLink():DocumentNFCRegisterVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "documentID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ModelBase.init(_:):ModelBase.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "reason">
+            </PersistentString>
+            <PersistentString
+               value = "code">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in DocumentDetailVC.loadDocumentDetail(_:):DocumentDetailVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "document.code">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

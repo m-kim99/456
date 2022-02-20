@@ -2,23 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>ko_KR</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>Traystorage</string>
-	<key>CFBundlePackageType</key>
-	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
-	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>LSRequiresIPhoneOS</key>
+	<key>CFBundleAllowMixedLocalizations</key>
 	<true/>
 	<key>CFBundleURLTypes</key>
 	<array>
@@ -81,12 +65,12 @@
 			</array>
 		</dict>
 	</array>
-	<key>KAKAO_APP_KEY</key>
-	<string>98498c102944c0477c37fcaa25a98fa7</string>
 	<key>FacebookAppID</key>
 	<string>4631666656931525</string>
 	<key>FacebookDisplayName</key>
 	<string>traystorage</string>
+	<key>KAKAO_APP_KEY</key>
+	<string>98498c102944c0477c37fcaa25a98fa7</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>kakao98498c102944c0477c37fcaa25a98fa7</string>
@@ -161,12 +145,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>앱에서 본인의 유저프로필을 업로드하기 위해 이용합니다.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>앱에서 본인의 유저프로필을 업로드하기 위해 이용합니다.</string>
-	<key>NFCReaderUsageDescription</key>
-	<string>NFC장치에 읽기/쓰기를 위해 이용합니다.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSansCJKkr-Bold.otf</string>
@@ -192,28 +170,7 @@
 			</array>
 		</dict>
 	</dict>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleDefault</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
-	<key>CFBundleAllowMixedLocalizations</key>
-	<true/>
 </dict>
 </plist>
