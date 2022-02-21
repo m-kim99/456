@@ -22,6 +22,7 @@ public class ModelAppInfo: ModelBase {
 
 public class ModelVersion : ModelBase {
     var version: String!
+    var is_review: Bool!
     var requireUpdate: Int!
     var storeUrl: String!
     
@@ -30,5 +31,6 @@ public class ModelVersion : ModelBase {
         version = json["version"].stringValue
         requireUpdate = json["require_update"].intValue
         storeUrl = json["store_url"].stringValue
+        is_review = json["is_review"].boolValue
     }
 }

@@ -85,10 +85,10 @@ class DocumentNFCRegisterVC: BaseVC, NFCNDEFReaderSessionDelegate {
 //                    )!
 
                     // 2
-                    let textPayload = NFCNDEFPayload.wellKnownTypeTextPayload(
-                        string: self.documentCode, // currentTime,
-                        locale: Locale(identifier: "en")
-                    )!
+//                    let textPayload = NFCNDEFPayload.wellKnownTypeTextPayload(
+//                        string: self.documentCode, // currentTime,
+//                        locale: Locale(identifier: "en")
+//                    )!
 
                     // 3
                     let customTextPayload = NFCNDEFPayload(
@@ -99,10 +99,10 @@ class DocumentNFCRegisterVC: BaseVC, NFCNDEFReaderSessionDelegate {
                     )
                     let message = NFCNDEFMessage(
                         records: [
-                            uriPayloadFromString,
 //                            uriPayloadFromURL,
-                            textPayload,
-                            customTextPayload
+//                            textPayload,
+                            customTextPayload,
+                            uriPayloadFromString,
                         ]
                     )
                     tag.writeNDEF(message, completionHandler: { (error: Error?) in
@@ -110,6 +110,9 @@ class DocumentNFCRegisterVC: BaseVC, NFCNDEFReaderSessionDelegate {
                             session.alertMessage = "Write NDEF message fail: \(error!)"
                         } else {
                             session.alertMessage = "NFC태그에 문서가 등록되었습니다."
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                self.popVC()
+                            }
                         }
                         session.invalidate()
                     })

@@ -491,6 +491,7 @@ extension IntroVC: BaseRestApi {
             self?.changeLoadingViewVisiblity(isHidden: true)
             
             let version = result as! ModelVersion
+            gReview = version.is_review
             
             self?.onGetVersionSuccess(version)
         }, failure: { [weak self] _, _ in

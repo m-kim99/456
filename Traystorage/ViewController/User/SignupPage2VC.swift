@@ -2,28 +2,28 @@ import SVProgressHUD
 import SwiftyJSON
 import Toast_Swift
 import UIKit
-//import Material
+// import Material
 
 // signup 2nd screen
 class SignupPage2VC: BaseVC {
-    @IBOutlet weak var lblAuthMedia: UILabel!
-    @IBOutlet weak var lblSent: UILabel!
-    @IBOutlet weak var lblInput: UILabel!
-    @IBOutlet weak var groupResend: UIView!
+    @IBOutlet var lblAuthMedia: UILabel!
+    @IBOutlet var lblSent: UILabel!
+    @IBOutlet var lblInput: UILabel!
+    @IBOutlet var groupResend: UIView!
     
-    @IBOutlet weak var phoneEditRightView: UIView!
-    @IBOutlet weak var btnConfirmCode: UIButton!
+    @IBOutlet var phoneEditRightView: UIView!
+    @IBOutlet var btnConfirmCode: UIButton!
     
-    @IBOutlet weak var tfPhoneNumber: UITextField!
-    @IBOutlet weak var tfCertificationNumber: UITextField!
+    @IBOutlet var tfPhoneNumber: UITextField!
+    @IBOutlet var tfCertificationNumber: UITextField!
     
-    @IBOutlet weak var btnNext: UIButton!
-    @IBOutlet weak var lblDownTime: CountDownTimeLabel!
+    @IBOutlet var btnNext: UIButton!
+    @IBOutlet var lblDownTime: CountDownTimeLabel!
     
     open var authType = AuthType.phone
     open var authMedia = ""
     
-    var authStatus:UNAuthorizationStatus = .notDetermined
+    var authStatus: UNAuthorizationStatus = .notDetermined
     weak var nextDelegate: SignupNextDelegate?
     
     var authData: [String: String] = [:] // phone, code
@@ -39,7 +39,7 @@ class SignupPage2VC: BaseVC {
     
     private func initVC() {
         if authType == AuthType.phone {
-            lblAuthMedia.text = String.init(format: "+86 %@", authMedia)
+            lblAuthMedia.text = String(format: "+86 %@", authMedia)
         } else {
             lblAuthMedia.text = authMedia
         }
@@ -51,7 +51,7 @@ class SignupPage2VC: BaseVC {
     }
     
     private func changedAuthStatus(auth: UNAuthorizationStatus) {
-        self.authStatus = auth
+        authStatus = auth
         switch authStatus {
         case .notDetermined:
             lblDownTime.stopTimer()
@@ -67,7 +67,7 @@ class SignupPage2VC: BaseVC {
             lblDownTime.startCountDownTimer()
             groupResend.isHidden = false
             btnConfirmCode.isHidden = false
-            self.showToast("signup_phone_verify_success"._localized)
+            showToast("signup_phone_verify_success"._localized)
         case .denied:
             lblDownTime.stopTimer()
             groupResend.isHidden = true
@@ -79,18 +79,20 @@ class SignupPage2VC: BaseVC {
     }
     
     override func onBackProcess(_ viewController: UIViewController) {
-        showConfirm(title: "signup_cancel_alert_title".localized, message: "signup_cancel_alert_content"._localized, showCancelBtn: true) { [weak self]() -> Void in
+        showConfirm(title: "signup_cancel_alert_title".localized, message: "signup_cancel_alert_content"._localized, showCancelBtn: true) { [weak self] () -> Void in
             self?.popToStartVC()
         }
     }
         
     private func onPhoneAuthDuplicated() {
-        showAlert(title:"signup_duplicated_phone"._localized, message: "")
+        showAlert(title: "signup_duplicated_phone"._localized, message: "")
     }
 }
 
 //
+
 // MARK: - Action
+
 //
 extension SignupPage2VC: BaseAction {
     @IBAction func onClickPhoneAuth(_ sender: Any) {
@@ -98,7 +100,7 @@ extension SignupPage2VC: BaseAction {
         if let phoneNumber = tfPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines), !phoneNumber.isEmpty {
             sendPhoneAuth(phoneNumber)
         } else {
-            self.showToast("empty_phone_toast"._localized)
+            showToast("empty_phone_toast"._localized)
         }
     }
     
@@ -107,7 +109,7 @@ extension SignupPage2VC: BaseAction {
 
         let phone = authData["phone"]!
         let code = authData["code"]!
-        self.goNext(phone: phone, code: code)
+        goNext(phone: phone, code: code)
     }
     
     @IBAction func onClickConfirmCertNum(_ sender: Any) {
@@ -147,10 +149,11 @@ extension SignupPage2VC: BaseAction {
 }
 
 //
+
 // MARK: - UITextFieldDelegate
+
 //
 extension SignupPage2VC: UITextFieldDelegate {
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newLen = (textField.text?.count ?? 0) - range.length + string.count
         if textField == tfPhoneNumber, newLen > 11 {
@@ -165,7 +168,9 @@ extension SignupPage2VC: UITextFieldDelegate {
 }
 
 //
+
 // MARK: - Navigation
+
 //
 extension SignupPage2VC: BaseNavigation {
     private func goNext(phone: String, code: String) {
@@ -184,18 +189,20 @@ extension SignupPage2VC: BaseNavigation {
 }
 
 //
+
 // MARK: - RestApi
+
 //
 extension SignupPage2VC: BaseRestApi {
     private func sendPhoneAuth(_ phone: String) {
         LoadingDialog.show()
         if authType == AuthType.phone {
             Rest.request_code_for_signup(phoneNumber: phone, success: {
-                [weak self](result) in
+                [weak self] result in
                 LoadingDialog.dismiss()
                 self?.authCode = result!.code
                 self?.changedAuthStatus(auth: .provisional)
-            }) { [weak self] (code, msg) in
+            }) { [weak self] code, msg in
                 LoadingDialog.dismiss()
                 if code == 206 {
                     self?.onPhoneAuthDuplicated()
@@ -203,8 +210,7 @@ extension SignupPage2VC: BaseRestApi {
                     self?.showToast(msg)
                 }
             }
-        } else {
-        }
+        } else {}
     }
     
     private func verifyCode(_ code: String) {
@@ -212,12 +218,18 @@ extension SignupPage2VC: BaseRestApi {
             return
         }
         
-        if code == authCode {
+        if gReview {
             authData["phone"] = phone
             authData["code"] = code
             changedAuthStatus(auth: .authorized)
         } else {
-            self.showToast(localized: "mismatch_cert_code_toast")
+            if code == authCode {
+                authData["phone"] = phone
+                authData["code"] = code
+                changedAuthStatus(auth: .authorized)
+            } else {
+                showToast(localized: "mismatch_cert_code_toast")
+            }
         }
     }
 }

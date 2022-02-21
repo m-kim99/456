@@ -6,13 +6,13 @@
          contextName = "DocumentDetailVC.onClickNFCRegister(_:):DocumentDetailVC.swift">
          <PersistentStrings>
             <PersistentString
+               value = "document!.code">
+            </PersistentString>
+            <PersistentString
                value = "document!.code1">
             </PersistentString>
             <PersistentString
                value = "document!.doc_id">
-            </PersistentString>
-            <PersistentString
-               value = "document!.code">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -52,10 +52,37 @@
          contextName = "ModelBase.init(_:):ModelBase.swift">
          <PersistentStrings>
             <PersistentString
-               value = "reason">
+               value = "code">
             </PersistentString>
             <PersistentString
-               value = "code">
+               value = "reason">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SignupPage2VC.sendPhoneAuth(_:):SignupPage2VC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "result!.code">
+            </PersistentString>
+            <PersistentString
+               value = "self?.authCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SignupPage2VC.verifyCode(_:):SignupPage2VC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "authCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "IntroVC.onGetVersionSuccess(_:):IntroVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "latestVersion.version">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
