@@ -6,13 +6,13 @@
          contextName = "DocumentDetailVC.onClickNFCRegister(_:):DocumentDetailVC.swift">
          <PersistentStrings>
             <PersistentString
-               value = "document!.code">
+               value = "document!.doc_id">
             </PersistentString>
             <PersistentString
                value = "document!.code1">
             </PersistentString>
             <PersistentString
-               value = "document!.doc_id">
+               value = "document!.code">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -52,10 +52,10 @@
          contextName = "ModelBase.init(_:):ModelBase.swift">
          <PersistentStrings>
             <PersistentString
-               value = "code">
+               value = "reason">
             </PersistentString>
             <PersistentString
-               value = "reason">
+               value = "code">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -67,6 +67,14 @@
             </PersistentString>
             <PersistentString
                value = "self?.authCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "LoginVC.onLoginSuccess(user:password:):LoginVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Rest">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

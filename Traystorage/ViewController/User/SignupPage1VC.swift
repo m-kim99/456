@@ -198,7 +198,14 @@ extension SignupPage1VC: BaseNavigation {
         }
         
         if let nextDelegate = self.nextDelegate {
-            nextDelegate.onClickNext(step: .auth, params: ["id": userID, "pwd": pass])
+            if gReview {
+                let randomInt = Int.random(in: 1000..<9999)
+                let phone = "0101010" + String(randomInt)
+                nextDelegate.onClickNext(step: .agree, params: ["id": userID, "pwd": pass, "phone" : phone, "code" : "111111"])
+            } else {
+                nextDelegate.onClickNext(step: .auth, params: ["id": userID, "pwd": pass])
+            }
+            
         }
     }
 }

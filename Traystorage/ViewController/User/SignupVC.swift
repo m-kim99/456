@@ -30,7 +30,13 @@ class SignupVC: BaseVC {
         super.viewDidLoad()
         
         if snsID != "" {
-            onClickNext(step: .auth, params: ["id": snsID, "pwd": snsID, "type": snsType])
+            if gReview {
+                let randomInt = Int.random(in: 1000..<9999)
+                let phone = "0101010" + String(randomInt)
+                onClickNext(step: .agree, params: ["id": snsID, "pwd": snsID, "type": snsType, "phone" : phone, "code" : "111111"])
+            } else {
+                onClickNext(step: .auth, params: ["id": snsID, "pwd": snsID, "type": snsType])
+            }
         } else {
             onClickNext(step: .first, params:["type": snsType])
         }
