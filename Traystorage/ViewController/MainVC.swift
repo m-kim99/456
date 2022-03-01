@@ -144,11 +144,16 @@ class MainVC: BaseVC {
             self?.documents.removeAll()
             self?.documents.append(contentsOf: documentList.contents)
             self?.documentChanged()
-        }) {[weak self]  _, msg in
+        }) {[weak self]  code, msg in
             if showLoading {
                 LoadingDialog.dismiss()
             }
-            self?.view.showToast(msg)
+            if code == 1 {
+                self?.view.showToast("login_token_error".localized)
+                self?.pushVC(LoginVC(nibName: "vc_login", bundle: nil), animated: true)
+            } else {
+                self?.view.showToast(msg)
+            }
         }
     }
     

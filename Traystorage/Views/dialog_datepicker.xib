@@ -43,7 +43,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opw-KJ-clT" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                    <rect key="frame" x="189.5" y="24.5" width="35" height="21.5"/>
+                                                    <rect key="frame" x="190.5" y="25" width="33" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -177,13 +177,13 @@
     </objects>
     <designables>
         <designable name="HrE-H7-Xo0">
-            <size key="intrinsicContentSize" width="53" height="34"/>
+            <size key="intrinsicContentSize" width="48" height="30"/>
         </designable>
         <designable name="Rr4-kW-R4A">
-            <size key="intrinsicContentSize" width="62" height="34"/>
+            <size key="intrinsicContentSize" width="55" height="30"/>
         </designable>
         <designable name="opw-KJ-clT">
-            <size key="intrinsicContentSize" width="35" height="21.5"/>
+            <size key="intrinsicContentSize" width="33" height="20.5"/>
         </designable>
     </designables>
     <resources>

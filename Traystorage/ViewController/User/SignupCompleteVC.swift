@@ -83,7 +83,11 @@ class SignupCompleteVC: BaseVC {
 extension SignupCompleteVC: BaseAction {
     @IBAction func onClickBirthday(_ sender: Any) {
         hideKeyboard()
-        DatepickerDialog.show(self, date:Date()) { [weak self](date) in
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd"
+        let defaultDate = dateFormatter.date(from: "1990-01-01")
+        DatepickerDialog.show(self, date:defaultDate) { [weak self](date) in
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy.MM.dd"
             self?.tfBirthday.text = dateFormatter.string(from: date)

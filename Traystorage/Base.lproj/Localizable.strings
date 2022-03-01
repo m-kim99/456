@@ -381,3 +381,7 @@
 "apple_login_fail1" = "사용자가 인증 시도를 취소했습니다.";
 "apple_login_fail2" = "승인 요청에 잘못된 응답이 수신되었습니다.";
 "apple_login_fail3" = "승인 요청이 처리되지 않았습니다.";
+
+"login_token_error" = "인증기간이 만료되었습니다. 재로그인 해주세요.";
+"empty_nfc_tag" = "본 NFC태그는\n빈 태그입니다.";
+"go_main_page" = "메인 화면으로";

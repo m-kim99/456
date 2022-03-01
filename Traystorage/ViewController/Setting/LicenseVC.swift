@@ -1,32 +1,48 @@
-import SVProgressHUD
 import UIKit
+import WebKit
 
 class LicenseVC: BaseVC {
+    @IBOutlet var lblPageTitle: UILabel!
 
-    @IBOutlet weak var lblPageTitle: UILabel!
-    
-    @IBOutlet weak var tvList: UITableView!
-    
+    @IBOutlet var tvList: UITableView!
+    @IBOutlet var vwContent: UIView!
+    private var webView: WKWebView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         initVC()
     }
-    
+
     private func initVC() {
         tvList.register(UINib(nibName: "tvc_license", bundle: nil), forCellReuseIdentifier: "LicenseTVC")
+
+        let preferences = WKPreferences()
+        preferences.javaScriptEnabled = true
+        let configuration = WKWebViewConfiguration()
+        configuration.preferences = preferences
+        webView = WKWebView(frame: CGRect(origin: CGPoint(x: 10, y: 0), size: CGSize(width: UIScreen.main.bounds.size.width - 20, height: UIScreen.main.bounds.size.height - 100)), configuration: configuration)
+        webView.backgroundColor = UIColor.clear
+        vwContent.addSubview(webView)
+
+        let loadurl = URL(string: "http://traystorage.kr/server/api/App/term?type=opensource")
+        if loadurl != nil {
+            webView.load(URLRequest(url: loadurl!))
+        }
     }
-    
-    //
-    // MARK: - ACTION
+
     //
 
-    @IBAction func onUpdateVersion(_ sender: Any) {
-    }
+    // MARK: - ACTION
+
+    //
+
+    @IBAction func onUpdateVersion(_ sender: Any) {}
 }
 
 //
+
 // MARK: - RestApi
+
 //
 extension LicenseVC: BaseRestApi {
     func updateList(type: String, alarm_yn: String) {
@@ -54,29 +70,26 @@ extension LicenseVC: BaseRestApi {
 }
 
 //
+
 // MARK: - UITableViewDataSource, UITableViewDelegate
+
 //
 extension LicenseVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LicenseTVC", for: indexPath) as! LicenseTVC
 //        cell.setData(data: ModelPaymentHistoryStadium(), delegate: self)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
+
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return 180
 //    }
-    
 }
 
-extension LicenseVC: LicenseTVCDelegate {
-    
-}
+extension LicenseVC: LicenseTVCDelegate {}
