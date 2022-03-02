@@ -195,7 +195,7 @@ class IntroVC: BaseVC {
     func onGetVersionSuccess(_ latestVersion: ModelVersion) {
         let curVersion = Utils.bundleVer()
         
-        if latestVersion.version.isEmpty || curVersion.isEqual(latestVersion.version) {
+        if latestVersion.version.isEmpty || curVersion.compare(latestVersion.version, options: .numeric) == .orderedDescending || curVersion.compare(latestVersion.version, options: .numeric) == .orderedSame {
             startApp()
             return
         }

@@ -197,7 +197,7 @@
 "document_empty_title"="등록된 문서가 존재하지 않습니다.";
 "document_empty_desc"="지금 쉽고 편리하게 문서를 등록하고 NFC태그를\n통해 관리 및 공유해 보세요.";
 "doc_empty_search"="Please input a search keyword.";
-"doc_deleted_toast"="문석 삭제되었습니다.";
+"doc_deleted_toast"="문서 삭제되었습니다.";
 "doc_search_hint"="검색어를 입력해 주세요.";
 "search_empty_title"="검색결과가 없습니다.";
 "search_result"="검색 결과";

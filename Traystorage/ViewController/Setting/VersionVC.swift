@@ -2,14 +2,13 @@ import SVProgressHUD
 import UIKit
 
 class VersionVC: BaseVC {
-
-    @IBOutlet weak var lblPageTitle: UILabel!
-    @IBOutlet weak var vwCurrentVersion: UIStackView!
-    @IBOutlet weak var lblCurrentVersion: UIFontLabel!
-    @IBOutlet weak var lblVersionHeader: UIFontLabel!
-    @IBOutlet weak var vwLatestVersion: UIStackView!
-    @IBOutlet weak var lblLatestVersion: UIFontLabel!
-    @IBOutlet weak var btnUpdate: UIFontButton!
+    @IBOutlet var lblPageTitle: UILabel!
+    @IBOutlet var vwCurrentVersion: UIStackView!
+    @IBOutlet var lblCurrentVersion: UIFontLabel!
+    @IBOutlet var lblVersionHeader: UIFontLabel!
+    @IBOutlet var vwLatestVersion: UIStackView!
+    @IBOutlet var lblLatestVersion: UIFontLabel!
+    @IBOutlet var btnUpdate: UIFontButton!
     
     var latestVersion: ModelVersion!
     
@@ -32,11 +31,11 @@ class VersionVC: BaseVC {
         self.latestVersion = latestVersion
         
         let curVersion = Utils.bundleVer()
-        if latestVersion.version.isEmpty || curVersion.isEqual(latestVersion.version) {
+        if latestVersion.version.isEmpty  || curVersion.compare(latestVersion.version, options: .numeric) == .orderedDescending || curVersion.compare(latestVersion.version, options: .numeric) == .orderedSame {
             lblVersionHeader.text = "version_header1"._localized
             vwLatestVersion.isHidden = true
             btnUpdate.isHidden = true
-            return;
+            return
         }
         
         vwLatestVersion.isHidden = false
@@ -54,10 +53,11 @@ class VersionVC: BaseVC {
     }
     
     //
+
     // MARK: - ACTION
+
     //
     
-
     @IBAction func onUpdateVersion(_ sender: Any) {
         if let version = latestVersion {
             go2Store(version.storeUrl)
@@ -66,17 +66,19 @@ class VersionVC: BaseVC {
 }
 
 //
+
 // MARK: - RestApi
+
 //
 extension VersionVC: BaseRestApi {
     func loadVerionInfo() {
         LoadingDialog.show()
-        Rest.getVersionInfo(success: { [weak self](result) -> Void in
+        Rest.getVersionInfo(success: { [weak self] result -> Void in
             LoadingDialog.dismiss()
             
             let version = result as! ModelVersion
             self?.showVersionInfo(version)
-        }) { [weak self](_, err) -> Void in
+        }) { [weak self] _, err -> Void in
             LoadingDialog.dismiss()
             self?.view.showToast(err)
         }
