@@ -66,7 +66,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Please agree to the terms and conditions to sign up" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcu-Ha-S4B" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="352.5" height="26.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="26.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -77,8 +77,8 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="signup_agree_detail"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3/3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDf-jB-hqA" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                            <rect key="frame" x="352.5" y="9.5" width="21.5" height="17"/>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3/3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDf-jB-hqA" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="9.5" width="0.0" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" systemColor="systemGrayColor"/>
                                             <nil key="highlightedColor"/>

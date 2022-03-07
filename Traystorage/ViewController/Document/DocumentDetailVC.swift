@@ -229,6 +229,7 @@ extension DocumentDetailVC: BaseRestApi {
             LoadingDialog.dismiss()
             if code == 401 {
                 self?.vwEmptyTag.isHidden = false
+                self?.btnDelete.isHidden = true
             } else {
                 self?.view.showToast(err)
             }

@@ -60,7 +60,7 @@
                                                                         <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="signup_phone_verify"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ka-fG-Y9B" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
+                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ka-fG-Y9B" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
                                                                     <rect key="frame" x="327" y="10.666666666666664" width="48" height="15.666666666666664"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="48" id="CRl-4O-D6e"/>
