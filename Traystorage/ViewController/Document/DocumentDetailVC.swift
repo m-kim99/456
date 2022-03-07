@@ -181,17 +181,24 @@ extension DocumentDetailVC: UICollectionViewDataSource, UICollectionViewDelegate
         let modelDocument = document!
         
         var images = [SKPhoto]()
-        for item in modelDocument.images {
-            if let url = item["url"] as? String {
-                images.append(SKPhoto.photoWithImageURL(url))
-            } else if let image = item["image"] as? UIImage {
-                images.append(SKPhoto.photoWithImage(image))
+        SVProgressHUD.show()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            for item in modelDocument.images {
+                if let url = item["url"] as? String {
+                    let url = URL(string: url)
+                    let data = try? Data(contentsOf: url!)
+                    let img = UIImage(data: data!)
+                    images.append(SKPhoto.photoWithImage(img!))
+                    // images.append(SKPhoto.photoWithImageURL(url))
+                } else if let image = item["image"] as? UIImage {
+                    images.append(SKPhoto.photoWithImage(image))
+                }
             }
+            SVProgressHUD.dismiss()
+            self.photoBrowser = SKPhotoBrowser(photos: images)
+            self.photoBrowser.delegate = self
+            self.navigationController?.pushViewController(self.photoBrowser, animated: true)
         }
-
-        photoBrowser = SKPhotoBrowser(photos: images)
-        photoBrowser.delegate = self
-        navigationController?.pushViewController(photoBrowser, animated: true)
     }
 }
 
@@ -284,5 +291,27 @@ extension DocumentDetailVC: PopViewControllerDelegate {
             loadContentsFormDoc()
             isUpdated = true
         }
+    }
+}
+
+extension UIImageView {
+    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+            else { return }
+            DispatchQueue.main.async { [weak self] in
+                self?.image = image
+            }
+        }.resume()
+    }
+
+    func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
+        guard let url = URL(string: link) else { return }
+        downloaded(from: url, contentMode: mode)
     }
 }
