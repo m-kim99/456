@@ -136,9 +136,13 @@ class DocumentNFCRegisterVC: BaseVC, NFCNDEFReaderSessionDelegate {
         let dynamicLinksDomainURIPrefix = "https://traystorage.page.link"
         let linkBuilder = DynamicLinkComponents(link: link, domainURIPrefix: dynamicLinksDomainURIPrefix)
         linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: "com.kyad.traystorage")
+        linkBuilder?.iOSParameters?.appStoreID = "1608315959"
+        let info = DynamicLinkNavigationInfoParameters()
+        info.isForcedRedirectEnabled = true
+        linkBuilder?.navigationInfoParameters = info
         linkBuilder?.androidParameters = DynamicLinkAndroidParameters(packageName: "com.kyad.traystorage")
 
-//        guard let longDynamicLink = linkBuilder?.url else { return }
+//        guard let longDynamicLink = linkBuilder?.url else { return }FIRDynamicLinkIOSParameters
 //        print("The long URL is: \(longDynamicLink)")
 //        dimLink = longDynamicLink.absoluteString
 //        linkBuilder?.options = DynamicLinkComponentsOptions()
