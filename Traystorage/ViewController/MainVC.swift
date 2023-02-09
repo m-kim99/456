@@ -5,26 +5,26 @@
 //  Created by Dev on 2021. 11. 28..
 //
 
-import UIKit
 import REFrostedViewController
 import SVProgressHUD
+import UIKit
 
 class MainVC: BaseVC {
-    @IBOutlet weak var tableViewDocument: UITableView!
-    @IBOutlet weak var tfSearchText: UITextField!
+    @IBOutlet var tableViewDocument: UITableView!
+    @IBOutlet var tfSearchText: UITextField!
     
-    @IBOutlet weak var vwEmptyView: UIView!
-    @IBOutlet weak var vwDocumentView: UIView!
-    @IBOutlet weak var lblDocumentCount: UILabel!
-    @IBOutlet weak var lblSearchEmpty: UILabel!
+    @IBOutlet var vwEmptyView: UIView!
+    @IBOutlet var vwDocumentView: UIView!
+    @IBOutlet var lblDocumentCount: UILabel!
+    @IBOutlet var lblSearchEmpty: UILabel!
     
-    @IBOutlet weak var lblCountTitle: UIFontLabel!
-    @IBOutlet weak var vwHeaderMain: UIView!
-    @IBOutlet weak var vwHeaderSearch: UIView!
-    @IBOutlet weak var btnDocRegister: UIButton!
+    @IBOutlet var lblCountTitle: UIFontLabel!
+    @IBOutlet var vwHeaderMain: UIView!
+    @IBOutlet var vwHeaderSearch: UIView!
+    @IBOutlet var btnDocRegister: UIButton!
     
     var documents: [ModelDocument] = []
-    var lastKeyword:String?
+    var lastKeyword: String?
         
     private var vcMenu: MenuVC?
 
@@ -37,7 +37,7 @@ class MainVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         initVC()
-        updateViewContent(isSearchResult:false)
+        updateViewContent(isSearchResult: false)
         
         NotificationCenter.default.addObserver(self, selector: #selector(docReg), name: NSNotification.Name(rawValue: "doc_reg"), object: nil)
     }
@@ -53,7 +53,7 @@ class MainVC: BaseVC {
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
         swipeLeft.direction = .left
-        self.view.addGestureRecognizer(swipeLeft)
+        view.addGestureRecognizer(swipeLeft)
         
         let link = Local.getDimLink()
         if link != "" {
@@ -77,11 +77,11 @@ class MainVC: BaseVC {
         }
     }
 
-    private func updateViewContent(isSearchResult:Bool) {
+    private func updateViewContent(isSearchResult: Bool) {
         let searchText = tfSearchText.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         if isSearchResult {
             if searchText.isEmpty {
-                self.view.showToast("doc_empty_search"._localized)
+                view.showToast("doc_empty_search"._localized)
                 return
             }
         }
@@ -104,7 +104,7 @@ class MainVC: BaseVC {
 //        }
         
         LoadingDialog.show()
-        Rest.popupInfo(success:{ [weak self](result) in
+        Rest.popupInfo(success: { [weak self] result in
             LoadingDialog.dismiss()
 
             let popupList = result! as! ModelPopupList
@@ -113,20 +113,18 @@ class MainVC: BaseVC {
             }
             
             let popup = popupList.contents[0]
-            EveryDayDialog.show(self!, content: popup, notShowAction: nil, closeAction: nil) {[weak self] in
-                self?.pushVC(NoticeDetailVC(nibName: "vc_notice_detail", bundle: nil), animated: true, params:["code": popup.movePath])
+            EveryDayDialog.show(self!, content: popup, notShowAction: nil, closeAction: nil) { [weak self] in
+                self?.pushVC(NoticeDetailVC(nibName: "vc_notice_detail", bundle: nil), animated: true, params: ["code": popup.movePath])
             }
-        }, failure: { [weak self](code, err) in
+        }, failure: { [weak self] _, err in
             LoadingDialog.dismiss()
             self?.view.showToast(err)
         })
-
-
     }
     
-    private func loadDocument(_ keyword: String, showLoading:Bool) {
+    private func loadDocument(_ keyword: String, showLoading: Bool) {
 //        tableViewDocument.beginUpdates()
-        self.documents.removeAll()
+        documents.removeAll()
         tableViewDocument.reloadData()
 //        tableViewDocument.endUpdates()
         
@@ -135,7 +133,7 @@ class MainVC: BaseVC {
         if showLoading {
             LoadingDialog.show()
         }
-        Rest.documentList(keyword: keyword, success: {[weak self] (result) in
+        Rest.documentList(keyword: keyword, success: { [weak self] result in
             if showLoading {
                 LoadingDialog.dismiss()
             }
@@ -144,7 +142,7 @@ class MainVC: BaseVC {
             self?.documents.removeAll()
             self?.documents.append(contentsOf: documentList.contents)
             self?.documentChanged()
-        }) {[weak self]  code, msg in
+        }) { [weak self] code, msg in
             if showLoading {
                 LoadingDialog.dismiss()
             }
@@ -159,9 +157,9 @@ class MainVC: BaseVC {
     
     private func documentChanged() {
         tableViewDocument.reloadData()
-        lblDocumentCount.text = "\(self.documents.count)" + "doc_gon"._localized
+        lblDocumentCount.text = "\(documents.count)" + "doc_gon"._localized
 
-        let isEmptyDocList = self.documents.isEmpty
+        let isEmptyDocList = documents.isEmpty
         
         if let keyword = lastKeyword, keyword.isEmpty {
             vwEmptyView.isHidden = !isEmptyDocList
@@ -170,15 +168,18 @@ class MainVC: BaseVC {
         } else {
             vwEmptyView.isHidden = true
             vwDocumentView.isHidden = false
-            lblSearchEmpty.text = "search_empty_title"._localized + (lastKeyword ?? "")
+            lblSearchEmpty.text = "'" + (lastKeyword ?? "") + "'" + "search_empty_title"._localized
             lblSearchEmpty.isHidden = !isEmptyDocList
         }
     }
     
     //
+
     // MARK: - Action
+
     //
     @IBAction func onSearchDone(_ sender: Any) {
+        hideKeyboard()
         updateViewContent(isSearchResult: true)
     }
     
@@ -186,7 +187,7 @@ class MainVC: BaseVC {
         updateViewContent(isSearchResult: false)
     }
     
-    internal override func hideKeyboard() {
+    override internal func hideKeyboard() {
         super.hideKeyboard()
         tfSearchText.resignFirstResponder()
     }
@@ -196,11 +197,11 @@ class MainVC: BaseVC {
     }
     
     @IBAction func onClickMenu(_ sender: Any) {
-        vcMenu?.slideOpen(self.view)
+        vcMenu?.slideOpen(view)
     }
     
     @IBAction func onClickAdd(_ sender: Any) {
-        let vc = DocumentRegisterVC(nibName: "vc_document_register", bundle: nil);
+        let vc = DocumentRegisterVC(nibName: "vc_document_register", bundle: nil)
         vc.isNewDocument = true
         vc.popDelegate = self
         pushVC(vc, animated: true)
@@ -212,7 +213,6 @@ class MainVC: BaseVC {
         updateViewContent(isSearchResult: true)
     }
 }
-
 
 extension MainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -253,42 +253,43 @@ extension MainVC: UITableViewDataSource {
         
         return cell
     }
-
 }
 
 extension MainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DocumentDetailVC(nibName: "vc_document_detail", bundle: nil)
-        detailVC.documentId = self.documents[indexPath.row].doc_id
+        detailVC.documentId = documents[indexPath.row].doc_id
         detailVC.popDelegate = self
-        self.pushVC(detailVC, animated: true)
+        pushVC(detailVC, animated: true)
     }
 }
 
 //
+
 // MARK: - MenuDelegate
+
 //
 
 extension MainVC: MenuDelegate {
     func openProfile() {
-        self.pushVC(MyProfileVC(nibName: "vc_my_profile", bundle: nil), animated: true)
+        pushVC(MyProfileVC(nibName: "vc_my_profile", bundle: nil), animated: true)
     }
     
     func openInvite() {
-        self.pushVC(InviteVC(nibName: "vc_invite", bundle: nil), animated: true)
+        pushVC(InviteVC(nibName: "vc_invite", bundle: nil), animated: true)
     }
     
     func openContactus() {
 //        self.pushVC(ContactusVC(nibName: "vc_contactus", bundle: nil), animated: true)
-        self.pushVC(InquiryVC(nibName: "vc_inquiry", bundle: nil), animated: true)
+        pushVC(InquiryVC(nibName: "vc_inquiry", bundle: nil), animated: true)
     }
     
     func openNotice() {
-        self.pushVC(NoticeVC(nibName: "vc_notice", bundle: nil), animated: true)
+        pushVC(NoticeVC(nibName: "vc_notice", bundle: nil), animated: true)
     }
     
     func openSetting() {
-        self.pushVC(SettingVC(nibName: "vc_setting", bundle: nil), animated: true)
+        pushVC(SettingVC(nibName: "vc_setting", bundle: nil), animated: true)
     }
 }
 
@@ -301,7 +302,7 @@ extension MainVC: PopViewControllerDelegate {
         } else if sender == "delete" {
             let documentID = result as! Int
             
-            for i in 0..<documents.count {
+            for i in 0 ..< documents.count {
                 if documents[i].doc_id == documentID {
                     documents.remove(at: i)
                     documentChanged()
@@ -309,7 +310,7 @@ extension MainVC: PopViewControllerDelegate {
                 }
             }
             
-            self.view.showToast("doc_deleted_toast"._localized)
+            view.showToast("doc_deleted_toast"._localized)
         }
     }
 }
