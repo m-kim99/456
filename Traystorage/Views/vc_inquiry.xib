@@ -42,7 +42,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="inquiries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4U-md-582" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="175" y="20" width="64" height="20.5"/>
+                                    <rect key="frame" x="172.5" y="19" width="69" height="22"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -54,38 +54,12 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="inquiries"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxl-CM-MoP" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="287" y="12" width="107" height="36"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="kxJ-GY-CLS"/>
-                                    </constraints>
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                    <state key="normal" title="Contact us" image="Icon-C-Write-White-24"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="xFontSize">
-                                            <real key="value" value="14"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                            <real key="value" value="18"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="useCustomeRadius" value="NO"/>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isFilled" value="YES"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="contact_us"/>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="onContactus:" destination="-1" eventType="touchUpInside" id="pEZ-Cv-iz7"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="0mX-XH-h0J"/>
-                                <constraint firstItem="gxl-CM-MoP" firstAttribute="centerY" secondItem="RL2-7j-3Jh" secondAttribute="centerY" id="2F8-P6-07S"/>
                                 <constraint firstAttribute="bottom" secondItem="HAD-1W-TxG" secondAttribute="bottom" id="8nk-LU-eGm"/>
                                 <constraint firstItem="HAD-1W-TxG" firstAttribute="top" secondItem="RL2-7j-3Jh" secondAttribute="top" id="M6c-kC-OMd"/>
-                                <constraint firstAttribute="trailing" secondItem="gxl-CM-MoP" secondAttribute="trailing" constant="20" id="PRI-Cw-2gA"/>
                                 <constraint firstItem="HAD-1W-TxG" firstAttribute="leading" secondItem="RL2-7j-3Jh" secondAttribute="leading" id="rA4-dE-wwB"/>
                                 <constraint firstItem="v4U-md-582" firstAttribute="centerX" secondItem="RL2-7j-3Jh" secondAttribute="centerX" id="wNY-of-1tz"/>
                                 <constraint firstItem="v4U-md-582" firstAttribute="centerY" secondItem="RL2-7j-3Jh" secondAttribute="centerY" id="yA5-2h-DUY"/>
@@ -98,10 +72,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dqh-V7-YTt">
-                                            <rect key="frame" x="20" y="20" width="95" height="20"/>
+                                            <rect key="frame" x="20" y="20" width="101.5" height="20"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="document" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aiy-ug-CEv" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="77.5" height="20"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="84.5" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -113,7 +87,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyK-Xl-8IN" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                                    <rect key="frame" x="85.5" y="0.0" width="9.5" height="20"/>
+                                                    <rect key="frame" x="92.5" y="0.0" width="9" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="6eM-aV-63v"/>
                                                     </constraints>
@@ -155,7 +129,7 @@
                                     <rect key="frame" x="132" y="48" width="150" height="150"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no inquiry history" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pzo-KL-p0q" customClass="UIFontLabel" customModule="Traystorage" customModuleProvider="target">
-                                    <rect key="frame" x="94.5" y="218" width="225" height="24"/>
+                                    <rect key="frame" x="126.5" y="218" width="161" height="24"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -192,6 +166,9 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="useAppTint" value="YES"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="contact_us"/>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="onContactus:" destination="-1" eventType="touchUpInside" id="ODj-2h-6tS"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>
@@ -225,26 +202,22 @@
     </objects>
     <designables>
         <designable name="Aiy-ug-CEv">
-            <size key="intrinsicContentSize" width="77.5" height="20.5"/>
+            <size key="intrinsicContentSize" width="84.5" height="17"/>
         </designable>
         <designable name="Pzo-KL-p0q">
-            <size key="intrinsicContentSize" width="225" height="24"/>
+            <size key="intrinsicContentSize" width="161" height="24"/>
         </designable>
         <designable name="QrF-z4-F3Q">
-            <size key="intrinsicContentSize" width="89" height="30"/>
+            <size key="intrinsicContentSize" width="71" height="30"/>
         </designable>
         <designable name="XyK-Xl-8IN">
-            <size key="intrinsicContentSize" width="9.5" height="18"/>
-        </designable>
-        <designable name="gxl-CM-MoP">
-            <size key="intrinsicContentSize" width="107" height="24"/>
+            <size key="intrinsicContentSize" width="9" height="17"/>
         </designable>
         <designable name="v4U-md-582">
-            <size key="intrinsicContentSize" width="64" height="20.5"/>
+            <size key="intrinsicContentSize" width="69" height="22"/>
         </designable>
     </designables>
     <resources>
-        <image name="Icon-C-Write-White-24" width="24" height="24"/>
         <image name="ic_back" width="24" height="24"/>
         <image name="img_Nodocuments_150" width="150" height="150"/>
         <systemColor name="systemBackgroundColor">
