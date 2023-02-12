@@ -35,6 +35,8 @@ enum Local : String {
     
     case PREFS_APP_VERSION = "PREFS_APP_VERSION"
     case PREFS_DIM_LINK = "PREFS_DIM_LINK"
+    
+    case PREFS_PHOTO_PERMISSION = "PREFS_PHOTO_PERMISSION"
 
     public static func setAppVersion(_ version: String) {
         let ud = UserDefaults.standard

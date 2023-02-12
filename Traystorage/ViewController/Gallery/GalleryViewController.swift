@@ -6,9 +6,9 @@
 //  Copyright © 2019 Snow. All rights reserved.
 //
 
-import UIKit
 import Photos
 import TOCropViewController
+import UIKit
 
 class galleryList: NSObject {
     var image: UIImage!
@@ -16,14 +16,14 @@ class galleryList: NSObject {
 }
 
 class GalleryViewController: BaseVC {
-    @IBOutlet weak var clvImage: UICollectionView!
+    @IBOutlet var clvImage: UICollectionView!
     
     var multi = 1
     var count = 4
     
     var imgList = [galleryList]()
     var selectedImgList = [UIImage]()
-    var nSelect : Int = -1
+    var nSelect: Int = -1
     var assetsList = [PHAsset]()
     
     var m_bVideo = false
@@ -43,28 +43,67 @@ class GalleryViewController: BaseVC {
     }
 
     func initUI() {
-        clvImage.register(UINib.init(nibName: "cvc_gallery_image_list", bundle: nil), forCellWithReuseIdentifier: "ImageListCVC")
+        clvImage.register(UINib(nibName: "cvc_gallery_image_list", bundle: nil), forCellWithReuseIdentifier: "ImageListCVC")
         checkPermission()
         
         picker.delegate = self
     }
     
     func checkPermission() {
-        authorize(fromViewController: self) { (authorized) -> Void in
-            guard authorized == true else {
-                self.showDialog()
-                return
+        let ud = UserDefaults.standard
+        let isPhotoPermision = ud.bool(forKey: Local.PREFS_PHOTO_PERMISSION.rawValue)
+        if !isPhotoPermision {
+            authorize(fromViewController: self) { (authorized) -> Void in
+                ud.set(true, forKey: Local.PREFS_PHOTO_PERMISSION.rawValue)
+                ud.synchronize()
+
+                guard authorized == true else {
+                    self.showDialog()
+                    return
+                }
+                self.m_bVideo ? self.getMedias() : self.initAlbum()
             }
-            self.m_bVideo ? self.getMedias() : self.initAlbum()
+
+        } else {
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+                switch status {
+                case .notDetermined:
+                    // The user hasn't determined this app's access.
+                    self.showDialog()
+                case .restricted:
+                    // The system restricted this app's access.
+                    self.showDialog()
+                case .denied:
+                    // The user explicitly denied this app's access.
+                    self.showDialog()
+                case .authorized:
+                    DispatchQueue.main.async { () -> Void in
+                        self.authorize(fromViewController: self) { (authorized) -> Void in
+                            guard authorized == true else {
+                                self.showDialog()
+                                return
+                            }
+                            self.m_bVideo ? self.getMedias() : self.initAlbum()
+                        }
+                    }
+                    
+                case .limited:
+                    // The user authorized this app for limited Photos access.
+                    self.showDialog()
+                @unknown default:
+                    fatalError()
+                }
+            }
         }
     }
     
     func showDialog() {
-        let alert = UIAlertController (title: "권한 요청", message: "해당 기능을 사용하려면 권한이 필요합니다.\n권한을 허용해주세요.", preferredStyle: .alert)
-        alert.addAction( UIAlertAction(title: "취소", style: .cancel) { void in
-            self.checkPermission()
-        }) //, handler: nil)
-        alert.addAction(UIAlertAction(title: "Settings", style: .destructive) { void in
+        let alert = UIAlertController(title: "권한 요청", message: "해당 기능을 사용하려면 모든 사진권한이 필요합니다.\n권한을 허용해주세요.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel) { _ in
+            // self.checkPermission()
+            self.popVC()
+        }) // , handler: nil)
+        alert.addAction(UIAlertAction(title: "설정", style: .destructive) { _ in
             self.goSetting()
         })
         
@@ -99,8 +138,8 @@ class GalleryViewController: BaseVC {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let width = self.view.bounds.width / 3
-        thumbnailSize = CGSize(width: width , height: width)
+        let width = view.bounds.width / 3
+        thumbnailSize = CGSize(width: width, height: width)
     }
     
     func getMedias() {
@@ -119,12 +158,12 @@ class GalleryViewController: BaseVC {
         }
         
         let width = 720
-        thumbnailSize = CGSize(width: width , height: width)
+        thumbnailSize = CGSize(width: width, height: width)
         
         clvImage.reloadData()
     }
     
-    func getImageFromAsset(assetsList : [PHAsset]) -> [UIImage] {
+    func getImageFromAsset(assetsList: [PHAsset]) -> [UIImage] {
         var resImg = [UIImage]()
         
         let option = PHImageRequestOptions()
@@ -134,7 +173,7 @@ class GalleryViewController: BaseVC {
         for asset in assetsList {
             let imageSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
             
-            PHCachingImageManager.default().requestImage(for: asset, targetSize: imageSize, contentMode: .aspectFill, options: option) { (result, _) in
+            PHCachingImageManager.default().requestImage(for: asset, targetSize: imageSize, contentMode: .aspectFill, options: option) { result, _ in
                 if let image = result {
                     resImg.append(image)
                 }
@@ -165,7 +204,7 @@ class GalleryViewController: BaseVC {
         showList()
     }
     
-    func initAlbumItem(_ fetchResult : PHFetchResult<PHAssetCollection>) -> [PHAsset] {
+    func initAlbumItem(_ fetchResult: PHFetchResult<PHAssetCollection>) -> [PHAsset] {
         var arrAsset = [PHAsset]()
         
         let cachingManager = PHCachingImageManager.default() as? PHCachingImageManager
@@ -177,12 +216,12 @@ class GalleryViewController: BaseVC {
         ]
         fetchOptions.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
         
-        fetchResult.enumerateObjects({ (object, index, stop) -> Void in
+        fetchResult.enumerateObjects { (object, _, _) -> Void in
             let result = PHAsset.fetchAssets(in: object, options: fetchOptions)
-            result.enumerateObjects({ (asset, idx, stp) in
+            result.enumerateObjects { asset, _, _ in
                 arrAsset.append(asset)
-            })
-        })
+            }
+        }
         
         return arrAsset
     }
@@ -195,22 +234,22 @@ class GalleryViewController: BaseVC {
             
         case .notDetermined:
             // Ask user for permission
-            PHPhotoLibrary.requestAuthorization({ (status) -> Void in
-                DispatchQueue.main.async(execute: { () -> Void in
+            PHPhotoLibrary.requestAuthorization { (status) -> Void in
+                DispatchQueue.main.async { () -> Void in
                     self.authorize(status, fromViewController: fromViewController, completion: completion)
-                })
-            })
+                }
+            }
             
         default:
-            DispatchQueue.main.async(execute: { () -> Void in
+            DispatchQueue.main.async { () -> Void in
                 completion(false)
-            })
+            }
         }
     }
     
     func popVC() {
-        let nav : UINavigationController! = self.navigationController
-        var viewVCs : [UIViewController] = nav.viewControllers
+        let nav: UINavigationController! = navigationController
+        var viewVCs: [UIViewController] = nav.viewControllers
         viewVCs.removeLast()
         nav.setViewControllers(viewVCs, animated: true)
     }
@@ -227,13 +266,12 @@ class GalleryViewController: BaseVC {
         present(picker, animated: true)
     }
     
-    
     @IBAction func onClickDone(_ sender: Any) {
         if selectedImgList.count == 0 {
             return
         }
         
-        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue:"image_pick"), object: selectedImgList))
+        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "image_pick"), object: selectedImgList))
         popVC()
     }
     
@@ -248,13 +286,11 @@ class GalleryViewController: BaseVC {
         cropViewController.aspectRatioPickerButtonHidden = true
         present(cropViewController, animated: true, completion: nil)
     }
-
 }
 
-extension GalleryViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.bounds.size.width - 3) / 3, height: (collectionView.bounds.size.width - 3) / 3 )
+        return CGSize(width: (collectionView.bounds.size.width - 3) / 3, height: (collectionView.bounds.size.width - 3) / 3)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -263,11 +299,11 @@ extension GalleryViewController : UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if m_bVideo {
-            NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue:"video_pick"), object: mMedias[indexPath.row]))
+            NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "video_pick"), object: mMedias[indexPath.row]))
             popVC()
         } else {
             if indexPath.row == 0 { // camera
-                //AlertDialog.show(self, title: "Camera", message: "Not implement camera")
+                // AlertDialog.show(self, title: "Camera", message: "Not implement camera")
                 onClickCamera()
             } else {
                 let row = indexPath.row - 1
@@ -280,7 +316,7 @@ extension GalleryViewController : UICollectionViewDelegate, UICollectionViewData
                     } else {
                         selectedImgList.removeAll()
                         selectedImgList.append(imgList[row].image)
-                        self.onClickDone("");
+                        onClickDone("")
                     }
                 } else {
                     var ind = -1
@@ -303,7 +339,7 @@ extension GalleryViewController : UICollectionViewDelegate, UICollectionViewData
         let cell = clvImage.dequeueReusableCell(withReuseIdentifier: "ImageListCVC", for: indexPath) as! ImageListCVC
         
         if m_bVideo {
-            var asset: PHAsset = PHAsset()
+            var asset = PHAsset()
             asset = mMedias[indexPath.row]
             
             if cell.representedAssetIdentifier != asset.localIdentifier {
@@ -345,7 +381,7 @@ extension GalleryViewController : UICollectionViewDelegate, UICollectionViewData
 }
 
 extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         dismiss(animated: false, completion: nil)
         let image = info[.originalImage] as! UIImage
 
@@ -359,6 +395,6 @@ extension GalleryViewController: TOCropViewControllerDelegate {
     func cropViewController(_ cropViewController: TOCropViewController, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
         dismiss(animated: true, completion: nil)
 
-        //uploadImage(img: image)
+        // uploadImage(img: image)
     }
 }
