@@ -50,48 +50,58 @@ class GalleryViewController: BaseVC {
     }
     
     func checkPermission() {
-        let ud = UserDefaults.standard
-        let isPhotoPermision = ud.bool(forKey: Local.PREFS_PHOTO_PERMISSION.rawValue)
-        if !isPhotoPermision {
+        if gAppStoreReview {
             authorize(fromViewController: self) { (authorized) -> Void in
-                ud.set(true, forKey: Local.PREFS_PHOTO_PERMISSION.rawValue)
-                ud.synchronize()
-
                 guard authorized == true else {
                     self.showDialog()
                     return
                 }
                 self.m_bVideo ? self.getMedias() : self.initAlbum()
             }
-
         } else {
-            PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-                switch status {
-                case .notDetermined:
-                    // The user hasn't determined this app's access.
-                    self.showDialog()
-                case .restricted:
-                    // The system restricted this app's access.
-                    self.showDialog()
-                case .denied:
-                    // The user explicitly denied this app's access.
-                    self.showDialog()
-                case .authorized:
-                    DispatchQueue.main.async { () -> Void in
-                        self.authorize(fromViewController: self) { (authorized) -> Void in
-                            guard authorized == true else {
-                                self.showDialog()
-                                return
-                            }
-                            self.m_bVideo ? self.getMedias() : self.initAlbum()
-                        }
-                    }
+            let ud = UserDefaults.standard
+            let isPhotoPermision = ud.bool(forKey: Local.PREFS_PHOTO_PERMISSION.rawValue)
+            if !isPhotoPermision {
+                authorize(fromViewController: self) { (authorized) -> Void in
+                    ud.set(true, forKey: Local.PREFS_PHOTO_PERMISSION.rawValue)
+                    ud.synchronize()
                     
-                case .limited:
-                    // The user authorized this app for limited Photos access.
-                    self.showDialog()
-                @unknown default:
-                    fatalError()
+                    guard authorized == true else {
+                        self.showDialog()
+                        return
+                    }
+                    self.m_bVideo ? self.getMedias() : self.initAlbum()
+                }
+                
+            } else {
+                PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+                    switch status {
+                    case .notDetermined:
+                        // The user hasn't determined this app's access.
+                        self.showDialog()
+                    case .restricted:
+                        // The system restricted this app's access.
+                        self.showDialog()
+                    case .denied:
+                        // The user explicitly denied this app's access.
+                        self.showDialog()
+                    case .authorized:
+                        DispatchQueue.main.async { () -> Void in
+                            self.authorize(fromViewController: self) { (authorized) -> Void in
+                                guard authorized == true else {
+                                    self.showDialog()
+                                    return
+                                }
+                                self.m_bVideo ? self.getMedias() : self.initAlbum()
+                            }
+                        }
+                        
+                    case .limited:
+                        // The user authorized this app for limited Photos access.
+                        self.showDialog()
+                    @unknown default:
+                        fatalError()
+                    }
                 }
             }
         }

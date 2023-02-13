@@ -14,3 +14,4 @@ let X_NCP_APIGW_API_KEY = "q8VV7KAVEqoQCN0oiv4XAJ6fO6sCePCtu8nZwV69"
 //
 var gAppLanguage = DEFAULT_LANGUAGE
 var gReview = false
+var gAppStoreReview = false

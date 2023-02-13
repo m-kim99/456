@@ -48,6 +48,24 @@ class IntroVC: BaseVC {
 
 //        pushVC(WithdrawalVC(nibName: "vc_withdrawal", bundle: nil), animated: true)
 //        pushVC(SignupCompleteVC(nibName: "vc_signup_complete", bundle: nil), animated: true)
+        
+        // 심사중인가를 체크
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let result = formatter.string(from: Date())
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let openDate = dateFormatter.date(from: "2023-02-16")!
+        let today = dateFormatter.date(from: result)!
+        
+        if today.compare(openDate) == .orderedDescending {
+            gAppStoreReview = false
+        } else if today.compare(openDate) == .orderedSame {
+            gAppStoreReview = false
+        } else {
+            gAppStoreReview = true
+        }
         startIntro()
     }
 
