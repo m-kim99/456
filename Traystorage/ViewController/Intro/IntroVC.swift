@@ -56,7 +56,7 @@ class IntroVC: BaseVC {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let openDate = dateFormatter.date(from: "2023-02-16")!
+        let openDate = dateFormatter.date(from: "2023-02-20")!
         let today = dateFormatter.date(from: result)!
         
         if today.compare(openDate) == .orderedDescending {

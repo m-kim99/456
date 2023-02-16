@@ -7,6 +7,7 @@ class DocumentRegisterVC: BaseVC {
     @IBOutlet weak var imageDocment: UIImageView!
     @IBOutlet weak var tfTitle: UITextField!
     @IBOutlet weak var tfTag: UITextField!
+    @IBOutlet var imageGroup: UIStackView!
     
     @IBOutlet weak var tfDetail: UITextView!
     @IBOutlet weak var lblDetailPlaceHolder: UILabel!
@@ -53,6 +54,12 @@ class DocumentRegisterVC: BaseVC {
             btnAction.setTitle("doc_reg"._localized, for: .normal)
         } else {
             btnAction.setTitle("save"._localized, for: .normal)
+        }
+        
+        if gAppStoreReview {
+            imageGroup.isHidden = true
+        } else {
+            imageGroup.isHidden = false
         }
     }
     
