@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -89,8 +89,9 @@
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eyy-3Q-pvK" customClass="UIFontButton" customModule="Traystorage" customModuleProvider="target">
-                                                <rect key="frame" x="154" y="0.0" width="80" height="38"/>
+                                                <rect key="frame" x="154" y="6" width="80" height="26"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" constant="26" id="1QD-fv-r7c"/>
                                                     <constraint firstAttribute="width" constant="80" id="bmY-JP-WXH"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -105,7 +106,7 @@
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="15"/>
+                                                        <real key="value" value="13"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="xibLocKey" value="setting_edit"/>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isOutline" value="YES"/>
@@ -115,14 +116,12 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="Eyy-3Q-pvK" firstAttribute="top" secondItem="cv7-ZY-2HO" secondAttribute="top" id="49T-jy-WC5"/>
                                             <constraint firstItem="ySh-aF-htP" firstAttribute="top" secondItem="cv7-ZY-2HO" secondAttribute="top" id="H7f-Jx-XQ1"/>
                                             <constraint firstAttribute="trailing" secondItem="ySh-aF-htP" secondAttribute="trailing" id="VIS-uC-8cB"/>
-                                            <constraint firstAttribute="bottom" secondItem="Eyy-3Q-pvK" secondAttribute="bottom" id="afQ-tL-mt8"/>
+                                            <constraint firstAttribute="bottom" secondItem="Eyy-3Q-pvK" secondAttribute="bottom" constant="6" id="afQ-tL-mt8"/>
                                             <constraint firstAttribute="bottom" secondItem="ySh-aF-htP" secondAttribute="bottom" id="fRG-ei-hu2"/>
                                             <constraint firstAttribute="trailing" secondItem="Eyy-3Q-pvK" secondAttribute="trailing" id="gXE-mM-uKM"/>
                                             <constraint firstItem="ySh-aF-htP" firstAttribute="leading" secondItem="cv7-ZY-2HO" secondAttribute="leading" id="tkA-NS-PHL"/>
-                                            <constraint firstItem="Eyy-3Q-pvK" firstAttribute="centerY" secondItem="ySh-aF-htP" secondAttribute="centerY" id="voi-Ii-6jz"/>
                                         </constraints>
                                     </view>
                                 </subviews>
