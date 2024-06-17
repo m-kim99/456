@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         let thirdConn: NaverThirdPartyLoginConnection = NaverThirdPartyLoginConnection.getSharedInstance()
-        thirdConn.isNaverAppOauthEnable = true
+        thirdConn.isNaverAppOauthEnable = false
         thirdConn.isInAppOauthEnable = true
         thirdConn.setOnlyPortraitSupportInIphone(true)
         thirdConn.serviceUrlScheme = kServiceAppUrlScheme
