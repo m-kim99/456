@@ -195,7 +195,7 @@ extension MyProfileVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newLen = (textField.text?.count ?? 0) - range.length + string.count
 
-        if textField == editName, newLen > 10 {
+        if textField == editName, newLen > 50 {
             return false
         }
         
